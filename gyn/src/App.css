@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins", sans-serif;
+}
+
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: rgb(124, 124, 236); */
+}
+
+.container{
+  position: relative;
+  max-width: 1170px;
+  width: 100%;
+  border-radius: 6px;
+  padding: 30px;
+  margin: 50px 15px;
+  background-color: white;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3) ;
+}
+
+.container header{
+  position: relative;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.container form{
+  position: relative;
+  margin-top: 16px;
+  min-height: 490px;
+  background-color: white;
+}
+
+.container form .details{
+  margin-top: 10px;
+}
+
+.container form .title{
+  display: block;
+  text-align: center;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 10px 0;
+  color: #ffffff;
+  background-color: #512da8;
+  border-radius: 6px;
+}
+
+.container form .fields1{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+form .fields1 .input-field{
+  display: flex;
+  margin-right: 5%;
+  flex-direction: column;
+}
+.container form .fields{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+form .fields .input-field{
+  display: flex;
+  width: 520px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+.input-field label, .input-fieldH label, .input-fieldC label, .input-fieldN label{
+  font-size: 12px;
+  font-weight: 500;
+  color: black;
+}
+
+form .fields .input-fieldR{
+  display: flex;
+  width: 220px;
+  margin-right: 30px;
+  flex-direction: row;
+}
+.input-fieldR label{
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 20px;
+  color: black;
+}
+
+form .fields .input-fieldH{
+  display: flex;
+  width: 70px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+form .fields .input-fieldC{
+  display: flex;
+  width: 320px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+form .fields .input-fieldN{
+  display: flex;
+  width: 200px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+.input-fieldH input, .input-fieldN input, .input-fieldC select, .input-field input,select{
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border: 1px solid #aaa;
+  padding: 0 15px;
+  height: 42px;
+  margin: 8px 0;
+}
+
+.input-field textarea{
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border: 1px solid #aaa;
+  padding: 0 15px;
+  margin: 8px 0;
+}
+
+.input-field input,textarea, .input-fieldN input, .input-fieldC select, .input-fieldH input:is(:focus, :valid){
+  box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+
+.input-field input[type="date"]{
+  color: #707070;
+}
+
+.input-field input[type="date"]:valid{
+  color: #333;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  padding-left: 20px; 
+  cursor: pointer;
+}
+
+input[type="radio"] + label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 13px; 
+  height: 13px; 
+  background-color: #ffffff; 
+  border-radius: 100%; 
+  border: 1px solid;
+}
+
+input[type="radio"]:checked + label::before {
+  background-color: #512da8;
+}
