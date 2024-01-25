@@ -1,10 +1,11 @@
-import { PReg } from './patient_registration';
+import React from 'react';
+import { Login } from './login.jsx';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <PReg/>
+      <Login/>
     </div>
   );
 }
