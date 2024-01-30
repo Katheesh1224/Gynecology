@@ -80,7 +80,8 @@ form .fields .input-field{
   margin-right: 30px;
   flex-direction: column;
 }
-.input-field label, .input-fieldH label, .input-fieldC label, .input-fieldN label{
+
+.input-field label, .input-fieldH label, .input-fieldB label, .input-fieldC label, .input-fieldN label{
   font-size: 12px;
   font-weight: 500;
   color: black;
@@ -92,6 +93,7 @@ form .fields .input-fieldR{
   margin-right: 30px;
   flex-direction: row;
 }
+
 .input-fieldR label{
   font-size: 12px;
   font-weight: 500;
@@ -99,28 +101,128 @@ form .fields .input-fieldR{
   color: black;
 }
 
-form .fields .input-fieldH{
+form .fields .input-fieldX,.input-fieldX2{
   display: flex;
-  width: 70px;
+  width: 110px;
   margin-right: 30px;
   flex-direction: column;
 }
 
-form .fields .input-fieldC{
-  display: flex;
-  width: 320px;
-  margin-right: 30px;
-  flex-direction: column;
+.input-fieldX p{
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 20px;
+  color: black;
 }
 
-form .fields .input-fieldN{
+.input-fieldX label{
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: -25px;
+  margin-left: 40px;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.input-fieldX input{
+  outline: none;
+  height: 16px;
+  width: 50px;
+  margin: 8px 0;
+}
+
+.input-fieldX2 label{
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-left: 40px;
+  color: black;
+}
+
+.input-fieldX2 input{
+  outline: none;
+  height: 16px;
+  width: 50px;
+  margin: 8px 0;
+  margin-bottom: -25px;
+}
+
+form .fields .input-fieldM{
   display: flex;
   width: 200px;
   margin-right: 30px;
   flex-direction: column;
 }
 
-.input-fieldH input, .input-fieldN input, .input-fieldC select, .input-field input,select{
+.input-fieldM p{
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-right: 20px;
+  color: black;
+}
+
+.input-fieldM label{
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: -25px;
+  margin-left: 40px;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.input-fieldM input{
+  outline: none;
+  height: 16px;
+  width: 50px;
+  margin: 8px 0;
+}
+
+.unit1 p{
+  margin-left: -25px;
+  margin-right: 35px;
+  margin-top: 15px;
+  font-size: 12px;
+}
+
+.unit2 p{
+  margin-left: -35px;
+  margin-right: 35px;
+  margin-top: 10px;
+  font-size: 10px;
+}
+
+form .fields .input-fieldH{
+  display: flex;
+  width: 80px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+form .fields .input-fieldB{
+  display: flex;
+  width: 150px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+form .fields .input-fieldC{
+  display: flex;
+  width: 250px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+form .fields .input-fieldN{
+  display: flex;
+  width: 153px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+
+
+.input-fieldH input, .input-fieldB input, .input-fieldN input, .input-fieldC select, .input-field input,select{
   outline: none;
   font-size: 14px;
   font-weight: 400;
@@ -141,7 +243,7 @@ form .fields .input-fieldN{
   margin: 8px 0;
 }
 
-.input-field input,textarea, .input-fieldN input, .input-fieldC select, .input-fieldH input:is(:focus, :valid){
+.input-field input,textarea, .input-fieldN input, .input-fieldN select, .input-fieldC select,.input-fieldB input, .input-fieldH input:is(:focus, :valid){
   box-shadow: 0 3px 6px rgba(0,0,0,0.13);
 }
 
@@ -177,3 +279,5 @@ input[type="radio"] + label::before {
 input[type="radio"]:checked + label::before {
   background-color: #512da8;
 }
+
+
