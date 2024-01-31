@@ -2,9 +2,6 @@ import './login.css';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import React ,{ useState } from 'react';
-import { Link } from 'react-router-dom';
-import {home} from './home';
-import {patient_registration} from './patient_registration.js';
 
 
 export const Login = () => {
@@ -23,7 +20,7 @@ export const Login = () => {
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
-        // setFormErrors(validate(formValues));
+        setFormErrors(validate(formValues));
         setIsSubmit(true);  
 
         if(!(formErrors.email)&& !(formErrors.password)){
@@ -37,22 +34,46 @@ export const Login = () => {
             .catch(err=>console.log(err));
         }
     }
-    const handleClick = () => {
-        navigate('/patient_registration');
+    const validate = (values) => {
+        const errors = {}
+        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
+
+        if (!values.email) {
+            errors.email = "email is required!"
+        } else if (!regex.test(values.email)) {
+            errors.email = "This is not a valid email format!"
+        }
+
+
+        if (!values.password) {
+            errors.password = "password is required!"
+        } else if (values.password.length < 4) {
+            errors.password = "password must be more than 4 characters!"
+        }
+        else if (values.password.length > 10) {
+            errors.password = "password can not exceed more than 10 characters!"
+        }
+
+
+        return errors;
     }
+    
     return (
         <div className="containerL" id="containerL">
         <div className="form-container sign-in">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h1>Sign In</h1>
                 <br />
-                <input type="text" name="email" placeholder="Email" />
-                <input type="password" name="password" placeholder="Password" />
+                <input type="text" name="email" placeholder="Email" value={formValues.email} onChange={handleChange} />
+                {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
+
+                <input type="password" name="password" placeholder="Password" value={formValues.password} onChange={handleChange} />
+                {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
+
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
-                {/* <Link to="/patient_registration.jsx">patient_registration_Form</Link> */}
-                <button onClick={handleClick}>patient_registration_Form</button>
+                <button type='submit'>Sign In</button>
+                
             </form>
         </div>
         <div className="toggle-container">
