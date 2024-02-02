@@ -3,7 +3,7 @@ import react, { useEffect ,useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 
-export const PReg = () => {
+const PReg = () => {
 
     const [values,setValues] =useState({
         date:'',
@@ -297,3 +297,4 @@ export const PReg = () => {
         
     )
 }
+export default PReg;
