@@ -1,18 +1,18 @@
 import React from 'react';
 import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import './home.css';
 
 const Home = () =>{
 
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate('/patient_registration');
-    }
-    const handleClick2 = () =>{
-        navigate('/Register_staff');
-    }
+    // const handleClick = () => {
+    //     navigate('/patient_registration');
+    // }
+    // const handleClick2 = () =>{
+    //     navigate('/Register_staff');
+    // }
     const handleLogout = async () => {
         try {
           await axios.get('http://localhost:8081/logout');
@@ -31,11 +31,13 @@ const Home = () =>{
     //     .catch(err =>console.log(err))
     // }
     return(
-        <div>
-        <h1>Home after Login</h1>
-        <button onClick={handleClick}>patient_registration_Form</button>
-        <button onClick={handleClick2}>Register_staff</button>
-        <button onClick={handleLogout}>Logout</button>
+        <div className='homeContainer'>
+        <ul>
+        <li><a href='patient_registration' class="list-items">Patient_registration_form</a></li>
+        <li><a href='Register_staff' class="list-items">Register_staff</a></li>
+        </ul>
+        <button onClick={handleLogout} class="button3">Logout</button>
+        
         </div>
     );
 

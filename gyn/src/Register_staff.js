@@ -1,4 +1,4 @@
-import './login.css';
+import './App.css';
 import axios from 'axios';
 import React ,{ useState } from 'react';
 
@@ -33,33 +33,55 @@ const  Register_staff = () =>{
 
     
     return(
-        <div className="form-container sign-in">
-            <h1>Staff Registration From</h1>
+        <div className="container">
         <form onSubmit={handleSubmit}>
-            <h1>Sign In</h1>
+            <h1>Staff Registration </h1>
             <br />
-            <input type='text' name='name' placeholder='Fullname' onChange={e =>setValues({...values,name:e.target.value})} /><br />
-            <input type='number' name='phone_no' placeholder='Phone No'  onChange={e =>setValues({...values,phone_no:e.target.value})} /><br />
-            <select name="role" id="role" onChange={e =>setValues({...values,role:e.target.value})} >
+            <div className="fields">
+                <div className="input-field">
+                <label htmlFor="fullname">Full Name : </label>
+            <input type='text' name='name' placeholder='Enter your fullname' onChange={e =>setValues({...values,name:e.target.value})} />
+            </div >
+            <div className="input-field">
+            <label htmlFor="phoneno">Phone No : </label>
+            <input type='number' name='phone_no' placeholder='Enter your phone No'  onChange={e =>setValues({...values,phone_no:e.target.value})} /></div>
+            </div>
+            
+            <div className="input-field">
+            <label htmlFor="email">Email : </label><br/>
+            <input type="text" name="email" placeholder="Enter your email"  onChange={handleChange} />
+             </div>
+            {/* {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}<br /> */}
+            <br/>
+             <div className="fields">
+            <div className="input-field">
+            <label htmlFor="password">Password: </label>
+            <input type="password" name="password" placeholder=" Enter the password" onChange={handleChange} /></div>
+            <div className="input-field">
+            <label htmlFor="Cpassword">Confirm Password : </label>
+            <input type="password" name="password" placeholder="Confirm password" /></div>
+            {/* {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}<br /> */}
+            </div>
+            <div className="dropdownflex">
+            <div className="input-fieldL">
+            <select name="role" id="status" onChange={e =>setValues({...values,role:e.target.value})} >
                                     <option value="consultant">Consultant</option>
                                     <option value="registrar">Registrar</option>
                                     <option value="medical_officer">Medical Officer</option>
                                     <option value="data_entry">Data Entry</option>
-                                </select><br />
-            <input type="text" name="email" placeholder="Email"  onChange={handleChange} /><br />
-            {/* {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}<br /> */}
-
-            <input type="password" name="password" placeholder="Password" onChange={handleChange} /><br />
-            {/* {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}<br /> */}
-
+                                </select>
+                                </div>
+            <div className="input-field">
             <select name="status" id="status" onChange={e =>setValues({...values,status:e.target.value})} >
                 <option value="">Select</option>
                 <option value="active">Active</option>
                 <option value="pending">Pending</option>
                 <option value="inactive">Inactive</option>
-            </select><br />
-
-            <button type='submit'>Register</button>
+            </select>
+            </div>
+            </div>
+            <br/>
+            <button type='submit' class="button">Register</button>
             
         </form>
     </div>
