@@ -106,7 +106,7 @@ const PReg = () => {
                             <div className="input-fieldN">
                                 <label htmlFor="blood_gr">Blood Group : </label>
                                 <select name="blood_gr" id="blood_gr" onChange={handleBloodGroupChange}
-        value={values.bloodgr} required>
+                                    value={values.bloodgr} required>
                                     <option value="">Select here</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
