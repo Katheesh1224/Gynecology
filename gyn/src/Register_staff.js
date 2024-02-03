@@ -5,7 +5,7 @@ import React ,{ useState } from 'react';
 const  Register_staff = () =>{
     
     const [values,setValues] =useState({
-        name:"",
+        full_name:"",
         phone_no:"",
         role:"",
         email:"",
@@ -38,11 +38,13 @@ const  Register_staff = () =>{
         <form onSubmit={handleSubmit}>
             <h1>Sign In</h1>
             <br />
-            <input type='text' name='name' placeholder='Name' onChange={e =>setValues({...values,name:e.target.value})} /><br />
-            <input type='number' name='phone_no' placeholder='Phone No'  onChange={handleChange} /><br />
+            <input type='text' name='name' placeholder='Fullname' onChange={e =>setValues({...values,name:e.target.value})} /><br />
+            <input type='number' name='phone_no' placeholder='Phone No'  onChange={e =>setValues({...values,phone_no:e.target.value})} /><br />
             <select name="role" id="role" onChange={e =>setValues({...values,role:e.target.value})} >
-                                    <option value="admin">Admin</option>
-                                    <option value="staff">Staff</option>
+                                    <option value="consultant">Consultant</option>
+                                    <option value="registrar">Registrar</option>
+                                    <option value="medical_officer">Medical Officer</option>
+                                    <option value="data_entry">Data Entry</option>
                                 </select><br />
             <input type="text" name="email" placeholder="Email"  onChange={handleChange} /><br />
             {/* {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}<br /> */}
@@ -51,12 +53,12 @@ const  Register_staff = () =>{
             {/* {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}<br /> */}
 
             <select name="status" id="status" onChange={e =>setValues({...values,status:e.target.value})} >
-                                    <option value="active">Active</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="disabled">Disabled</option>
-                                </select><br />
+                <option value="">Select</option>
+                <option value="active">Active</option>
+                <option value="pending">Pending</option>
+                <option value="inactive">Inactive</option>
+            </select><br />
 
-            <a href="#">Forget Your Password?</a><br />
             <button type='submit'>Register</button>
             
         </form>
