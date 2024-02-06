@@ -2,8 +2,10 @@ import './App.css';
 import react, { useEffect ,useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
+import {useNavigate } from 'react-router-dom';
 
 const PReg = () => {
+    const navigate = useNavigate();
 
     const [values,setValues] =useState({
         date:'',
@@ -40,6 +42,7 @@ const PReg = () => {
          
         })
         .catch(err =>console.log(err))
+        navigate('/home')
     }
     
       const handleDateChange = (e) => {
@@ -50,6 +53,17 @@ const PReg = () => {
           alert('Please select a date and time that is not in the future.');
         } else {
           setValues({ ...values, date: selectedDate });
+        }
+      };
+
+      const handleDateofbirthChange = (e) => {
+        const selectedDate = e.target.value;
+        const currentDate = new Date().toISOString().split('T')[0];
+    
+        if (selectedDate > currentDate) {
+          alert('Please select a date and time that is not in the future.');
+        } else {
+          setValues({ ...values, dob: selectedDate });
         }
       };
 
@@ -94,7 +108,7 @@ const PReg = () => {
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="full_name">Fullname : </label>
-                                <input type="text" placeholder="Enter text here" onChange={e =>setValues({...values,fname:e.target.value})} required/>
+                                <input type="text" pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder="Enter text here" onChange={e =>setValues({...values,fname:e.target.value})} required/>
                             </div>
                             <div className="input-field">
                                 <label htmlFor="address">Address : </label>
@@ -118,9 +132,9 @@ const PReg = () => {
                                     <option value="O-">O-</option>
                                 </select>
                             </div>
-                            <div className="input-fieldN">
+                            <div className="input-fieldN" onload="setMaxDate()">
                                 <label htmlFor="dob">Date of Birth : </label>
-                                <input type="date" placeholder="Enter number here" onChange={e =>setValues({...values,dob:e.target.value})} required/>
+                                <input type="date" placeholder="Enter number here" onChange={handleDateofbirthChange} value={values.dob} required/>
                             </div>   
                             <div className="input-fieldN">
                                 <label htmlFor="marrital_status">Marrital Status : </label>
@@ -131,7 +145,7 @@ const PReg = () => {
                             </div> 
                             <div className="input-fieldN">
                                 <label htmlFor="nic">NIC No. : </label>
-                                <input type="text" placeholder="Enter number here" pattern="(^[0-9]{12}$)|(^[0-9]{10}[v]$)" maxlength="12" onChange={e =>setValues({...values,nic:e.target.value})}/>
+                                <input type="text" placeholder="Enter number here" pattern="(^[0-9]{12}$)|(^[0-9]{9}[v]$)" maxlength="12" onChange={e =>setValues({...values,nic:e.target.value})}/>
                             </div>
                             <div className="input-fieldN">
                                 <label htmlFor="phn">PHN No. : </label>
@@ -285,13 +299,12 @@ const PReg = () => {
                                 <label htmlFor="diagnosis">Diagnosis : </label>
                                 <textarea id="diagnosis" placeholder="Enter text here" name="diagnosis" rows="3" cols="50" onChange={e =>setValues({...values,diagnosis:e.target.value})}></textarea>
                             </div>    
-                                      
-                            <div>
-                                <button type="submit">Register</button>
-                                </div>
                         </div>
                     </div>
                 </div>
+                <div className="btn"><button type="submit">Register</button></div>
+                    
+                
             </form>
         </div>
         

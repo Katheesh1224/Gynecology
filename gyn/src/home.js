@@ -14,6 +14,7 @@ const Home = () =>{
     //     navigate('/Register_staff');
     // }
     const handleLogout = async () => {
+      navigate('/');
         try {
           await axios.get('http://localhost:8081/logout');
           // If the logout request is successful, navigate to the home page

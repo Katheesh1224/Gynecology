@@ -1,8 +1,10 @@
 import './App.css';
 import axios from 'axios';
 import React ,{ useState } from 'react';
+import {useNavigate } from 'react-router-dom';
 
 const  Register_staff = () =>{
+    const navigate = useNavigate();
     
     const [values,setValues] =useState({
         full_name:"",
@@ -28,6 +30,7 @@ const  Register_staff = () =>{
          
         })
         .catch(err =>console.log(err))
+        navigate('/home');
     }
   
 
@@ -35,21 +38,21 @@ const  Register_staff = () =>{
     return(
         <div className="container">
         <form onSubmit={handleSubmit}>
-            <h1>Staff Registration </h1>
+            <header>Staff Registration</header>
             <br />
             <div className="fields">
                 <div className="input-field">
                 <label htmlFor="fullname">Full Name : </label>
-            <input type='text' name='name' placeholder='Enter your fullname' onChange={e =>setValues({...values,name:e.target.value})} />
+            <input type='text' name='name' pattern="[A-Za-z]+" title="Only alphabets are allowed"  placeholder='Enter your fullname' onChange={e =>setValues({...values,name:e.target.value})} />
             </div >
             <div className="input-field">
             <label htmlFor="phoneno">Phone No : </label>
-            <input type='number' name='phone_no' placeholder='Enter your phone No'  onChange={e =>setValues({...values,phone_no:e.target.value})} /></div>
+            <input type="tel" pattern="[0-9]{10}" maxlength="10" name='phone_no' placeholder='Enter your phone No'  onChange={e =>setValues({...values,phone_no:e.target.value})} /></div>
             </div>
             
             <div className="input-field">
             <label htmlFor="email">Email : </label><br/>
-            <input type="text" name="email" placeholder="Enter your email"  onChange={handleChange} />
+            <input type="email" name="email" placeholder="Enter your email"  onChange={handleChange} />
              </div>
             {/* {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}<br /> */}
             <br/>
@@ -60,7 +63,6 @@ const  Register_staff = () =>{
             <div className="input-field">
             <label htmlFor="Cpassword">Confirm Password : </label>
             <input type="password" name="password" placeholder="Confirm password" /></div>
-            {/* {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}<br /> */}
             </div>
             <div className="dropdownflex">
             <div className="input-fieldL">
@@ -73,7 +75,7 @@ const  Register_staff = () =>{
                                 </div>
             <div className="input-field">
             <select name="status" id="status" onChange={e =>setValues({...values,status:e.target.value})} >
-                <option value="">Select</option>
+                {/* <option value="active">Active</option> */}
                 <option value="active">Active</option>
                 <option value="pending">Pending</option>
                 <option value="inactive">Inactive</option>
@@ -81,8 +83,8 @@ const  Register_staff = () =>{
             </div>
             </div>
             <br/>
-            <button type='submit' class="button">Register</button>
             
+            <div className="btn"><button type="submit">Register</button></div>
         </form>
     </div>
     );
