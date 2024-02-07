@@ -326,8 +326,8 @@ input[type="radio"] + label::after {
   padding: 14px 22px;
   text-decoration: none;
   transition: all .2s;
-  user-select: none;
-  -webkit-user-select: none;
+  /* user-select: none; */
+  /* -webkit-user-select: none; */
   touch-action: manipulation;
   width: 48%;
 }

@@ -1,11 +1,12 @@
 import React from 'react';
 import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './home.css';
+import './patient_person.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faHouse } from '@fortawesome/free-solid-svg-icons'
+import { faHouse } from '@fortawesome/free-solid-svg-icons'
 
-const Home = () =>{
+
+const Patient = () =>{
 
     const navigate = useNavigate();
 
@@ -44,4 +45,4 @@ const Home = () =>{
     );
 
 }
-export default Home;
+export default Patient;
