@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './patient_person.css';
+import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse } from '@fortawesome/free-solid-svg-icons'
 
