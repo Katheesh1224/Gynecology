@@ -2,6 +2,7 @@ import React from 'react';
 import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
+import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRectangleList, faHospitalUser } from '@fortawesome/free-solid-svg-icons'
 
@@ -19,28 +20,69 @@ const Patient = () =>{
           console.error('Logout failed:', error);
         }
       };
+        const [data, setData] = useState([]);
       
+        useEffect(() => {
+          const fetchData = async () => {
+            try {
+              const response = await axios.get('http://localhost:8081/data');
+              setData(response.data);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          fetchData();
+        }, []);
     return(
       <div className='homeContainer'>
-        <div>
-          <button onClick={handleLogout} class="button3">Logout</button>
-        </div>
-        <div>
-          <header id="header" class="d-flex flex-column justify-content-center">
-            <nav id="navbar" class="navbar nav-menu">
-              <ul>
-              <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-                <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
-                <li><a href="#services" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Services</span></a></li>
-                <li><a href="#contact" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Contact</span></a></li>
-              </ul>
-            </nav>
-          </header>
-        </div>
+       <nav class="navM">
+      <div class="containerN">
+        <h1 class="logo">
+          <a href="">GYN</a>
+        </h1>
+        <ul>
+          <li><a href="home">Home</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Services</a></li>
+          <li>
+            <div>
+              <button onClick={handleLogout} class="buttonHome">Logout&emsp;{/*<FontAwesomeIcon icon={faHouse} />*/}</button>
+            </div>
+        </li>
+        </ul>
       </div>
-    );
+    </nav>
+    <h2>Patient Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Full_Name</th>
+            <th>Blood_Group</th>
+            <th>Phone_No</th>
+            {/* Add more table headers as needed */}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row) => (
+            <tr key={row.id}>
+              <td>{row.id}</td>
+              <td>{row.full_name}</td>
+              <td>{row.blood_gr}</td>
+              <td>{row.phone_no}</td>
+              {/* Add more table cells for other columns */}
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-}
+
+
+          </div>
+    
+    );
+  }
+
+
 export default Patient;

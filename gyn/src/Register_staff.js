@@ -5,6 +5,7 @@ import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRectangleList, faHospitalUser } from '@fortawesome/free-solid-svg-icons'
 
+
 const  Register_staff = () =>{
     const navigate = useNavigate();
     

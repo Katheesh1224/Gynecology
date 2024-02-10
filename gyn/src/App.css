@@ -367,3 +367,45 @@ form .dropdownflex {
     padding: 14px 16px;
   }
 }
+
+.navM {
+  position: fixed;
+  background-color: #222;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.navM .containerN {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.navM ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.navM a {
+  color: #fff;
+  text-decoration: none;
+  padding: 7px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ------- JavaScript -------*/
+.navM.active {
+  background: white;
+}
+
+.navM.active a {
+  color: #000;
+}
+/* -------------- */
+

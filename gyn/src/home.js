@@ -18,12 +18,38 @@ const Home = () =>{
           console.error('Logout failed:', error);
         }
       };
+      const nav = document.querySelector(".nav");
+
+      window.addEventListener("scroll", fixNav);
+
+      function fixNav() {
+        if (window.scrollY > nav.offsetHeight + 150) {
+          nav.classList.add("active");
+        } else {
+          nav.classList.remove("active");
+        }
+      }
       
     return(
       <div className='homeContainer'>
-        <div>
-          <button onClick={handleLogout} class="button3">Logout</button>
-        </div>
+        <nav class="navM">
+      <div class="containerN">
+        <h1 class="logo">
+          <a href="">GYN</a>
+        </h1>
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Services</a></li>
+          <li>
+            <div>
+              <button onClick={handleLogout} class="buttonHome">Logout&emsp;{/*<FontAwesomeIcon icon={faHouse} />*/}</button>
+            </div>
+        </li>
+        </ul>
+      </div>
+    </nav>
+        
         <div>
           <header id="header" class="d-flex flex-column justify-content-center">
             <nav id="navbar" class="navbar nav-menu">

@@ -1,4 +1,5 @@
 import './App.css';
+import './home.css';
 import react, { useEffect ,useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
@@ -93,9 +94,17 @@ const PReg = () => {
     
 
     return (
-
+        <div>
+            <header id="header" class="d-flex flex-column justify-content-center">
+            <nav id="navbar" class="navbar nav-menu">
+            <ul>
+            <li><a href="home" id='homeReg' class="d-flex flex-column justify-content-center navbar nav-menu nav-link scrollto active"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+            </ul>
+            </nav>
+            </header>
         <div className="container">
-            <div>
+            
+            {/* <div>
           <header id="header" class="d-flex flex-column justify-content-center">
             <nav id="navbar" class="navbar nav-menu">
               <ul>
@@ -108,7 +117,8 @@ const PReg = () => {
               </ul>
             </nav>
           </header>
-        </div>
+        </div> */}
+
             <header>Patient Registration</header>
             <form onSubmit={handleSubmit}>
                 <div className="form">
@@ -323,7 +333,7 @@ const PReg = () => {
                 
             </form>
         </div>
-        
+        </div>
     )
 }
 export default PReg;
