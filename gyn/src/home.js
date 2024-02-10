@@ -3,7 +3,7 @@ import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faHouse, faRectangleList, faHospitalUser } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () =>{
 
@@ -28,7 +28,7 @@ const Home = () =>{
           <header id="header" class="d-flex flex-column justify-content-center">
             <nav id="navbar" class="navbar nav-menu">
               <ul>
-                <li><a href="#hero" class="nav-link scrollto active"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+                <li><a href="home" class="nav-link scrollto active"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
                 <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
                 <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
                 <li><a href="patient_person" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
@@ -43,3 +43,4 @@ const Home = () =>{
 
 }
 export default Home;
+

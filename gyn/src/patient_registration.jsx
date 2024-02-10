@@ -3,6 +3,8 @@ import react, { useEffect ,useState} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 import {useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouse, faRectangleList, faHospitalUser } from '@fortawesome/free-solid-svg-icons'
 
 const PReg = () => {
     const navigate = useNavigate();
@@ -93,6 +95,20 @@ const PReg = () => {
     return (
 
         <div className="container">
+            <div>
+          <header id="header" class="d-flex flex-column justify-content-center">
+            <nav id="navbar" class="navbar nav-menu">
+              <ul>
+                <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+                <li><a href="patient_registration" class="nav-link scrollto active "><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
+                <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
+                <li><a href="patient_person" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
+                <li><a href="#services" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Services</span></a></li>
+                <li><a href="#contact" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Contact</span></a></li>
+              </ul>
+            </nav>
+          </header>
+        </div>
             <header>Patient Registration</header>
             <form onSubmit={handleSubmit}>
                 <div className="form">
