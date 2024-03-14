@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser, faEye} from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser} from '@fortawesome/free-solid-svg-icons'
 
 
 const Patient = () =>{
@@ -21,7 +21,7 @@ const Patient = () =>{
         }
       };
 
-      const handleDetails = async () => {
+      const handleProfile = async () => {
         navigate('/patient_profile');
           // try {
           //   await axios.get('http://localhost:8081/logout');
@@ -70,7 +70,7 @@ const Patient = () =>{
               <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
               <li>
                 <div>
-                  <button onClick={handleLogout} class="buttonHome">Logout&emsp;{/*<FontAwesomeIcon icon={faHouse} />*/}</button>
+                  <button onClick={handleLogout} class="buttonHome">Logout</button>
                 </div>
             </li>
             </ul>
@@ -109,7 +109,7 @@ const Patient = () =>{
                   <td>{row.phn}</td>
                   <td>{row.phone_no}</td>
                   <td>
-                    <button className='button_details' onClick={() => handleDetails(row.id)}>View</button>
+                    <button className='button_details' onClick={() => handleProfile(row.id)}>View</button>
                     <button className='button_home'>Edit</button>
                     {/* onClick={() => handleDischarge(row.id)} */}
                   </td>

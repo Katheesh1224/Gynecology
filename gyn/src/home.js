@@ -41,7 +41,7 @@ const Home = () =>{
               <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
               <li>
                 <div>
-                  <button onClick={handleLogout} class="buttonHome">Logout&emsp;{/*<FontAwesomeIcon icon={faHouse} />*/}</button>
+                  <button onClick={handleLogout} class="buttonHome">Logout</button>
                 </div>
             </li>
             </ul>
