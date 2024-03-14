@@ -57,7 +57,7 @@ const Home = () =>{
                 <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
                 <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
                 <li><a href="patients_information" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
-                {/* <li><a href="patient_visit" class="nav-link scrollto"><FontAwesomeIcon icon={faEye} /><span>Visit</span></a></li> */}
+                <li><a href="patient_visit" class="nav-link scrollto"><FontAwesomeIcon icon={faEye} /><span>Visit</span></a></li>
                 <li><a href="#contact" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Contact</span></a></li>
               </ul>
             </nav>
