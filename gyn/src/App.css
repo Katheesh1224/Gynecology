@@ -21,7 +21,7 @@ body{
   width: 100%;
   border-radius: 6px;
   padding: 30px;
-  margin: 50px 15px;
+  margin: 100px 15px;
   background-color: white;
   box-shadow: 0 5px 10px rgba(0,0,0,0.3) ;
 }
@@ -98,7 +98,7 @@ form .fields .input-field{
   flex-direction: column;
 }
 
-.input-field label, .input-fieldH label, .input-fieldB label, .input-fieldC label, .input-fieldN label{
+.input-field label, .input-fieldH label, .input-fieldB label, .input-fieldC label, .input-fieldN label,.input-fieldA label{
   font-size: 12px;
   font-weight: bold;
   color: black;
@@ -166,8 +166,8 @@ form .fields .input-fieldX,.input-fieldX2{
 
 form .fields .input-fieldM{
   display: flex;
-  width: 200px;
-  margin-right: 30px;
+  width: 275px;
+  margin-right: 0px;
   flex-direction: column;
 }
 
@@ -194,7 +194,42 @@ form .fields .input-fieldM{
   width: 50px;
   margin: 8px 0;
 }
+-----------------------
+form .fields .input-fieldA{
+  display: flex;
+  width: 80px;
+  margin-right: 30px;
+  flex-direction: column;
+}
 
+.input-fieldA p{
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-right: 20px;
+  color: black;
+}
+
+.input-fieldA label{
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: -25px;
+  margin-left: 40px;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.input-fieldA input{
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+}
+----------------------------
 .unit1 p{
   margin-left: -25px;
   margin-right: 35px;
@@ -239,7 +274,7 @@ form .fields .input-fieldN{
 
 
 
-.input-fieldH input, .input-fieldB input, .input-fieldN input, .input-fieldC select, .input-field input,select{
+.input-fieldH input,.input-fieldA input, .input-fieldB input, .input-fieldN input, .input-fieldC select, .input-field input,select{
   outline: none;
   font-size: 14px;
   font-weight: 400;
@@ -260,7 +295,7 @@ form .fields .input-fieldN{
   margin: 8px 0;
 }
 
-.input-field input,textarea, .input-fieldN input, .input-fieldN select, .input-fieldC select,.input-fieldB input, .input-fieldH input:is(:focus, :valid){
+.input-field input, .input-fieldA input, textarea, .input-fieldN input, .input-fieldN select, .input-fieldC select,.input-fieldB input, .input-fieldH input:is(:focus, :valid){
   box-shadow: 0 3px 6px rgba(0,0,0,0.13);
 }
 
@@ -408,4 +443,84 @@ form .dropdownflex {
   color: #000;
 }
 /* -------------- */
+
+/* ----- Visit ----- */
+
+.card {
+  position: relative;
+  width: 900px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  margin:  0;
+  /* display: flex; */
+  /* flex-direction: row; */
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.card1 {
+  position: relative;
+  /* width: 1000px; */
+  /* background-color: #fff; */
+  /* border-radius: 8px; */
+  /* box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15); */
+  /* padding: 16px; */
+  /* margin:  0; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.card header{
+  position: relative;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 20px;
+}
+
+.profile {
+  position: relative;
+  width: 830px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  margin: 0;
+}
+
+.c1 {
+  position: relative;
+  width: 250px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  margin: 20px;
+}
+
+.card p1{
+  font-size: 12px;
+}
+
+.card .button_show{
+  background-color: transparent;
+  color: blue;
+  /* border: 1px solid blue; */
+  font-size: 12px;
+  padding: 0;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  margin: 0px 0px 0px 0px;
+  cursor: pointer;
+  /* text-decoration: underline; */
+}
+
+/* -------------------- */
 

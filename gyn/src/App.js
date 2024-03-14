@@ -6,6 +6,8 @@ import PReg from './patient_registration.jsx';
 import Home from './home.js';
 import Register_staff from './Register_staff.js';
 import Patient from './patient_person.js';
+import Patient_details from './patient_details.jsx';
+import Profile from './patient_profile.jsx';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
     <Route path ='/home' element={<Home/>}></Route>
     <Route path ='/Register_staff' element={<Register_staff/>}></Route>
     <Route path ='/patient_person' element={<Patient/>}></Route>
+    <Route path ='/patient_details' element={<Patient_details/>}></Route>
+    <Route path ='/patient_profile' element={<Profile/>}></Route>
    </Routes>
    </BrowserRouter>
     </div>

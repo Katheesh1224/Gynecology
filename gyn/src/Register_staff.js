@@ -3,7 +3,7 @@ import axios from 'axios';
 import React ,{ useState } from 'react';
 import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 const  Register_staff = () =>{
@@ -23,6 +23,16 @@ const  Register_staff = () =>{
         setValues({ ...values,[name]:value});
     }
 
+    const handleLogout = async () => {
+        navigate('/');
+          try {
+            await axios.get('http://localhost:8081/logout');
+            navigate('/');
+          } catch (error) {
+            console.error('Logout failed:', error);
+          }
+        };
+
 
     const handleSubmit =(e) =>{
         console.log(e);
@@ -40,20 +50,22 @@ const  Register_staff = () =>{
     
     return(
         <div className="container">
-            <div>
-          <header id="header" class="d-flex flex-column justify-content-center">
-            <nav id="navbar" class="navbar nav-menu">
-              <ul>
-                <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-                <li><a href="Register_staff" class="nav-link scrollto active"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                <li><a href="patient_person" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
-                <li><a href="#services" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Services</span></a></li>
-                <li><a href="#contact" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Contact</span></a></li>
-              </ul>
-            </nav>
-          </header>
-        </div>
+            <nav class="navM">
+          <div class="containerN">
+            <h1 class="logo">
+              <a href="/home">GYNECOLOGY</a>
+            </h1>
+            <ul>
+              <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
+              <li>
+                <div>
+                  <button onClick={handleLogout} class="buttonHome">Logout&emsp;{/*<FontAwesomeIcon icon={faHouse} />*/}</button>
+                </div>
+            </li>
+            </ul>
+
+          </div>
+        </nav>
         <form onSubmit={handleSubmit}>
             <header>Staff Registration</header>
             <br />

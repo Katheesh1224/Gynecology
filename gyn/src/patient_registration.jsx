@@ -5,12 +5,12 @@ import axios from 'axios';
 import {Link} from 'react-router-dom'
 import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser } from '@fortawesome/free-solid-svg-icons'
+ import { faHouse, faRectangleList, faHospitalUser, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const PReg = () => {
     const navigate = useNavigate();
 
-    const [values,setValues] =useState({
+    const [values,setValues] = useState({
         date:'',
         time:'',
         fname:'',
@@ -47,6 +47,16 @@ const PReg = () => {
         .catch(err =>console.log(err))
         navigate('/home')
     }
+
+    const handleLogout = async () => {
+        navigate('/');
+          try {
+            await axios.get('http://localhost:8081/logout');
+            navigate('/');
+          } catch (error) {
+            console.error('Logout failed:', error);
+          }
+        };
     
       const handleDateChange = (e) => {
         const selectedDate = e.target.value;
@@ -70,19 +80,19 @@ const PReg = () => {
         }
       };
 
-      const handleCheckboxChange = (e) => {
-        const { name, value, checked } = e.target;
+    //   const handleCheckboxChange = (e) => {
+    //     const { name, value, checked } = e.target;
     
-        // Use the spread operator to create a new array with the selected values
-        const updatedPastMed = checked
-          ? [...values.past_med, value]
-          : values.past_med.filter((item) => item !== value);
+    //     // Use the spread operator to create a new array with the selected values
+    //     const updatedPastMed = checked
+    //       ? [...values.past_med, value]
+    //       : values.past_med.filter((item) => item !== value);
     
-        setValues((prevValues) => ({
-          ...prevValues,
-          [name]: updatedPastMed,
-        }));
-      };
+    //     setValues((prevValues) => ({
+    //       ...prevValues,
+    //       [name]: updatedPastMed,
+    //     }));
+    //   };
 
       const handleBloodGroupChange = (e) => {
         setValues({
@@ -95,29 +105,23 @@ const PReg = () => {
 
     return (
         <div>
-            <header id="header" class="d-flex flex-column justify-content-center">
-            <nav id="navbar" class="navbar nav-menu">
+            <nav class="navM">
+          <div class="containerN">
+            <h1 class="logo">
+              <a href="/home">GYNECOLOGY</a>
+            </h1>
             <ul>
-            <li><a href="home" id='homeReg' class="d-flex flex-column justify-content-center navbar nav-menu nav-link scrollto active"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+              <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
+              <li>
+                <div>
+                  <button onClick={handleLogout} class="buttonHome">Logout&emsp;{/*<FontAwesomeIcon icon={faHouse} />*/}</button>
+                </div>
+            </li>
             </ul>
-            </nav>
-            </header>
+
+          </div>
+        </nav>
         <div className="container">
-            
-            {/* <div>
-          <header id="header" class="d-flex flex-column justify-content-center">
-            <nav id="navbar" class="navbar nav-menu">
-              <ul>
-                <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                <li><a href="patient_registration" class="nav-link scrollto active "><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-                <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                <li><a href="patient_person" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
-                <li><a href="#services" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Services</span></a></li>
-                <li><a href="#contact" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Contact</span></a></li>
-              </ul>
-            </nav>
-          </header>
-        </div> */}
 
             <header>Patient Registration</header>
             <form onSubmit={handleSubmit}>
@@ -165,6 +169,7 @@ const PReg = () => {
                             <div className="input-fieldN">
                                 <label htmlFor="marrital_status">Marrital Status : </label>
                                 <select name="marrital_status" id="marrital_status" onChange={e =>setValues({...values,status:e.target.value})} required>
+                                    <option value="married">Select here</option>
                                     <option value="married">Married</option>
                                     <option value="unmarried">Unmarried</option>
                                 </select>
@@ -242,6 +247,7 @@ const PReg = () => {
                                 <label htmlFor="complain">Presenting Complaints : </label>
                                 <textarea id="complain" placeholder="Enter text here" name="complain" rows="3" cols="50" onChange={e =>setValues({...values,complaint:e.target.value})}></textarea>
                             </div>
+
                             <div className="input-fieldM">
                                 <p>Past Medical History : </p>
                                 <input type="checkbox" id="diabetics" name="past_med" value="Diabetics Mellitus"/>
@@ -267,29 +273,29 @@ const PReg = () => {
                                 <input type="checkbox" id="hypercholesterolemia" name="hypercholesterolemia" value="Hypercholesterolemia" onChange={e =>setValues({...values,past_med:e.target.value})}/>
                                 <label for="hypercholesterolemia">Hypercholesterolemia</label>
                             </div>
+
+                            <div className="input-fieldM">
+                                <p>Past Surgical History : </p>
+                                <input type="checkbox" id="lscs" name="lscs" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="diabetics">Lower Segment Cesarian Section (LSCS)</label>
+                                <input type="checkbox" id="lrt" name="lrt" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="hypertension">L Rproscopic Tubal ligation (LRT)</label>
+                                <input type="checkbox" id="myomectomy" name="myomectomy" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="hypothyroidism">Laparoscopic myomectomy</label>
+                                <input type="checkbox" id="lap" name="lap" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="asthma">Lap and Cye</label>
+                            </div> 
                          
                             <div className="input-field">
                                 <label htmlFor="other">Other : </label>
                                 <textarea id="other" placeholder="Enter text here" name="other" rows="3" cols="50" onChange={e =>setValues({...values,other:e.target.value})}></textarea>
                             </div> 
-                            <div className="input-fieldM">
-                                <p>Past Surgical History : </p>
-                                <input type="checkbox" id="diabetics" name="diabetics" value="Diabetics Mellitus" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="diabetics">Diabetics Mellitus</label>
-                                <input type="checkbox" id="hypertension" name="hypertension" value="Hypertension" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="hypertension">Hypertension</label>
-                                <input type="checkbox" id="hypothyroidism" name="hypothyroidism" value="Hypothyroidism" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="hypothyroidism">Hypothyroidism</label>
-                                <input type="checkbox" id="asthma" name="asthma" value="Bronchal Asthma" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="asthma">Bronchal Asthma</label>
-                                <input type="checkbox" id="epilepsy" name="epilepsy" value="Epilepsy" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="epilepsy">Epilepsy</label>
-                            </div> 
+                            
                             <div className="input-field">
                                 <label htmlFor="other">Other : </label>
                                 <textarea id="other" placeholder="Enter text here" name="other" rows="3" cols="50" onChange={e =>setValues({...values,other:e.target.value})}></textarea>
                             </div> 
-                            {/* <div className="input-fieldM">
+                            <div className="input-fieldM">
                                 <p>Family History of Cancers : </p>
                                 <input type="checkbox" id="endometrical" name="endometrical" value="Endometrical CA"/>
                                 <label for="endometrical">Endometrical CA</label>
@@ -301,26 +307,58 @@ const PReg = () => {
                                 <label for="vulvular">Vulvular CA</label>
                                 <input type="checkbox" id="breat" name="breat" value="Breat CA"/>
                                 <label for="breat">Breat CA</label>
-                            </div>  */}
+                            </div> 
+
                             <div className="input-field">
                                 <label htmlFor="cancer">Family History of Cancers : </label>
                                 <textarea id="cancer" placeholder="Enter text here" name="cancer" rows="3" cols="50" onChange={e =>setValues({...values,past_hist:e.target.value})}></textarea>
                             </div>   
-                            {/* <div className="input-fieldM">
+
+                            <div className="input-fieldA">
                                 <p>Menstrual History : </p>
-                                <label for="diabetics">Menarche Age :</label>
-                                <input type="text" id="menarche_age" name="menarche_age" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label htmlFor="weight">Menarche Age : </label>
+                                <input type="text"/>
+                                <label htmlFor="weight">Menarche Age : </label>
+                                <input type="text"/>
+                                <label htmlFor="weight">Menarche Age : </label>
+                                <input type="text"/>
+                                
+                            </div>
+
+                            <div className="input-fieldA">
+                                <p>Menstrual History : </p>
+                                <label for="menarche_age">Menarche Age :</label>
+                                <input type="text" id="menarche_age" name="menarche_age" value="" />
                                 <label for="menopausal_age">Menopausal Age</label>
-                                <input type="text" id="menopausal_age" name="menopausal_age" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <input type="text" id="menopausal_age" name="menopausal_age" value="" />
                                 <label for="lmp">LMP</label>
-                                <input type="text" id="lmp" name="lmp" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <input type="text" id="lmp" name="lmp" value="" />
                                 <p>Menstrual Cycle : </p>
-                                <input type="checkbox" id="regular" name="regular" value="Regular" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="asthma">Regular</label>
-                                <input type="checkbox" id="irregular" name="irregular" value="Irregular" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <input type="radio" id="regular" name="Menstrual" value="Regular" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="regular">Regular</label>
+                                <input type="radio" id="irregular" name="Menstrual" value="Irregular" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
                                 <label for="irregular">Irregular</label>
-                            </div>  */}
-                             
+                            </div> 
+
+                            <div className="input-fieldA">
+                                <p>Past Obstetric History : </p>
+                                <label for="P">P </label>
+                                <input type="text" id="P" name="P" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="C">C</label>
+                                <input type="text" id="C" name="C" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                               
+                                <label for="c1">C1</label>
+                                <input type="text" id="c1" name="c1" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="c2">C2</label>
+                                <input type="text" id="c2" name="c2" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="c3">C3</label>
+                                <input type="text" id="c3" name="c3" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="c4">C4</label>
+                                <input type="text" id="c4" name="c4" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <label for="c5">C5</label>
+                                <input type="text" id="c5" name="c5" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                            </div> 
+                              
                             <div className="input-field">
                                 <label htmlFor="diagnosis">Diagnosis : </label>
                                 <textarea id="diagnosis" placeholder="Enter text here" name="diagnosis" rows="3" cols="50" onChange={e =>setValues({...values,diagnosis:e.target.value})}></textarea>
@@ -329,8 +367,6 @@ const PReg = () => {
                     </div>
                 </div>
                 <div className="btn"><button type="submit">Register</button></div>
-                    
-                
             </form>
         </div>
         </div>
