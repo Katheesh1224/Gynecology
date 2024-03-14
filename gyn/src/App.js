@@ -8,6 +8,8 @@ import Register_staff from './Register_staff.js';
 import Patient from './patients_information.jsx';
 import About from './patient_about.jsx';
 import Profile from './patient_profile.jsx';
+import Visit from './visit_form.jsx';
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
     <Route path ='/patients_information' element={<Patient/>}></Route>
     <Route path ='/patient_about' element={<About/>}></Route>
     <Route path ='/patient_profile' element={<Profile/>}></Route>
+    <Route path ='/patient_visit' element={<Visit/>}></Route>
    </Routes>
    </BrowserRouter>
     </div>
