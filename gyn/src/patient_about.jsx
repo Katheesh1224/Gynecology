@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarDays, faAddressCard, faBookMedical } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser} from '@fortawesome/free-solid-svg-icons'
 
 
 const Profile = () =>{
@@ -129,7 +129,7 @@ const Profile = () =>{
                   <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
                 </div>
               </div>
-              
+
               <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
             </div>
               
