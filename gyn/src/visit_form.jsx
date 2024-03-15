@@ -174,10 +174,11 @@ const PReg = () => {
                                 <label for="Blood Sugar Series">Blood Sugar Series</label>   
                             </div>
                             </div>
+                            <br/>
                         <div className="fields">
                             <div className="input-field">
-                                <label htmlFor="allergy">Others : </label>
-                                <textarea id="allergy" placeholder="Enter text here" name="allergy" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
+                                <label htmlFor="Complaints">Others : </label>
+                                <textarea id="Complaints" placeholder="Enter text here" name="Complaints" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
                             </div> 
                         </div>
         
@@ -186,7 +187,7 @@ const PReg = () => {
                         <span className="title">Examination</span>
                         <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
-                                <label htmlFor="date"> Blood Presure : </label>
+                                <label htmlFor="Blood Presure"> Blood Presure : </label>
 
                             </div>
                                 <input type="number" name='mmHg'  placeholder="mmHg" onChange={e =>setValues({...values,time:e.target.value})} />
@@ -194,23 +195,23 @@ const PReg = () => {
                             <div className="input-field">
                             </div>
                             <div className="input-field">
-                                <label htmlFor="time"> Pulse rate: </label>
+                                <label htmlFor="Pulse rate"> Pulse rate: </label>
                                 <input type="number" placeholder='bpm' onChange={e =>setValues({...values,time:e.target.value})} required/>
                             </div>
                                                        
                         </div>
                         <div className="fields1">
                         <div className="input-field">
-                                <label htmlFor="full_name">Symphysis fundal height: </label>
+                                <label htmlFor="Symphysis fundal height">Symphysis fundal height: </label>
                                 <input type="number"  title="Only alphabets are allowed" placeholder="cm" onChange={e =>setValues({...values,fname:e.target.value})} required/>
                             </div> 
                             </div>
                     </div>
                     <div className="fields1">
                     <div className="input-field">
-                                <label htmlFor="Select_headt">Head : </label>
-                                <select name="Head" id="head" onChange={handleBloodGroupChange} value={values.bloodgr} required>
-                                    <option value="">Select here</option>
+                                <label htmlFor="Select_head">Head : </label>
+                                <select name="Head" id="head"  onChange={handleBloodGroupChange} value={values.bloodgr} required>
+                                    <option value="">Select Head</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
                                     <option value="B+">B+</option>
@@ -222,7 +223,13 @@ const PReg = () => {
                                 </select>
                             </div>
                         <div className="input-field">
-                            <label htmlFor="full_name">Head: </label>
+                        
+                        </div> 
+                        <div className="input-field">
+                        
+                        </div> 
+                        <div className="input-field">
+                            <label htmlFor="Head">Head: </label>
                             <input type="number"  title="Only alphabets are allowed" placeholder="value/5" onChange={e =>setValues({...values,fname:e.target.value})} required/>
                         </div> 
 
@@ -230,8 +237,8 @@ const PReg = () => {
                     </div>
                         <div className="fields">
                             <div className="input-field">
-                                <label htmlFor="allergy">Others : </label>
-                                <textarea id="allergy" placeholder="Enter text here" name="allergy" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
+                                <label htmlFor="Examination">Others : </label>
+                                <textarea id="Examination" placeholder="Enter text here" name="Examination" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
                             </div> 
                         </div>
 
@@ -240,156 +247,169 @@ const PReg = () => {
                         <span className="title">Management</span>
                         <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
-                                <label htmlFor="date"> Date : </label>
-                                <input type="datetime-local" onChange={handleDateChange} value={values.date} required/>
+                                <label htmlFor="FBC"> FBC : </label>
                             </div>
                             <div className="input-field">
-                                <label htmlFor="time"> Visit No : </label>
-                                <input type="number" onChange={e =>setValues({...values,time:e.target.value})} required/>
+                                <label htmlFor="WBC"> WBC : </label>
+                                <input type="number" placeholder='count/mm' onChange={e =>setValues({...values,time:e.target.value})} required/>
                             </div>
                             <div className="input-field">
-                                <label htmlFor="full_name">Name : </label>
-                                <input type="text" pattern="[A-Za-z]+" size="50" title="Only alphabets are allowed" placeholder="Enter text here" onChange={e =>setValues({...values,fname:e.target.value})} required/>
-                            </div>                            
+                                <label htmlFor="Hb"> Hb : </label>
+                                <input type="number" placeholder='g/dL' onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="P/t"> P/t : </label>
+                                <input type="number" placeholder='count/mm' onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                                                        
+                        </div>
+                        {/* <br /> */}
+                        
+                        <div className="fields1">
+                            <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="UFR"> UFR : </label>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="White cells"> White cells : </label>
+                                <input type="number" placeholder='/hpf' onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="Red cells "> Red cells : </label>
+                                <input type="number" placeholder='/hpf' onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="Select_protein">Protein : </label>
+                                <select name="protein" id="protein"  onChange={handleBloodGroupChange} value={values.bloodgr} required>
+                                    <option value="">Select protein</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                                                        
+                        </div>
+                        {/* <br /> */}
+                        <div className="fields1">
+                            <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="SE">  SE&emsp;:  </label>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor=" K+"> K+ : </label>
+                                <input type="number" placeholder='mmol/l' onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="Na+"> Na+ : </label>
+                                <input type="number" placeholder='mmol/l' onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                            </div>
+                        </div>
+                        {/* <br /> */}
+                        <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="CRP"> CRP:  </label>
+                            </div>
+                            <div className="input-field">
+                                <input type="number" placeholder='mg/DL' onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                           
+                        </div>
+                        {/* <br /> */}
+                        <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="FBS"> FBS   :  </label>
+                            </div>
+                            <div className="input-field">
+                                <input type="number" placeholder='mmol/l' onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            
+                        </div>
+                        {/* <br /> */}
+                        <div className="fields1">
+                            <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="PRBS">  PRBS:  </label>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AB"> AB : </label>
+                                <input type="number"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AL"> AL : </label>
+                                <input type="number"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AD"> AD : </label>
+                                <input type="number"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                        </div>
+                        <br />
+                        <div className="fields1">
+                        <div className="input-field">
+                                <label htmlFor="management">Other : </label>
+                                <textarea id="management" placeholder="Enter text here" name="management" rows="3" cols="50" onChange={e =>setValues({...values,other:e.target.value})}></textarea>
+                            </div> 
+                            </div>
+                    </div>
+                    <div className="A">
+                        <span className="title">Decision</span>
+                        <div className="fields">
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="EL|LSCS" name="Decision" value="EL|LSCS"/>
+                                <label for="EL|LSCS">EL|LSCS</label>
+                                <input type="checkbox" id="Introduction of Labour" name="Decision" value="Introduction of Labour"/>
+                                <label for="DribIntroduction of Labourbiling">Introduction of Labour</label>
+                                
+                                </div>
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="EM|LSCS" name="Decision" value="EM|LSCS"/>
+                                <label for="EM|LSCS">EM|LSCS</label>
+                                <input type="checkbox" id="Augmentation of Labour" name="Decision" value="Augmentation of Labour"/>
+                                <label for="Augmentation of Labour">Augmentation of Labour</label>
+                                
+                                </div>
+                                
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="Blood transfusion" name="Decision" value="Blood transfusion"/>
+                                <label for="Blood transfusion">Blood transfusion</label>
+                               <input type="checkbox" id="ARM" name="Decision" value="ARM"/>
+                                <label for="ARM">ARM</label>
+                                
+                                </div>
+                                
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="Continue MNT" name="Decision" value="Continue MNT" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <label for="Continue MNT">Continue MNT</label>
+                                <input type="checkbox" id="Blood Sugar Series" name="Decision" value="Blood Sugar Series" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <label for="Blood Sugar Series">Blood Sugar Series</label>   
+                            </div>
+                            </div>
+                        <div className="fields">
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="Keep" name="Decision" value="Keep"/>
+                                <label for="Keep">Keep</label>
+                            </div>
+                                <div className="input-fieldM">
+                                <input type="checkbox" id="Continue same management" name="Decision" value="Continue same management"/>
+                                <label for="Continue same management">Continue same management</label>
+                            </div>
+                        </div>
+                            <br/>
+                        <div className="fields">
+                            <div className="input-field">
+                                <label htmlFor="Others">Others : </label>
+                                <textarea id="Decision" placeholder="Enter text here" name="Decision" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
+                            </div> 
                         </div>
                     </div>
-                        <div className="fields">
-                            
-                            {/* <div className="input-fieldX">
-                                <p>Allergy History : </p>
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Drugs</label>
-                            </div>
-                            <div className="input-fieldX2">
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Foods</label>
-                            </div>
-                            <div className="input-fieldX2">
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Plaster</label>
-                            </div> */}
-                         
-                            
-
-                            <div className="input-fieldM">
-                                <p>Past Medical History : </p>
-                                <input type="checkbox" id="diabetics" name="past_med" value="Diabetics Mellitus"/>
-                                <label for="diabetics">Diabetics Mellitus</label>
-                                <input type="checkbox" id="hypertension" name="past_med" value="Hypertension"/>
-                                <label for="hypertension">Hypertension</label>
-                                <input type="checkbox" id="hypothyroidism" name="past_med" value="Hypothyroidism"/>
-                                <label for="hypothyroidism">Hypothyroidism</label>
-                                <input type="checkbox" id="asthma" name="asthma" value="Bronchal Asthma" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="asthma">Bronchal Asthma</label>
-                                <input type="checkbox" id="epilepsy" name="epilepsy" value="Epilepsy" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="epilepsy">Epilepsy</label>
-                            </div>
-                            <div className="input-fieldM">
-                                <input type="checkbox" id="valvular_heart" name="valvular_heart" value="Valvular Heart Diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="valvular_heart">Valvular Heart Diseases</label>
-                                <input type="checkbox" id="ishemic_heart" name="ishemic_heart" value="Ishemic heart diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="ishemic_heart">Ishemic Heart Diseases</label>
-                                <input type="checkbox" id="renal_diseases" name="renal_diseases" value="Renal Diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="renal_diseases">Renal Diseases</label>
-                                <input type="checkbox" id="arthritics" name="arthritics" value="Arthritics" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="arthritics">Arthritics</label>
-                                <input type="checkbox" id="hypercholesterolemia" name="hypercholesterolemia" value="Hypercholesterolemia" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="hypercholesterolemia">Hypercholesterolemia</label>
-                            </div>
-
-                            <div className="input-fieldM">
-                                <p>Past Surgical History : </p>
-                                <input type="checkbox" id="lscs" name="lscs" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="diabetics">Lower Segment Cesarian Section (LSCS)</label>
-                                <input type="checkbox" id="lrt" name="lrt" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="hypertension">L Rproscopic Tubal ligation (LRT)</label>
-                                <input type="checkbox" id="myomectomy" name="myomectomy" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="hypothyroidism">Laparoscopic myomectomy</label>
-                                <input type="checkbox" id="lap" name="lap" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="asthma">Lap and Cye</label>
-                            </div> 
-                         
-                            <div className="input-field">
-                                <label htmlFor="other">Other : </label>
-                                <textarea id="other" placeholder="Enter text here" name="other" rows="3" cols="50" onChange={e =>setValues({...values,other:e.target.value})}></textarea>
-                            </div> 
-                            
-                            <div className="input-field">
-                                <label htmlFor="other">Other : </label>
-                                <textarea id="other" placeholder="Enter text here" name="other" rows="3" cols="50" onChange={e =>setValues({...values,other:e.target.value})}></textarea>
-                            </div> 
-                            <div className="input-fieldM">
-                                <p>Family History of Cancers : </p>
-                                <input type="checkbox" id="endometrical" name="endometrical" value="Endometrical CA"/>
-                                <label for="endometrical">Endometrical CA</label>
-                                <input type="checkbox" id="overian" name="overian" value="Overian CA"/>
-                                <label for="overian">Overian CA</label>
-                                <input type="checkbox" id="cervical" name="cervical" value="Cervical CA"/>
-                                <label for="cervical">Cervical CA</label>
-                                <input type="checkbox" id="vulvular" name="vulvular" value="Vulvular CA"/>
-                                <label for="vulvular">Vulvular CA</label>
-                                <input type="checkbox" id="breat" name="breat" value="Breat CA"/>
-                                <label for="breat">Breat CA</label>
-                            </div> 
-
-                            <div className="input-field">
-                                <label htmlFor="cancer">Family History of Cancers : </label>
-                                <textarea id="cancer" placeholder="Enter text here" name="cancer" rows="3" cols="50" onChange={e =>setValues({...values,past_hist:e.target.value})}></textarea>
-                            </div>   
-
-                            <div className="input-fieldA">
-                                <p>Menstrual History : </p>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                
-                            </div>
-
-                            <div className="input-fieldA">
-                                <p>Menstrual History : </p>
-                                <label for="menarche_age">Menarche Age :</label>
-                                <input type="text" id="menarche_age" name="menarche_age" value="" />
-                                <label for="menopausal_age">Menopausal Age</label>
-                                <input type="text" id="menopausal_age" name="menopausal_age" value="" />
-                                <label for="lmp">LMP</label>
-                                <input type="text" id="lmp" name="lmp" value="" />
-                                <p>Menstrual Cycle : </p>
-                                <input type="radio" id="regular" name="Menstrual" value="Regular" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="regular">Regular</label>
-                                <input type="radio" id="irregular" name="Menstrual" value="Irregular" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="irregular">Irregular</label>
-                            </div> 
-
-                            <div className="input-fieldA">
-                                <p>Past Obstetric History : </p>
-                                <label for="P">P </label>
-                                <input type="text" id="P" name="P" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="C">C</label>
-                                <input type="text" id="C" name="C" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                               
-                                <label for="c1">C1</label>
-                                <input type="text" id="c1" name="c1" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c2">C2</label>
-                                <input type="text" id="c2" name="c2" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c3">C3</label>
-                                <input type="text" id="c3" name="c3" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c4">C4</label>
-                                <input type="text" id="c4" name="c4" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c5">C5</label>
-                                <input type="text" id="c5" name="c5" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                            </div> 
-                              
-                            <div className="input-field">
-                                <label htmlFor="diagnosis">Diagnosis : </label>
-                                <textarea id="diagnosis" placeholder="Enter text here" name="diagnosis" rows="3" cols="50" onChange={e =>setValues({...values,diagnosis:e.target.value})}></textarea>
-                            </div>    
-                        </div>
                     </div>
                 </div>
-                <div className="btn"><button type="submit">Register</button></div>
+                <div className="btn" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'blue'}} >Submit</button></div>
+                <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}} onClick={()=>{navigate('/home');}}>Cancel</button></div>
             </form>
         </div>
         </div>
