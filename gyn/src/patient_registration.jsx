@@ -2,10 +2,9 @@ import './App.css';
 import './home.css';
 import react, { useEffect ,useState} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
 import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
- import { faHouse, faRectangleList, faHospitalUser, faUser } from '@fortawesome/free-solid-svg-icons'
+ import {faUser } from '@fortawesome/free-solid-svg-icons'
 
 const PReg = () => {
     const navigate = useNavigate();
@@ -108,7 +107,7 @@ const PReg = () => {
             <nav class="navM">
           <div class="containerN">
             <h1 class="logo">
-              <a href="/home">GYNECOLOGY</a>
+              <a href="/home" className='a'>GYNECOLOGY</a>
             </h1>
             <ul>
               <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>

@@ -108,7 +108,7 @@ const PReg = () => {
             <nav class="navM">
           <div class="containerN">
             <h1 class="logo">
-              <a href="/home">GYNECOLOGY</a>
+              <a href="/home" className='a'>GYNECOLOGY</a>
             </h1>
             <ul>
               <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>

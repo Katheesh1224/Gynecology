@@ -36,10 +36,6 @@ const Profile = () =>{
         navigate('/patients_information');
       };
 
-      const handleAbout = async () => {
-        navigate('/patient_about');
-      };
-
         const [data, setData] = useState([]);
       
         useEffect(() => {
@@ -61,7 +57,7 @@ const Profile = () =>{
             <nav class="navM">
                 <div class="containerN">
                     <h1 class="logo">
-                    <a href="/home">GYNECOLOGY</a>
+                    <a href="/home" className='a'>GYNECOLOGY</a>
                     </h1>
                     <ul>
                     <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
@@ -82,8 +78,6 @@ const Profile = () =>{
                         <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
                         <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
                         <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
-                        {/* <li><a href="patient_visit" class="nav-link scrollto active"><FontAwesomeIcon icon={faEye} /><span>Visit</span></a></li> */}
-                        <li><a href="#contact" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Contact</span></a></li>
                     </ul>
                     </nav>
                 </header>
@@ -101,32 +95,54 @@ const Profile = () =>{
                   <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
                 </div>
               </div>
-            
-              <div className='card1'>
-                <div className='c1'>
-                <FontAwesomeIcon icon={faAddressCard} />
-                  <p>About</p>
-                  <p1>This feature contains full admission details of this patient</p1>
-                  <pre></pre>
-                  <button className='button_show' onClick={handleAbout}>Show </button>
-                </div>
 
-                <div className='c1'>
-                <FontAwesomeIcon icon={faCalendarDays} />
-                  <p>Day to day : </p> 
-                  <p1>This feature contains day to day ward progress of this patient</p1>
-                  <pre></pre>
-                  <button className='button_show'>Show </button>
+              <div class="cntner">
+                <div class="cd">
+                  <div class="face face1">
+                    <div class="content">  
+                        <FontAwesomeIcon icon={faAddressCard} />          
+                      <h3>About</h3>
+                    </div>
+                  </div>
+                  <div class="face face2">
+                    <div class="content">
+                      <p> This feature contains full admission details of this patient.</p>
+                      <a href="./patient_about" type="button">Show</a>
+                    </div>
+                  </div>
                 </div>
-
-                <div className='c1'>
-                <FontAwesomeIcon icon={faBookMedical} />
-                  <p>History</p>
-                  <p1>This feature contains past admission and medical history of this patient</p1>
-                  <pre></pre>
-                  <button className='button_show'>Show </button>
+                
+                <div class="cd">
+                  <div class="face face1">
+                    <div class="content">
+                  <FontAwesomeIcon icon={faCalendarDays} />              
+                  <h3>Day-to-day</h3>
+                    </div>
+                  </div>
+                  <div class="face face2">
+                    <div class="content">
+                      <p> This feature contains day to day ward progress of this patient.</p>
+                      <a href="./patient_day" type="button">Show</a>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="cd">
+                  <div class="face face1">
+                    <div class="content">
+                      <FontAwesomeIcon icon={faBookMedical} />
+                        <h3>History</h3>
+                    </div>
+                  </div>
+                  <div class="face face2">
+                    <div class="content">
+                      <p> This feature contains past admission and medical history of this patient.</p>
+                      <a href="./patient_profile" type="button">Show</a>
+                    </div>
+                  </div>
                 </div>
               </div>
+              
               <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
             </div>
               
@@ -137,3 +153,5 @@ const Profile = () =>{
 
 export default Profile;
 
+
+     
