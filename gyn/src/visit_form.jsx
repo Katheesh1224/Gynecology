@@ -408,8 +408,8 @@ const PReg = () => {
                     </div>
                     </div>
                 </div>
-                <div className="btn" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'blue'}}>Submit</button></div>
-                <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}}>Cancel</button></div>
+                <div className="btn" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'blue'}} >Submit</button></div>
+                <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}} onClick={()=>{navigate('/home');}}>Cancel</button></div>
             </form>
         </div>
         </div>
