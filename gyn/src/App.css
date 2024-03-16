@@ -553,6 +553,7 @@ form .dropdownflex {
   margin: 0;
 }
 
+<<<<<<< HEAD
 .profile-about p{
   font-size: 13px;
 }
@@ -674,3 +675,10 @@ form .dropdownflex {
   color: whitesmoke; 
   box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 }
+=======
+.invalid{
+    
+  border: 5px solid red;
+  background-color: rgb(252, 67, 67);
+}
+>>>>>>> f61b42deaeefe577b6857bfc60e678efa0dddfce

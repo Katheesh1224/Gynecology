@@ -9,7 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const PReg = () => {
     const navigate = useNavigate();
-
+    const [value, setValue] = useState('');
+    const [inputValue, setInputValue] = useState('');
+    const [error, setError] = useState('');
     const [values,setValues] = useState({
         date:'',
         time:'',
@@ -101,7 +103,26 @@ const PReg = () => {
         });
       };
     
-    
+      const handleChangeNo = (event) => {
+          // Get the entered value
+          const enteredValue = event.target.value;
+          
+          // Update the state with the entered value
+          setValue(enteredValue);
+        };
+        const inputClass = isNaN(value) || value < 0 || value > 200 ? "invalid" : '';
+   
+        const handleChangeText = (e) => {
+            const value = e.target.value;
+            // Regular expression to match alphabetic characters only
+            const regex = /^[A-Za-z]+$/;
+            if (regex.test(value) || value === '') {
+              setInputValue(value);
+              setError('');
+            } else {
+              setError('Input must contain alphabetic characters only');
+            }
+        };
 
     return (
         <div>
@@ -134,12 +155,13 @@ const PReg = () => {
                                 <input type="datetime-local" onChange={handleDateChange} value={values.date} required/>
                             </div>
                             <div className="input-field">
-                                <label htmlFor="time"> Visit No : </label>
-                                <input type="number" onChange={e =>setValues({...values,time:e.target.value})} required/>
+                                <label htmlFor="visit_no"> Visit No : </label>
+                                <input type="number" id="numberInput" name='numberInput' className={inputClass}  onChange={handleChangeNo}  required/>
                             </div>
                             <div className="input-field">
                                 <label htmlFor="full_name">Name : </label>
-                                <input type="text" pattern="[A-Za-z]+" size="50" title="Only alphabets are allowed" placeholder="Enter text here" onChange={e =>setValues({...values,fname:e.target.value})} required/>
+                                <input type="text"  size="50" title="Only alphabets are allowed" placeholder="Enter text here" onChange={handleChangeText} required/>
+                                {error && <p style={{ color: 'red' }}>{error}</p>}
                             </div>                            
                         </div>
                     </div>
@@ -203,7 +225,7 @@ const PReg = () => {
                         <div className="fields1">
                         <div className="input-field">
                                 <label htmlFor="Symphysis fundal height">Symphysis fundal height: </label>
-                                <input type="number"  title="Only alphabets are allowed" placeholder="cm" onChange={e =>setValues({...values,fname:e.target.value})} required/>
+                                <input type="number"  title="Only alphabets are allowed" className={inputClass} placeholder="cm" onChange={handleChangeNo} required/>
                             </div> 
                             </div>
                     </div>
