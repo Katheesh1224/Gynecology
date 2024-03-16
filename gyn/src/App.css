@@ -547,3 +547,8 @@ form .dropdownflex {
   margin: 0;
 }
 
+.invalid{
+    
+  border: 5px solid red;
+  background-color: rgb(252, 67, 67);
+}
