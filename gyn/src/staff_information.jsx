@@ -35,7 +35,7 @@ const Staff = () =>{
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get('http://localhost:8081/data');
+              const response = await axios.get('http://localhost:8081/data1');
               setData(response.data);
             } catch (error) {
               console.error('Error fetching data:', error);
@@ -44,6 +44,12 @@ const Staff = () =>{
       
           fetchData();
         }, []);
+
+        const getRowStyle = (status) => {
+            return status.trim() === 'active' ? { color: 'green' } : {color: 'red'};
+          };
+
+
     return(
       <div className='homeContainer'>
         
@@ -52,9 +58,7 @@ const Staff = () =>{
             <nav id="navbar" class="navbar nav-menu">
               <ul>
                 <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
                 <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
 
               </ul>
             </nav>
@@ -93,8 +97,9 @@ const Staff = () =>{
               <tr>
                 <th>ID</th>
                 <th>Full Name</th>
-                <th>PHN No </th>
                 <th>Phone No</th>
+                <th>Role</th>
+                <th>Status</th>
                 <th>Action</th>
                 
                 {/* Add more table headers as needed */}
@@ -102,13 +107,14 @@ const Staff = () =>{
             </thead>
             <tbody>
               {data.map((row) => (
-                <tr key={row.id}>
+                <tr key={row.id} >
                   <td>{row.id}</td>
                   <td>{row.full_name}</td>
-                  <td>{row.status}</td>
                   <td>{row.phone_no}</td>
+                  <td>{row.role}</td>
+                  <td style={getRowStyle(row.status)}>{row.status} </td>
                   <td>
-                    <button className='button_details' onClick={() => handleProfile(row.id)}>View</button>
+                    <button className='button_details'>View</button>
                     <button className='button_home'>Edit</button>
                     {/* onClick={() => handleDischarge(row.id)} */}
                   </td>
