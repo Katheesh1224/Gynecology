@@ -432,6 +432,11 @@ form .dropdownflex {
   text-decoration: none;
   padding: 7px 15px;
   transition: all 0.3s ease-in-out;
+  font-size: 15px;
+}
+
+.navM .a {
+  font-size: 22px;
 }
 
 /* ------- JavaScript -------*/
@@ -533,6 +538,7 @@ form .dropdownflex {
   margin: 10px 0;
   color: #ffffff;
   background-color: #512da8;
+  /* background: linear-gradient(to right, #ceb8ff, #512da8); */
   border-radius: 6px;
 }
 
@@ -676,9 +682,131 @@ form .dropdownflex {
   color: whitesmoke; 
   box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 }
+
+.profile-about p{
+  font-size: 13px;
+}
+
+/* ----------------*/
+
+
+.cntner{
+  width: 700px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap:wrap;
+  margin: 20px 20px 20px 80px;
+  
+}
+
+.cntner .cd{
+  position: relative;
+}
+
+.cntner .cd .face{
+  width: 200px;
+  height: 130px;
+  transition:.4s;
+  border-radius: 5px;
+}
+
+.cntner .cd .face.face1{
+  position: relative;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-content:center;
+  align-items: center;
+  z-index: 1;
+  transform: translateY(30.35px);
+}
+
+.cntner .cd:hover .face.face1{
+  transform: translateY(0);
+  box-shadow:
+    inset 0 0 60px whitesmoke,
+    inset 10px 0 40px #f0f,
+    inset -10px 0 40px #0ff,
+    inset 10px 0 150px #f0f,
+    inset -10px 0 150px #0ff,
+    0 0 50px #fff,
+    -5px 0 40px #f0f,
+    5px 0 40px #0ff;
+   
+}
+
+
+.cntner .cd .face.face1 .content{
+  opacity: 0.6;
+  transition:  0.5s;
+  text-align: center;
+}
+
+.cntner .cd:hover .face.face1 .content{
+  opacity: 1;
+ 
+}
+
+.cntner .cd .face.face1 .content i{
+  font-size: 3em;
+  color: white;
+  display: inline-block;
+   
+}
+
+.cntner .cd .face.face1 .content h3{
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.cntner .cd .face.face1 .content a{
+   transition: .5s;
+}
+
+.cntner .cd .face.face2{
+  position: relative;
+  background: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  box-sizing: border-box;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  transform: translateY(-100px);
+  margin-top: 0px;
+}
+
+.cntner .cd:hover .face.face2{
+    transform: translateY(0);
+}
+
+.cntner .cd .face.face2 .content p, a{
+  font-size: 10pt;
+  margin: 0 ;
+  padding: 0;
+  color:#333;
+}
+
+.cntner .cd .face.face2 .content a{
+  text-decoration:none;
+  color: black;
+  box-sizing: border-box;
+  outline : 1px dashed #333;
+  padding: 5px;
+  margin: 15px 0 0;
+  display: inline-block;
+}
+
+.cntner .cd .face.face2 .content a:hover{
+  background: #333 ;
+  color: whitesmoke; 
+  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+}
+
 .invalid{
     
   border: 5px solid red;
   background-color: rgb(252, 67, 67);
 }
-
