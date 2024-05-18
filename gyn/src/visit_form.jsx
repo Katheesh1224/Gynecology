@@ -222,12 +222,7 @@ const PReg = () => {
                             </div>
                                                        
                         </div>
-                        <div className="fields1">
-                        <div className="input-field">
-                                <label htmlFor="Symphysis fundal height">Symphysis fundal height: </label>
-                                <input type="number"  title="Only alphabets are allowed" className={inputClass} placeholder="cm" onChange={handleChangeNo} required/>
-                            </div> 
-                            </div>
+                      
                     </div>
                     <div className="fields1">
                     <div className="input-field">

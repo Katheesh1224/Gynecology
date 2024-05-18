@@ -78,10 +78,11 @@ const  Register_staff = () =>{
             <label htmlFor="phoneno">Phone No : </label>
             <input type="tel" pattern="[0-9]{10}" maxlength="10" name='phone_no' placeholder='Enter your phone No'  onChange={e =>setValues({...values,phone_no:e.target.value})} /></div>
             </div>
-            
+            <div className="fields">
             <div className="input-field">
-            <label htmlFor="email">Email : </label><br/>
+            <label htmlFor="email">Email : </label>
             <input type="email" name="email" placeholder="Enter your email"  onChange={handleChange} />
+             </div>
              </div>
             {/* {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}<br /> */}
             <br/>
