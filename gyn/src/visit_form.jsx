@@ -158,11 +158,24 @@ const PReg = () => {
                                 <label htmlFor="visit_no"> Visit No : </label>
                                 <input type="number" id="numberInput" name='numberInput' className={inputClass}  onChange={handleChangeNo}  required/>
                             </div>
+                            
                             <div className="input-field">
+            <label htmlFor="full_name">Seen by : </label>
+            <select name="role" id="status" onChange={e =>setValues({...values,role:e.target.value})} >
+                                    <option value="consultant">Consultant</option>
+                                    <option value="registrar">Registrar</option>
+                                    <option value="medical_officer">Medical Officer</option>
+                                    <option value="data_entry">Data Entry</option>
+                                </select>
+                                </div>
+                            
+                            
+                            {/* < className="input-field">
                                 <label htmlFor="full_name">Name : </label>
-                                <input type="text"  size="50" title="Only alphabets are allowed" placeholder="Enter text here" onChange={handleChangeText} required/>
-                                {error && <p style={{ color: 'red' }}>{error}</p>}
-                            </div>                            
+                                
+                                {/* <input type="text"  size="50" title="Only alphabets are allowed" placeholder="Enter text here" onChange={handleChangeText} required/>
+                                {error && <p style={{ color: 'red' }}>{error}</p>} */}
+                                                   
                         </div>
                     </div>
 
@@ -222,7 +235,12 @@ const PReg = () => {
                             </div>
                                                        
                         </div>
-                      
+                        <div className="fields1">
+                        <div className="input-field">
+                                <label htmlFor="Symphysis fundal height">Symphysis fundal height: </label>
+                                <input type="number"  title="Only alphabets are allowed" className={inputClass} placeholder="cm" onChange={handleChangeNo} required/>
+                            </div> 
+                            </div>
                     </div>
                     <div className="fields1">
                     <div className="input-field">
@@ -254,14 +272,20 @@ const PReg = () => {
                     </div>
                         <div className="fields">
                             <div className="input-field">
-                                <label htmlFor="Examination">Others : </label>
-                                <textarea id="Examination" placeholder="Enter text here" name="Examination" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
+                                <label htmlFor="Examination">Abdominal Examination : </label>
+                                <textarea id="Examination" placeholder="Enter text here" name="abdominal" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
+                            </div> 
+                        </div>
+                        <div className="fields">
+                            <div className="input-field">
+                                <label htmlFor="Examination">Gynaecology Examination : </label>
+                                <textarea id="Examination" placeholder="Enter text here" name="gynecology" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
                             </div> 
                         </div>
 
 
                         <div className="A">
-                        <span className="title">Management</span>
+                        <span className="title">Investigation</span>
                         <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
                                 <label htmlFor="FBC"> FBC : </label>
@@ -371,10 +395,27 @@ const PReg = () => {
                                 <textarea id="management" placeholder="Enter text here" name="management" rows="3" cols="50" onChange={e =>setValues({...values,other:e.target.value})}></textarea>
                             </div> 
                             </div>
+                        <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  Scanning:  </label>
+                            </div>
+                        <div className="input-field">
+                                <label htmlFor="AB"> MRI : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AL"> CT : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AB"> USS : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div> 
+                            </div>
                     </div>
                     <div className="A">
-                        <span className="title">Decision</span>
-                        <div className="fields">
+                        <span className="title">Management</span>
+                        {/* <div className="fields">
                             <div className="input-fieldM">
                                 <input type="checkbox" id="EL|LSCS" name="Decision" value="EL|LSCS"/>
                                 <label for="EL|LSCS">EL|LSCS</label>
@@ -415,11 +456,23 @@ const PReg = () => {
                                 <label for="Continue same management">Continue same management</label>
                             </div>
                         </div>
-                            <br/>
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Others">Others : </label>
                                 <textarea id="Decision" placeholder="Enter text here" name="Decision" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
+                            </div> 
+                        </div>
+                            <br/> */}
+                            <div className="fields">
+                            <div className="input-field">
+                                <label htmlFor="Others">Medical management : </label>
+                                <textarea id="Decision" placeholder="Enter text here" name="medical" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
+                            </div> 
+                        </div>
+                        <div className="fields">
+                            <div className="input-field">
+                                <label htmlFor="Others">Surgical management : </label>
+                                <textarea id="Decision" placeholder="Enter text here" name="surgical" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
                             </div> 
                         </div>
                     </div>

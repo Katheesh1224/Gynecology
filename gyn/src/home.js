@@ -34,6 +34,7 @@ const Home = () =>{
       <div className='homeContainer'>
         <nav class="navM">
           <div class="containerN">
+            <img src=""></img>
             <h1 class="logo">
               <a href="/home" className='a'>GYNECOLOGY</a>
             </h1>
@@ -58,12 +59,15 @@ const Home = () =>{
                 <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
                 <li><a href="patients_information" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
                 <li><a href="patient_visit" class="nav-link scrollto"><FontAwesomeIcon icon={faEye} /><span>Visit</span></a></li>
-                <li><a href="staff_information" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /><span>Staff Information</span></a></li>
               </ul>
             </nav>
           </header>
         </div>
+        <div>
+        <h1>Welcome to GYNECOLOGY Department</h1>
       </div>
+      </div>
+      
     );
 
 }

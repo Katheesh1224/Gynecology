@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate } from 'react-router-dom';
+import {useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
@@ -31,7 +31,11 @@ const Patient = () =>{
           // }
         };
         const [data, setData] = useState([]);
-      
+        const [values, setValues] = useState({
+          phn:'',
+          name:''
+        });
+
         useEffect(() => {
           const fetchData = async () => {
             try {
@@ -44,6 +48,40 @@ const Patient = () =>{
       
           fetchData();
         }, []);
+
+        const handleAdmit = (()=>{
+          const fetchData = async () => {
+            try {
+              const response = await axios.get('http://localhost:8081/admitdata');
+              setData(response.data);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+          fetchData();
+        });
+
+        const handleDischarge = (()=>{
+          const fetchData = async () => {
+            try {
+              const response = await axios.get('http://localhost:8081/dischargedata');
+              setData(response.data);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+          fetchData();
+        });
+
+        const handleSearch = async () => {
+          try {
+              const response = await axios.post('http://localhost:8081/searchdata', values);
+              setData(response.data);
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };
+
     return(
       <div className='homeContainer'>
         
@@ -74,19 +112,19 @@ const Patient = () =>{
             </ul>
 
           </div>
+          
         </nav>
-        
-        <div className='search'>
+        <div className='search' >
           <div className="input">
-          <input type='text' placeholder='Search with Name/NIC/PHN here' />
+          <input type='text' placeholder='Search with Name/NIC/PHN here'  onChange={e =>setValues({...values,phn:e.target.value})}/>
           </div>
           
-          <button className='button_srch'>Search</button>
-          <button className='button_add'>Addmitted Patient</button>
-          <button className='button_dis'>Discharged Patient</button>
+          <button className='button_srch' onClick={handleSearch}>Search</button>
+          <button className='button_add' onClick={handleAdmit}>Admitted Patient</button>
+          <button className='button_dis' onClick={handleDischarge}>Discharged Patient</button>
         </div>
 
-        <div className='patient_table'>
+        <div className='patient_table' style={{margin : "150px"}}>
           <table>
             <thead>
               <tr>
@@ -94,7 +132,7 @@ const Patient = () =>{
                 <th>Full Name</th>
                 <th>PHN No </th>
                 <th>Phone No</th>
-                <th>Action</th>
+                <th>Management</th>
                 
                 {/* Add more table headers as needed */}
               </tr>
@@ -107,7 +145,8 @@ const Patient = () =>{
                   <td>{row.phn}</td>
                   <td>{row.phone_no}</td>
                   <td>
-                    <button className='button_details' onClick={() => handleProfile(row.id)}>View</button>
+
+                    <button className='button_details' ><Link to={`/patient_profile/${row.id}`} className='btn btn-sm btn-primary mx-2'>View</Link></button>
                     <button className='button_home'>Edit</button>
                     {/* onClick={() => handleDischarge(row.id)} */}
                   </td>

@@ -10,7 +10,6 @@ import About from './patient_about.jsx';
 import Profile from './patient_profile.jsx';
 import Visit from './visit_form.jsx';
 import Day from './patient_day.jsx';
-import Staff from './staff_information.jsx';
 
 
 function App() {
@@ -24,10 +23,9 @@ function App() {
     <Route path ='/Register_staff' element={<Register_staff/>}></Route>
     <Route path ='/patients_information' element={<Patient/>}></Route>
     <Route path ='/patient_about' element={<About/>}></Route>
-    <Route path ='/patient_profile' element={<Profile/>}></Route>
+    <Route path ='/patient_profile/:id' element={<Profile/>}></Route>
     <Route path ='/patient_visit' element={<Visit/>}></Route>
     <Route path ='/patient_day' element={<Day/>}></Route>
-    <Route path ='/staff_information' element={<Staff/>}></Route>
    </Routes>
    </BrowserRouter>
     </div>

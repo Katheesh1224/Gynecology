@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate } from 'react-router-dom';
+import {useNavigate,useParams } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
@@ -10,6 +10,7 @@ import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarDays, faAdd
 const Profile = () =>{
 
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const handleLogout = async () => {
       navigate('/');
@@ -35,14 +36,16 @@ const Profile = () =>{
       const handlePrevious = async () => {
         navigate('/patients_information');
       };
+      
 
         const [data, setData] = useState([]);
       
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get('http://localhost:8081/data');
-              setData(response.data);
+              const response = await axios.get(`http://localhost:8081/view/${id}`);
+              setData(response.data[0]);
+              //console.log(response.data);
             } catch (error) {
               console.error('Error fetching data:', error);
             }
@@ -50,13 +53,24 @@ const Profile = () =>{
       
           fetchData();
         }, []);
+
+        const handleDischarge = async (phn) => {
+          try {
+              const response = await axios.put(`http://localhost:8081/discharge/${phn}`);
+              navigate('/patients_information');
+              // setData(response.data); // If needed
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };
+      
       
 
     return(
         <div className="">
-            <nav class="navM">
-                <div class="containerN">
-                    <h1 class="logo">
+            <nav className="navM">
+                <div className="containerN">
+                    <h1 className="logo">
                     <a href="/home" className='a'>GYNECOLOGY</a>
                     </h1>
                     <ul>
@@ -74,10 +88,10 @@ const Profile = () =>{
                 <header id="header" class="d-flex flex-column justify-content-center">
                     <nav id="navbar" class="navbar nav-menu">
                     <ul>
-                        <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                        <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-                        <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                        <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
+                        <li><a href="./../home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+                        <li><a href="./../patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
+                        <li><a href="./../Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
+                        <li><a href="./../patients_information" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
                     </ul>
                     </nav>
                 </header>
@@ -87,12 +101,12 @@ const Profile = () =>{
               <header> Patient Profile</header>
               <div className='card1'>
                 <div className='profile'>
-                  <p>Full Name  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : </p>
-                  <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    : </p>
-                  <p>BHT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
-                  <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </p>
-                  <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
-                  <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
+                  <p>Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.full_name}</p>
+                  <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.address}</p>
+                  {/* <p>BHT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p> */}
+                  <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.blood_gr}</p>
+                  <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.age} </p>
+                  <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.phone_no} </p>
                 </div>
               </div>
 
@@ -107,7 +121,7 @@ const Profile = () =>{
                   <div class="face face2">
                     <div class="content">
                       <p> This feature contains full admission details of this patient.</p>
-                      <a href="./patient_about" type="button">Show</a>
+                      <a href="./../patient_about/" type="button">Show</a>
                     </div>
                   </div>
                 </div>
@@ -122,7 +136,7 @@ const Profile = () =>{
                   <div class="face face2">
                     <div class="content">
                       <p> This feature contains day to day ward progress of this patient.</p>
-                      <a href="./patient_day" type="button">Show</a>
+                      <a href="./../patient_day" type="button">Show</a>
                     </div>
                   </div>
                 </div>
@@ -141,11 +155,13 @@ const Profile = () =>{
                     </div>
                   </div>
                 </div>
-              </div>
+              </div >
               
               <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
-            </div>
+              <div className="btn" ><button  style={{backgroundColor:'red'}} onClick={()=>{handleDischarge(data.phn)}}>Discharge</button></div>
               
+            </div>
+            
           </div>
     );
 }
