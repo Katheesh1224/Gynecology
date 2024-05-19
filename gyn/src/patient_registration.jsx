@@ -184,7 +184,8 @@ const PReg = () => {
                             <div className="input-fieldN">
                                 <label htmlFor="phone_no">Telephone No. : </label>
                                 <input type="tel" pattern="[0-9]{10}" placeholder="Enter number here" maxlength="10" onChange={e =>setValues({...values,tp:e.target.value})} required/>
-                            </div>                             
+                            </div> 
+                                                        
                         </div>
                         
                     </div>
@@ -223,20 +224,6 @@ const PReg = () => {
                             <div className='unit1'>
                                 <p>kg</p>
                             </div>    
-                            
-                            {/* <div className="input-fieldX">
-                                <p>Allergy History : </p>
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Drugs</label>
-                            </div>
-                            <div className="input-fieldX2">
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Foods</label>
-                            </div>
-                            <div className="input-fieldX2">
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Plaster</label>
-                            </div> */}
                          
                             <div className="input-field">
                                 <label htmlFor="allergy">Allergy History : </label>
@@ -315,17 +302,6 @@ const PReg = () => {
 
                             <div className="input-fieldA">
                                 <p>Menstrual History : </p>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                
-                            </div>
-
-                            <div className="input-fieldA">
-                                <p>Menstrual History : </p>
                                 <label for="menarche_age">Menarche Age :</label>
                                 <input type="text" id="menarche_age" name="menarche_age" value="" />
                                 <label for="menopausal_age">Menopausal Age</label>
@@ -345,17 +321,24 @@ const PReg = () => {
                                 <input type="text" id="P" name="P" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
                                 <label for="C">C</label>
                                 <input type="text" id="C" name="C" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                               
-                                <label for="c1">C1</label>
-                                <input type="text" id="c1" name="c1" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c2">C2</label>
-                                <input type="text" id="c2" name="c2" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c3">C3</label>
-                                <input type="text" id="c3" name="c3" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c4">C4</label>
-                                <input type="text" id="c4" name="c4" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c5">C5</label>
-                                <input type="text" id="c5" name="c5" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                            </div> 
+
+                            <div className='input-fieldA'>
+                                    <label for="c1">C1</label>
+                                    <input type="text" id="c1" name="c1" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                    <label for="c2">C2</label>
+                                    <input type="text" id="c2" name="c2" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                    <label for="c3">C3</label>
+                                    <input type="text" id="c3" name="c3" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                    <label for="c4">C4</label>
+                                    <input type="text" id="c4" name="c4" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                    <label for="c5">C5</label>
+                                    <input type="text" id="c5" name="c5" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                            </div>
+
+                            <div className="input-fieldB">
+                                <label htmlFor="bht">BHT : </label>
+                                <input type="text" pattern="[0-9]{6}/[0-9]{4}" maxlength="11" onChange={e =>setValues({...values,bht:e.target.value})} required/>
                             </div> 
                               
                             <div className="input-field">
