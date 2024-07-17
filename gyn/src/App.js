@@ -21,10 +21,10 @@ function App() {
     <Route path ='/' element={<Login/>}></Route>
     <Route path ='/patient_registration' element={<PReg/>}></Route>
     <Route path ='/home' element={<Home/>}></Route>
-    <Route path ='/Register_staff' element={<Register_staff/>}></Route>
     <Route path ='/patients_information' element={<Patient/>}></Route>
+    <Route path ='/Register_staff' element={<Register_staff/>}></Route>
     <Route path ='/patient_about' element={<About/>}></Route>
-    <Route path ='/patient_profile' element={<Profile/>}></Route>
+    <Route path ='/patient_profile/:id' element={<Profile/>}></Route>
     <Route path ='/patient_visit' element={<Visit/>}></Route>
     <Route path ='/patient_day' element={<Day/>}></Route>
     <Route path ='/staff_information' element={<Staff/>}></Route>

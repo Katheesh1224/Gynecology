@@ -478,7 +478,7 @@ const PReg = () => {
                     </div>
                     </div>
                 </div>
-                <div className="btn" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'blue'}} >Submit</button></div>
+                <div className="btn1" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'#512da8'}} >Submit</button></div>
                 <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}} onClick={()=>{navigate('/home');}}>Cancel</button></div>
             </form>
         </div>

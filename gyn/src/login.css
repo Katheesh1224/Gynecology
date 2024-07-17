@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap');
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "poppins", sans-serif;
-}
-
 /* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-s
+    font-family: "poppins", sans-serif;
 } */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
 
 body{
     /* background: radial-gradient(circle at 25% 25%, #4f46e4 10%, transparent 21%, transparent 100%), radial-gradient(circle at 75% 75%, #4f46e4 10%, transparent 16%);
