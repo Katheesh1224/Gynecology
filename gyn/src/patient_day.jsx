@@ -7,8 +7,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarPlus, faCalendarDay } from '@fortawesome/free-solid-svg-icons'
 
 const Card = ({ title }) => (
-  <div className="custom-card">
-    <h2>{title}</h2>
+  <div class="cd">
+    <div class="face face1">
+      <div class="content">
+        <FontAwesomeIcon icon={faCalendarPlus} />              
+        <h3>{title}</h3>
+      </div>
+    </div>
+    <div class="face face2">
+      <div class="content">
+        <p> This feature contains details of {title}.</p>
+        <a href="./patient_day" type="button">Show</a>
+      </div>
+    </div>
   </div>
 );
 
@@ -100,49 +111,24 @@ const Day = () =>{
               </div>
             
               <div class="cntner">
-
-                <div className="card-container">
                   {cards.map((card, index) => (
                     <Card key={index} title={card} />
                   ))}
-                  <div className="add-card" onClick={addCard}>
-                    +
-                  </div>
-                </div>
 
                 <div class="cd">
-                  <div class="face face1">
-                    <div class="content">  
-                        <FontAwesomeIcon icon={faCalendarDay} />          
-                        {cards.map((card, index) => (
-                          <Card key={index} title={card} />
-                        ))}
+                  <div class="face face1" onClick={addCard}>
+                    <div class="content">
+                      {/* <FontAwesomeIcon icon={faCalendarPlus} />               */}
+                      <h1>+</h1>
                     </div>
                   </div>
                   <div class="face face2">
                     <div class="content">
-                      <p> This feature contains visit details of day 01.</p>
+                      <p> This feature contains adding a new Admission.</p>
                       <a href="./patient_day" type="button">Show</a>
                     </div>
                   </div>
                 </div>
-
-                {/* 
-                <div class="cd">
-                  <div class="face face1" onClick={addCard}>
-                  
-                    <div class="content">
-                  <FontAwesomeIcon icon={faCalendarPlus} />              
-                  <h3>Add New Day</h3>
-                    </div>
-                  </div>
-                  <div class="face face2">
-                    <div class="content">
-                      <p> This feature contains adding a new day for visit.</p>
-                      <a href="./patient_day" type="button">Add</a>
-                    </div>
-                  </div>
-                </div>*/}
               </div> 
 
               <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
