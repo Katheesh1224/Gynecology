@@ -113,7 +113,7 @@ const  Register_staff = () =>{
             </div>
             <br/>
             
-            <div className="btn"><button type="submit">Register</button></div>
+            <div className="btn1"><button type="submit">Register</button></div>
         </form>
     </div>
     );

@@ -6,8 +6,21 @@ import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarPlus, faCalendarDay } from '@fortawesome/free-solid-svg-icons'
 
+const Card = ({ title }) => (
+  <div className="cd">
+    <h2>{title}</h2>
+  </div>
+);
+
 
 const Day = () =>{
+
+  const [cards, setCards] = useState([]);
+
+  const addCard = () => {
+    const newCardTitle = `Day ${cards.length + 1}`;
+    setCards([...cards, newCardTitle]);
+  };
 
     const navigate = useNavigate();
 
@@ -86,12 +99,23 @@ const Day = () =>{
               </div>
             
               <div class="cntner">
+
+              <div className="cntner">
+                {cards.map((cd, index) => (
+                  <Card key={index} title={cd} />
+                ))}
+                <div className="cd" onClick={addCard}>
+                  +
+                </div>
+              </div>
+
                 <div class="cd">
                   <div class="face face1">
                     <div class="content">  
                         <FontAwesomeIcon icon={faCalendarDay} />          
-                      <h3>Day 01</h3>
-                      <p>date</p>
+                        {cards.map((card, index) => (
+                          <Card key={index} title={card} />
+                        ))}
                     </div>
                   </div>
                   <div class="face face2">
@@ -101,9 +125,11 @@ const Day = () =>{
                     </div>
                   </div>
                 </div>
-                
+
+                {/* 
                 <div class="cd">
-                  <div class="face face1">
+                  <div class="face face1" onClick={addCard}>
+                  
                     <div class="content">
                   <FontAwesomeIcon icon={faCalendarPlus} />              
                   <h3>Add New Day</h3>
@@ -115,14 +141,16 @@ const Day = () =>{
                       <a href="./patient_day" type="button">Add</a>
                     </div>
                   </div>
-                </div>
-              </div>
+                </div>*/}
+              </div> 
 
               <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
-            </div>
+            </div> 
               
           </div>
     );
 }
 
 export default Day;
+
+

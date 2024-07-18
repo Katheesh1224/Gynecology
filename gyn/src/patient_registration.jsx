@@ -211,32 +211,13 @@ const PReg = () => {
                             </div>
                             <div className="input-fieldH">
                                 <label htmlFor="height">Height : </label>
-                                <input type="number" max={250} min={90} onChange={e =>setValues({...values,height:e.target.value})} />
+                                <input type="number" placeholder="cm"max={250} min={90} onChange={e =>setValues({...values,height:e.target.value})} />
                             </div>
-                            <div className='unit1'>
-                                <p>cm</p>
-                            </div>
+
                             <div className="input-fieldH">
                                 <label htmlFor="weight">Weight : </label>
-                                <input type="number" max={400} min={30}  onChange={e =>setValues({...values,weight:e.target.value})}/>
+                                <input type="number" placeholder="kg" max={400} min={30}  onChange={e =>setValues({...values,weight:e.target.value})}/>
                             </div>
-                            <div className='unit1'>
-                                <p>kg</p>
-                            </div>    
-                            
-                            {/* <div className="input-fieldX">
-                                <p>Allergy History : </p>
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Drugs</label>
-                            </div>
-                            <div className="input-fieldX2">
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Foods</label>
-                            </div>
-                            <div className="input-fieldX2">
-                                <input type="checkbox" id="drugs" name="drugs" value="Drugs"/>
-                                <label for="drugs">Plaster</label>
-                            </div> */}
                          
                             <div className="input-field">
                                 <label htmlFor="allergy">Allergy History : </label>
@@ -314,17 +295,6 @@ const PReg = () => {
                                 <textarea id="cancer" placeholder="Enter text here" name="cancer" rows="3" cols="50" onChange={e =>setValues({...values,past_hist:e.target.value})}></textarea>
                             </div>   
 
-                            {/* <div className="input-fieldA">
-                                <p>Menstrual History : </p>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                <label htmlFor="weight">Menarche Age : </label>
-                                <input type="text"/>
-                                
-                            </div> */}
-
                             <div className="input-fieldA">
                                 <p>Menstrual History : </p>
                                 <label for="menarche_age">Menarche Age : </label>
@@ -340,25 +310,6 @@ const PReg = () => {
                                 <label for="irregular">Irregular</label></p>
                             </div> <br></br>
                             <div></div>
-
-                            {/* <div className="input-fieldA">
-                                <p>Past Obstetric History : </p>
-                                <label for="P">P </label>
-                                <input type="text" id="P" name="P" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="C">C</label>
-                                <input type="text" id="C" name="C" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                               
-                                <label for="c1">C1</label>
-                                <input type="text" id="c1" name="c1" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c2">C2</label>
-                                <input type="text" id="c2" name="c2" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c3">C3</label>
-                                <input type="text" id="c3" name="c3" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c4">C4</label>
-                                <input type="text" id="c4" name="c4" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="c5">C5</label>
-                                <input type="text" id="c5" name="c5" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                            </div>  */}
                               
                             <div className="input-field">
                                 <label htmlFor="diagnosis">Diagnosis : </label>
@@ -367,7 +318,8 @@ const PReg = () => {
                         </div>
                     </div>
                 </div>
-                <div className="btn"><button type="submit">Register</button></div>
+                <div className="btn1"><button type="submit">Register</button></div>
+                
             </form>
         </div>
         </div>

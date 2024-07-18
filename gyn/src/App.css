@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "poppins", sans-serif;
+  /* font-family: "poppins", sans-serif; */
 }
 
 body{
@@ -58,8 +58,14 @@ body{
 }
 
 .btn{
-  text-align:end;
+  text-align: end;
+  margin-top: -50px;
 }
+
+.btn1{
+  text-align: end;
+}
+
 button{
   background-color: #512da8;
   color: #fff;
@@ -553,7 +559,6 @@ form .dropdownflex {
   margin: 0;
 }
 
-<<<<<<< HEAD
 .profile-about p{
   font-size: 13px;
 }
@@ -591,6 +596,7 @@ form .dropdownflex {
   align-items: center;
   z-index: 1;
   transform: translateY(30.35px);
+  cursor: pointer;
 }
 
 .cntner .cd:hover .face.face1{
@@ -658,6 +664,7 @@ form .dropdownflex {
   margin: 0 ;
   padding: 0;
   color:#333;
+  text-decoration: none;
 }
 
 .cntner .cd .face.face2 .content a{

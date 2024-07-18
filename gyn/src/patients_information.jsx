@@ -147,7 +147,7 @@ const Patient = () =>{
                   <td>
 
                     <button className='button_details' ><Link to={`/patient_profile/${row.id}`} className='btn btn-sm btn-primary mx-2'>View</Link></button>
-                    <button className='button_home'>Edit</button>
+                    {/* <button className='button_home'>Edit</button> */}
                     {/* onClick={() => handleDischarge(row.id)} */}
                   </td>
                   {/* <td>

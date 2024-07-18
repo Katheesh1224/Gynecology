@@ -62,8 +62,15 @@ const Profile = () =>{
           } catch (error) {
               console.error('Error fetching data:', error);
           }
-      };
-      
+        };
+    
+        const handleClick = () => {
+          navigate('/patient_about');
+        };    
+        
+        const handleClickDay = () => {
+          navigate('/patient_day');
+        }; 
       
 
     return(
@@ -112,7 +119,7 @@ const Profile = () =>{
 
               <div class="cntner">
                 <div class="cd">
-                  <div class="face face1">
+                  <div class="face face1" onClick={handleClick} role="button">
                     <div class="content">  
                         <FontAwesomeIcon icon={faAddressCard} />          
                       <h3>About</h3>
@@ -127,7 +134,7 @@ const Profile = () =>{
                 </div>
                 
                 <div class="cd">
-                  <div class="face face1">
+                  <div class="face face1" onClick={handleClickDay} role="button">
                     <div class="content">
                   <FontAwesomeIcon icon={faCalendarDays} />              
                   <h3>Day-to-day</h3>
@@ -142,7 +149,7 @@ const Profile = () =>{
                 </div>
                 
                 <div class="cd">
-                  <div class="face face1">
+                  <div class="face face1" onClick={handleClick} role="button">
                     <div class="content">
                       <FontAwesomeIcon icon={faBookMedical} />
                         <h3>History</h3>
@@ -157,7 +164,7 @@ const Profile = () =>{
                 </div>
               </div >
               
-              <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
+              <button onClick={handlePrevious}>{"<<"} &nbsp; previous </button>
               <div className="btn" ><button  style={{backgroundColor:'red'}} onClick={()=>{handleDischarge(data.phn)}}>Discharge</button></div>
               
             </div>
