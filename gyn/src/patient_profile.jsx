@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarDays, faAddressCard, faBookMedical } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser, faAddressCard, faBookMedical, faTicket } from '@fortawesome/free-solid-svg-icons'
 
 
 const Profile = () =>{
@@ -136,13 +136,13 @@ const Profile = () =>{
                 <div class="cd">
                   <div class="face face1" onClick={handleClickDay} role="button">
                     <div class="content">
-                  <FontAwesomeIcon icon={faCalendarDays} />              
-                  <h3>Day-to-day</h3>
+                  <FontAwesomeIcon icon={faTicket} />              
+                  <h3>Admission</h3>
                     </div>
                   </div>
                   <div class="face face2">
                     <div class="content">
-                      <p> This feature contains day to day ward progress of this patient.</p>
+                      <p> This feature contains admission progress of this patient.</p>
                       <a href="./../patient_day" type="button">Show</a>
                     </div>
                   </div>

@@ -4,13 +4,13 @@ import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarPlus, faCalendarDay } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarPlus, faCalendarDay, faSquare, faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons'
 
 const Card = ({ title }) => (
   <div class="cd">
     <div class="face face1">
       <div class="content">
-        <FontAwesomeIcon icon={faCalendarPlus} />              
+        <FontAwesomeIcon icon={faFilePen} />              
         <h3>{title}</h3>
       </div>
     </div>
@@ -118,14 +118,14 @@ const Day = () =>{
                 <div class="cd">
                   <div class="face face1" onClick={addCard}>
                     <div class="content">
-                      {/* <FontAwesomeIcon icon={faCalendarPlus} />               */}
-                      <h1>+</h1>
+                      <FontAwesomeIcon icon={faSquarePlus} />              
+                      <h3>New Admission</h3>
                     </div>
                   </div>
                   <div class="face face2">
                     <div class="content">
                       <p> This feature contains adding a new Admission.</p>
-                      <a href="./patient_day" type="button">Show</a>
+                      <a href="./patient_day" type="button">Add</a>
                     </div>
                   </div>
                 </div>

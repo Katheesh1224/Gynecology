@@ -3,7 +3,7 @@ import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser, faEye } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser, faEye, faClipboard, faClipboardUser, faUserNinja, faUserNurse, faUserDoctor, faDisplay } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () =>{
 
@@ -36,7 +36,7 @@ const Home = () =>{
           <div class="containerN">
             <img src=""></img>
             <h1 class="logo">
-              <a href="/home" className='a'>GYNECOLOGY</a>
+              <a href="/home" className='a' style={{justifyContent:'left'}}>GYNECOLOGY</a>
             </h1>
             <ul>
               <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
@@ -59,7 +59,7 @@ const Home = () =>{
                 <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
                 <li><a href="patients_information" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
                 <li><a href="patient_visit" class="nav-link scrollto"><FontAwesomeIcon icon={faEye} /><span>Visit</span></a></li>
-                <li><a href="staff_information" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /><span>Staff Information</span></a></li>
+                <li><a href="staff_information" class="nav-link scrollto"><FontAwesomeIcon icon={faUserNurse} /><span>Staff Information</span></a></li>
               </ul>
             </nav>
           </header>

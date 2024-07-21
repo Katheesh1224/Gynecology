@@ -11,6 +11,7 @@ import Profile from './patient_profile.jsx';
 import Visit from './visit_form.jsx';
 import Day from './patient_day.jsx';
 import Staff from './staff_information.jsx';
+import PAdd from './admission.jsx';
 
 
 function App() {
@@ -28,7 +29,11 @@ function App() {
     <Route path ='/patient_visit' element={<Visit/>}></Route>
     <Route path ='/patient_day' element={<Day/>}></Route>
     <Route path ='/staff_information' element={<Staff/>}></Route>
+    <Route path ='/admission' element={<PAdd/>}></Route>
    </Routes>
+
+    
+
    </BrowserRouter>
     </div>
   );
