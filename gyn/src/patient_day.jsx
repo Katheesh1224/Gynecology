@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarPlus, faCalendarDay, faSquare, faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser, faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons'
 
 const Card = ({ title }) => (
   <div class="cd">

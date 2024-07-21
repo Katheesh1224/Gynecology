@@ -3,7 +3,7 @@ import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser, faEye, faClipboard, faClipboardUser, faUserNinja, faUserNurse, faUserDoctor, faDisplay } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser, faEye, faUserNurse} from '@fortawesome/free-solid-svg-icons'
 
 const Home = () =>{
 
@@ -34,7 +34,6 @@ const Home = () =>{
       <div className='homeContainer'>
         <nav class="navM">
           <div class="containerN">
-            <img src=""></img>
             <h1 class="logo">
               <a href="/home" className='a' style={{justifyContent:'left'}}>GYNECOLOGY</a>
             </h1>

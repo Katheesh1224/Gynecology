@@ -1,6 +1,6 @@
 import './App.css';
 import './home.css';
-import react, { useEffect ,useState} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
