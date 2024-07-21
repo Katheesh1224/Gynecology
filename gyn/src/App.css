@@ -683,10 +683,10 @@ form .dropdownflex {
   box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 }
 /* ======= */
-.invalid{
-    
-  border: 5px solid red;
-  background-color: rgb(252, 67, 67);
+#invalid{
+/* background-color: red; */
+border: 7px solid red;
+  
 }
 /* >>>>>>> f61b42deaeefe577b6857bfc60e678efa0dddfce */
 

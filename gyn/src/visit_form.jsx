@@ -156,7 +156,7 @@ const PReg = () => {
                             </div>
                             <div className="input-field">
                                 <label htmlFor="visit_no"> Visit No : </label>
-                                <input type="number" id="numberInput" name='numberInput' className={inputClass}  onChange={handleChangeNo}  required/>
+                                <input type="number"  name='numberInput' id={inputClass}  onChange={handleChangeNo}  required/>
                             </div>
                             
                             <div className="input-field">
