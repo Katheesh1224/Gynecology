@@ -74,15 +74,7 @@ const Staff = () =>{
           </div>
         </nav>
         
-        <div className='search'>
-          <div className="input">
-          <input type='text' placeholder='Search with Name/NIC/PHN here' />
-          </div>
-          
-          <button className='button_srch'>Search</button>
-          <button className='button_add'>Active Staff</button>
-          <button className='button_dis'>NonActive Staff</button>
-        </div>
+        
 
         <div className='patient_table'>
           <table>
