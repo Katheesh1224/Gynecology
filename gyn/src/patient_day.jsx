@@ -49,11 +49,11 @@ const Day = () =>{
       };
 
       const handlePrevious = async () => {
-        navigate('/patient_profile');
+        navigate(`/patient_profile/${data.id}`);
       };
 
       const showAdmission = async () => {
-        navigate('/patient_admission_details');
+        navigate(`/patient_admission_details/${data.phn}`);
       };
 
         const [data, setData] = useState([]);
@@ -61,8 +61,8 @@ const Day = () =>{
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get('http://localhost:8081/data');
-              setData(response.data);
+              const response = await axios.get(`http://localhost:8081/patientda/${id}`);
+              setData(response.data[0]);
             } catch (error) {
               console.error('Error fetching data:', error);
             }
@@ -94,10 +94,10 @@ const Day = () =>{
                 <header id="header" class="d-flex flex-column justify-content-center">
                     <nav id="navbar" class="navbar nav-menu">
                     <ul>
-                        <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                        <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-                        <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                        <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
+                    <li><a href="./../home" className="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+                    <li><a href="./../patient_registration" className="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
+                    <li><a href="./../Register_staff" className="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
+                    <li><a href="./../patients_information" className="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
                     </ul>
                     </nav>
                 </header>

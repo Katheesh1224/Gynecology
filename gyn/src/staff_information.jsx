@@ -21,15 +21,6 @@ const Staff = () =>{
         }
       };
 
-      const handleProfile = async () => {
-        navigate('/patient_profile');
-          // try {
-          //   await axios.get('http://localhost:8081/logout');
-          //   navigate('/');
-          // } catch (error) {
-          //   console.error('Logout failed:', error);
-          // }
-        };
         const [data, setData] = useState([]);
       
         useEffect(() => {

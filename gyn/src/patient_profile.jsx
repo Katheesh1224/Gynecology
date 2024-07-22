@@ -49,12 +49,12 @@ const Profile = () => {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = ( ) => {
     navigate('/patient_about');
   };
 
   const handleClickDay = () => {
-    navigate('/patient_day');
+    navigate(`/patient_day/${data.id}`);
   };
 
   return (
@@ -116,7 +116,7 @@ const Profile = () => {
           </div>
 
           <div className="cd">
-            <div className="face face1" onClick={handleClickDay} role="button">
+            <div className="face face1" onClick={() => window.location.href = `/patient_day/${data.id}`}  role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faTicket} />
                 <h3>Admission</h3>
@@ -125,7 +125,7 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains admission progress of this patient.</p>
-                <a href="/patient_day" type="button">Show</a>
+                <a href={`/patient_day/${data.id}`} type="button">Show</a>
               </div>
             </div>
           </div>
