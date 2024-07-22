@@ -6,7 +6,7 @@ import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
  import {faUser } from '@fortawesome/free-solid-svg-icons'
 
-const PAdd = () => {
+const PAdd = () => {   
     const navigate = useNavigate();
 
     const [values,setValues] = useState({

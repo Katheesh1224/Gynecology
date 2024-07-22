@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
  import { faHouse, faRectangleList, faHospitalUser, faUser } from '@fortawesome/free-solid-svg-icons'
+import Nav from './component/Nav';
 
 const PReg = () => {
     const navigate = useNavigate();
@@ -142,6 +143,9 @@ const PReg = () => {
 
           </div>
         </nav>
+        <div>
+            <Nav/>
+        </div>
         <div className="container">
 
             <header>Visit Form</header>
