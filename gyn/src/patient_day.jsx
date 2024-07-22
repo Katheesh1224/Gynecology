@@ -32,7 +32,7 @@ const Day = () =>{
   const addCard = () => {
     const newCardTitle = `Admission ${cards.length + 2}`;
     setCards([...cards, newCardTitle]);
-    navigate('/new_admission');
+    // navigate('/new_admission');
   };
 
   const navigate = useNavigate();

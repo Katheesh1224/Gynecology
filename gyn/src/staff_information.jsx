@@ -107,7 +107,7 @@ const Staff = () =>{
                   <td>{row.role}</td>
                   <td style={getRowStyle(row.status)}>{row.status} </td>
                   <td>
-                    <button className='button_details'>View</button>
+                    <button className='button_details'>Delete</button>
                     <button className='button_home'>Edit</button>
                     {/* onClick={() => handleDischarge(row.id)} */}
                   </td>
