@@ -4,7 +4,7 @@ import React ,{ useState } from 'react';
 import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-
+import Nav from './component/Nav';
 
 const  RegisterStaff = () =>{
     const navigate = useNavigate();
@@ -66,6 +66,9 @@ const  RegisterStaff = () =>{
 
           </div>
         </nav>
+        <div>
+            <Nav />
+        </div>
         <form onSubmit={handleSubmit}>
             <header>Staff Registration</header>
             <br />

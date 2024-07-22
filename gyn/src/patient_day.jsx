@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate } from 'react-router-dom';
+import {useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
@@ -30,11 +30,13 @@ const Day = () =>{
   const [cards, setCards] = useState([]);
 
   const addCard = () => {
-    const newCardTitle = `Admission ${cards.length + 1}`;
+    const newCardTitle = `Admission ${cards.length + 2}`;
     setCards([...cards, newCardTitle]);
+    // navigate('/new_admission');
   };
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
     const handleLogout = async () => {
       navigate('/');
@@ -47,7 +49,11 @@ const Day = () =>{
       };
 
       const handlePrevious = async () => {
-        navigate('/patient_profile');
+        navigate(`/patient_profile/${data.id}`);
+      };
+
+      const showAdmission = async () => {
+        navigate(`/patient_admission_details/${data.phn}`);
       };
 
         const [data, setData] = useState([]);
@@ -55,15 +61,15 @@ const Day = () =>{
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get('http://localhost:8081/data');
-              setData(response.data);
+              const response = await axios.get(`http://localhost:8081/patientda/${id}`);
+              setData(response.data[0]);
             } catch (error) {
               console.error('Error fetching data:', error);
             }
           };
       
           fetchData();
-        }, []);
+        }, [id]);
       
 
     return(
@@ -88,10 +94,10 @@ const Day = () =>{
                 <header id="header" class="d-flex flex-column justify-content-center">
                     <nav id="navbar" class="navbar nav-menu">
                     <ul>
-                        <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                        <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-                        <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                        <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
+                    <li><a href="./../home" className="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+                    <li><a href="./../patient_registration" className="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
+                    <li><a href="./../Register_staff" className="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
+                    <li><a href="./../patients_information" className="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
                     </ul>
                     </nav>
                 </header>
@@ -101,12 +107,11 @@ const Day = () =>{
               <header> Patient Profile</header>
               <div className='card1'>
                 <div className='profile'>
-                  <p>Full Name  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : </p>
-                  <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    : </p>
-                  <p>BHT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
-                  <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </p>
-                  <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
-                  <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
+                  <p>Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.full_name}</p>
+                  <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.address}</p>
+                  <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.blood_gr}</p>
+                  <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.age} </p>
+                  <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.phone_no} </p>
                 </div>
               </div>
             
@@ -114,6 +119,21 @@ const Day = () =>{
                   {cards.map((card, index) => (
                     <Card key={index} title={card} />
                   ))}
+
+                <div class="cd">
+                  <div class="face face1" onClick={showAdmission}>
+                    <div class="content">
+                      <FontAwesomeIcon icon={faFilePen} />              
+                      <h3>Admission 1</h3>
+                    </div>
+                  </div>
+                  <div class="face face2">
+                    <div class="content">
+                      <p> This feature contains admission details of this patient.</p>
+                      <a href="./patient_day" type="button">Show</a>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="cd">
                   <div class="face face1" onClick={addCard}>

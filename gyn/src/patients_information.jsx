@@ -21,15 +21,10 @@ const Patient = () =>{
         }
       };
 
-      const handleProfile = async () => {
-        navigate('/patient_profile');
-          // try {
-          //   await axios.get('http://localhost:8081/logout');
-          //   navigate('/');
-          // } catch (error) {
-          //   console.error('Logout failed:', error);
-          // }
-        };
+      // const handleProfile = async () => {
+      //   navigate('/patient_profile');
+
+      //   };
         const [data, setData] = useState([]);
         const [values, setValues] = useState({
           phn:'',
