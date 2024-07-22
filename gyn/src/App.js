@@ -11,8 +11,8 @@ import Profile from './patient_profile.jsx';
 import Visit from './visit_form.jsx';
 import Day from './patient_day.jsx';
 import Staff from './staff_information.jsx';
-import PAdd from './admission.jsx';
-
+import PAdd from './new_admission.jsx';
+import AdDetails from './patient_admission_details.jsx';
 
 function App() {
   return (
@@ -24,12 +24,13 @@ function App() {
     <Route path ='/home' element={<Home/>}></Route>
     <Route path ='/patients_information' element={<Patient/>}></Route>
     <Route path ='/Register_staff' element={<RegisterStaff/>}></Route>
-    <Route path ='/patient_about' element={<About/>}></Route>
+    <Route path ='/patient_about/:id' element={<About/>}></Route>
     <Route path ='/patient_profile/:id' element={<Profile/>}></Route>
     <Route path ='/patient_visit' element={<Visit/>}></Route>
     <Route path ='/patient_day' element={<Day/>}></Route>
     <Route path ='/staff_information' element={<Staff/>}></Route>
-    <Route path ='/admission' element={<PAdd/>}></Route>
+    <Route path ='/new_admission' element={<PAdd/>}></Route>
+    <Route path ='/patient_admission_details' element={<AdDetails/>}></Route>
    </Routes>
 
     
