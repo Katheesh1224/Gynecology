@@ -462,6 +462,7 @@ const PReg = () => {
                             </div> 
                         </div>
                     </div>
+                    <span className="title">Management</span>
                     <div className="fields1">
                         <div className="input-field" onload="setMaxDate()">
                                 <label htmlFor="Scan">  Minor :  </label>
@@ -503,7 +504,7 @@ const PReg = () => {
                             
                             </div>
                     <div className="A">
-                        <span className="title">Management</span>
+                        {/* <span className="title">Management</span> */}
                         {/* <div className="fields">
                             <div className="input-fieldM">
                                 <input type="checkbox" id="EL|LSCS" name="Decision" value="EL|LSCS"/>
@@ -561,11 +562,50 @@ const PReg = () => {
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Others">Surgical management : </label>
-                                <textarea id="Decision" placeholder="Enter text here" name="surgical" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
                             </div> 
                         </div>
                     </div>
                     </div>
+                    <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  Minor :  </label>
+                            </div>&emsp;
+                        <div className="input-field">
+                                <label htmlFor="AB"> EUA : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AL"> EB : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div> 
+                        </div>
+
+                        <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  Major :  </label>
+                            </div>&emsp;&emsp;
+                        </div>
+                        <div className="fields">
+                        <div className="input-fieldM">
+                                <input type="checkbox" id="BL/LRT" name="past_med" value="BL/LRT"/>
+                                <label for="BL/LRT">BL/LRT</label>
+                                <input type="checkbox" id="TAH" name="past_med" value="TAH"/>
+                                <label for="TAH">TAH</label>
+                                </div>
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="BSO" name="past_med" value="BSO"/>
+                                <label for="BSO">BSO </label>
+                                <input type="checkbox" id="Myomectomy" name="past_med" value="Myomectomy"/>
+                                <label for="Myomectomy">Myomectomy</label>
+                                </div>
+                                
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="Polpectomy" name="past_med" value="Polpectomy"/>
+                                <label for="Polpectomy">Polpectomy</label>
+                                </div>
+                                
+                            
+                            </div>
                 </div>
                 <div className="btn1" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'#512da8'}} >Submit</button></div>
                 <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}} onClick={()=>{navigate('/home');}}>Cancel</button></div>
