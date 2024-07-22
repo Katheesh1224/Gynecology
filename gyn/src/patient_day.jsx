@@ -1,14 +1,25 @@
 import React from 'react';
-import {useNavigate } from 'react-router-dom';
+import {useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser, faCalendarPlus, faCalendarDay } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser, faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons'
 
 const Card = ({ title }) => (
-  <div className="custom-card">
-    <h2>{title}</h2>
+  <div class="cd">
+    <div class="face face1">
+      <div class="content">
+        <FontAwesomeIcon icon={faFilePen} />              
+        <h3>{title}</h3>
+      </div>
+    </div>
+    <div class="face face2">
+      <div class="content">
+        <p> This feature contains details of {title}.</p>
+        <a href="./patient_day" type="button">Show</a>
+      </div>
+    </div>
   </div>
 );
 
@@ -19,11 +30,13 @@ const Day = () =>{
   const [cards, setCards] = useState([]);
 
   const addCard = () => {
-    const newCardTitle = `Admission ${cards.length + 1}`;
+    const newCardTitle = `Admission ${cards.length + 2}`;
     setCards([...cards, newCardTitle]);
+    navigate('/new_admission');
   };
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
     const handleLogout = async () => {
       navigate('/');
@@ -39,6 +52,10 @@ const Day = () =>{
         navigate('/patient_profile');
       };
 
+      const showAdmission = async () => {
+        navigate('/patient_admission_details');
+      };
+
         const [data, setData] = useState([]);
       
         useEffect(() => {
@@ -52,7 +69,7 @@ const Day = () =>{
           };
       
           fetchData();
-        }, []);
+        }, [id]);
       
 
     return(
@@ -90,59 +107,48 @@ const Day = () =>{
               <header> Patient Profile</header>
               <div className='card1'>
                 <div className='profile'>
-                  <p>Full Name  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : </p>
-                  <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    : </p>
-                  <p>BHT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
-                  <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </p>
-                  <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
-                  <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </p>
+                  <p>Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.full_name}</p>
+                  <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.address}</p>
+                  <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.blood_gr}</p>
+                  <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.age} </p>
+                  <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.phone_no} </p>
                 </div>
               </div>
             
               <div class="cntner">
-
-                <div className="card-container">
                   {cards.map((card, index) => (
                     <Card key={index} title={card} />
                   ))}
-                  <div className="add-card" onClick={addCard}>
-                    +
-                  </div>
-                </div>
 
                 <div class="cd">
-                  <div class="face face1">
-                    <div class="content">  
-                        <FontAwesomeIcon icon={faCalendarDay} />          
-                        {cards.map((card, index) => (
-                          <Card key={index} title={card} />
-                        ))}
+                  <div class="face face1" onClick={showAdmission}>
+                    <div class="content">
+                      <FontAwesomeIcon icon={faFilePen} />              
+                      <h3>Admission 1</h3>
                     </div>
                   </div>
                   <div class="face face2">
                     <div class="content">
-                      <p> This feature contains visit details of day 01.</p>
+                      <p> This feature contains admission details of this patient.</p>
                       <a href="./patient_day" type="button">Show</a>
                     </div>
                   </div>
                 </div>
 
-                {/* 
                 <div class="cd">
                   <div class="face face1" onClick={addCard}>
-                  
                     <div class="content">
-                  <FontAwesomeIcon icon={faCalendarPlus} />              
-                  <h3>Add New Day</h3>
+                      <FontAwesomeIcon icon={faSquarePlus} />              
+                      <h3>New Admission</h3>
                     </div>
                   </div>
                   <div class="face face2">
                     <div class="content">
-                      <p> This feature contains adding a new day for visit.</p>
+                      <p> This feature contains adding a new Admission.</p>
                       <a href="./patient_day" type="button">Add</a>
                     </div>
                   </div>
-                </div>*/}
+                </div>
               </div> 
 
               <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>

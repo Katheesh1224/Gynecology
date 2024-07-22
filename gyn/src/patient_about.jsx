@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate } from 'react-router-dom';
+import {useNavigate , useParams} from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
@@ -7,9 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faRectangleList, faHospitalUser, faUser} from '@fortawesome/free-solid-svg-icons'
 
 
-const Profile = () =>{
+const About = () =>{
 
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const handleLogout = async () => {
       navigate('/');
@@ -49,7 +50,7 @@ const Profile = () =>{
           };
       
           fetchData();
-        }, []);
+        }, [id]);
       
 
     return(
@@ -136,5 +137,5 @@ const Profile = () =>{
 }
 
 
-export default Profile;
+export default About;
 

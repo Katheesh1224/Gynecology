@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser} from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser, faUserNurse} from '@fortawesome/free-solid-svg-icons'
 
 
 const Patient = () =>{
@@ -93,6 +93,7 @@ const Patient = () =>{
                 <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
                 <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
                 <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
+                <li><a href="staff_information" class="nav-link scrollto"><FontAwesomeIcon icon={faUserNurse} /><span>Staff Information</span></a></li>
               </ul>
             </nav>
           </header>

@@ -3,10 +3,10 @@ import axios from 'axios';
 import React ,{ useState } from 'react';
 import {useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 
-const  Register_staff = () =>{
+const  RegisterStaff = () =>{
     const navigate = useNavigate();
     
     const [values,setValues] =useState({
@@ -118,4 +118,4 @@ const  Register_staff = () =>{
     </div>
     );
 }
-export default Register_staff;
+export default RegisterStaff;

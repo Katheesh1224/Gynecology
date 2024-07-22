@@ -4,7 +4,7 @@ import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser} from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faRectangleList, faHospitalUser, faUser, faUserNurse} from '@fortawesome/free-solid-svg-icons'
 
 
 const Staff = () =>{
@@ -57,9 +57,11 @@ const Staff = () =>{
           <header id="header" class="d-flex flex-column justify-content-center">
             <nav id="navbar" class="navbar nav-menu">
               <ul>
-                <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+              <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
+                <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
                 <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-
+                <li><a href="patients_information" class="nav-link scrollto"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
+                <li><a href="staff_information" class="nav-link scrollto active"><FontAwesomeIcon icon={faUserNurse} /><span>Staff Information</span></a></li>
               </ul>
             </nav>
           </header>
@@ -114,7 +116,7 @@ const Staff = () =>{
                   <td>{row.role}</td>
                   <td style={getRowStyle(row.status)}>{row.status} </td>
                   <td>
-                    <button className='button_details'>View</button>
+                    <button className='button_details'>Delete</button>
                     <button className='button_home'>Edit</button>
                     {/* onClick={() => handleDischarge(row.id)} */}
                   </td>
