@@ -1,10 +1,10 @@
 import './App.css';
 import axios from 'axios';
 import React ,{ useState } from 'react';
-import {useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import Nav from './component/Nav';
+import { useNavigate } from 'react-router-dom';
+import Nav from './component/Nav.jsx';
+import NavBar from './component/NavBar.jsx';
+
 
 const  RegisterStaff = () =>{
     const navigate = useNavigate();
@@ -23,16 +23,6 @@ const  RegisterStaff = () =>{
         setValues({ ...values,[name]:value});
     }
 
-    const handleLogout = async () => {
-        navigate('/');
-          try {
-            await axios.get('http://localhost:8081/logout');
-            navigate('/');
-          } catch (error) {
-            console.error('Logout failed:', error);
-          }
-        };
-
 
     const handleSubmit =(e) =>{
         console.log(e);
@@ -50,25 +40,8 @@ const  RegisterStaff = () =>{
     
     return(
         <div className="container">
-            <nav class="navM">
-          <div class="containerN">
-            <h1 class="logo">
-              <a href="/home" className='a'>GYNECOLOGY</a>
-            </h1>
-            <ul>
-              <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
-              <li>
-                <div>
-                  <button onClick={handleLogout} class="buttonHome">Logout&emsp;{/*<FontAwesomeIcon icon={faHouse} />*/}</button>
-                </div>
-            </li>
-            </ul>
-
-          </div>
-        </nav>
-        <div>
-            <Nav />
-        </div>
+            <NavBar/>
+            <Nav/>
         <form onSubmit={handleSubmit}>
             <header>Staff Registration</header>
             <br />
