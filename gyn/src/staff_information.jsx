@@ -9,6 +9,7 @@ import NavBar from './component/NavBar.jsx';
 const Staff = () =>{
 
         const [data, setData] = useState([]);
+        const [openPopup, setOpenPopup] = useState(false);
       
         useEffect(() => {
           const fetchData = async () => {
@@ -39,6 +40,7 @@ const Staff = () =>{
                 console.log(response.data);
                 // Update state to remove the deleted row
                 setData(data.filter(row => row.id !== id));
+                setOpenPopup(false);
               })
               .catch(error => console.error('Error deleting row:', error));
           };
@@ -50,7 +52,7 @@ const Staff = () =>{
       <Nav/> 
       <div className='homeContainer'>
         <h1 id='staff_heading'>Staff Information</h1>
-        <div className='patient_table'>
+         <div className='staff_table'>
           <table>
             <thead>
               <tr>
@@ -71,23 +73,28 @@ const Staff = () =>{
                   <td>{row.role}</td>
                   <td style={getRowStyle(row.status)}>{row.status} </td>
                   <td>
-                    <button onClick={() => deleteRow(row.id)} className='button_details'>Delete</button>
+                    <button className='button_details'onClick={()=>setOpenPopup(true)}>Delete</button>
                     <button className='button_home'>Edit</button>
-                    {/* onClick={() => handleDischarge(row.id)} */}
                   </td>
-                  {/* <td>
-                    <button className='button_details' onClick={() => handleDetails(row.id)}>Details</button>
-                  </td> */}
+                {/* <button className='popup' >Open popup</button> */}
+                {openPopup && (
+                  <div className='popup'>
+                    <div className='box'>
+                      <h2>Are you sure?</h2>
+                    <button className='popup_button1' onClick={() => deleteRow(row.id)}  >Yes</button>
+                    <button className='popup_button2' onClick={() => setOpenPopup(false)}>No</button>
+                    </div>
+                  </div>
+                )} 
                 </tr>
               ))}
             </tbody>
           </table>
-
-        </div>
+        </div> 
         </div>
     
-    );
-  }
-
+      </div>
+  );
+}
 
 export default Staff;
