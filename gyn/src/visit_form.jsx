@@ -1,18 +1,15 @@
 import './App.css';
 import './home.css';
-import react, { useEffect ,useState} from 'react';
+import { useState} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
 import {useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
- import { faHouse, faRectangleList, faHospitalUser, faUser } from '@fortawesome/free-solid-svg-icons'
-import Nav from './component/Nav';
+import Nav from './component/Nav.jsx';
+import NavBar from './component/NavBar.jsx';
+
 
 const PReg = () => {
     const navigate = useNavigate();
     const [value, setValue] = useState('');
-    const [inputValue, setInputValue] = useState('');
-    const [error, setError] = useState('');
     const [values,setValues] = useState({
         date:'',
         time:'',
@@ -50,16 +47,6 @@ const PReg = () => {
         .catch(err =>console.log(err))
         navigate('/home')
     }
-
-    const handleLogout = async () => {
-        navigate('/');
-          try {
-            await axios.get('http://localhost:8081/logout');
-            navigate('/');
-          } catch (error) {
-            console.error('Logout failed:', error);
-          }
-        };
     
       const handleDateChange = (e) => {
         const selectedDate = e.target.value;
@@ -72,30 +59,6 @@ const PReg = () => {
         }
       };
 
-      const handleDateofbirthChange = (e) => {
-        const selectedDate = e.target.value;
-        const currentDate = new Date().toISOString().split('T')[0];
-    
-        if (selectedDate > currentDate) {
-          alert('Please select a date and time that is not in the future.');
-        } else {
-          setValues({ ...values, dob: selectedDate });
-        }
-      };
-
-    //   const handleCheckboxChange = (e) => {
-    //     const { name, value, checked } = e.target;
-    
-    //     // Use the spread operator to create a new array with the selected values
-    //     const updatedPastMed = checked
-    //       ? [...values.past_med, value]
-    //       : values.past_med.filter((item) => item !== value);
-    
-    //     setValues((prevValues) => ({
-    //       ...prevValues,
-    //       [name]: updatedPastMed,
-    //     }));
-    //   };
 
       const handleBloodGroupChange = (e) => {
         setValues({
@@ -112,40 +75,11 @@ const PReg = () => {
           setValue(enteredValue);
         };
         const inputClass = isNaN(value) || value < 0 || value > 200 ? "invalid" : '';
-   
-        const handleChangeText = (e) => {
-            const value = e.target.value;
-            // Regular expression to match alphabetic characters only
-            const regex = /^[A-Za-z]+$/;
-            if (regex.test(value) || value === '') {
-              setInputValue(value);
-              setError('');
-            } else {
-              setError('Input must contain alphabetic characters only');
-            }
-        };
 
     return (
         <div>
-            <nav class="navM">
-          <div class="containerN">
-            <h1 class="logo">
-              <a href="/home" className='a'>GYNECOLOGY</a>
-            </h1>
-            <ul>
-              <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
-              <li>
-                <div>
-                  <button onClick={handleLogout} class="buttonHome">Logout</button>
-                </div>
-            </li>
-            </ul>
-
-          </div>
-        </nav>
-        <div>
+            <NavBar/>
             <Nav/>
-        </div>
         <div className="container">
 
             <header>Visit Form</header>
