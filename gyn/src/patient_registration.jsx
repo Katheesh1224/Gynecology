@@ -156,7 +156,7 @@ const PReg = () => {
                         <div className="fields">
                             <div className="input-fieldB">
                                 <label htmlFor="bht">BHT : </label>
-                                <input type="text" pattern="[0-9]{6}/[0-9]{4}" maxlength="11" onChange={e =>setValues({...values,bht:e.target.value})} required/>
+                                <input type="text" placeholder="123456/1234" pattern="[0-9]{6}/[0-9]{4}" maxlength="11" onChange={e =>setValues({...values,bht:e.target.value})} required/>
                             </div>   
                             <div className="input-fieldH">
                                 <label htmlFor="ward_no">Ward No. : </label>

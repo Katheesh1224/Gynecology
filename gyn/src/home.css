@@ -19,6 +19,7 @@
     justify-content: center;
     width: 1000px;
 }
+    
 
 ul {
   display: flex;
@@ -154,7 +155,7 @@ ul li a {
   .search{
     display: flex;
     justify-content: flex-start;
-    margin-top: -250px;
+    margin-top: -280px;
     margin-left: 0px;
   }
 
@@ -167,6 +168,7 @@ ul li a {
     letter-spacing: 2px;
     margin-top: 0;
     margin-right: 350px;
+    margin-left: 0px;
     cursor: pointer;
     border-radius: 0px;
     border-top-right-radius: 4px;
@@ -402,7 +404,7 @@ ul li a {
    border-collapse: collapse;
    border-spacing: 0;
    box-shadow: 0 2px 15px rgba(64,64,64,.7);
-   border-radius: 10px 10px 0 0;
+   border-radius: 10px ;
    overflow: hidden;
   }
   
@@ -427,4 +429,8 @@ ul li a {
   
   tr:nth-child(even){
    background-color: #eeeeee;
+  }
+
+  tfoot{
+    background-color: #fafafa;
   }

@@ -1,21 +1,21 @@
 import './App.css';
 import axios from 'axios';
 import React ,{ useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
 
 const  RegisterStaff = () =>{
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     const [values,setValues] =useState({
         full_name:"",
         phone_no:"",
-        role:'',
+        role:'consultant',
         email:"",
         password:"",
-        status:'',
+        status:'active',
     })
 
     const handleChange =(e) =>{
@@ -33,7 +33,7 @@ const  RegisterStaff = () =>{
          
         })
         .catch(err =>console.log(err))
-        // navigate('/home');
+        // navigate('/Register_staff');
         alert("Staff Registered Successfully");
     }
   
@@ -75,6 +75,7 @@ const  RegisterStaff = () =>{
             <div className="dropdownflex">
             <div className="input-fieldL">
             <select name="role" id="role" onChange={e =>setValues({...values,role:e.target.value})} >
+                {/* <option value="">Select here</option> */}
                 <option value="consultant">Consultant</option>
                 <option value="registrar">Registrar</option>
                 <option value="medical_officer">Medical Officer</option>
@@ -83,6 +84,7 @@ const  RegisterStaff = () =>{
             </div>
             <div className="input-field">
             <select name="status" id="status" onChange={e =>setValues({...values,status:e.target.value})} >
+                {/* <option value="">Select here</option> */}
                 <option value="active">Active</option>
                 <option value="pending">Pending</option>
                 <option value="inactive">Inactive</option>
