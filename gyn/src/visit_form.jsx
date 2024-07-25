@@ -7,7 +7,7 @@ import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
 
-const PReg = () => {
+const VisitForm = () => {
     const navigate = useNavigate();
     const [value, setValue] = useState('');
     const [values,setValues] = useState({
@@ -552,4 +552,4 @@ const PReg = () => {
         </div>
     )
 }
-export default PReg;
+export default VisitForm;

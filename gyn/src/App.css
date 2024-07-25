@@ -77,6 +77,7 @@ button{
   letter-spacing: 0.5px;
   text-transform: uppercase;
   margin-top: 10px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
@@ -716,15 +717,22 @@ border: 7px solid red;
   margin-top: 400px;
 }
 #staff_heading{
-  margin-top: -190px;
-  padding-bottom: 50px;
+  margin-top: -270px;
+  padding-bottom: 30px;
   /* padding-top: -350px; */
 }
+
 .staff_table{
   margin-top: 50px;
   margin-bottom: 50px;
   padding-top: 50px;
 }
 
+.space{
+  margin: 30px;
+}
 
+.space2{
+  margin: 60px;
+}
 

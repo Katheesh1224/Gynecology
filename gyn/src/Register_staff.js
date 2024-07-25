@@ -1,7 +1,7 @@
 import './App.css';
 import axios from 'axios';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React ,{ useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
@@ -66,6 +66,7 @@ const RegisterStaff = () => {
           setFormErrors({}); // Clear errors
           // navigate('/Register_staff');
         })
+      
         .catch(err => console.log(err));
     } else {
       setFormErrors(errors);

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons'
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
+import ProfileCard from './component/profileCard.jsx';
 
 
 const Card = ({ title }) => (
@@ -28,14 +29,14 @@ const Card = ({ title }) => (
 
 
 
-const Admision = () =>{
+const Admission = () =>{
 
   const [cards, setCards] = useState([]);
 
   const addCard = () => {
     const newCardTitle = `Admission ${cards.length + 2}`;
     setCards([...cards, newCardTitle]);
-    // navigate('/new_admission');
+    navigate('/patients_information/patient_profile/patient_admission/new_admission');
   };
 
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Admision = () =>{
       };
 
       const showAdmission = async () => {
-        navigate(`/patients_information/patient_profile/patient_admission/patient_admission_details/${data.phn}`);
+        navigate(`/patients_information/patient_profile/patient_admission/patient_visit/${id}`);
       };
 
         const [data, setData] = useState([]);
@@ -72,15 +73,7 @@ const Admision = () =>{
           <Nav/>
             <div className='card'>
               <header> Patient Admission</header>
-              <div className='card1'>
-                <div className='profile'>
-                  <p>Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.full_name}</p>
-                  <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.address}</p>
-                  <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.blood_gr}</p>
-                  <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.age} </p>
-                  <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.phone_no} </p>
-                </div>
-              </div>
+              <ProfileCard/>
             
               <div class="cntner">
                   {cards.map((card, index) => (
@@ -125,6 +118,6 @@ const Admision = () =>{
     );
 }
 
-export default Admision;
+export default Admission;
 
 

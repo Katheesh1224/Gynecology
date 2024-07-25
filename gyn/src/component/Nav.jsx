@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRectangleList, faHospitalUser, faUserNurse } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 
 const Nav = () => {
@@ -37,12 +37,6 @@ const Nav = () => {
               <NavLink to="/staff_information" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faUserNurse} />
                 <span>Staff Information</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/patient_visit" className="nav-link" activeClassName="active">
-                <FontAwesomeIcon icon={faEye} />
-                <span>Visit</span>
               </NavLink>
             </li>
           </ul>
