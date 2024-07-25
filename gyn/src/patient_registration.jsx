@@ -25,9 +25,9 @@ const PReg = () => {
         consultant:'',
         height:'',
         weight:'',
-        past_med:'',
+        past_med:[],
         complaint:'',
-        past_surg:'',
+        past_surg:[],
         past_hist:'',
         past_obs:'',
         other:'',
@@ -99,6 +99,26 @@ const PReg = () => {
           bloodgr: e.target.value,
         });
       };
+
+      const handleInputChange = (e) =>{
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+        if (name === 'past_med') {
+            if (target.checked) {
+              value = [...values.past_med, target.value];
+            } else {
+              value = values.past_med.filter((subject) => subject !== target.value);
+            }
+          }
+          if (name === 'past_surg') {
+            if (target.checked) {
+              value = [...values.past_surg, target.value];
+            } else {
+              value = values.past_surg.filter((subject) => subject !== target.value);
+            }
+          }
+      }
     
     
 
@@ -231,39 +251,39 @@ const PReg = () => {
 
                             <div className="input-fieldM">
                                 <p>Past Medical History : </p>
-                                <input type="checkbox" id="diabetics" name="past_med" value="Diabetics Mellitus"/>
+                                <input type="checkbox" id="diabetics" name="past_med" value="Diabetics mellitus" onChange={handleInputChange}/>
                                 <label for="diabetics">Diabetics Mellitus</label>
-                                <input type="checkbox" id="hypertension" name="past_med" value="Hypertension"/>
+                                <input type="checkbox" id="hypertension" name="past_med" value="Hypertension" onChange={handleInputChange}/>
                                 <label for="hypertension">Hypertension</label>
-                                <input type="checkbox" id="hypothyroidism" name="past_med" value="Hypothyroidism"/>
+                                <input type="checkbox" id="hypothyroidism" name="past_med" value="Hypothyroidism" onChange={handleInputChange}/>
                                 <label for="hypothyroidism">Hypothyroidism</label>
-                                <input type="checkbox" id="asthma" name="asthma" value="Bronchal Asthma" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <input type="checkbox" id="asthma" name="past_med" value="Bronchal asthma" onChange={handleInputChange}/>
                                 <label for="asthma">Bronchal Asthma</label>
-                                <input type="checkbox" id="epilepsy" name="epilepsy" value="Epilepsy" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <input type="checkbox" id="epilepsy" name="past_med" value="Epilepsy" onChange={handleInputChange}/>
                                 <label for="epilepsy">Epilepsy</label>
                             </div>
                             <div className="input-fieldM">
-                                <input type="checkbox" id="valvular_heart" name="valvular_heart" value="Valvular Heart Diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <input type="checkbox" id="valvular_heart" name="past_med" value="Valvular heart diseases" onChange={handleInputChange}/>
                                 <label for="valvular_heart">Valvular Heart Diseases</label>
-                                <input type="checkbox" id="ishemic_heart" name="ishemic_heart" value="Ishemic heart diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <input type="checkbox" id="ishemic_heart" name="past_med" value="Ishemic heart diseases" onChange={handleInputChange}/>
                                 <label for="ishemic_heart">Ishemic Heart Diseases</label>
-                                <input type="checkbox" id="renal_diseases" name="renal_diseases" value="Renal Diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <input type="checkbox" id="renal_diseases" name="past_med" value="Renal diseases" onChange={handleInputChange}/>
                                 <label for="renal_diseases">Renal Diseases</label>
-                                <input type="checkbox" id="arthritics" name="arthritics" value="Arthritics" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <input type="checkbox" id="arthritics" name="past_med" value="Arthritics" onChange={handleInputChange}/>
                                 <label for="arthritics">Arthritics</label>
-                                <input type="checkbox" id="hypercholesterolemia" name="hypercholesterolemia" value="Hypercholesterolemia" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <input type="checkbox" id="hypercholesterolemia" name="past_med" value="Hypercholesterolemia" onChange={handleInputChange}/>
                                 <label for="hypercholesterolemia">Hypercholesterolemia</label>
                             </div>
 
                             <div className="input-fieldM">
                                 <p>Past Surgical History : </p>
-                                <input type="checkbox" id="lscs" name="lscs" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="diabetics">Lower Segment Cesarian Section (LSCS)</label>
-                                <input type="checkbox" id="lrt" name="lrt" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="hypertension">L Rproscopic Tubal ligation (LRT)</label>
-                                <input type="checkbox" id="myomectomy" name="myomectomy" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <input type="checkbox" id="lscs" name="lscs" value="Lower Segment Cesarian Section" onChange={handleInputChange}/>
+                                <label for="LSCS">Lower Segment Cesarian Section (LSCS)</label>
+                                <input type="checkbox" id="lrt" name="lrt" value="Tubal ligation" onChange={handleInputChange}/>
+                                <label for="LRT">L Rproscopic Tubal ligation (LRT)</label>
+                                <input type="checkbox" id="myomectomy" name="myomectomy" value="" onChange={handleInputChange}/>
                                 <label for="hypothyroidism">Laparoscopic myomectomy</label>
-                                <input type="checkbox" id="lap" name="lap" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
+                                <input type="checkbox" id="lap" name="lap" value="myomectomy" onChange={handleInputChange}/>
                                 <label for="asthma">Lap and Cye</label>
                             </div> 
                          
