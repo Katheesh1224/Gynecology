@@ -1,7 +1,10 @@
 import './App.css';
 import axios from 'axios';
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+
+
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
@@ -68,6 +71,7 @@ const RegisterStaff = () => {
     e.preventDefault();
     const errors = validate();
     if (Object.keys(errors).length === 0) {
+
       if (isEditMode) {
         // Update existing staff member
         axios.put(`http://localhost:8081/staff_update/${values.id}`, values)
@@ -94,8 +98,19 @@ const RegisterStaff = () => {
             alert("Error registering staff.");
           });
       }
-    } else {
-      setFormErrors(errors);
+
+      axios.post('http://localhost:8081/staff_reg', values)
+        .then(res => {
+          console.log(res);
+          alert("Staff Registered Successfully");
+          setValues(initialState); // Reset form fields
+          setFormErrors({}); // Clear errors
+          // navigate('/Register_staff');
+        })
+      
+        .catch(err => console.log(err));
+
+   
     }
   };
 
