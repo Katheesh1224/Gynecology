@@ -4,15 +4,16 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import React from 'react';
 import PReg from './patient_registration.jsx';
 import Home from './home.js';
-import RegisterStaff from './Register_staff.js';
+import RegisterStaff from './Staff/Register_staff.js';
 import Patient from './patients_information.jsx';
 import About from './patient_about.jsx';
 import Profile from './patient_profile.jsx';
 import Visit from './visit_form.jsx';
 import Admission from './patient_admission.jsx';
-import Staff from './staff_information.jsx';
+import Staff from './Staff/staff_information.jsx';
 import PAdd from './new_admission.jsx';
 import AdDetails from './patient_admission_details.jsx';
+import Update_staff from './Staff/update_staff.jsx';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path ='/staff_information' element={<Staff/>}></Route>
           <Route path ='/new_admission' element={<PAdd/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_admission_details/:id' element={<AdDetails/>}></Route>
+          <Route path ='/update_staff' element={<Update_staff/>}></Route>
         </Routes>
 
       </BrowserRouter>
