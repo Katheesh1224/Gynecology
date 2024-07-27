@@ -14,8 +14,9 @@ const UserPath = () => {
     'patients_information': 'Patient Information',
     'staff_information': 'Staff Information',
     'patient_profile': 'Patient Profile',
-    'patient_about': 'Patient About',
+    'patient_about': 'Patient Personal Details',
     'patient_visit': 'Patient Visit',
+    'visit_form': 'Visit Form',
     'patient_admission': 'Patient Admission',
     'patient_admission_details': 'Patient Admission Details',
   };

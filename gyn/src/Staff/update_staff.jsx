@@ -1,6 +1,6 @@
 import '../App.css';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Nav from '../component/Nav.jsx';
 import NavBar from '../component/NavBar.jsx';
