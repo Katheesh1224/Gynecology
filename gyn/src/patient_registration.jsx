@@ -25,9 +25,9 @@ const PReg = () => {
         consultant:'',
         height:'',
         weight:'',
-        past_med:'',
+        past_med:[],
         complaint:'',
-        past_surg:'',
+        past_surg:[],
         past_hist:'',
         past_obs:'',
         other:'',
@@ -75,6 +75,49 @@ const PReg = () => {
           bloodgr: e.target.value,
         });
       };
+
+      const handleInputChange = (e) =>{
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+        if (name === 'past_med') {
+            if (target.checked) {
+              value = [...values.past_med, target.value];
+            } else {
+              value = values.past_med.filter((subject) => subject !== target.value);
+            }
+            
+          }
+          setValues({
+            ...values,
+            [name]: value,
+          });console.log(value);
+
+          if (name === 'past_surg') {
+            if (target.checked) {
+              value = [...values.past_surg, target.value];
+            } else {
+              value = values.past_surg.filter((subject) => subject !== target.value);
+            }
+          }
+          setValues({
+            ...values,
+            [name]: value,
+          });console.log(value);
+          //const handleCheckboxChange = (e) => {
+    //     const { name, value, checked } = e.target;
+    
+    //     // Use the spread operator to create a new array with the selected values
+    //     const updatedPastMed = checked
+    //       ? [...values.past_med, value]
+    //       : values.past_med.filter((item) => item !== value);
+    
+    //     setValues((prevValues) => ({
+    //       ...prevValues,
+    //       [name]: updatedPastMed,
+    //     }));
+    //   };
+      }
     
     
 
@@ -82,6 +125,7 @@ const PReg = () => {
         <div>
             <NavBar/>
             <Nav/>
+
         <div className="container">
 
             <header>Patient Registration</header>
@@ -90,7 +134,7 @@ const PReg = () => {
                     <div className="A">
                         <span className="title">Section A - Personal details identification</span>
                         <div className="fields1">
-                            <div className="input-field" onload="setMaxDate()">
+                            <div className="input-field" >
                                 <label htmlFor="date">Admission Date : </label>
                                 <input type="datetime-local" onChange={handleDateChange} value={values.date} required/>
                             </div>
@@ -123,7 +167,7 @@ const PReg = () => {
                                     <option value="O-">O-</option>
                                 </select>
                             </div>
-                            <div className="input-fieldN" onload="setMaxDate()">
+                            <div className="input-fieldN" >
                                 <label htmlFor="dob">Date of Birth : </label>
                                 <input type="date" placeholder="Enter number here" onChange={handleDateofbirthChange} value={values.dob} required/>
                             </div>   
@@ -137,7 +181,7 @@ const PReg = () => {
                             </div> 
                             <div className="input-fieldN">
                                 <label htmlFor="nic">NIC No. : </label>
-                                <input type="text" placeholder="Enter number here" pattern="(^[0-9]{12}$)|(^[0-9]{9}[v]$)" maxlength="12" onChange={e =>setValues({...values,nic:e.target.value})}/>
+                                <input type="text" placeholder="Enter number here" pattern="(^[0-9]{12}$)|(^[0-9]{9}[v]$)" maxLength="12" onChange={e =>setValues({...values,nic:e.target.value})}/>
                             </div>
                             <div className="input-fieldN">
                                 <label htmlFor="phn">PHN No. : </label>
@@ -145,7 +189,7 @@ const PReg = () => {
                             </div>   
                             <div className="input-fieldN">
                                 <label htmlFor="phone_no">Telephone No. : </label>
-                                <input type="tel" pattern="[0-9]{10}" placeholder="Enter number here" maxlength="10" onChange={e =>setValues({...values,tp:e.target.value})} required/>
+                                <input type="tel" pattern="[0-9]{10}" placeholder="Enter number here" maxLength="10" onChange={e =>setValues({...values,tp:e.target.value})} required/>
                             </div>                             
                         </div>
                         
@@ -193,40 +237,40 @@ const PReg = () => {
 
                             <div className="input-fieldM">
                                 <p>Past Medical History : </p>
-                                <input type="checkbox" id="diabetics" name="past_med" value="Diabetics Mellitus"/>
-                                <label for="diabetics">Diabetics Mellitus</label>
-                                <input type="checkbox" id="hypertension" name="past_med" value="Hypertension"/>
-                                <label for="hypertension">Hypertension</label>
-                                <input type="checkbox" id="hypothyroidism" name="past_med" value="Hypothyroidism"/>
-                                <label for="hypothyroidism">Hypothyroidism</label>
-                                <input type="checkbox" id="asthma" name="asthma" value="Bronchal Asthma" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="asthma">Bronchal Asthma</label>
-                                <input type="checkbox" id="epilepsy" name="epilepsy" value="Epilepsy" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="epilepsy">Epilepsy</label>
+                                <input type="checkbox" id="diabetics" name="past_med" value="Diabetics mellitus" onChange={handleInputChange}/>
+                                <label htmlFor="diabetics">Diabetics Mellitus</label>
+                                <input type="checkbox" id="hypertension" name="past_med" value="Hypertension" onChange={handleInputChange}/>
+                                <label htmlFor="hypertension">Hypertension</label>
+                                <input type="checkbox" id="hypothyroidism" name="past_med" value="Hypothyroidism" onChange={handleInputChange}/>
+                                <label htmlFor="hypothyroidism">Hypothyroidism</label>
+                                <input type="checkbox" id="asthma" name="past_med" value="Bronchal asthma" onChange={handleInputChange}/>
+                                <label htmlFor="asthma">Bronchal Asthma</label>
+                                <input type="checkbox" id="epilepsy" name="past_med" value="Epilepsy" onChange={handleInputChange}/>
+                                <label htmlFor="epilepsy">Epilepsy</label>
                             </div>
                             <div className="input-fieldM">
-                                <input type="checkbox" id="valvular_heart" name="valvular_heart" value="Valvular Heart Diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="valvular_heart">Valvular Heart Diseases</label>
-                                <input type="checkbox" id="ishemic_heart" name="ishemic_heart" value="Ishemic heart diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="ishemic_heart">Ishemic Heart Diseases</label>
-                                <input type="checkbox" id="renal_diseases" name="renal_diseases" value="Renal Diseases" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="renal_diseases">Renal Diseases</label>
-                                <input type="checkbox" id="arthritics" name="arthritics" value="Arthritics" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="arthritics">Arthritics</label>
-                                <input type="checkbox" id="hypercholesterolemia" name="hypercholesterolemia" value="Hypercholesterolemia" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="hypercholesterolemia">Hypercholesterolemia</label>
+                                <input type="checkbox" id="valvular_heart" name="past_med" value="Valvular heart diseases" onChange={handleInputChange}/>
+                                <label htmlFor="valvular_heart">Valvular Heart Diseases</label>
+                                <input type="checkbox" id="ishemic_heart" name="past_med" value="Ishemic heart diseases" onChange={handleInputChange}/>
+                                <label htmlFor="ishemic_heart">Ishemic Heart Diseases</label>
+                                <input type="checkbox" id="renal_diseases" name="past_med" value="Renal diseases" onChange={handleInputChange}/>
+                                <label htmlFor="renal_diseases">Renal Diseases</label>
+                                <input type="checkbox" id="arthritics" name="past_med" value="Arthritics" onChange={handleInputChange}/>
+                                <label htmlFor="arthritics">Arthritics</label>
+                                <input type="checkbox" id="hypercholesterolemia" name="past_med" value="Hypercholesterolemia" onChange={handleInputChange}/>
+                                <label htmlFor="hypercholesterolemia">Hypercholesterolemia</label>
                             </div>
 
                             <div className="input-fieldM">
                                 <p>Past Surgical History : </p>
-                                <input type="checkbox" id="lscs" name="lscs" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="diabetics">Lower Segment Cesarian Section (LSCS)</label>
-                                <input type="checkbox" id="lrt" name="lrt" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="hypertension">L Rproscopic Tubal ligation (LRT)</label>
-                                <input type="checkbox" id="myomectomy" name="myomectomy" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="hypothyroidism">Laparoscopic myomectomy</label>
-                                <input type="checkbox" id="lap" name="lap" value="" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="asthma">Lap and Cye</label>
+                                <input type="checkbox" id="lscs" name="past_surg" value="Lower Segment Cesarian Section" onChange={handleInputChange}/>
+                                <label htmlFor="LSCS">Lower Segment Cesarian Section (LSCS)</label>
+                                <input type="checkbox" id="lrt" name="past_surg" value="Tubal ligation" onChange={handleInputChange}/>
+                                <label htmlFor="LRT">L Rproscopic Tubal ligation (LRT)</label>
+                                <input type="checkbox" id="myomectomy" name="past_surg" value="myomectomy" onChange={handleInputChange}/>
+                                <label htmlFor="hypothyroidism">Laparoscopic myomectomy</label>
+                                <input type="checkbox" id="lap" name="past_surg" value="lap" onChange={handleInputChange}/>
+                                <label htmlFor="asthma">Lap and Cye</label>
                             </div> 
                          
                             <div className="input-field">
@@ -241,15 +285,15 @@ const PReg = () => {
                             <div className="input-fieldM">
                                 <p>Family History of Cancers : </p>
                                 <input type="checkbox" id="endometrical" name="endometrical" value="Endometrical CA"/>
-                                <label for="endometrical">Endometrical CA</label>
+                                <label htmlFor="endometrical">Endometrical CA</label>
                                 <input type="checkbox" id="overian" name="overian" value="Overian CA"/>
-                                <label for="overian">Overian CA</label>
+                                <label htmlFor="overian">Overian CA</label>
                                 <input type="checkbox" id="cervical" name="cervical" value="Cervical CA"/>
-                                <label for="cervical">Cervical CA</label>
+                                <label htmlFor="cervical">Cervical CA</label>
                                 <input type="checkbox" id="vulvular" name="vulvular" value="Vulvular CA"/>
-                                <label for="vulvular">Vulvular CA</label>
+                                <label htmlFor="vulvular">Vulvular CA</label>
                                 <input type="checkbox" id="breat" name="breat" value="Breat CA"/>
-                                <label for="breat">Breat CA</label>
+                                <label htmlFor="breat">Breat CA</label>
                             </div> 
 
                             <div className="input-field">
@@ -259,17 +303,17 @@ const PReg = () => {
 
                             <div className="input-fieldA">
                                 <p>Menstrual History : </p>
-                                <label for="menarche_age">Menarche Age : </label>
+                                <label htmlFor="menarche_age">Menarche Age : </label>
                                 <input type="number" placeholder="yrs" id="menarche_age" name="menarche_age"   />
-                                <label for="menopausal_age">Menopausal Age : </label>
+                                <label htmlFor="menopausal_age">Menopausal Age : </label>
                                 <input type="number" id="menopausal_age" name="menopausal_age" placeholder="yrs" />
-                                <label for="lmp">LMP : </label>
+                                <label htmlFor="lmp">LMP : </label>
                                 <input type="number" id="lmp" name="lmp" placeholder="days" />
                                 <p>Menstrual Cycle : 
                                 <input type="radio" id="regular" name="Menstrual" value="Regular" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="regular">Regular</label>
+                                <label htmlFor="regular">Regular</label>
                                 <input type="radio" id="irregular" name="Menstrual" value="Irregular" onChange={e =>setValues({...values,past_surg:e.target.value})}/>
-                                <label for="irregular">Irregular</label></p>
+                                <label htmlFor="irregular">Irregular</label></p>
                             </div> <br></br>
                             <div></div>
                               
