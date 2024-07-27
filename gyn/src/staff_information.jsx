@@ -1,36 +1,15 @@
 import React from 'react';
-import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser} from '@fortawesome/free-solid-svg-icons'
+import Nav from './component/Nav.jsx';
+import NavBar from './component/NavBar.jsx';
 
 
 const Staff = () =>{
 
-    const navigate = useNavigate();
-
-    const handleLogout = async () => {
-      navigate('/');
-        try {
-          await axios.get('http://localhost:8081/logout');
-          navigate('/');
-        } catch (error) {
-          console.error('Logout failed:', error);
-        }
-      };
-
-      const handleProfile = async () => {
-        navigate('/patient_profile');
-          // try {
-          //   await axios.get('http://localhost:8081/logout');
-          //   navigate('/');
-          // } catch (error) {
-          //   console.error('Logout failed:', error);
-          // }
-        };
         const [data, setData] = useState([]);
+        const [openPopup, setOpenPopup] = useState(false);
       
         useEffect(() => {
           const fetchData = async () => {
@@ -49,49 +28,31 @@ const Staff = () =>{
             return status.trim() === 'active' ? { color: 'green' } : {color: 'red'};
           };
 
+          useEffect(() => {
+            axios.get('http://localhost:8081/row')
+              .then(response => setData(response.data))
+              .catch(error => console.error('Error fetching data:', error));
+          }, []);
+
+          const deleteRow = (id) => {
+            axios.delete(`http://localhost:8081/staff_information/${id}`)
+            .then(response => {
+                console.log(response.data);
+                // Update state to remove the deleted row
+                setData(data.filter(row => row.id !== id));
+                setOpenPopup(false);
+              })
+              .catch(error => console.error('Error deleting row:', error));
+          };
 
     return(
+
+      <div className='homeContainer'>       
+      <NavBar/>
+      <Nav/> 
       <div className='homeContainer'>
-        
-        <div>
-          <header id="header" class="d-flex flex-column justify-content-center">
-            <nav id="navbar" class="navbar nav-menu">
-              <ul>
-                <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-
-              </ul>
-            </nav>
-          </header>
-        </div>
-        <nav class="navM">
-          <div class="containerN">
-            <h1 class="logo">
-              <a href="./home" className='a'>GYNECOLOGY</a>
-            </h1>
-            <ul>
-              <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
-              <li>
-                <div>
-                  <button onClick={handleLogout} class="buttonHome">Logout</button>
-                </div>
-            </li>
-            </ul>
-
-          </div>
-        </nav>
-        
-        <div className='search'>
-          <div className="input">
-          <input type='text' placeholder='Search with Name/NIC/PHN here' />
-          </div>
-          
-          <button className='button_srch'>Search</button>
-          <button className='button_add'>Active Staff</button>
-          <button className='button_dis'>NonActive Staff</button>
-        </div>
-
-        <div className='patient_table'>
+        <h1 id='staff_heading'>Staff Information</h1>
+         <div className='staff_table'>
           <table>
             <thead>
               <tr>
@@ -101,8 +62,6 @@ const Staff = () =>{
                 <th>Role</th>
                 <th>Status</th>
                 <th>Action</th>
-                
-                {/* Add more table headers as needed */}
               </tr>
             </thead>
             <tbody>
@@ -114,25 +73,38 @@ const Staff = () =>{
                   <td>{row.role}</td>
                   <td style={getRowStyle(row.status)}>{row.status} </td>
                   <td>
-                    <button className='button_details'>View</button>
+                    <button className='button_details'onClick={()=>setOpenPopup(true)}>Delete</button>
                     <button className='button_home'>Edit</button>
-                    {/* onClick={() => handleDischarge(row.id)} */}
                   </td>
-                  {/* <td>
-                    <button className='button_details' onClick={() => handleDetails(row.id)}>Details</button>
-                  </td> */}
+                {/* <button className='popup' >Open popup</button> */}
+                {openPopup && (
+                  <div className='popup'>
+                    <div className='box'>
+                      <h2>Are you sure?</h2>
+                    <button className='popup_button1' onClick={() => deleteRow(row.id)}  >Yes</button>
+                    <button className='popup_button2' onClick={() => setOpenPopup(false)}>No</button>
+                    </div>
+                  </div>
+                )} 
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button className='button_details' >Next</button>
+              </td>
+            </tfoot>
           </table>
-
+        </div> 
         </div>
-
-
-          </div>
     
-    );
-  }
-
+      </div>
+  );
+}
 
 export default Staff;

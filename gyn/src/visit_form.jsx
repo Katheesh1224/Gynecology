@@ -1,17 +1,15 @@
 import './App.css';
 import './home.css';
-import react, { useEffect ,useState} from 'react';
+import { useState} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
 import {useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
- import { faHouse, faRectangleList, faHospitalUser, faUser } from '@fortawesome/free-solid-svg-icons'
+import Nav from './component/Nav.jsx';
+import NavBar from './component/NavBar.jsx';
 
-const PReg = () => {
+
+const VisitForm = () => {
     const navigate = useNavigate();
     const [value, setValue] = useState('');
-    const [inputValue, setInputValue] = useState('');
-    const [error, setError] = useState('');
     const [values,setValues] = useState({
         date:'',
         time:'',
@@ -49,16 +47,6 @@ const PReg = () => {
         .catch(err =>console.log(err))
         navigate('/home')
     }
-
-    const handleLogout = async () => {
-        navigate('/');
-          try {
-            await axios.get('http://localhost:8081/logout');
-            navigate('/');
-          } catch (error) {
-            console.error('Logout failed:', error);
-          }
-        };
     
       const handleDateChange = (e) => {
         const selectedDate = e.target.value;
@@ -71,30 +59,6 @@ const PReg = () => {
         }
       };
 
-      const handleDateofbirthChange = (e) => {
-        const selectedDate = e.target.value;
-        const currentDate = new Date().toISOString().split('T')[0];
-    
-        if (selectedDate > currentDate) {
-          alert('Please select a date and time that is not in the future.');
-        } else {
-          setValues({ ...values, dob: selectedDate });
-        }
-      };
-
-    //   const handleCheckboxChange = (e) => {
-    //     const { name, value, checked } = e.target;
-    
-    //     // Use the spread operator to create a new array with the selected values
-    //     const updatedPastMed = checked
-    //       ? [...values.past_med, value]
-    //       : values.past_med.filter((item) => item !== value);
-    
-    //     setValues((prevValues) => ({
-    //       ...prevValues,
-    //       [name]: updatedPastMed,
-    //     }));
-    //   };
 
       const handleBloodGroupChange = (e) => {
         setValues({
@@ -111,37 +75,11 @@ const PReg = () => {
           setValue(enteredValue);
         };
         const inputClass = isNaN(value) || value < 0 || value > 200 ? "invalid" : '';
-   
-        const handleChangeText = (e) => {
-            const value = e.target.value;
-            // Regular expression to match alphabetic characters only
-            const regex = /^[A-Za-z]+$/;
-            if (regex.test(value) || value === '') {
-              setInputValue(value);
-              setError('');
-            } else {
-              setError('Input must contain alphabetic characters only');
-            }
-        };
 
     return (
         <div>
-            <nav class="navM">
-          <div class="containerN">
-            <h1 class="logo">
-              <a href="/home" className='a'>GYNECOLOGY</a>
-            </h1>
-            <ul>
-              <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
-              <li>
-                <div>
-                  <button onClick={handleLogout} class="buttonHome">Logout</button>
-                </div>
-            </li>
-            </ul>
-
-          </div>
-        </nav>
+            <NavBar/>
+            <Nav/>
         <div className="container">
 
             <header>Visit Form</header>
@@ -156,7 +94,7 @@ const PReg = () => {
                             </div>
                             <div className="input-field">
                                 <label htmlFor="visit_no"> Visit No : </label>
-                                <input type="number" id="numberInput" name='numberInput' className={inputClass}  onChange={handleChangeNo}  required/>
+                                <input type="number"  name='numberInput' id={inputClass}  onChange={handleChangeNo}  required/>
                             </div>
                             
                             <div className="input-field">
@@ -187,12 +125,16 @@ const PReg = () => {
                                 <label for="Vaginal Bleeding">Vaginal Bleeding</label>
                                 <input type="checkbox" id="Dribbiling" name="past_med" value="Dribbiling"/>
                                 <label for="Dribbiling">Dribbiling</label>
+                                <input type="checkbox" id="subtertility" name="past_med" value="subtertility"/>
+                                <label for="subtertility">subtertility</label>
                                 </div>
                             <div className="input-fieldM">
                                 <input type="checkbox" id="Abdominal Pain" name="past_med" value="Abdominal Pain"/>
                                 <label for="Abdominal Pain">Abdominal Pain</label>
                                 <input type="checkbox" id="Back Pain" name="past_med" value="Back Pain"/>
                                 <label for="Back Pain">Back Pain</label>
+                                <input type="checkbox" id="Urinary incontenur" name="past_med" value="Urinary incontenur"/>
+                                <label for="Urinary incontenur">Urinary incontenur</label>
                                 </div>
                                 
                             <div className="input-fieldM">
@@ -200,6 +142,8 @@ const PReg = () => {
                                 <label for="Show">Show</label>
                                <input type="checkbox" id="Reduced fetal movements" name="past_med" value="Reduced fetal movements"/>
                                 <label for="Reduced fetal movements">Reduced fetal movements</label>
+                               <input type="checkbox" id="lump at Vulva" name="past_med" value="lump at Vulva"/>
+                                <label for="lump at Vulva ">lump at Vulva</label>
                                 </div>
                                 
                             <div className="input-fieldM">
@@ -207,7 +151,29 @@ const PReg = () => {
                                 <label for="Vaginal Discharge">Vaginal Discharge</label>
                                 <input type="checkbox" id="Blood Sugar Series" name="past_med" value="Blood Sugar Series" onChange={e =>setValues({...values,past_med:e.target.value})}/>
                                 <label for="Blood Sugar Series">Blood Sugar Series</label>   
+                                <input type="checkbox" id="Blood pressure monitor " name="past_med" value="Blood pressure monitor" onChange={e =>setValues({...values,past_med:e.target.value})}/>
+                                <label for="Blood pressure monitor">Blood pressure monitor</label>   
                             </div>
+                            </div>
+                            <br/>
+                            <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  Abnormal Ulerine bleeding :  </label>
+                            </div>
+                        </div>
+                        <div className="fields">
+                        <div className="input-fieldM">
+                                <input type="checkbox" id="poit menopances bleed" name="past_med" value="poit menopances bleed"/>
+                                <label for="poit menopances bleed">poit menopances bleed</label>
+                                <input type="checkbox" id="Heavy mensurus bleeding" name="past_med" value="Heavy mensurus bleeding"/>
+                                <label for="Heavy mensurus bleeding">Heavy mensurus bleeding</label>
+                                </div>
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="dysmenurrhoea" name="past_med" value="dysmenurrhoea"/>
+                                <label for="dysmenurrhoea">dysmenurrhoea </label>
+                                <input type="checkbox" id="Oliyomennorihe" name="past_med" value="Oliyomennorihe"/>
+                                <label for="Oliyomennorihe">Oliyomennorihe</label>
+                                </div>                         
                             </div>
                             <br/>
                         <div className="fields">
@@ -235,14 +201,9 @@ const PReg = () => {
                             </div>
                                                        
                         </div>
-                        <div className="fields1">
-                        <div className="input-field">
-                                <label htmlFor="Symphysis fundal height">Symphysis fundal height: </label>
-                                <input type="number"  title="Only alphabets are allowed" className={inputClass} placeholder="cm" onChange={handleChangeNo} required/>
-                            </div> 
-                            </div>
+                       
                     </div>
-                    <div className="fields1">
+                    {/* <div className="fields1">
                     <div className="input-field">
                                 <label htmlFor="Select_head">Head : </label>
                                 <select name="Head" id="head"  onChange={handleBloodGroupChange} value={values.bloodgr} required>
@@ -269,7 +230,7 @@ const PReg = () => {
                         </div> 
 
 
-                    </div>
+                    </div> */}
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Examination">Abdominal Examination : </label>
@@ -373,7 +334,7 @@ const PReg = () => {
                         {/* <br /> */}
                         <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
-                                <label htmlFor="PRBS">  PRBS:  </label>
+                                <label htmlFor="PRBS">  PPBS:  </label>
                             </div>
                             <div className="input-field">
                                 <label htmlFor="AB"> AB : </label>
@@ -388,6 +349,20 @@ const PReg = () => {
                                 <input type="number"  onChange={e =>setValues({...values,time:e.target.value})} required/>
                             </div>
                         </div>
+                        <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  LFT :  </label>
+                            </div>
+                            {/* &emsp; */}
+                        <div className="input-field">
+                                <label htmlFor="AB"> ALT : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AL"> AST : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div> 
+                        </div>
                         <br />
                         <div className="fields1">
                         <div className="input-field">
@@ -395,26 +370,79 @@ const PReg = () => {
                                 <textarea id="management" placeholder="Enter text here" name="management" rows="3" cols="50" onChange={e =>setValues({...values,other:e.target.value})}></textarea>
                             </div> 
                             </div>
+                            <br />
                         <div className="fields1">
                         <div className="input-field" onload="setMaxDate()">
-                                <label htmlFor="Scan">  Scanning:  </label>
+                                <label htmlFor="Scan">Scanning:</label>
                             </div>
                         <div className="input-field">
-                                <label htmlFor="AB"> MRI : </label>
+                                <label htmlFor="AB"> MRI :  </label>
                                 <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
                             </div>
+                            
                             <div className="input-field">
                                 <label htmlFor="AL"> CT : </label>
                                 <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div> 
+                        </div>
+                        <br />
+                        <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  USS:  </label>
+                            </div>&emsp;&emsp;
+                        <div className="input-field">
+                                <label htmlFor="AB"> TAS : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
                             </div>
                             <div className="input-field">
-                                <label htmlFor="AB"> USS : </label>
+                                <label htmlFor="AL"> TUS : </label>
                                 <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
                             </div> 
-                            </div>
+                        </div>
                     </div>
+                    <span className="title">Management</span>
+                    <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  Minor :  </label>
+                            </div>&emsp;
+                        <div className="input-field">
+                                <label htmlFor="AB"> EUA : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AL"> EB : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div> 
+                        </div>
+
+                        <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  Major :  </label>
+                            </div>&emsp;&emsp;
+                        </div>
+                        <div className="fields">
+                        <div className="input-fieldM">
+                                <input type="checkbox" id="BL/LRT" name="past_med" value="BL/LRT"/>
+                                <label for="BL/LRT">BL/LRT</label>
+                                <input type="checkbox" id="TAH" name="past_med" value="TAH"/>
+                                <label for="TAH">TAH</label>
+                                </div>
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="BSO" name="past_med" value="BSO"/>
+                                <label for="BSO">BSO </label>
+                                <input type="checkbox" id="Myomectomy" name="past_med" value="Myomectomy"/>
+                                <label for="Myomectomy">Myomectomy</label>
+                                </div>
+                                
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="Polpectomy" name="past_med" value="Polpectomy"/>
+                                <label for="Polpectomy">Polpectomy</label>
+                                </div>
+                                
+                            
+                            </div>
                     <div className="A">
-                        <span className="title">Management</span>
+                        {/* <span className="title">Management</span> */}
                         {/* <div className="fields">
                             <div className="input-fieldM">
                                 <input type="checkbox" id="EL|LSCS" name="Decision" value="EL|LSCS"/>
@@ -472,11 +500,50 @@ const PReg = () => {
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Others">Surgical management : </label>
-                                <textarea id="Decision" placeholder="Enter text here" name="surgical" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
                             </div> 
                         </div>
                     </div>
                     </div>
+                    <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  Minor :  </label>
+                            </div>&emsp;
+                        <div className="input-field">
+                                <label htmlFor="AB"> EUA : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="AL"> EB : </label>
+                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                            </div> 
+                        </div>
+
+                        <div className="fields1">
+                        <div className="input-field" onload="setMaxDate()">
+                                <label htmlFor="Scan">  Major :  </label>
+                            </div>&emsp;&emsp;
+                        </div>
+                        <div className="fields">
+                        <div className="input-fieldM">
+                                <input type="checkbox" id="BL/LRT" name="past_med" value="BL/LRT"/>
+                                <label for="BL/LRT">BL/LRT</label>
+                                <input type="checkbox" id="TAH" name="past_med" value="TAH"/>
+                                <label for="TAH">TAH</label>
+                                </div>
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="BSO" name="past_med" value="BSO"/>
+                                <label for="BSO">BSO </label>
+                                <input type="checkbox" id="Myomectomy" name="past_med" value="Myomectomy"/>
+                                <label for="Myomectomy">Myomectomy</label>
+                                </div>
+                                
+                            <div className="input-fieldM">
+                                <input type="checkbox" id="Polpectomy" name="past_med" value="Polpectomy"/>
+                                <label for="Polpectomy">Polpectomy</label>
+                                </div>
+                                
+                            
+                            </div>
                 </div>
                 <div className="btn1" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'#512da8'}} >Submit</button></div>
                 <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}} onClick={()=>{navigate('/home');}}>Cancel</button></div>
@@ -485,4 +552,4 @@ const PReg = () => {
         </div>
     )
 }
-export default PReg;
+export default VisitForm;

@@ -1,122 +1,99 @@
 import React from 'react';
-import {useNavigate,Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import { useState,useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser} from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from 'react';
+import Nav from './component/Nav.jsx';
+import NavBar from './component/NavBar.jsx';
 
 
 const Patient = () =>{
+  
+  const [data, setData] = useState([]);
 
-    const navigate = useNavigate();
+  const [values, setValues] = useState({
+    phn:'',
+    name:''
+  });
 
-    const handleLogout = async () => {
-      navigate('/');
-        try {
-          await axios.get('http://localhost:8081/logout');
-          navigate('/');
-        } catch (error) {
-          console.error('Logout failed:', error);
-        }
-      };
+  const [page, setPage] = useState(1);
 
-      const handleProfile = async () => {
-        navigate('/patient_profile');
-          // try {
-          //   await axios.get('http://localhost:8081/logout');
-          //   navigate('/');
-          // } catch (error) {
-          //   console.error('Logout failed:', error);
-          // }
-        };
-        const [data, setData] = useState([]);
-        const [values, setValues] = useState({
-          phn:'',
-          name:''
+  const limit = 8;
+
+  const fetchData = async (page) => {
+    try {
+        const response = await axios.get('/data', {
+            params: { limit, page }
         });
+        setData(response.data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+  };
 
-        useEffect(() => {
-          const fetchData = async () => {
-            try {
-              const response = await axios.get('http://localhost:8081/data');
-              setData(response.data);
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-      
-          fetchData();
-        }, []);
+  useEffect(() => {
+    fetchData(page);
+  }, [page]);
 
-        const handleAdmit = (()=>{
-          const fetchData = async () => {
-            try {
-              const response = await axios.get('http://localhost:8081/admitdata');
-              setData(response.data);
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-          fetchData();
-        });
+  const handleNext = () => {
+    console.log('Next button clicked. Current page:', page); // Debugging log
+    setPage(prevPage => prevPage + 1);
+};
 
-        const handleDischarge = (()=>{
-          const fetchData = async () => {
-            try {
-              const response = await axios.get('http://localhost:8081/dischargedata');
-              setData(response.data);
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-          fetchData();
-        });
 
-        const handleSearch = async () => {
-          try {
-              const response = await axios.post('http://localhost:8081/searchdata', values);
-              setData(response.data);
-          } catch (error) {
-              console.error('Error fetching data:', error);
-          }
-      };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/data');
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
-    return(
-      <div className='homeContainer'>
-        
-        <div>
-          <header id="header" class="d-flex flex-column justify-content-center">
-            <nav id="navbar" class="navbar nav-menu">
-              <ul>
-                <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-                <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
-              </ul>
-            </nav>
-          </header>
-        </div>
-        <nav class="navM">
-          <div class="containerN">
-            <h1 class="logo">
-              <a href="./home" className='a'>GYNECOLOGY</a>
-            </h1>
-            <ul>
-              <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
-              <li>
-                <div>
-                  <button onClick={handleLogout} class="buttonHome">Logout</button>
-                </div>
-            </li>
-            </ul>
+  const handleAdmit = (()=>{
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/admitdata');
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  });
 
-          </div>
-          
-        </nav>
+  const handleDischarge = (()=>{
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/dischargedata');
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  });
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.post('http://localhost:8081/searchdata', values);
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  return(
+    <div className=''>
+      <NavBar/>
+      <Nav/>
+      <div className=''>
         <div className='search' >
           <div className="input">
-          <input type='text' placeholder='Search with Name/NIC/PHN here'  onChange={e =>setValues({...values,phn:e.target.value})}/>
+            <input type='text' placeholder='Search with Name/NIC/PHN here'  onChange={e =>setValues({...values,phn:e.target.value})}/>
           </div>
           
           <button className='button_srch' onClick={handleSearch}>Search</button>
@@ -133,8 +110,6 @@ const Patient = () =>{
                 <th>PHN No </th>
                 <th>Phone No</th>
                 <th>Management</th>
-                
-                {/* Add more table headers as needed */}
               </tr>
             </thead>
             <tbody>
@@ -145,26 +120,26 @@ const Patient = () =>{
                   <td>{row.phn}</td>
                   <td>{row.phone_no}</td>
                   <td>
-
-                    <button className='button_details' ><Link to={`/patient_profile/${row.id}`} className='btn btn-sm btn-primary mx-2'>View</Link></button>
-                    {/* <button className='button_home'>Edit</button> */}
-                    {/* onClick={() => handleDischarge(row.id)} */}
+                    <button className='button_details' ><Link to={`/patients_information/patient_profile/${row.id}`} className='btn btn-sm btn-primary mx-2'>View</Link></button>
                   </td>
-                  {/* <td>
-                    <button className='button_details' onClick={() => handleDetails(row.id)}>Details</button>
-                  </td> */}
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
+                <button className='button_details' onClick={handleNext}>Next</button>
+              </td>
+            </tfoot>
           </table>
 
         </div>
-
-
-          </div>
-    
-    );
-  }
-
+      </div>
+    </div>
+  );
+}
 
 export default Patient;
