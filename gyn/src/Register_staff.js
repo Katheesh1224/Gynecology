@@ -6,7 +6,7 @@ import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
 const RegisterStaff = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const initialState = {
     full_name: "",
     phone_no: "",

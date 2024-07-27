@@ -89,16 +89,7 @@ const Staff = () =>{
                 </tr>
               ))}
             </tbody>
-            <tfoot>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
-                <button className='button_details' >Next</button>
-              </td>
-            </tfoot>
+            
           </table>
         </div> 
         </div>
