@@ -9,6 +9,7 @@ import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
 const RegisterStaff = () => {
+
   const navigate = useNavigate();
   const location = useLocation();
   const isEditMode = location.state !== undefined;
