@@ -1,13 +1,21 @@
 import './App.css';
 import axios from 'axios';
-import React ,{ useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
 const RegisterStaff = () => {
-  //const navigate = useNavigate();
-  const initialState = {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isEditMode = location.state !== undefined;
+
+  const initialState = location.state || {
+    id: null,
     full_name: "",
     phone_no: "",
     role: "consultant",  // Default value
@@ -19,6 +27,12 @@ const RegisterStaff = () => {
 
   const [values, setValues] = useState(initialState);
   const [formErrors, setFormErrors] = useState({});
+
+  useEffect(() => {
+    if (isEditMode) {
+      setValues(location.state);
+    }
+  }, [location.state, isEditMode]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,6 +72,34 @@ const RegisterStaff = () => {
     e.preventDefault();
     const errors = validate();
     if (Object.keys(errors).length === 0) {
+
+      if (isEditMode) {
+        // Update existing staff member
+        axios.put(`http://localhost:8081/staff_update/${values.id}`, values)
+          .then(res => {
+            console.log(res);
+            alert("Staff Updated Successfully");
+            navigate('/Register_staff'); // Redirect to the home page or another page after update
+          })
+          .catch(err => {
+            console.log(err);
+            alert("Error updating staff.");
+          });
+      } else {
+        // Register new staff member
+        axios.post('http://localhost:8081/staff_reg', values)
+          .then(res => {
+            console.log(res);
+            alert("Staff Registered Successfully");
+            setValues(initialState); // Reset form fields
+            setFormErrors({}); // Clear errors
+          })
+          .catch(err => {
+            console.log(err);
+            alert("Error registering staff.");
+          });
+      }
+
       axios.post('http://localhost:8081/staff_reg', values)
         .then(res => {
           console.log(res);
@@ -68,8 +110,8 @@ const RegisterStaff = () => {
         })
       
         .catch(err => console.log(err));
-    } else {
-      setFormErrors(errors);
+
+   
     }
   };
 
@@ -78,42 +120,80 @@ const RegisterStaff = () => {
       <NavBar />
       <Nav />
       <form onSubmit={handleSubmit}>
-        <header>Staff Registration</header>
+        <header>{isEditMode ? "Update Staff" : "Staff Registration"}</header>
         <br />
         <div className="fields">
           <div className="input-field">
             <label htmlFor="fullname">Name : </label>
-            <input type='text' name='full_name' pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder='Enter your fullname'  value={values.full_name} onChange={handleChange}/>
+            <input 
+              type='text' 
+              name='full_name' 
+              pattern="[A-Za-z]+" 
+              title="Only alphabets are allowed" 
+              placeholder='Enter your fullname' 
+              value={values.full_name}
+              onChange={handleChange} 
+            />
           </div>
           <div className="input-field">
             <label htmlFor="phoneno">Phone No : </label>
-            <input type="tel"  pattern="[0-9]{10}"  maxLength="10" name='phone_no'  placeholder='Enter your phone No' value={values.phone_no} onChange={handleChange} />
+            <input 
+              type="tel" 
+              pattern="[0-9]{10}" 
+              maxLength="10" 
+              name='phone_no' 
+              placeholder='Enter your phone No' 
+              value={values.phone_no}
+              onChange={handleChange} 
+            />
           </div>
         </div>
         <br />
         <div className="fields">
           <div className="input-field">
             <label htmlFor="email">Email : </label>
-            <input type="email"  name="email" placeholder="Enter your email" value={values.email} onChange={handleChange} />
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Enter your email" 
+              value={values.email}
+              onChange={handleChange} 
+            />
           </div>
         </div>
         <br />
         <div className="fields">
           <div className="input-field">
             <label htmlFor="password">Password: </label>
-            <input  type="password" name="password" placeholder="Enter the password"  value={values.password}onChange={handleChange} />
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Enter the password" 
+              onChange={handleChange} 
+            />
             {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
           </div>
           <div className="input-field">
             <label htmlFor="Cpassword">Confirm Password : </label>
-            <input type="password" name="confirm_password" placeholder="Confirm password" value={values.confirm_password}  onChange={handleChange} />
+            <input 
+              type="password" 
+              name="confirm_password" 
+              placeholder="Confirm password" 
+              value={values.confirm_password}
+              onChange={handleChange} 
+            />
             {formErrors.confirm_password && <p style={{ color: "red" }}>{formErrors.confirm_password}</p>}
           </div>
         </div>
         <div className="dropdownflex">
           <div className="input-fieldL">
             <label htmlFor="role">Role: </label>
-            <select name="role" id="status" value={values.role}  onChange={handleChange} >
+            <select 
+              name="role" 
+              id="role" 
+              value={values.role} 
+              onChange={handleChange}
+            >
               <option value="consultant">Consultant</option>
               <option value="registrar">Registrar</option>
               <option value="medical_officer">Medical Officer</option>
@@ -123,7 +203,12 @@ const RegisterStaff = () => {
           
           <div className="input-field">
             <label htmlFor="status">Status: </label>
-            <select name="status"  id="status"  value={values.status}  onChange={handleChange} >
+            <select 
+              name="status" 
+              id="status" 
+              value={values.status} 
+              onChange={handleChange}
+            >
               <option value="active">Active</option>
               <option value="pending">Pending</option>
               <option value="inactive">Inactive</option>
@@ -132,7 +217,7 @@ const RegisterStaff = () => {
         </div>
         <br />
         <div className="btn1">
-          <button type="submit">Register</button>
+          <button type="submit">{isEditMode ? "Update" : "Register"}</button>
         </div>
       </form>
     </div>
