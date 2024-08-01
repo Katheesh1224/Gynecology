@@ -71,7 +71,7 @@ export const Login = () => {
                 <input type="password" name="password" placeholder="Password" value={formValues.password} onChange={handleChange} />
                 {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
 
-                <a href="#">Forget Your Password?</a>
+                <a href="/">Forget Your Password?</a>
                 <button type='submit'>Sign In</button>
                 
             </form>

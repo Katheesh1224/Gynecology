@@ -3,21 +3,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faRectangleList, faHospitalUser, faUser, faAddressCard, faBookMedical, faTicket } from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard, faBookMedical, faTicket } from '@fortawesome/free-solid-svg-icons';
+import Nav from './component/Nav.jsx';
+import NavBar from './component/NavBar.jsx';
+import ProfileCard from './component/profileCard.jsx';
+
 
 const Profile = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const handleLogout = async () => {
-    navigate('/');
-    try {
-      await axios.get('http://localhost:8081/logout');
-      navigate('/');
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
-  };
 
   const handlePrevious = async () => {
     navigate('/patients_information');
@@ -49,59 +43,24 @@ const Profile = () => {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = ( ) => {
     navigate('/patient_about');
   };
 
-  const handleClickDay = () => {
-    navigate('/patient_day');
-  };
+  // const handleClickDay = () => {
+  //   navigate(`/patient_day/${data.id}`);
+  // };
 
   return (
     <div className="">
-      <nav className="navM">
-        <div className="containerN">
-          <h1 className="logo">
-            <a href="/home" className='a'>GYNECOLOGY</a>
-          </h1>
-          <ul>
-            <li><a href="./" className=""><FontAwesomeIcon icon={faUser} /></a></li>
-            <li>
-              <div>
-                <button onClick={handleLogout} className="buttonHome">Logout</button>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div>
-        <header id="header" className="d-flex flex-column justify-content-center">
-          <nav id="navbar" className="navbar nav-menu">
-            <ul>
-              <li><a href="./../home" className="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-              <li><a href="./../patient_registration" className="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-              <li><a href="./../Register_staff" className="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-              <li><a href="./../patients_information" className="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
-            </ul>
-          </nav>
-        </header>
-      </div>
-
+      <NavBar/>
+      <Nav/>
       <div className='card'>
         <header> Patient Profile</header>
-        <div className='card1'>
-          <div className='profile'>
-            <p>Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.full_name}</p>
-            <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.address}</p>
-            <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.blood_gr}</p>
-            <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.age} </p>
-            <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.phone_no} </p>
-          </div>
-        </div>
-
+        <ProfileCard/>
         <div className="cntner">
           <div className="cd">
-            <div className="face face1" onClick={() => window.location.href = `/patient_about/${data.id}`} role="button">
+            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_about/${data.id}`} role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faAddressCard} />
                 <h3>About</h3>
@@ -110,13 +69,13 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains full admission details of this patient.</p>
-                <a href={`/patient_about/${data.id}`} type="button">Show</a>
+                <a href={`/patients_information/patient_profile/patient_about/${data.id}`} type="button">Show</a>
               </div>
             </div>
           </div>
 
           <div className="cd">
-            <div className="face face1" onClick={handleClickDay} role="button">
+            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_admission/${data.id}`}  role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faTicket} />
                 <h3>Admission</h3>
@@ -125,7 +84,7 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains admission progress of this patient.</p>
-                <a href="/patient_day" type="button">Show</a>
+                <a href={`/patients_information/patient_profile/patient_admission/${data.id}`} type="button">Show</a>
               </div>
             </div>
           </div>

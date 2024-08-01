@@ -77,6 +77,7 @@ button{
   letter-spacing: 0.5px;
   text-transform: uppercase;
   margin-top: 10px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
@@ -682,20 +683,56 @@ form .dropdownflex {
   color: whitesmoke; 
   box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
 }
-/* ======= */
+
 #invalid{
-/* background-color: red; */
 border: 7px solid red;
   
 }
-/* >>>>>>> f61b42deaeefe577b6857bfc60e678efa0dddfce */
+.popup{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  background-color: #979797;
+  transform: translate(-50%, -50%);
+}
+.box{
+  text-align: center;
+  position: relative;
+  width: 450px;
+  height: 190px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  padding-right: 20px;
 
+}
+.popup_button2{
+  text-align: center;
+  margin-top: 60px;
+  margin-left: 100px;
+}
 .search{
   margin-top: 400px;
 }
-
-.patient_table{
-  margin-top: 125px;
+#staff_heading{
+  margin-top: -270px;
+  padding-bottom: 30px;
+  /* padding-top: -350px; */
 }
 
+.staff_table{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 50px;
+}
+
+.space{
+  margin: 30px;
+}
+
+.space2{
+  margin: 60px;
+}
 
