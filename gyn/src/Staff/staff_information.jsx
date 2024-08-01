@@ -9,7 +9,9 @@ import NavBar from '../component/NavBar.jsx';
 const Staff = () => {
   const [data, setData] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
+
   const [rowToDelete, setRowToDelete] = useState(null); // Store the row to be deleted
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +41,7 @@ const Staff = () => {
       .catch(error => console.error('Error deleting row:', error));
   };
 
+
   const handleDeleteClick = (row) => {
     setRowToDelete(row);
     setOpenPopup(true);
@@ -53,19 +56,20 @@ const Staff = () => {
   const handleCancelDelete = () => {
     setRowToDelete(null);
     setOpenPopup(false);
-  };
+  
 
   return (
-    <div className='homeContainer'>
+    <div className='wrapper'>
       <NavBar />
+      <div className='main-content'>
       <Nav />
-      <div className='homeContainer'>
-        <h1 id='staff_heading'>Staff Information</h1>
-        <div className='staff_table'>
+      <div className='container'>
+        <h2>Staff Information</h2>  
+        <div className='patient_table'>
           <table>
             <thead>
               <tr>
-                <th>ID</th>
+                
                 <th>Full Name</th>
                 <th>Phone No</th>
                 <th>Role</th>
@@ -76,14 +80,16 @@ const Staff = () => {
             <tbody>
               {data.map((row) => (
                 <tr key={row.id}>
-                  <td>{row.id}</td>
+                  
                   <td>{row.full_name}</td>
                   <td>{row.phone_no}</td>
                   <td>{row.role}</td>
                   <td style={getRowStyle(row.status)}>{row.status}</td>
                   <td>
+
                     <button className='button_details' onClick={() => handleDeleteClick(row)}>Delete</button>
                     <button className='button_home' onClick={() => navigate('/staff_information/update_staff', { state: row })}>Edit</button>
+
                   </td>
                 </tr>
               ))}
@@ -91,6 +97,7 @@ const Staff = () => {
           </table>
         </div>
       </div>
+
       {openPopup && (
         <div className='popup'>
           <div className='box'>

@@ -13,7 +13,7 @@ import Admission from './patient_admission.jsx';
 import Staff from './Staff/staff_information.jsx';
 import PAdd from './new_admission.jsx';
 import AdDetails from './patient_admission_details.jsx';
-import Update_staff from './Staff/update_staff.jsx';
+import UpdateStaff from './Staff/update_staff.jsx';
 import Visit from './patient_visit.jsx';
 import { AuthProvider,AuthContext } from './AuthContext';
 import ProtectedRoute from './ProtectedRoute';
@@ -43,6 +43,7 @@ function App() {
 
           <Route path ='/patients_information/patient_profile/patient_admission/patient_admission_details/:id' element={<ProtectedRoute element={<AdDetails/>}/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
+
         </Routes>
 
       </BrowserRouter>

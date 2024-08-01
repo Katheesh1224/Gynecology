@@ -87,7 +87,7 @@ const UpdateStaff = () => {
       <NavBar />
       <Nav />
       <form onSubmit={handleSubmit}>
-        <header> Update Staff</header>
+        <h2> Update Staff</h2>
         <br />
         <div className="fields">
           <div className="input-field">

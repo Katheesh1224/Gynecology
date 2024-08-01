@@ -78,7 +78,7 @@ const RegisterStaff = () => {
       <NavBar />
       <Nav />
       <form onSubmit={handleSubmit}>
-        <header>Staff Registration</header>
+        <h2>Staff Registration</h2>
         <br />
         <div className="fields">
           <div className="input-field">
