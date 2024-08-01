@@ -145,13 +145,17 @@ const PReg = () => {
     
 
     return (
-        <div>
+        <div className='wrapper'>
             <NavBar/>
-            <Nav/>
+            <div className='main-content'>
+                <div className='side-bar'>
+                    <Nav/>
+                </div>
+                
 
         <div className="container">
 
-            <header>Patient Registration</header>
+            <h2>Patient Registration</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form">
                     <div className="A">
@@ -352,6 +356,7 @@ const PReg = () => {
                 <div className="btn1"><button type="submit">Register</button></div>
                 
             </form>
+        </div>
         </div>
         </div>
     )

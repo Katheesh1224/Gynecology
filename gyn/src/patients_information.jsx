@@ -10,7 +10,7 @@ const Patient = () => {
     const [values, setValues] = useState({ phn: '', name: '' });
     const [page, setPage] = useState(1);
     const [hasMoreData, setHasMoreData] = useState(true);
-    const limit = 8;
+    const limit = 6;
 
     const fetchData = async (page) => {
         try {
@@ -66,10 +66,12 @@ const Patient = () => {
     };
 
     return (
-        <div className=''>
-            <NavBar />
-            <Nav />
-            <div className=''>
+        <div className='wrapper'>
+            <NavBar/>
+            <div className='main-content'>
+                <Nav/>
+                <div className='container'>
+                    <h2>Patient Information</h2>
                 <div className='search'>
                     <div className="input">
                         <input
@@ -77,13 +79,15 @@ const Patient = () => {
                             placeholder='Search with Name/NIC/PHN here'
                             onChange={e => setValues({ ...values, phn: e.target.value })}
                         />
+                        <button className='button_search' onClick={handleSearch}>Search</button>
                     </div>
-                    <button className='button_srch' onClick={handleSearch}>Search</button>
+                    <div>
                     <button className='button_add' onClick={handleAdmit}>Admitted Patient</button>
                     <button className='button_dis' onClick={handleDischarge}>Discharged Patient</button>
+                    </div>
                 </div>
 
-                <div className='patient_table' style={{ margin: "150px" }}>
+                <div className='patient_table'>
                     <table>
                         <thead>
                             <tr>
@@ -109,24 +113,18 @@ const Patient = () => {
                                 </tr>
                             ))}
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>
-                                    {page > 1 && (
-                                        <button className='button_details' onClick={handlePrevious}>Previous</button>
-                                    )}
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    {hasMoreData && (
-                                        <button className='button_details' onClick={handleNext}>Next</button>
-                                    )}
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
+                </div>
+                    
+                <div className='button-bar'>
+                    {page > 1 && (<button className='button_prev' onClick={handlePrevious}>Previous</button>)}
+                    {page < 2 && (<button className='button_prev2' ></button>)}
+                    <div className='next-bar'>
+                    {hasMoreData && (<button className='button_next' onClick={handleNext}>Next</button>)}
+                    </div>
+                    
+                </div>
+
                 </div>
             </div>
         </div>

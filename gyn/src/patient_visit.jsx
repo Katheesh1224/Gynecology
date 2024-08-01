@@ -48,7 +48,7 @@ const Visit = () =>{
             <NavBar/>
             <Nav/>
             <div className='card'>
-                <header> Patient Visit</header>
+                <h2> Patient Visit</h2>
                 <ProfileCard/>
                 <div class="cntner">
                     <div class="cd">

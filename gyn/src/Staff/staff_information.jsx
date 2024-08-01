@@ -51,16 +51,17 @@ const Staff = () => {
   // };
 
   return (
-    <div className='homeContainer'>
+    <div className='wrapper'>
       <NavBar />
+      <div className='main-content'>
       <Nav />
-      <div className='homeContainer'>
-        <h1 id='staff_heading'>Staff Information</h1>
-        <div className='staff_table'>
+      <div className='container'>
+        <h2>Staff Information</h2>  
+        <div className='patient_table'>
           <table>
             <thead>
               <tr>
-                <th>ID</th>
+                
                 <th>Full Name</th>
                 <th>Phone No</th>
                 <th>Role</th>
@@ -71,7 +72,7 @@ const Staff = () => {
             <tbody>
               {data.map((row) => (
                 <tr key={row.id}>
-                  <td>{row.id}</td>
+                  
                   <td>{row.full_name}</td>
                   <td>{row.phone_no}</td>
                   <td>{row.role}</td>
@@ -96,6 +97,8 @@ const Staff = () => {
           </table>
         </div>
       </div>
+      </div>
+        
     </div>
   );
 }
