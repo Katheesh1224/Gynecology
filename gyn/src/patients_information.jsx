@@ -12,8 +12,7 @@ const Patient = () =>{
   const [data, setData] = useState([]);
 
   const [values, setValues] = useState({
-    phn:'',
-    name:''
+    val:""
   });
 
   const [page, setPage] = useState(1);
@@ -93,7 +92,7 @@ const Patient = () =>{
       <div className=''>
         <div className='search' >
           <div className="input">
-            <input type='text' placeholder='Search with Name/NIC/PHN here'  onChange={e =>setValues({...values,phn:e.target.value})}/>
+            <input type='text' placeholder='Search with Name/NIC/PHN here'  onChange={e =>setValues({...values,val:e.target.value})}/>
           </div>
           
           <button className='button_srch' onClick={handleSearch}>Search</button>
@@ -109,6 +108,8 @@ const Patient = () =>{
                 <th>Full Name</th>
                 <th>PHN No </th>
                 <th>Phone No</th>
+                <th>NIC</th>
+                {/* <th>Address</th> */}
                 <th>Management</th>
               </tr>
             </thead>
@@ -119,13 +120,15 @@ const Patient = () =>{
                   <td>{row.full_name}</td>
                   <td>{row.phn}</td>
                   <td>{row.phone_no}</td>
+                  <td>{row.nic}</td>
+                  
                   <td>
                     <button className='button_details' ><Link to={`/patients_information/patient_profile/${row.id}`} className='btn btn-sm btn-primary mx-2'>View</Link></button>
                   </td>
                 </tr>
               ))}
             </tbody>
-            <tfoot>
+            {/* <tfoot>
               <td></td>
               <td></td>
               <td></td>
@@ -133,7 +136,7 @@ const Patient = () =>{
               <td>
                 <button className='button_details' onClick={handleNext}>Next</button>
               </td>
-            </tfoot>
+            </tfoot> */}
           </table>
 
         </div>

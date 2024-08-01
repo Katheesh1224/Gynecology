@@ -15,6 +15,7 @@ import PAdd from './new_admission.jsx';
 import AdDetails from './patient_admission_details.jsx';
 import Update_staff from './Staff/update_staff.jsx';
 import Visit from './patient_visit.jsx';
+
 import { AuthProvider,AuthContext } from './AuthContext';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -36,8 +37,11 @@ function App() {
           <Route path ='/patients_information/patient_profile/patient_about/:id' element={<ProtectedRoute element={<About/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/:id' element={<ProtectedRoute element={<Profile/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/:id' element={<ProtectedRoute element={<Admission/>}/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission/patient_admission_details/:id' element={<ProtectedRoute element={<AdDetails/>}/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/:id' element={<ProtectedRoute element={<Visit/>}/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_form' element={<ProtectedRoute element={<VisitForm/>}/>}></Route>
           <Route path ='/staff_information' element={<ProtectedRoute element={<Staff/>}/>}></Route>
-          <Route path ='/new_admission' element={<ProtectedRoute element={<PAdd/>}/>}></Route>
+          <Route path ='patients_information/patient_profile/patient_admission/new_admission' element={<ProtectedRoute element={<PAdd/>}/>}></Route>
           <Route path ='/staff_information/update_staff' element={<ProtectedRoute element={<Update_staff/>}/>}></Route>
 
 
