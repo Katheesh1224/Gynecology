@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import './App.css';
+import '../App.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Nav from './component/Nav.jsx';
-import NavBar from './component/NavBar.jsx';
+import Nav from '../component/Nav.jsx';
+import NavBar from '../component/NavBar.jsx';
 
 const Staff = () => {
   const [data, setData] = useState([]);
@@ -47,7 +47,7 @@ const Staff = () => {
   };
 
   const handleEdit = (row) => {
-    navigate('/Register_staff', { state: row });
+    navigate('/update_staff', { state: row });
   };
 
   return (
@@ -78,7 +78,7 @@ const Staff = () => {
                   <td style={getRowStyle(row.status)}>{row.status}</td>
                   <td>
                     <button className='button_details' onClick={() => setOpenPopup(true)}>Delete</button>
-                    <button className='button_home' onClick={() => handleEdit(row)}>Edit</button>
+                    <button className='button_home' onClick={() => navigate('/staff_information/update_staff', { state: row })}>Edit</button>
                   </td>
                   {openPopup && (
                     <div className='popup'>
@@ -92,6 +92,7 @@ const Staff = () => {
                 </tr>
               ))}
             </tbody>
+            
           </table>
         </div>
       </div>
