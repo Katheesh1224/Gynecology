@@ -127,9 +127,9 @@ ul li a {
 
   .button_home{
     background-color: transparent;
-    color: red;
+    color: black;
     border: 1px solid red;
-    font-size: 12px;
+    font-size: 13.5px;
     padding: 2.5px 10px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -140,9 +140,9 @@ ul li a {
 
   .button_details{
     background-color: transparent;
-    color: blue;
+    color: black;
     border: 1px solid blue;
-    font-size: 12px;
+    font-size: 13.5px;
     padding: 2.5px 10px;
     font-weight: bolder;
     letter-spacing: 2px;

@@ -13,7 +13,7 @@ import ProfileCard from './component/profileCard.jsx';
 
 const Visit = () =>{
     const addCard = () => {
-        navigate('/patients_information/patient_profile/patient_admission/patient_visit/visit_form');
+        navigate(`/patients_information/patient_profile/patient_admission/patient_visit/visit_form`);
     };
 
     const navigate = useNavigate();

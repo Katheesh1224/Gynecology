@@ -9,7 +9,7 @@ import NavBar from '../component/NavBar.jsx';
 const Staff = () => {
   const [data, setData] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null);
+  // const [selectedRow, setSelectedRow] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,9 +46,9 @@ const Staff = () => {
       .catch(error => console.error('Error deleting row:', error));
   };
 
-  const handleEdit = (row) => {
-    navigate('/update_staff', { state: row });
-  };
+  // const handleEdit = (row) => {
+  //   navigate('/staff_information/update_staff', { state: row });
+  // };
 
   return (
     <div className='homeContainer'>
@@ -78,7 +78,7 @@ const Staff = () => {
                   <td style={getRowStyle(row.status)}>{row.status}</td>
                   <td>
                     <button className='button_details' onClick={() => setOpenPopup(true)}>Delete</button>
-                    <button className='button_home' onClick={() => navigate('/update_staff', { state: row })}>Edit</button>
+                    <button className='button_home' onClick={() => navigate('/staff_information/update_staff/:id', { state: row })}>Edit</button>
                   </td>
                   {openPopup && (
                     <div className='popup'>
