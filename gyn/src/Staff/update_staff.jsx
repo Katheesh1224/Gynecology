@@ -9,6 +9,7 @@ const UpdateStaff = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isEditMode = location.state !== undefined;
+  
 
   const initialState = {
     id: null,

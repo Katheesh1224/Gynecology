@@ -1,16 +1,19 @@
 import './login.css';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
-import React ,{ useState } from 'react';
+import React ,{ useState,useContext} from 'react';
+import { AuthContext } from './AuthContext';
 
+//admin@gmail.com
+//$2a$10$epb9ppxqnhhGicjvodtbn.vz9.BMCiMp9Fk1wrZjtPKASUhOGgNve
+//admin123
 
 export const Login = () => {
     const initialValues = { email: "", password: "" };
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-
-
+    const { login } = useContext(AuthContext);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
@@ -18,22 +21,24 @@ export const Login = () => {
 
 
     const navigate = useNavigate();
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         setFormErrors(validate(formValues));
         setIsSubmit(true);  
 
         if(!(formErrors.email)&& !(formErrors.password)){
-            axios.post('http://localhost:8081/login',formValues).then(res =>{
-                if(res.data ==="Success"){
-                    navigate('/home');
-                }else{
-                    alert("no record existed");
-                }
-            })
-            .catch(err=>console.log(err));
+            try {   
+            const response = await axios.post('http://localhost:8081/login', formValues);
+            login(response.data.token);
+            navigate('/home');
+          } catch (err) {
+            console.error('Login failed:', err);
+            alert('Invalid credentials');
         }
-    }
+            }
+        };
+    
+    
     const validate = (values) => {
         const errors = {}
         let regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;

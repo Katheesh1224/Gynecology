@@ -1,24 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser} from '@fortawesome/free-solid-svg-icons'
 import UserPath from './UserPath.jsx';
-
+import { AuthContext } from '../AuthContext';
 
 const NavBar = () =>{
-
+    const { logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-      navigate('/');
-        try {
-          await axios.get('http://localhost:8081/logout');
-          navigate('/');
-        } catch (error) {
-          console.error('Logout failed:', error);
-        }
+        logout();
+        navigate('/login');
     };
 
     return(
