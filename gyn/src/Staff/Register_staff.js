@@ -149,7 +149,7 @@ const RegisterStaff = () => {
             <label htmlFor="role">Role: </label>
             <select 
               name="role" 
-              id="role" 
+              id="status" 
               value={values.role} 
               onChange={handleChange}
             >
