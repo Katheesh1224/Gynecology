@@ -39,7 +39,7 @@ const About = () =>{
           <Nav/>
             <div className='card'>
             <div className='space0'></div>
-              <header> Patient Personal Details</header>
+              <h2> Patient Personal Details</h2>
               <div className='space'></div>
               <div className='card1'>
                 <div className='profile'>

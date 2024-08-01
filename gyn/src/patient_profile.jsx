@@ -56,7 +56,7 @@ const Profile = () => {
       <NavBar/>
       <Nav/>
       <div className='card'>
-        <header> Patient Profile</header>
+        <h2> Patient Profile</h2>
         <ProfileCard/>
         <div className="cntner">
           <div className="cd">

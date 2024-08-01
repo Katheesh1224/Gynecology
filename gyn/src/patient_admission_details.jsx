@@ -40,7 +40,7 @@ const AdDetails = () =>{
           <Nav/>
             <div className='card'>
             <div className='space0'></div>
-              <header> Patient Admision Details</header>
+              <h2> Patient Admision Details</h2>
               {/* <span className="title">Section A</span> */}
               <div className='space'></div>
               <div className='card1'>

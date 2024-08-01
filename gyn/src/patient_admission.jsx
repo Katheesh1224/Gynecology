@@ -72,7 +72,7 @@ const Admission = () =>{
           <NavBar/>
           <Nav/>
             <div className='card'>
-              <header> Patient Admission</header>
+              <h2> Patient Admission</h2>
               <ProfileCard/>
             
               <div class="cntner">
