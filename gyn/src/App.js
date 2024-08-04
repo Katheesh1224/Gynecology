@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './login.jsx';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import React , {useContext}from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
 import PReg from './patient_registration.jsx';
 import Home from './home.js';
 import RegisterStaff from './Staff/Register_staff.js';
@@ -15,10 +15,8 @@ import PAdd from './new_admission.jsx';
 import AdDetails from './patient_admission_details.jsx';
 import UpdateStaff from './Staff/update_staff.jsx';
 import Visit from './patient_visit.jsx';
-
-import { AuthProvider,AuthContext } from './AuthContext';
+import { AuthProvider } from './AuthContext';
 import ProtectedRoute from './ProtectedRoute';
-
 
 function App() {
   return (
