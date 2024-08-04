@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,7 +11,7 @@ import ProfileCard from './component/profileCard.jsx';
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  let patient_id=localStorage.getItem('patient_id');
 
   const handlePrevious = async () => {
     navigate('/patients_information');
@@ -22,7 +22,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8081/view/${id}`);
+        const response = await axios.get(`http://localhost:8081/view/${patient_id}`);
         setData(response.data[0]);
         //console.log(response.data);
       } catch (error) {
@@ -31,7 +31,7 @@ const Profile = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, []);
 
   const handleDischarge = async (phn) => {
     try {
@@ -44,23 +44,20 @@ const Profile = () => {
   };
 
   const handleClick = ( ) => {
-    navigate('/patient_about');
+    navigate('/patients_information/patient_profile/patient_about');
   };
 
-  // const handleClickDay = () => {
-  //   navigate(`/patient_day/${data.id}`);
-  // };
 
   return (
     <div className="">
       <NavBar/>
       <Nav/>
       <div className='card'>
-        <header> Patient Profile</header>
+        <h2> Patient Profile</h2>
         <ProfileCard/>
         <div className="cntner">
           <div className="cd">
-            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_about/${data.id}`} role="button">
+            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_about`} role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faAddressCard} />
                 <h3>About</h3>
@@ -69,13 +66,13 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains full admission details of this patient.</p>
-                <a href={`/patients_information/patient_profile/patient_about/${data.id}`} type="button">Show</a>
+                <a href={`/patients_information/patient_profile/patient_about`} type="button">Show</a>
               </div>
             </div>
           </div>
 
           <div className="cd">
-            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_admission/${data.id}`}  role="button">
+            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_admission`}  role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faTicket} />
                 <h3>Admission</h3>
@@ -84,7 +81,7 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains admission progress of this patient.</p>
-                <a href={`/patients_information/patient_profile/patient_admission/${data.id}`} type="button">Show</a>
+                <a href={`/patients_information/patient_profile/patient_admission`} type="button">Show</a>
               </div>
             </div>
           </div>
@@ -105,8 +102,12 @@ const Profile = () => {
           </div>
         </div>
 
+        <div className='button-bar'>
         <button onClick={handlePrevious}>{"<<"} &nbsp; previous </button>
+        {/* <button onClick={fetchDataAndExportToExcel}>Export Data to Excel</button> */}
         <div className="btn"><button style={{ backgroundColor: 'red' }} onClick={() => { handleDischarge(data.phone_no) }}>Discharge</button></div>
+
+        </div>
       </div>
     </div>
   );

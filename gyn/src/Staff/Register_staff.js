@@ -78,7 +78,7 @@ const RegisterStaff = () => {
       <NavBar />
       <Nav />
       <form onSubmit={handleSubmit}>
-        <header>Staff Registration</header>
+        <h2>Staff Registration</h2>
         <br />
         <div className="fields">
           <div className="input-field">
@@ -149,7 +149,7 @@ const RegisterStaff = () => {
             <label htmlFor="role">Role: </label>
             <select 
               name="role" 
-              id="role" 
+              id="status" 
               value={values.role} 
               onChange={handleChange}
             >
@@ -169,7 +169,6 @@ const RegisterStaff = () => {
               onChange={handleChange}
             >
               <option value="active">Active</option>
-              <option value="pending">Pending</option>
               <option value="inactive">Inactive</option>
             </select>
           </div>
