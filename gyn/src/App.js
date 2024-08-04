@@ -18,7 +18,6 @@ import Visit from './patient_visit.jsx';
 import { AuthProvider} from './AuthContext';
 import ProtectedRoute from './ProtectedRoute';
 
-
 function App() {
   return (
     <div className="App">
