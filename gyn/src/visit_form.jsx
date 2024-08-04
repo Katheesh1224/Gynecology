@@ -82,7 +82,7 @@ const VisitForm = () => {
             <Nav/>
         <div className="container">
 
-            <header>Visit Form</header>
+            <h2>Visit Form</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form">
                     <div className="A">

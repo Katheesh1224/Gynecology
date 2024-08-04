@@ -125,49 +125,69 @@ ul li a {
     cursor: pointer;
   }
 
-  .button_home{
+  .button_edit{
     background-color: transparent;
-    color: black;
-    border: 1px solid red;
-    font-size: 13.5px;
-    padding: 2.5px 10px;
+    color: blue;
+    border: 1px solid blue;
+    font-size: 12px;
+    padding: 2px 6px;
     font-weight: 600;
     letter-spacing: 2px;
     margin-top: 0;
     margin-left: 10px;
     cursor: pointer;
+    border-radius: 4px;
   }
 
-  .button_details{
+  .button_delete{
     background-color: transparent;
-    color: black;
-    border: 1px solid blue;
-    font-size: 13.5px;
-    padding: 2.5px 10px;
+    color: red;
+    border: 1px solid red;
+    font-size: 12px;
+    padding: 2px 6px;
     font-weight: bolder;
     letter-spacing: 2px;
     margin-top: 0;
+    margin-left: -5px;
     cursor: pointer;
     text-decoration: none;
-    /* border-radius: 0px; */
+    border-radius: 4px;
+  }
+
+  .button_view{
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    font-size: 12px;
+    padding: 2px 6px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin-top: 0;
+    margin-left: -5px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 4px;
   }
 
   .search{
     display: flex;
-    justify-content: flex-start;
-    margin-top: -280px;
+    justify-content: space-between;
+    /* margin-top: -280px; */
+    width: 890px;
     margin-left: 0px;
+    margin-bottom: 20px;
   }
 
-  .button_srch{
+  .button_search{
     background-color: #512da8;
-    color: rgb(255, 255, 255);
+    color: white;
+    border-color: #512da8;
     font-size: 12px;
-    padding: 0px 10px;
+    padding: 5px 10px;
     font-weight: bolder;
     letter-spacing: 2px;
     margin-top: 0;
-    margin-right: 350px;
+    /* margin-right: 150px; */
     margin-left: 0px;
     cursor: pointer;
     border-radius: 0px;
@@ -175,12 +195,55 @@ ul li a {
     border-bottom-right-radius: 4px;
   }
 
+  .button-bar{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  /* .next-bar{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+  } */
+  
+  .button_next{
+    display: flex;
+    justify-content: end;
+    background-color: #512da8;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    padding: 5px 10px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin-left: 0;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .button_prev{
+    background-color: #512da8;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    padding: 5px 10px;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 0;
+  }
+
+  .button_prev2{
+    background-color: white;
+    cursor:auto;
+  }
+
   .input input{
     outline: none;
     font-size: 12px;
     font-weight: 400;
     color: #333;
-    border: 1px solid #aaa;
+    border: 1px solid #512da8;
     padding: 0 15px;
     height: 30px;
     width: 280px;
@@ -189,11 +252,11 @@ ul li a {
   }
 
   .button_add{
-    background-color: blue;
-    color: rgb(255, 255, 255);
+    background-color: transparent;
+    color: blue;
     border: 1px solid blue;
     font-size: 12px;
-    padding: 2.5px 10px;
+    padding: 5px 10px;
     font-weight: 600;
     letter-spacing: 2px;
     margin-top: 0;
@@ -203,11 +266,11 @@ ul li a {
   }
 
   .button_dis{
-    background-color: red;
-    color: rgb(255, 255, 255);
+    background-color: transparent;
+    color: red;
     border: 1px solid red;
     font-size: 12px;
-    padding: 2.5px 10px;
+    padding: 5px 10px;
     font-weight: 600;
     letter-spacing: 2px;
     margin-top: 0;
@@ -260,30 +323,31 @@ ul li a {
   /* -------------- */
   
   #header {
-    position: fixed;
+    position:fixed;
     top: 0;
     left: 0;
     bottom: 0;
-    z-index: 9997;
+    z-index: 1;
     transition: all 0.5s;
     padding: 150px 15px 15px 15px;
     overflow-y: auto;
+    /* margin-left: -270px; */
   }
 
   @media (max-width: 991px) {
     #header {
-      width: 300px;
-      background: #fff;
+      width: 240px;
+      background: transparent;
       border-right: 1px solid #e6e9ec;
-      left: -300px;
+      /* left: -300px; */
     }
   }
   
-  @media (min-width: 991px) {
+  /* @media (min-width: 991px) {
     #main {
       margin-left: 100px;
     }
-  }
+  } */
 
   .nav-menu {
     padding: 0;
@@ -394,23 +458,39 @@ ul li a {
   } */
 
 
-  table{
-   position: absolute;
-   left: 50%;
+  h2{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    color: #000000;
+    /* font-family: 'Open Sans',Sans-serif; */
+    /* font-weight: ; */
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    /* margin-left: 20px; */
+  }
+  .container .patient_table{
+   position: relative;
+   /* left: 50%; */
    /* top: 70%; */
-   margin-top: 150px;
-   transform: translate(-50%,-50%);
-   width: 70%; 
+   /* margin-top: 150px; */
+   transform: translate(0%,0%);
+   width: 100%; 
    border-collapse: collapse;
    border-spacing: 0;
-   box-shadow: 0 2px 15px rgba(64,64,64,.7);
+   /* box-shadow: 0 2px 15px rgba(64,64,64,.7); */
    border-radius: 10px ;
    overflow: hidden;
+   /* padding: 10px; */
+   background-color: transparent;
+   border-color: #000;
   }
   
   td , th{
-   padding: 15px 20px;
+   padding: 12px 20px;
    text-align: center; 
+   width: 280px;
   }
 
   th{

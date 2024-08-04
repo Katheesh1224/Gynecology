@@ -29,14 +29,14 @@ function App() {
           <Route path ='/patients_information' element={<Patient/>}></Route>
           <Route path ='/Register_staff' element={<RegisterStaff/>}></Route>
           <Route path ='/staff_information' element={<Staff/>}></Route>
-          <Route path ='/staff_information/update_staff/:id' element={<UpdateStaff/>}></Route>
-          <Route path ='/patients_information/patient_profile/:id' element={<Profile/>}></Route>
-          <Route path ='/patients_information/patient_profile/patient_about/:id' element={<About/>}></Route>
-          <Route path ='/patients_information/patient_profile/patient_admission/:id' element={<Admission/>}></Route>
+          <Route path ='/staff_information/update_staff' element={<UpdateStaff/>}></Route>
+          <Route path ='/patients_information/patient_profile' element={<Profile/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_about' element={<About/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission' element={<Admission/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/new_admission' element={<PAdd/>}></Route>  
-          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/:id' element={<Visit/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit' element={<Visit/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_form' element={<VisitForm/>}></Route>        
-          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details/:id' element={<AdDetails/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details' element={<AdDetails/>}></Route>
         </Routes>
 
       </BrowserRouter>
