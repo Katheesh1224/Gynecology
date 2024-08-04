@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './login.jsx';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import React from 'react';
+import React , {useContext}from 'react';
 import PReg from './patient_registration.jsx';
 import Home from './home.js';
 import RegisterStaff from './Staff/Register_staff.js';
@@ -16,14 +16,19 @@ import AdDetails from './patient_admission_details.jsx';
 import UpdateStaff from './Staff/update_staff.jsx';
 import Visit from './patient_visit.jsx';
 
+import { AuthProvider,AuthContext } from './AuthContext';
+import ProtectedRoute from './ProtectedRoute';
+
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <BrowserRouter>
-
         <Routes>
           <Route path ='/' element={<Login/>}></Route>
+          <Route path ='/login' element={<Login/>}></Route>
+          <Route element = {<ProtectedRoute/>}
           <Route path ='/home' element={<Home/>}></Route>          
           <Route path ='/patient_registration' element={<PReg/>}></Route>
           <Route path ='/patients_information' element={<Patient/>}></Route>
@@ -37,9 +42,11 @@ function App() {
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit' element={<Visit/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_form' element={<VisitForm/>}></Route>        
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details' element={<AdDetails/>}></Route>
+          </Route>
         </Routes>
 
       </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
