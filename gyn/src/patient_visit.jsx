@@ -55,7 +55,7 @@ const Visit = () =>{
                         <div class="face face1" onClick={()=>assign(data.phn)}>
                             <div class="content">
                                 <FontAwesomeIcon icon={faFilePen} />              
-                                <h3>Admission 1 Details</h3>
+                                <h3>Visit 1 Details</h3>
                             </div>
                         </div>
                         <div class="face face2">
