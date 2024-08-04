@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../home.css';
 import { useState,useEffect } from 'react';
@@ -9,12 +8,13 @@ const ProfileCard = () =>{
 
     const [data, setData] = useState([]);
 
-    const { id } = useParams();
+    let patient_id=localStorage.getItem('patient_id');
+    // const { id } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(`http://localhost:8081/patientda/${id}`);
+            const response = await axios.get(`http://localhost:8081/patientda/${patient_id}`);
             setData(response.data[0]);
           } catch (error) {
             console.error('Error fetching data:', error);
@@ -22,7 +22,7 @@ const ProfileCard = () =>{
         };
     
         fetchData();
-      }, [id]);
+      }, []);
 
     return(
         <div className='card1'>

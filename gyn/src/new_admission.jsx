@@ -44,7 +44,7 @@ const PAdd = () => {
             <Nav/>
             <div className="container">
 
-                <header>Patient Registration</header>
+                <h2>Patient Admission Registration</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form">
                         <div className="B">

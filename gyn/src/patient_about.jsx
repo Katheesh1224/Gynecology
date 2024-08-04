@@ -10,11 +10,12 @@ import NavBar from './component/NavBar.jsx';
 const About = () =>{
 
     const navigate = useNavigate();
-    const { id } = useParams();
+    // const { id } = useParams();
+    let patient_id=localStorage.getItem('patient_id');
 
 
-      const handlePrevious = async () => {
-        navigate(`/patients_information/patient_profile/${data.id}`);
+      const handlePrevious = () => {
+        navigate(`/patients_information/patient_profile`);
       };
 
         const [data, setData] = useState([]);
@@ -22,7 +23,7 @@ const About = () =>{
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get(`http://localhost:8081/about/${id}`);
+              const response = await axios.get(`http://localhost:8081/about/${patient_id}`);
               setData(response.data[0]);
             } catch (error) {
               console.error('Error fetching data:', error);
@@ -30,7 +31,7 @@ const About = () =>{
           };
       
           fetchData();
-        }, [id]);
+        }, []);
       
 
     return(
@@ -39,7 +40,7 @@ const About = () =>{
           <Nav/>
             <div className='card'>
             <div className='space0'></div>
-              <header> Patient Personal Details</header>
+              <h2> Patient Personal Details</h2>
               <div className='space'></div>
               <div className='card1'>
                 <div className='profile'>
