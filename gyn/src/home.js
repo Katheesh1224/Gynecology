@@ -4,7 +4,7 @@ import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
 const Home = () =>{
-      
+      console.log("home rendered");
   return(
     <div className='wrapper'>
       <NavBar/>

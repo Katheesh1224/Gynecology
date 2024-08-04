@@ -20,7 +20,7 @@ const UserPath = () => {
     'patient_admission': 'Patient Admission',
     'patient_admission_details': 'Patient Admission Details',
 
-    'update_staff':'Update Staff',
+    'update_staff':'UpdateStaff',
     'new_admission':'New Admission',
 
   };

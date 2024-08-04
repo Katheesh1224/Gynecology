@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './login.jsx';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import React , {useContext}from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
 import PReg from './patient_registration.jsx';
 import Home from './home.js';
 import RegisterStaff from './Staff/Register_staff.js';
@@ -15,39 +15,33 @@ import PAdd from './new_admission.jsx';
 import AdDetails from './patient_admission_details.jsx';
 import UpdateStaff from './Staff/update_staff.jsx';
 import Visit from './patient_visit.jsx';
-import { AuthProvider,AuthContext } from './AuthContext';
+import { AuthProvider } from './AuthContext';
 import ProtectedRoute from './ProtectedRoute';
-
 
 function App() {
   return (
     <div className="App">
-      <AuthProvider>
       <BrowserRouter>
-        <Routes>
-
-          <Route path ='/' element={<Login/>}></Route>
-
-          <Route path ='/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
-          {/* <Route path ='/home' element={<Home/>}></Route> */}
-          <Route path="/home" element={<ProtectedRoute element={<Home />} />}/>
-          <Route path ='/patients_information' element={<ProtectedRoute element={<Patient/>}/>}></Route>
-          <Route path ='/Register_staff' element={<ProtectedRoute element={<RegisterStaff/>}/>}></Route>
-          <Route path ='/patients_information/patient_profile/patient_about/:id' element={<ProtectedRoute element={<About/>}/>}></Route>
-          <Route path ='/patients_information/patient_profile/:id' element={<ProtectedRoute element={<Profile/>}/>}></Route>
-          <Route path ='/patients_information/patient_profile/patient_admission/:id' element={<ProtectedRoute element={<Admission/>}/>}></Route>
-          <Route path ='/staff_information' element={<ProtectedRoute element={<Staff/>}/>}></Route>
-          <Route path ='/new_admission' element={<ProtectedRoute element={<PAdd/>}/>}></Route>
-          <Route path ='/staff_information/update_staff' element={<ProtectedRoute element={<Update_staff/>}/>}></Route>
-
-
-          <Route path ='/patients_information/patient_profile/patient_admission/patient_admission_details/:id' element={<ProtectedRoute element={<AdDetails/>}/>}></Route>
-          <Route path ='/login' element={<Login/>}></Route>
-
-        </Routes>
-
+        <AuthProvider>
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route path='/login' element={<Login />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path='/patient_registration' element={<PReg />} />
+              <Route path='/home' element={<Home />} />
+              <Route path='/patients_information' element={<Patient />} />
+              <Route path='/Register_staff' element={<RegisterStaff />} />
+              <Route path='/patients_information/patient_profile/patient_about/:id' element={<About />} />
+              <Route path='/patients_information/patient_profile/:id' element={<Profile />} />
+              <Route path='/patients_information/patient_profile/patient_admission/:id' element={<Admission />} />
+              <Route path='/staff_information' element={<Staff />} />
+              <Route path='/new_admission' element={<PAdd />} />
+              <Route path='/staff_information/update_staff' element={<UpdateStaff />} />
+              <Route path='/patients_information/patient_profile/patient_admission/patient_admission_details/:id' element={<AdDetails />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
-      </AuthProvider>
     </div>
   );
 }

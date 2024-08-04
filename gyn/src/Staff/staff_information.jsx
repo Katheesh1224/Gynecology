@@ -57,7 +57,7 @@ const Staff = () => {
     setRowToDelete(null);
     setOpenPopup(false);
   
-
+  };
   return (
     <div className='wrapper'>
       <NavBar />
@@ -69,7 +69,6 @@ const Staff = () => {
           <table>
             <thead>
               <tr>
-                
                 <th>Full Name</th>
                 <th>Phone No</th>
                 <th>Role</th>
@@ -80,7 +79,6 @@ const Staff = () => {
             <tbody>
               {data.map((row) => (
                 <tr key={row.id}>
-                  
                   <td>{row.full_name}</td>
                   <td>{row.phone_no}</td>
                   <td>{row.role}</td>
@@ -97,6 +95,7 @@ const Staff = () => {
           </table>
         </div>
       </div>
+      </div>
 
       {openPopup && (
         <div className='popup'>
@@ -110,5 +109,6 @@ const Staff = () => {
     </div>
   );
 }
+
 
 export default Staff;
