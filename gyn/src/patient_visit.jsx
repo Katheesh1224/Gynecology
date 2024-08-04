@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
@@ -17,15 +17,15 @@ const Visit = () =>{
     };
 
     const navigate = useNavigate();
-    
-    const { id } = useParams();
+    let patient_id=localStorage.getItem('patient_id');   
 
-    const handlePrevious = async () => {
-        navigate(`/patients_information/patient_profile/patient_admission/${data.id}`);
-    };
+    function assign(roe){
+        localStorage.setItem('patient_phn',roe);
+        navigate('/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details');
+    }
 
-    const showAdmission = async () => {
-        navigate(`/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details/${data.phn}`);
+    const handlePrevious = () => {
+        navigate(`/patients_information/patient_profile/patient_admission`);
     };
 
     const [data, setData] = useState([]);
@@ -33,7 +33,7 @@ const Visit = () =>{
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8081/patientda/${id}`);
+                const response = await axios.get(`http://localhost:8081/patientda/${patient_id}`);
                 setData(response.data[0]);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -41,7 +41,7 @@ const Visit = () =>{
         };
       
         fetchData();
-    }, [id]);
+    }, []);
       
     return(
         <div className="">
@@ -52,10 +52,10 @@ const Visit = () =>{
                 <ProfileCard/>
                 <div class="cntner">
                     <div class="cd">
-                        <div class="face face1" onClick={showAdmission}>
+                        <div class="face face1" onClick={()=>assign(data.phn)}>
                             <div class="content">
                                 <FontAwesomeIcon icon={faFilePen} />              
-                                <h3>Admission 1 Details</h3>
+                                <h3>Visit 1 Details</h3>
                             </div>
                         </div>
                         <div class="face face2">

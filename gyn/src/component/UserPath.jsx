@@ -27,7 +27,7 @@ const UserPath = () => {
 
   return (
     <nav className="breadcrumb">
-      <Link to="/home">Dashboard</Link>
+      <Link to="/home">Home</Link>
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 

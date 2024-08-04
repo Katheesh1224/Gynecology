@@ -1,18 +1,18 @@
+
+// ProtectedRoute.js
 import React, { useContext } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 
-const ProtectedRoute = () => {
-  const { auth } = useContext(AuthContext);
-  console.log('ProtectedRoute auth state:', auth);
+const ProtectedRoute = ({ element }) => {
+  const token = localStorage.getItem('token');
+  const location = useLocation();
 
-  if (!auth) {
-    console.log('No auth token, redirecting to login');
-    return <Navigate to='/login' />;
+  if (!token) {
+    return <Navigate to="/login" />;
   }
 
-  console.log('Auth token found, rendering Outlet');
-  return <Outlet />;
+  return element;
 };
 
-export default ProtectedRoute;
+export default ProtectedRoute; // Ensure default export

@@ -21,27 +21,30 @@ import ProtectedRoute from './ProtectedRoute';
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <BrowserRouter>
-        <AuthProvider>
-          <Routes>
-            <Route path='/' element={<Login />} />
-            <Route path='/login' element={<Login />} />
-            <Route element={<ProtectedRoute />}>
-              <Route path='/patient_registration' element={<PReg />} />
-              <Route path='/home' element={<Home />} />
-              <Route path='/patients_information' element={<Patient />} />
-              <Route path='/Register_staff' element={<RegisterStaff />} />
-              <Route path='/patients_information/patient_profile/patient_about/:id' element={<About />} />
-              <Route path='/patients_information/patient_profile/:id' element={<Profile />} />
-              <Route path='/patients_information/patient_profile/patient_admission/:id' element={<Admission />} />
-              <Route path='/staff_information' element={<Staff />} />
-              <Route path='/new_admission' element={<PAdd />} />
-              <Route path='/staff_information/update_staff' element={<UpdateStaff />} />
-              <Route path='/patients_information/patient_profile/patient_admission/patient_admission_details/:id' element={<AdDetails />} />
-            </Route>
-          </Routes>
-        </AuthProvider>
+        <Routes>
+          <Route path ='/' element={<Login/>}></Route>
+          <Route path ='/login' element={<Login/>}></Route>
+          <Route element = {<ProtectedRoute/>}
+          <Route path ='/home' element={<Home/>}></Route>          
+          <Route path ='/patient_registration' element={<PReg/>}></Route>
+          <Route path ='/patients_information' element={<Patient/>}></Route>
+          <Route path ='/Register_staff' element={<RegisterStaff/>}></Route>
+          <Route path ='/staff_information' element={<Staff/>}></Route>
+          <Route path ='/staff_information/update_staff' element={<UpdateStaff/>}></Route>
+          <Route path ='/patients_information/patient_profile' element={<Profile/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_about' element={<About/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission' element={<Admission/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission/new_admission' element={<PAdd/>}></Route>  
+          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit' element={<Visit/>}></Route>
+          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_form' element={<VisitForm/>}></Route>        
+          <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details' element={<AdDetails/>}></Route>
+          </Route>
+        </Routes>
+
       </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
