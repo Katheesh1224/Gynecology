@@ -9,7 +9,7 @@ const Staff = () => {
   const [data, setData] = useState([]);
   const [openPopup, setOpenPopup] = useState(false);
 
-  const [rowToDelete, setRowToDelete] = useState(null); // Store the row to be deleted
+  // const [rowToDelete, setRowToDelete] = useState(null); // Store the row to be deleted
   const navigate = useNavigate();
   
 
@@ -41,22 +41,22 @@ const Staff = () => {
   };
 
 
-  const handleDeleteClick = (row) => {
-    setRowToDelete(row);
-    setOpenPopup(true);
-  };
+  // const handleDeleteClick = (row) => {
+  //   setRowToDelete(row);
+  //   setOpenPopup(true);
+  // };
 
-  const handleConfirmDelete = () => {
-    if (rowToDelete) {
-      deleteRow(rowToDelete.id);
-    }
-  };
+  // const handleConfirmDelete = () => {
+  //   if (rowToDelete) {
+  //     deleteRow(rowToDelete.id);
+  //   }
+  // };
 
-  const handleCancelDelete = () => {
-    setRowToDelete(null);
-    setOpenPopup(false);
+  // const handleCancelDelete = () => {
+  //   setRowToDelete(null);
+  //   setOpenPopup(false);
   
-  };
+  // };
 
   return (
     <div className='wrapper'>
@@ -104,17 +104,6 @@ const Staff = () => {
         </div>
       </div>
       </div>
-
-      {openPopup && (
-        <div className='popup'>
-          <div className='box'>
-            <h2>Are you sure you want to delete {rowToDelete?.full_name}?</h2>
-            <button className='popup_button1' onClick={handleConfirmDelete}>Yes</button>
-            <button className='popup_button2' onClick={handleCancelDelete}>No</button>
-          </div>
-        </div>
-      )}
-    </div>
   );
 }
 
