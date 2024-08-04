@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
@@ -40,15 +40,15 @@ const Admission = () =>{
   };
 
   const navigate = useNavigate();
-  const { id } = useParams();
+  // const { id } = useParams();
+  let patient_id=localStorage.getItem('patient_id');
 
-
-      const handlePrevious = async () => {
-        navigate(`/patients_information/patient_profile/${data.id}`);
+      const handlePrevious =() => {
+        navigate(`/patients_information/patient_profile`);
       };
 
-      const showAdmission = async () => {
-        navigate(`/patients_information/patient_profile/patient_admission/patient_visit/${id}`);
+      const showAdmission =() => {
+        navigate(`/patients_information/patient_profile/patient_admission/patient_visit`);
       };
 
         const [data, setData] = useState([]);
@@ -56,7 +56,7 @@ const Admission = () =>{
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get(`http://localhost:8081/patientda/${id}`);
+              const response = await axios.get(`http://localhost:8081/patientda/${patient_id}`);
               setData(response.data[0]);
             } catch (error) {
               console.error('Error fetching data:', error);
@@ -64,7 +64,7 @@ const Admission = () =>{
           };
       
           fetchData();
-        }, [id]);
+        }, []);
       
 
     return(

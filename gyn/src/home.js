@@ -10,8 +10,10 @@ const Home = () =>{
       <NavBar/>
       <div className='main-content'>
         <Nav/> 
-        <div className='container'>
-          <h1>Welcome to GYNECOLOGY Department</h1>
+        <div className='container-big'>
+          <div className='container'>
+            <h1>Welcome to GYNECOLOGY Department</h1>
+          </div>
         </div>
       </div>
     </div>

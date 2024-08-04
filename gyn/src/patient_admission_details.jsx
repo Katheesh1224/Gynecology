@@ -1,9 +1,8 @@
 import React from 'react';
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import { useState,useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 
@@ -11,10 +10,10 @@ import NavBar from './component/NavBar.jsx';
 const AdDetails = () =>{
 
     const navigate = useNavigate();
-    const { id } = useParams();
+    let patient_phn=localStorage.getItem('patient_phn');
 
       const handlePrevious = async () => {
-        navigate(`/patients_information/patient_profile/patient_admission/patient_visit/${data.id}`);
+        navigate(`/patients_information/patient_profile/patient_admission/patient_visit`);
       };
 
         const [data, setData] = useState([]);
@@ -22,7 +21,7 @@ const AdDetails = () =>{
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get(`http://localhost:8081/admisiondetail/${id}`);
+              const response = await axios.get(`http://localhost:8081/admisiondetail/${patient_phn}`);
               setData(response.data[0]);
               console.log(data);
             } catch (error) {
@@ -31,7 +30,7 @@ const AdDetails = () =>{
           };
       
           fetchData();
-        }, []);
+        }, [patient_phn]);
       
 
     return(
