@@ -1,170 +1,138 @@
-import React from 'react';
-import {useNavigate,Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Nav from './component/Nav.jsx';
+import NavBar from './component/NavBar.jsx';
 import './App.css';
-import { useState,useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse, faRectangleList, faHospitalUser, faUser} from '@fortawesome/free-solid-svg-icons'
 
-
-const Patient = () =>{
-
+const Patient = () => {
+    const [data, setData] = useState([]);
+    const [values, setValues] = useState({ val: '' });
+    const [page, setPage] = useState(1);
+    const [hasMoreData, setHasMoreData] = useState(true);
+    const limit = 8;
     const navigate = useNavigate();
 
-    const handleLogout = async () => {
-      navigate('/');
+    const fetchData = async (page) => {
         try {
-          await axios.get('http://localhost:8081/logout');
-          navigate('/');
+            const response = await axios.get('http://localhost:8081/data', {
+                params: { limit, page }
+            });
+            setData(response.data);
+            setHasMoreData(response.data.length === limit);
         } catch (error) {
-          console.error('Logout failed:', error);
+            console.error('Error fetching data:', error);
         }
-      };
+    };
 
-      const handleProfile = async () => {
-        navigate('/patient_profile');
-          // try {
-          //   await axios.get('http://localhost:8081/logout');
-          //   navigate('/');
-          // } catch (error) {
-          //   console.error('Logout failed:', error);
-          // }
-        };
-        const [data, setData] = useState([]);
-        const [values, setValues] = useState({
-          phn:'',
-          name:''
-        });
+    useEffect(() => {
+        fetchData(page);
+    }, [page]);
 
-        useEffect(() => {
-          const fetchData = async () => {
-            try {
-              const response = await axios.get('http://localhost:8081/data');
-              setData(response.data);
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-      
-          fetchData();
-        }, []);
+    const handleNext = () => {
+        setPage(prevPage => prevPage + 1);
+    };
 
-        const handleAdmit = (()=>{
-          const fetchData = async () => {
-            try {
-              const response = await axios.get('http://localhost:8081/admitdata');
-              setData(response.data);
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-          fetchData();
-        });
+    const handlePrevious = () => {
+        if (page > 1) {
+            setPage(prevPage => prevPage - 1);
+        }
+    };
 
-        const handleDischarge = (()=>{
-          const fetchData = async () => {
-            try {
-              const response = await axios.get('http://localhost:8081/dischargedata');
-              setData(response.data);
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-          fetchData();
-        });
+    const handleSearch = async () => {
+        try {
+            const response = await axios.post('http://localhost:8081/searchdata', values);
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
-        const handleSearch = async () => {
-          try {
-              const response = await axios.post('http://localhost:8081/searchdata', values);
-              setData(response.data);
-          } catch (error) {
-              console.error('Error fetching data:', error);
-          }
-      };
+    const handleAdmit = async () => {
+        try {
+            const response = await axios.get('http://localhost:8081/admitdata');
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
-    return(
-      <div className='homeContainer'>
-        
-        <div>
-          <header id="header" class="d-flex flex-column justify-content-center">
-            <nav id="navbar" class="navbar nav-menu">
-              <ul>
-                <li><a href="home" class="nav-link scrollto"><FontAwesomeIcon icon={faHouse} /><span>Home</span></a></li>
-                <li><a href="patient_registration" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Patient Registration</span></a></li>
-                <li><a href="Register_staff" class="nav-link scrollto"><FontAwesomeIcon icon={faRectangleList} /><span>Staff Registration</span></a></li>
-                <li><a href="patient_person" class="nav-link scrollto active"><FontAwesomeIcon icon={faHospitalUser} /> <span>Patient Information</span></a></li>
-              </ul>
-            </nav>
-          </header>
-        </div>
-        <nav class="navM">
-          <div class="containerN">
-            <h1 class="logo">
-              <a href="./home" className='a'>GYNECOLOGY</a>
-            </h1>
-            <ul>
-              <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
-              <li>
-                <div>
-                  <button onClick={handleLogout} class="buttonHome">Logout</button>
+    const handleDischarge = async () => {
+        try {
+            const response = await axios.get('http://localhost:8081/dischargedata');
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    function assign(roe){
+        localStorage.setItem('patient_id',roe);
+        navigate('/patients_information/patient_profile');
+    }
+
+    return (
+        <div className='wrapper'>
+            <NavBar/>
+            <div className='main-content'>
+                <Nav/>
+                <div className='container'>
+                    <h2>Patient Information</h2>
+                    <div className='search'>
+                        <div className="input">
+                            <input
+                                type='text'
+                                placeholder='Search with Name/NIC/PHN here'
+                                onChange={e => setValues({ ...values, val: e.target.value })}
+                            />
+                            <button className='button_search' onClick={handleSearch}>Search</button>
+                        </div>
+                        <div>
+                            <button className='button_add' onClick={handleAdmit}>Admitted Patient</button>
+                            <button className='button_dis' onClick={handleDischarge}>Discharged Patient</button>
+                        </div>
+                    </div>
+
+                    <div className='patient_table'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Full Name</th>
+                                    <th>PHN No</th>
+                                    <th>NIC</th>
+                                    <th>Management</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.map((row, index) => (
+                                    <tr key={row.id}>
+                                        <td>{(page - 1) * limit + index + 1}</td>
+                                        <td>{row.full_name}</td>
+                                        <td>{row.phn}</td>
+                                        <td>{row.nic}</td>
+                                        <td>
+                                            <button className='button_view' onClick={()=>assign(row.id)}>View
+                                                {/* <Link to={`/patients_information/patient_profile/${row.id}`} className='btn btn-sm btn-primary mx-2'>View</Link> */}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className='button-bar'>
+                        {page > 1 && (<button className='button_prev' onClick={handlePrevious}>Previous</button>)}
+                        {page < 2 && (<button className='button_prev2' ></button>)}
+                        <div className='next-bar'>
+                            {hasMoreData && (<button className='button_next' onClick={handleNext}>Next</button>)}
+                        </div>
+                    </div>
                 </div>
-            </li>
-            </ul>
-
-          </div>
-          
-        </nav>
-        <div className='search' >
-          <div className="input">
-          <input type='text' placeholder='Search with Name/NIC/PHN here'  onChange={e =>setValues({...values,phn:e.target.value})}/>
-          </div>
-          
-          <button className='button_srch' onClick={handleSearch}>Search</button>
-          <button className='button_add' onClick={handleAdmit}>Admitted Patient</button>
-          <button className='button_dis' onClick={handleDischarge}>Discharged Patient</button>
+            </div>
         </div>
-
-        <div className='patient_table' style={{margin : "150px"}}>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Full Name</th>
-                <th>PHN No </th>
-                <th>Phone No</th>
-                <th>Management</th>
-                
-                {/* Add more table headers as needed */}
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((row) => (
-                <tr key={row.id}>
-                  <td>{row.id}</td>
-                  <td>{row.full_name}</td>
-                  <td>{row.phn}</td>
-                  <td>{row.phone_no}</td>
-                  <td>
-
-                    <button className='button_details' ><Link to={`/patient_profile/${row.id}`} className='btn btn-sm btn-primary mx-2'>View</Link></button>
-                    {/* <button className='button_home'>Edit</button> */}
-                    {/* onClick={() => handleDischarge(row.id)} */}
-                  </td>
-                  {/* <td>
-                    <button className='button_details' onClick={() => handleDetails(row.id)}>Details</button>
-                  </td> */}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-        </div>
-
-
-          </div>
-    
     );
-  }
-
+};
 
 export default Patient;

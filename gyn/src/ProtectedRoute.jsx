@@ -1,14 +1,18 @@
-import { useRecoilValue } from "recoil";
-import { userState } from "./atom";
 
-export default ({children})=>{
+// ProtectedRoute.js
+import React, { useContext } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
-    // const isLoggedIn = useRecoilValue(userState);
-    const isLoggedIn = true;
+const ProtectedRoute = ({ element }) => {
+  const token = localStorage.getItem('token');
+  const location = useLocation();
 
-    console.log(isLoggedIn)
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
 
-    return (
-        isLoggedIn ? (children) : <p>You aren't allowed</p>
-    )
-}
+  return element;
+};
+
+export default ProtectedRoute; // Ensure default export
