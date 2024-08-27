@@ -9,6 +9,7 @@ const UpdateStaff = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isEditMode = location.state !== undefined;
+  
 
   const initialState = {
     id: null,
@@ -29,38 +30,37 @@ const UpdateStaff = () => {
 
   const [values, setValues] = useState(initialState);
   const [formErrors, setFormErrors] = useState({});
-  const [showPasswordFields, setShowPasswordFields] = useState(false); // State to control visibility
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
 
     if (name === "password") {
-      if (value.length < 8 && value.length > 0) {
-        setFormErrors({ ...formErrors, password: "Password must be at least 8 characters long." });
-      } else {
-        const { password, ...rest } = formErrors; // Remove password error if validation passes
-        setFormErrors(rest);
-      }
+        if (value.length < 8 && value.length > 0) {
+            setFormErrors({ ...formErrors, password: "Password must be at least 8 characters long." });
+        } else {
+            const { password, ...rest } = formErrors; // Remove password error if validation passes
+            setFormErrors(rest);
+        }
     }
 
     if (name === "confirm_password") {
-      if (values.password && value !== values.password) {
-        setFormErrors({ ...formErrors, confirm_password: "Passwords do not match." });
-      } else {
-        const { confirm_password, ...rest } = formErrors; // Remove confirm_password error if validation passes
-        setFormErrors(rest);
-      }
+        if (values.password && value !== values.password) {
+            setFormErrors({ ...formErrors, confirm_password: "Passwords do not match." });
+        } else {
+            const { confirm_password, ...rest } = formErrors; // Remove confirm_password error if validation passes
+            setFormErrors(rest);
+        }
     }
   };
 
   const validate = () => {
     let errors = {};
     if (values.password && values.password.length < 8) {
-      errors.password = "Password must be at least 8 characters long.";
+        errors.password = "Password must be at least 8 characters long.";
     }
     if (values.password && values.password !== values.confirm_password) {
-      errors.confirm_password = "Passwords do not match.";
+        errors.confirm_password = "Passwords do not match.";
     }
     return errors;
   };
@@ -83,10 +83,6 @@ const UpdateStaff = () => {
     } else {
       setFormErrors(errors);
     }
-  };
-
-  const togglePasswordFields = () => {
-    setShowPasswordFields(!showPasswordFields);
   };
 
   return (
@@ -136,36 +132,30 @@ const UpdateStaff = () => {
           </div>
         </div>
         <br />
-        
-       
-
-        {showPasswordFields && (
-          <div className="fields">
-            <div className="input-field">
-              <label htmlFor="new_password">New Password: </label>
-              <input 
-                type="password" 
-                name="password" 
-                placeholder="Enter a new password" 
-                value={values.password}
-                onChange={handleChange} 
-              />
-              {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
-            </div>
-            <div className="input-field">
-              <label htmlFor="confirm_password">Confirm Password : </label>
-              <input 
-                type="password" 
-                name="confirm_password" 
-                placeholder="Confirm new password" 
-                value={values.confirm_password}
-                onChange={handleChange} 
-              />
-              {formErrors.confirm_password && <p style={{ color: "red" }}>{formErrors.confirm_password}</p>}
-            </div>
+        <div className="fields">
+          <div className="input-field">
+            <label htmlFor="new_password">New Password: </label>
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Enter a new password" 
+              value={values.password}
+              onChange={handleChange} 
+            />
+            {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
           </div>
-        )}
-      
+          <div className="input-field">
+            <label htmlFor="confirm_password">Confirm Password : </label>
+            <input 
+              type="password" 
+              name="confirm_password" 
+              placeholder="Confirm new password" 
+              value={values.confirm_password}
+              onChange={handleChange} 
+            />
+            {formErrors.confirm_password && <p style={{ color: "red" }}>{formErrors.confirm_password}</p>}
+          </div>
+        </div>
         <div className="dropdownflex">
           <div className="input-fieldL">
             <label htmlFor="role">Role: </label>
@@ -197,9 +187,6 @@ const UpdateStaff = () => {
         </div>
         <br />
         <div className="btn1">
-         <button type="button" id='btn2' onClick={togglePasswordFields}>
-          {showPasswordFields ? "Hide Password Fields" : "Edit Password"}
-        </button>
           <button type="submit">Update</button>
         </div>
       </form>
