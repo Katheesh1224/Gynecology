@@ -85,7 +85,11 @@ body{
 .btn1{
   text-align: end;
 }
-
+#btn2{
+  background-color: rgb(135, 133, 133);
+  border-color: black;
+  margin-right: 475px;
+}
 button{
   background-color: #512da8;
   color: #fff;
@@ -735,12 +739,12 @@ border: 7px solid red;
   
 }
 .popup{
-  position: absolute;
+  display: flex;
+  position:absolute ;
   top: 50%;
   left: 50%;
-  
   background-color: #979797;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 25%);
 }
 .box{
   text-align: center;
