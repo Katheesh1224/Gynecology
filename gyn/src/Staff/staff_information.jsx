@@ -85,8 +85,8 @@ const Staff = () => {
                   <td style={getRowStyle(row.status)}>{row.status}</td>
                   <td>
 
-                    <button className='button_details' onClick={() => handleDeleteClick(row)}>Delete</button>
-                    <button className='button_home' onClick={() => navigate('/staff_information/update_staff', { state: row })}>Edit</button>
+                    <button className='button_delete' onClick={() => handleDeleteClick(row)}>Delete</button>
+                    <button className='button_edit' onClick={() => navigate('/staff_information/update_staff', { state: row })}>Edit</button>
 
                   </td>
                 </tr>
