@@ -62,8 +62,12 @@ const AdDetails = () =>{
                 </div>
               </div>
               <div className='space2'></div>
-              <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
-            </div>
+
+              <div className='button-bar'>
+                <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
+                <button onClick={handlePrevious}> edit </button>
+              </div>           
+             </div>
               
           </div>
     );

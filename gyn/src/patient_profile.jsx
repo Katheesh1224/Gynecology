@@ -103,11 +103,9 @@ const Profile = () => {
         </div>
 
         <div className='button-bar'>
-        <button onClick={handlePrevious}>{"<<"} &nbsp; previous </button>
-        {/* <button onClick={fetchDataAndExportToExcel}>Export Data to Excel</button> */}
-        <div className="btn"><button style={{ backgroundColor: 'red' }} onClick={() => { handleDischarge(data.phone_no) }}>Discharge</button></div>
-
-        </div>
+          <button onClick={handlePrevious}>{"<<"} &nbsp; previous </button>
+          <button style={{ backgroundColor: 'red' }} onClick={() => { handleDischarge(data.phone_no) }}>Discharge</button>
+          </div>
       </div>
     </div>
   );
