@@ -26,7 +26,6 @@ function App() {
         <Routes>
           <Route path ='/' element={<Login/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
-          {/* <Route element = {<ProtectedRoute/>}> */}
             <Route path ='/home' element={<ProtectedRoute element={<Home/>}/>}></Route>          
             <Route path ='/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
             <Route path ='/patients_information' element={<ProtectedRoute element={<Patient/>}/>}></Route>
@@ -40,7 +39,6 @@ function App() {
             <Route path ='/patients_information/patient_profile/patient_admission/patient_visit' element={<ProtectedRoute element={<Visit/>}/>}></Route>
             <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_form' element={<ProtectedRoute element={<VisitForm/>}/>}></Route>        
             <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details' element={<ProtectedRoute element={<AdDetails/>}/>}></Route>
-          {/* </Route> */}
         </Routes>
 
       </BrowserRouter>

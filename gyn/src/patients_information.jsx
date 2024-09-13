@@ -123,10 +123,10 @@ const Patient = () => {
                     </div>
 
                     <div className='button-bar'>
-                        {page > 1 && (<button className='button_prev' onClick={handlePrevious}>Previous</button>)}
+                        {page > 1 && (<button className='button_prev' onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; Previous</button>)}
                         {page < 2 && (<button className='button_prev2' ></button>)}
                         <div className='next-bar'>
-                            {hasMoreData && (<button className='button_next' onClick={handleNext}>Next</button>)}
+                            {hasMoreData && (<button className='button_next' onClick={handleNext}>Next &nbsp;&nbsp; {">>"} </button>)}
                         </div>
                     </div>
                 </div>
