@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import {useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import '../home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser} from '@fortawesome/free-solid-svg-icons'
@@ -17,14 +16,14 @@ const NavBar = () =>{
     };
 
     return(
-        <nav class="navM">
-            <div class="containerN">
-                <h1 class="logo">
+        <nav className="navM">
+            <div className="containerN">
+                <h1 className="logo">
                 <a href="/home" className='a' style={{justifyContent:'left'}}>GYNECOLOGY</a>
                 </h1>
                 <UserPath/>
                 <ul>
-                    <li><a href="./" class=""><FontAwesomeIcon icon={faUser} /></a></li>
+                    <li><a href="./" className=""><FontAwesomeIcon icon={faUser} /></a></li>
                     <li>
                         <div>
                             <button onClick={handleLogout} class="buttonHome">Logout</button>

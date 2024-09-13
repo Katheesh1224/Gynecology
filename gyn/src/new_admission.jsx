@@ -1,6 +1,10 @@
 import './App.css';
 import './home.css';
+<<<<<<< HEAD
 import React, {useEffect, useState} from 'react';
+=======
+import React, {useState, useEffect} from 'react';
+>>>>>>> 570a26641f8844cd13fbaaaf26731b7e9831e855
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from './component/Nav.jsx';
@@ -8,9 +12,12 @@ import NavBar from './component/NavBar.jsx';
 
 
 const PAdd = () => {   
+<<<<<<< HEAD
     const navigate = useNavigate();
     let patient_phn=localStorage.getItem('patient_phn');
 
+=======
+>>>>>>> 570a26641f8844cd13fbaaaf26731b7e9831e855
 
     const [values,setValues] = useState({
         date:'',
@@ -73,6 +80,7 @@ const PAdd = () => {
         navigate('/patients_information/patient_profile/patient_admission')
     }
 
+<<<<<<< HEAD
     const handleDateChange = (e) => {
         const selectedDate = e.target.value;
         const currentDate = new Date().toISOString().split('T')[0];
@@ -125,14 +133,43 @@ const PAdd = () => {
             [name]: value,
           });console.log(value);
         }
+=======
+    const navigate = useNavigate();
+    let patient_id=localStorage.getItem('patient_id');
+
+    const [data, setData] = useState([]);
+      
+        useEffect(() => {
+          const fetchData = async () => {
+            try {
+              const response = await axios.get(`http://localhost:8081/about/${patient_id}`);
+              setData(response.data[0]);
+            } catch (error) {
+              console.error('Error fetching data:', error);
+            }
+          };
+      
+          fetchData();
+        }, []);
+>>>>>>> 570a26641f8844cd13fbaaaf26731b7e9831e855
 
     return (
         <div>
             <NavBar/>
             <Nav/>
             <div className="container">
+                <div className='heading'>
+                    <div className="input-field-phn">
+                        <label htmlFor="ward_no">PHN No. : </label>
+                        <input type="number"  value={data.phn}  readOnly />
+                    </div> 
+                    <h2>Patient Admission Registration</h2>
+                    <div className="input-field-add">
+                        <label htmlFor="ward_no">Admission No. : </label>
+                        <input type="number"  value=""  readOnly />
+                    </div>
 
-                <h2>Patient Admission Registration</h2>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form">
                         <div className="B">

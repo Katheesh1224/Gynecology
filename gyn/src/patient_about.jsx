@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate , useParams} from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
@@ -10,7 +10,6 @@ import NavBar from './component/NavBar.jsx';
 const About = () =>{
 
     const navigate = useNavigate();
-    // const { id } = useParams();
     let patient_id=localStorage.getItem('patient_id');
 
 
@@ -57,7 +56,10 @@ const About = () =>{
                 </div>                 
               </div>
               <div className='space2'></div>
-              <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
+              <div className='button-bar'>
+                <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
+                <button onClick={handlePrevious}> edit </button>
+              </div>
             </div>
               
           </div>
