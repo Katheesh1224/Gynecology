@@ -42,6 +42,7 @@ const Admission = () =>{
   const navigate = useNavigate();
   // const { id } = useParams();
   let patient_id=localStorage.getItem('patient_id');
+    
 
       const handlePrevious =() => {
         navigate(`/patients_information/patient_profile`);
@@ -65,6 +66,8 @@ const Admission = () =>{
       
           fetchData();
         }, []);
+
+        localStorage.setItem('patient_phn',data.phn);
       
 
     return(

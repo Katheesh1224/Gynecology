@@ -36,7 +36,7 @@ const PReg = () => {
         menarche_age:'',
         menopausal_age:'',
         lmp:'',
-        menstrual_cycle:'',        
+        menstrual_cycle:'',
         complaint:'',
         other:''
         // req.body.past_hist,
