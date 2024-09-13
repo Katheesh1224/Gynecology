@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import './home.css';
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
@@ -7,27 +7,31 @@ import NavBar from './component/NavBar.jsx';
 const Home = () =>{
     console.log("home rendered");
 
-    const [totalAdmitted, setTotalAdmitted] = useState(0);
-    const [currentPatients, setCurrentPatients] = useState(0);
-    const [dischargedPatients, setDischargedPatients] = useState(0);
+    // const [patientCounts, setPatientCounts] = useState({ admittedCount: 0, dischargedCount: 0 });
+    // const [loading, setLoading] = useState(true);
+    // const [error, setError] = useState(null);
 
-    // Example useEffect to fetch data (replace with your actual data fetching logic)
-    useEffect(() => {
-        // Simulated data fetching, replace with actual API calls
-        const fetchPatientCounts = async () => {
-            // Example data structure
-              const patientData = {
-                  totalAdmitted: 50,
-                  currentPatients: 25,
-                  dischargedPatients: 25
-              };
-            // Update state variables
-            setTotalAdmitted(patientData.totalAdmitted);
-            setCurrentPatients(patientData.currentPatients);
-            setDischargedPatients(patientData.dischargedPatients);
-        };
-        fetchPatientCounts();
-    }, []);
+    // useEffect(() => {
+    //   const fetchPatientCounts = async () => {
+    //     try {
+    //       const response = await fetch('/api/patient-counts');
+    //       if (!response.ok) {
+    //         throw new Error('Failed to fetch patient counts');
+    //       }
+    //       const data = await response.json();
+    //       console.log('Fetched Data:', data); // Log the data to check if it's correct
+    //       setPatientCounts(data);
+    //     } catch (err) {
+    //       setError(err.message);
+    //     } finally {
+    //       setLoading(false);
+    //     }
+    //   };
+    
+    //   fetchPatientCounts();
+    // }, []);
+    
+  
   return(
     <div className='wrapper'>
       <NavBar/>
@@ -40,15 +44,15 @@ const Home = () =>{
               <div className='container-home-middle'>
                 <div className='container-small-card'>
                   <div className='small-card'>
-                    <p className='amount'>{totalAdmitted}</p>
+                    {/* <p className='amount'>{totalAdmitted}</p> */}
                     <p className='title'>Admitted Patient Count</p>
                   </div>
                   <div className='small-card'>
-                    <p className='amount'>{currentPatients}</p>
+                    {/* <p className='amount'>{patientCounts.admittedCount}</p> */}
                     <p className='title'>Current Patient Count</p>
                   </div>
                   <div className='small-card'>
-                    <p className='amount'>{dischargedPatients}</p>
+                    {/* <p className='amount'>{patientCounts.dischargedCount}</p> */}
                     <p className='title'>Discharged Patient Count</p>
                   </div>
                 </div>
