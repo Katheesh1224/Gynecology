@@ -5,6 +5,8 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom'; 
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
+import { toast } from 'react-toastify'; // Import toast from react-toastify
+
 
 const PReg = () => {
     const navigate = useNavigate();
@@ -37,6 +39,7 @@ const PReg = () => {
         menopausal_age:'',
         lmp:'',
         menstrual_cycle:'',
+        add_count:'1',
         complaint:'',
         other:''
         // req.body.past_hist,
@@ -46,24 +49,34 @@ const PReg = () => {
         // past_obs:'',
     })
 
-    const handleSubmit =(e) =>{
-        console.log(e);
+    const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8081/reg',values)
-        .then(res =>{
-            console.log(res);
-         
-        })
-        .catch(err =>console.log(err))
-        navigate('/home')
-    }
+        axios.post('http://localhost:8081/reg', values)
+            .then(res => {
+                navigate('/home');
+                toast.success('Form submitted successfully!');
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+
+                let errorMessage = 'An unexpected error occurred.';
+                
+                if (err.response && err.response.data) {
+                    errorMessage = err.response.data.error || err.response.data.details || errorMessage;
+                }
+                toast.error(`There was an error submitting the form: ${errorMessage}`);
+            });
+    };
+    
     
       const handleDateChange = (e) => {
         const selectedDate = e.target.value;
         const currentDate = new Date().toISOString().split('T')[0];
     
         if (selectedDate > currentDate) {
-          alert('Please select a date and time that is not in the future.');
+            toast.error('Please select a date that is not in the future.');
+            //alert('Please select a date and time that is not in the future.');
         } else {
           setValues({ ...values, date: selectedDate });
         }
@@ -74,7 +87,8 @@ const PReg = () => {
         const currentDate = new Date().toISOString().split('T')[0];
     
         if (selectedDate > currentDate) {
-          alert('Please select a date and time that is not in the future.');
+            toast.error('Please select a date that is not in the future.');
+            //alert('Please select a date and time that is not in the future.');
         } else {
           setValues({ ...values, dob: selectedDate });
         }

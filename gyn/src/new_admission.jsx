@@ -1,10 +1,6 @@
 import './App.css';
 import './home.css';
-<<<<<<< HEAD
 import React, {useEffect, useState} from 'react';
-=======
-import React, {useState, useEffect} from 'react';
->>>>>>> 570a26641f8844cd13fbaaaf26731b7e9831e855
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from './component/Nav.jsx';
@@ -12,12 +8,9 @@ import NavBar from './component/NavBar.jsx';
 
 
 const PAdd = () => {   
-<<<<<<< HEAD
     const navigate = useNavigate();
     let patient_phn=localStorage.getItem('patient_phn');
 
-=======
->>>>>>> 570a26641f8844cd13fbaaaf26731b7e9831e855
 
     const [values,setValues] = useState({
         date:'',
@@ -44,7 +37,6 @@ const PAdd = () => {
         other:'',
         add_count:''
     })
-    const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -80,7 +72,6 @@ const PAdd = () => {
         navigate('/patients_information/patient_profile/patient_admission')
     }
 
-<<<<<<< HEAD
     const handleDateChange = (e) => {
         const selectedDate = e.target.value;
         const currentDate = new Date().toISOString().split('T')[0];
@@ -133,8 +124,6 @@ const PAdd = () => {
             [name]: value,
           });console.log(value);
         }
-=======
-    const navigate = useNavigate();
     let patient_id=localStorage.getItem('patient_id');
 
     const [data, setData] = useState([]);
@@ -151,7 +140,6 @@ const PAdd = () => {
       
           fetchData();
         }, []);
->>>>>>> 570a26641f8844cd13fbaaaf26731b7e9831e855
 
     return (
         <div>
