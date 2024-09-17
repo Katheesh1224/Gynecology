@@ -12,8 +12,6 @@ const MedHisEdit = () => {
     const navigate = useNavigate();
     let patient_phn=localStorage.getItem('patient_phn');
 
-    
-
     const [values,setValues] = useState({
         phn:'',
         allergy:'',
@@ -37,31 +35,38 @@ const MedHisEdit = () => {
     const fetchData = async () => {
         try {
             const response = await axios.get(`http://localhost:8081/readhx/${patient_phn}`);
-            const patient = response.data[0];
+            const {
+                phn, allergy, past_med, past_med_other,
+                past_surg, past_surg_other, hx_diseases,
+                hx_cancer, hx_cancer_other, height,
+                weight, menarche_age, menopausal_age,
+                lmp, menstrual_cycle
+            } = response.data[0];
+    
             setValues({
-                phn: patient.phn,
-                allergy: patient.allergy,
-                past_med: patient.past_med.split(', '),
-                past_med_other: patient.past_med_other,
-                past_surg: patient.past_surg.split(', '),
-                past_surg_other: patient.past_surg_other,
-                hx_diseases: patient.hx_diseases,
-                hx_cancer: patient.hx_cancer.split(', '),
-                hx_cancer_other: patient.hx_cancer_other,
-                height: patient.height,
-                weight: patient.weight,
-                menarche_age: patient.menarche_age,
-                menopausal_age: patient.menopausal_age,
-                lmp: patient.lmp,
-                menstrual_cycle: patient.menstrual_cycle
+                phn,
+                allergy,
+                past_med: past_med.split(', '),
+                past_med_other,
+                past_surg: past_surg.split(', '),
+                past_surg_other,
+                hx_diseases,
+                hx_cancer: hx_cancer.split(', '),
+                hx_cancer_other,
+                height,
+                weight,
+                menarche_age,
+                menopausal_age,
+                lmp,
+                menstrual_cycle,
+                other: '' // Keep 'other' in case it's used later
             });
-            console.log(values.allergy)
-
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error('Failed to fetch patient data.');
         }
     };
+    
 
     useEffect(() => {
         fetchData();
@@ -69,9 +74,9 @@ const MedHisEdit = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8081/reg', values)
+        axios.put(`http://localhost:8081/medicalUpdate/${patient_phn}`, values)
             .then(res => {
-                navigate('/home');
+                navigate(`/patients_information/patient_profile/patient_history`);
                 toast.success('Form submitted successfully!');
                 console.log(res);
             })
@@ -151,7 +156,7 @@ const MedHisEdit = () => {
                         
                             <div className="input-fieldN">
                                 <label htmlFor="phn">PHN No. : </label>
-                                <input type="text" placeholder="Enter number here" pattern="[0-9]{11}" maxLength={11} value={values.phn} onChange={e =>setValues({...values,phn:e.target.value})} required/>
+                                <input type="text" placeholder="Enter number here" pattern="[0-9]{11}" maxLength={11} value={values.phn} onChange={e =>setValues({...values,phn:e.target.value})} readOnly required/>
                             </div>                             
                         
                         

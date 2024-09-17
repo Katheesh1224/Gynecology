@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 
 const MedDetails = () =>{
-
+    // localStorage.setItem('patient_phn',data.phn);
     const navigate = useNavigate();
     let patient_phn=localStorage.getItem('patient_phn');
 
@@ -28,7 +28,6 @@ const MedDetails = () =>{
             try {
               const response = await axios.get(`http://localhost:8081/admisiondetail/${patient_phn}`);
               setData(response.data[0]);
-              console.log(data);
             } catch (error) {
               console.error('Error fetching data:', error);
 
@@ -37,6 +36,8 @@ const MedDetails = () =>{
       
           fetchData();
         }, [patient_phn]);
+
+        
       
 
     return(

@@ -10,9 +10,7 @@ import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 const PEdit = () => {
     const navigate = useNavigate();
-    let patient_id=localStorage.getItem('patient_id');
-
-    
+    let patient_id=localStorage.getItem('patient_id');    
 
     const [values,setValues] = useState({
         fname:'',

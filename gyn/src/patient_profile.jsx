@@ -17,6 +17,11 @@ const Profile = () => {
     navigate('/patients_information');
   };
 
+  function assign(roe){
+    localStorage.setItem('patient_phn',roe);
+    navigate(`/patients_information/patient_profile/patient_history`);
+}
+
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -82,7 +87,7 @@ const Profile = () => {
           </div>
 
           <div className="cd">
-            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_history`} role="button">
+            <div className="face face1" onClick={()=>assign(data.phn)}  role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faBookMedical} />
                 <h3>History</h3>
