@@ -308,7 +308,7 @@ const PReg = () => {
                                 <label htmlFor="LSCS">Lower Segment Cesarian Section LSCS</label>
                                 <input type="checkbox" id="LRT" name="past_surg" value="Tubal ligation" onChange={handleInputChange}/>
                                 <label htmlFor="LRT">L Rproscopic Tubal ligation (LRT)</label>
-                                <input type="checkbox" id="hysterectomy" name="past_surg" value=">Total abdominal hysterectomy" onChange={handleInputChange}/>
+                                <input type="checkbox" id="hysterectomy" name="past_surg" value="Total abdominal hysterectomy" onChange={handleInputChange}/>
                                 <label htmlFor="hysterectomy">Total abdominal hysterectomy</label>
                                 <input type="checkbox" id="myomectomy" name="past_surg" value="Laparoscopic myomectomy" onChange={handleInputChange}/>
                                 <label htmlFor="myomectomy">Laparoscopic myomectomy</label>

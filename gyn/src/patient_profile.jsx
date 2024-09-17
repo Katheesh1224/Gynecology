@@ -43,11 +43,6 @@ const Profile = () => {
     }
   };
 
-  const handleClick = ( ) => {
-    navigate('/patients_information/patient_profile/patient_about');
-  };
-
-
   return (
     <div className="">
       <NavBar/>
@@ -87,7 +82,7 @@ const Profile = () => {
           </div>
 
           <div className="cd">
-            <div className="face face1" onClick={handleClick} role="button">
+            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_history`} role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faBookMedical} />
                 <h3>History</h3>
@@ -96,7 +91,7 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains past admission and medical history of this patient.</p>
-                <a href="/patient_profile" type="button">Show</a>
+                <a href={`/patients_information/patient_profile/patient_history`} type="button">Show</a>
               </div>
             </div>
           </div>
