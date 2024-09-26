@@ -1,10 +1,12 @@
-import './App.css';
-import './home.css';
+import '../App.css';
+import '../home.css';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
-import Nav from './component/Nav.jsx';
-import NavBar from './component/NavBar.jsx';
+import Nav from '../Component/Nav.jsx';
+import NavBar from '../Component/NavBar.jsx';
+import { toast } from 'react-toastify';
+
 
 const AdEdit = () => {   
     const navigate = useNavigate();
@@ -48,6 +50,7 @@ const AdEdit = () => {
             console.log(patient.ward);
         } catch (error) {
             console.error('Error fetching data:', error);
+            toast.error('Failed to fetch patient data.');
         }
         };
 
@@ -63,9 +66,18 @@ const AdEdit = () => {
         .then(res =>{
             console.log(res);
             navigate('/patients_information/patient_profile/patient_admission')
+            toast.success('Form updated successfully!');
         })
-        .catch(err =>console.log(err))
-    }
+        .catch(err => {
+            console.log(err);
+
+            let errorMessage = 'An unexpected error occurred.';
+            
+            if (err.response && err.response.data) {
+                errorMessage = err.response.data.error || err.response.data.details || errorMessage;
+            }
+            toast.error(`There was an error submitting the form: ${errorMessage}`);
+        });    }
 
     const handleDateChange = (e) => {
         const selectedDate = e.target.value;

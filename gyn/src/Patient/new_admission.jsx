@@ -1,14 +1,15 @@
-import './App.css';
-import './home.css';
+import '../App.css';
+import '../home.css';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
-import Nav from './component/Nav.jsx';
-import NavBar from './component/NavBar.jsx';
+import Nav from '../Component/Nav.jsx';
+import NavBar from '../Component/NavBar.jsx';
 
 
 const PAdd = () => {   
     const navigate = useNavigate();
+
     let patient_phn=localStorage.getItem('patient_phn');
 
     const [values,setValues] = useState({
@@ -19,6 +20,8 @@ const PAdd = () => {
         consultant:'',
         add_count:''
     })
+
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -63,25 +66,7 @@ const PAdd = () => {
         } else {
           setValues({ ...values, date: selectedDate });
         }
-      };
-
-    // let patient_id=localStorage.getItem('patient_id');
-
-    const [data, setData] = useState([]);
-      
-        // useEffect(() => {
-        //   const fetchData = async () => {
-        //     try {
-        //       const response = await axios.get(`http://localhost:8081/require_count/${patient_id}`);
-        //       setData(response.data[0]);
-        //       data.add_count+=1;
-        //     } catch (error) {
-        //       console.error('Error fetching data:', error);
-        //     }
-        //   };
-      
-        //   fetchData();
-        // }, []);
+    };
 
     return (
         <div>
@@ -106,7 +91,6 @@ const PAdd = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="form">
                         <div className="B">
-
                             <span className="title">Section B - Admission details</span>
                             <div className="fields1">
                                 <div className="input-field" >
@@ -145,12 +129,12 @@ const PAdd = () => {
                             </div>
                         </div>
                     </div>
-
-                    <div className="btn1"><button type="submit">Register</button></div>
-                    
+                    <div className="btn1"><button type="submit">Register</button></div>    
                 </form>
             </div>
         </div>
     )
 }
+
+
 export default PAdd;
