@@ -20,14 +20,14 @@ const UserPath = () => {
     'patient_admission': 'Patient Admission',
     'patient_admission_details': 'Patient Admission Details',
 
-    'update_staff':'Update Staff',
+    'update_staff':'UpdateStaff',
     'new_admission':'New Admission',
 
   };
 
   return (
     <nav className="breadcrumb">
-      <Link to="/home">Dashboard</Link>
+      <Link to="/home">Home</Link>
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useNavigate , useParams} from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import { useState,useEffect } from 'react';
@@ -10,19 +10,23 @@ import NavBar from './component/NavBar.jsx';
 const About = () =>{
 
     const navigate = useNavigate();
-    const { id } = useParams();
+    let patient_id=localStorage.getItem('patient_id');
 
-
-      const handlePrevious = async () => {
-        navigate(`/patients_information/patient_profile/${data.id}`);
+    const handleEdit= () =>{
+      navigate(`/patients_information/patient_profile/patient_about/patient_edit`);
+    }
+      const handlePrevious = () => {
+        navigate(`/patients_information/patient_profile`);
       };
+
+    
 
         const [data, setData] = useState([]);
       
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get(`http://localhost:8081/about/${id}`);
+              const response = await axios.get(`http://localhost:8081/about/${patient_id}`);
               setData(response.data[0]);
             } catch (error) {
               console.error('Error fetching data:', error);
@@ -30,7 +34,7 @@ const About = () =>{
           };
       
           fetchData();
-        }, [id]);
+        }, []);
       
 
     return(
@@ -56,7 +60,10 @@ const About = () =>{
                 </div>                 
               </div>
               <div className='space2'></div>
-              <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
+              <div className='button-bar'>
+                <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
+                <button onClick={handleEdit}> edit </button>
+              </div>
             </div>
               
           </div>

@@ -11,35 +11,52 @@ const VisitForm = () => {
     const navigate = useNavigate();
     const [value, setValue] = useState('');
     const [values,setValues] = useState({
-        date:'',
-        time:'',
-        fname:'',
-        address:'',
-        bloodgr:'',
-        dob:'',
-        status:'',
-        nic:'',
         phn:'',
-        tp:'',
-        bht:'',
-        ward:'21',
-        consultant:'',
-        height:'',
-        weight:'',
-        past_med:[],
-        complaint:'',
-        past_surg:'',
-        past_hist:'',
-        past_obs:'',
-        other:'',
-        diagnosis:'',
-        allergy:''
+        visit_id:'',
+        date:'',
+        visit_no:'',
+        seenBy:'',
+        time:'',
+        complaints:[],
+        abnormalUlerine:[],
+        otherComplaint:'',
+        bpa:'',
+        bpb:'',
+        pr:'',
+        abdominalExam:'',
+        gynaecologyExam:'',
+        wbc:'',
+        hb:'',
+        plate:'',
+        whiteCell:'',
+        redCell:'',
+        protein:'',
+        seK:'',
+        seNa:'',
+        crp:'',
+        fbs:'',
+        ppbsAB:'',
+        ppbsAL:'',
+        ppbsAD:'',
+        lftALT:'',
+        lftAST:'',
+        lftOther:'',
+        mri:'',
+        ct:'',
+        tas:'',
+        tus:'',
+        minorEua:'',
+        minorEb:'',
+        major:[],
+        medicalManage:'',
+        surgicalManage:'',
+        followUp:''
     })
 
     const handleSubmit =(e) =>{
         console.log(e);
         e.preventDefault();
-        axios.post('http://localhost:8081/reg',values)
+        axios.post('http://localhost:8081/treat',values)
         .then(res =>{
             console.log(res);
          
@@ -203,34 +220,6 @@ const VisitForm = () => {
                         </div>
                        
                     </div>
-                    {/* <div className="fields1">
-                    <div className="input-field">
-                                <label htmlFor="Select_head">Head : </label>
-                                <select name="Head" id="head"  onChange={handleBloodGroupChange} value={values.bloodgr} required>
-                                    <option value="">Select Head</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                </select>
-                            </div>
-                        <div className="input-field">
-                        
-                        </div> 
-                        <div className="input-field">
-                        
-                        </div> 
-                        <div className="input-field">
-                            <label htmlFor="Head">Head: </label>
-                            <input type="number"  title="Only alphabets are allowed" placeholder="value/5" onChange={e =>setValues({...values,fname:e.target.value})} required/>
-                        </div> 
-
-
-                    </div> */}
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Examination">Abdominal Examination : </label>
@@ -400,98 +389,9 @@ const VisitForm = () => {
                             </div> 
                         </div>
                     </div>
-                    <span className="title">Management</span>
-                    <div className="fields1">
-                        <div className="input-field" onload="setMaxDate()">
-                                <label htmlFor="Scan">  Minor :  </label>
-                            </div>&emsp;
-                        <div className="input-field">
-                                <label htmlFor="AB"> EUA : </label>
-                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
-                            </div>
-                            <div className="input-field">
-                                <label htmlFor="AL"> EB : </label>
-                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
-                            </div> 
-                        </div>
-
-                        <div className="fields1">
-                        <div className="input-field" onload="setMaxDate()">
-                                <label htmlFor="Scan">  Major :  </label>
-                            </div>&emsp;&emsp;
-                        </div>
-                        <div className="fields">
-                        <div className="input-fieldM">
-                                <input type="checkbox" id="BL/LRT" name="past_med" value="BL/LRT"/>
-                                <label for="BL/LRT">BL/LRT</label>
-                                <input type="checkbox" id="TAH" name="past_med" value="TAH"/>
-                                <label for="TAH">TAH</label>
-                                </div>
-                            <div className="input-fieldM">
-                                <input type="checkbox" id="BSO" name="past_med" value="BSO"/>
-                                <label for="BSO">BSO </label>
-                                <input type="checkbox" id="Myomectomy" name="past_med" value="Myomectomy"/>
-                                <label for="Myomectomy">Myomectomy</label>
-                                </div>
-                                
-                            <div className="input-fieldM">
-                                <input type="checkbox" id="Polpectomy" name="past_med" value="Polpectomy"/>
-                                <label for="Polpectomy">Polpectomy</label>
-                                </div>
-                                
-                            
-                            </div>
+                    <span className="title">Management</span>                                                  
                     <div className="A">
-                        {/* <span className="title">Management</span> */}
-                        {/* <div className="fields">
-                            <div className="input-fieldM">
-                                <input type="checkbox" id="EL|LSCS" name="Decision" value="EL|LSCS"/>
-                                <label for="EL|LSCS">EL|LSCS</label>
-                                <input type="checkbox" id="Introduction of Labour" name="Decision" value="Introduction of Labour"/>
-                                <label for="DribIntroduction of Labourbiling">Introduction of Labour</label>
-                                
-                                </div>
-                            <div className="input-fieldM">
-                                <input type="checkbox" id="EM|LSCS" name="Decision" value="EM|LSCS"/>
-                                <label for="EM|LSCS">EM|LSCS</label>
-                                <input type="checkbox" id="Augmentation of Labour" name="Decision" value="Augmentation of Labour"/>
-                                <label for="Augmentation of Labour">Augmentation of Labour</label>
-                                
-                                </div>
-                                
-                            <div className="input-fieldM">
-                                <input type="checkbox" id="Blood transfusion" name="Decision" value="Blood transfusion"/>
-                                <label for="Blood transfusion">Blood transfusion</label>
-                               <input type="checkbox" id="ARM" name="Decision" value="ARM"/>
-                                <label for="ARM">ARM</label>
-                                
-                                </div>
-                                
-                            <div className="input-fieldM">
-                                <input type="checkbox" id="Continue MNT" name="Decision" value="Continue MNT" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="Continue MNT">Continue MNT</label>
-                                <input type="checkbox" id="Blood Sugar Series" name="Decision" value="Blood Sugar Series" onChange={e =>setValues({...values,past_med:e.target.value})}/>
-                                <label for="Blood Sugar Series">Blood Sugar Series</label>   
-                            </div>
-                            </div>
                         <div className="fields">
-                            <div className="input-fieldM">
-                                <input type="checkbox" id="Keep" name="Decision" value="Keep"/>
-                                <label for="Keep">Keep</label>
-                            </div>
-                                <div className="input-fieldM">
-                                <input type="checkbox" id="Continue same management" name="Decision" value="Continue same management"/>
-                                <label for="Continue same management">Continue same management</label>
-                            </div>
-                        </div>
-                        <div className="fields">
-                            <div className="input-field">
-                                <label htmlFor="Others">Others : </label>
-                                <textarea id="Decision" placeholder="Enter text here" name="Decision" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
-                            </div> 
-                        </div>
-                            <br/> */}
-                            <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Others">Medical management : </label>
                                 <textarea id="Decision" placeholder="Enter text here" name="medical" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
@@ -500,6 +400,7 @@ const VisitForm = () => {
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Others">Surgical management : </label>
+                                <textarea id="Decision" placeholder="Enter text here" name="medical" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
                             </div> 
                         </div>
                     </div>
@@ -507,43 +408,41 @@ const VisitForm = () => {
                     <div className="fields1">
                         <div className="input-field" onload="setMaxDate()">
                                 <label htmlFor="Scan">  Minor :  </label>
-                            </div>&emsp;
+                        </div>&emsp;
                         <div className="input-field">
-                                <label htmlFor="AB"> EUA : </label>
-                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
-                            </div>
-                            <div className="input-field">
-                                <label htmlFor="AL"> EB : </label>
-                                <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
-                            </div> 
+                            <label htmlFor="AB"> EUA : </label>
+                            <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
                         </div>
+                        <div className="input-field">
+                            <label htmlFor="AL"> EB : </label>
+                            <input type="text"  onChange={e =>setValues({...values,time:e.target.value})} required/>
+                        </div> 
+                    </div>
 
                         <div className="fields1">
                         <div className="input-field" onload="setMaxDate()">
                                 <label htmlFor="Scan">  Major :  </label>
                             </div>&emsp;&emsp;
-                        </div>
+                    </div>
                         <div className="fields">
-                        <div className="input-fieldM">
+                            <div className="input-fieldM">
                                 <input type="checkbox" id="BL/LRT" name="past_med" value="BL/LRT"/>
                                 <label for="BL/LRT">BL/LRT</label>
                                 <input type="checkbox" id="TAH" name="past_med" value="TAH"/>
                                 <label for="TAH">TAH</label>
-                                </div>
+                            </div>
                             <div className="input-fieldM">
                                 <input type="checkbox" id="BSO" name="past_med" value="BSO"/>
                                 <label for="BSO">BSO </label>
                                 <input type="checkbox" id="Myomectomy" name="past_med" value="Myomectomy"/>
                                 <label for="Myomectomy">Myomectomy</label>
-                                </div>
+                            </div>
                                 
                             <div className="input-fieldM">
                                 <input type="checkbox" id="Polpectomy" name="past_med" value="Polpectomy"/>
                                 <label for="Polpectomy">Polpectomy</label>
-                                </div>
-                                
-                            
-                            </div>
+                            </div>  
+                        </div>
                 </div>
                 <div className="btn1" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'#512da8'}} >Submit</button></div>
                 <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}} onClick={()=>{navigate('/home');}}>Cancel</button></div>

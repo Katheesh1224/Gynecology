@@ -169,7 +169,6 @@ const RegisterStaff = () => {
               onChange={handleChange}
             >
               <option value="active">Active</option>
-              <option value="pending">Pending</option>
               <option value="inactive">Inactive</option>
             </select>
           </div>
