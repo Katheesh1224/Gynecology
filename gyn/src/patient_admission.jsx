@@ -1,123 +1,111 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import { useState,useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from './component/Nav.jsx';
 import NavBar from './component/NavBar.jsx';
 import ProfileCard from './component/profileCard.jsx';
 
-
-const Card = ({ title }) => (
-  <div class="cd">
-    <div class="face face1">
-      <div class="content">
-        <FontAwesomeIcon icon={faFilePen} />              
+const Card = ({ title, index, onClick }) => (
+  <div className="cd" onClick={() => onClick(index)}>
+    <div className="face face1">
+      <div className="content">
+        <FontAwesomeIcon icon={faFilePen} />
         <h3>{title}</h3>
       </div>
     </div>
-    <div class="face face2">
-      <div class="content">
-        <p> This feature contains details of {title}.</p>
+    <div className="face face2">
+      <div className="content">
+        <p>This feature contains details of {title}.</p>
         <a href="./patient_day" type="button">Show</a>
       </div>
     </div>
   </div>
 );
 
-
-
-const Admission = () =>{
-
+const Admission = () => {
   const [cards, setCards] = useState([]);
+  const navigate = useNavigate();
+  const patient_id = localStorage.getItem('patient_id');
+  // const patient_phn = localStorage.getItem('patient_phn');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch patient data
+        const patientResponse = await axios.get(`http://localhost:8081/patientda/${patient_id}`);
+        const patientData = patientResponse.data[0]; // Assuming data is an array
+
+        // Set PHN to local storage if needed
+        localStorage.setItem('patient_phn', patientData.phn);
+
+        // Fetch admissions based on PHN
+        const admissionsResponse = await axios.get(`http://localhost:8081/admissions/${patientData.phn}`);
+        const admissions = admissionsResponse.data; // Assuming this is an array of admissions
+
+        // Generate card titles based on the number of admissions
+        const admissionTitles = admissions.map((_, index) => `Admission ${index + 1}`);
+        setCards(admissionTitles);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [patient_id]);
 
   const addCard = () => {
-    const newCardTitle = `Admission ${cards.length + 2}`;
-    setCards([...cards, newCardTitle]);
-    navigate('/patients_information/patient_profile/patient_admission/new_admission');
+    setCards((prevCards) => {
+      const newCardTitle = `Admission ${prevCards.length + 2}`;
+      navigate('/patients_information/patient_profile/patient_admission/new_admission');
+      return [...prevCards, newCardTitle];
+    });
   };
 
-  const navigate = useNavigate();
-  // const { id } = useParams();
-  let patient_id=localStorage.getItem('patient_id');
+  const handlePrevious = () => {
+    navigate(`/patients_information/patient_profile`);
+  };
 
-      const handlePrevious =() => {
-        navigate(`/patients_information/patient_profile`);
-      };
+  const showAdmission = (index) => {
+    // Set localStorage with the index of the admission clicked
+    localStorage.setItem('addCount', index+1);
+    navigate(`/patients_information/patient_profile/patient_admission/patient_visit`);
+  };
 
-      const showAdmission =() => {
-        navigate(`/patients_information/patient_profile/patient_admission/patient_visit`);
-      };
+  return (
+    <div>
+      <NavBar />
+      <Nav />
+      <div className='card'>
+        <h2>Patient Admission</h2>
+        <ProfileCard />
+        <div className="cntner">
+          {cards.map((card, index) => (
+            <Card key={index} title={card} index={index} onClick={showAdmission} />
+          ))}
 
-        const [data, setData] = useState([]);
-      
-        useEffect(() => {
-          const fetchData = async () => {
-            try {
-              const response = await axios.get(`http://localhost:8081/patientda/${patient_id}`);
-              setData(response.data[0]);
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-      
-          fetchData();
-        }, []);
-      
-
-    return(
-        <div className="">
-          <NavBar/>
-          <Nav/>
-            <div className='card'>
-              <h2> Patient Admission</h2>
-              <ProfileCard/>
-            
-              <div class="cntner">
-                  {cards.map((card, index) => (
-                    <Card key={index} title={card} />
-                  ))}
-
-                <div class="cd">
-                  <div class="face face1" onClick={showAdmission}>
-                    <div class="content">
-                      <FontAwesomeIcon icon={faFilePen} />              
-                      <h3>Admission 1</h3>
-                    </div>
-                  </div>
-                  <div class="face face2">
-                    <div class="content">
-                      <p> This feature contains admission details of this patient.</p>
-                      <a href="./patient_day" type="button">Show</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="cd">
-                  <div class="face face1" onClick={addCard}>
-                    <div class="content">
-                      <FontAwesomeIcon icon={faSquarePlus} />              
-                      <h3>New Admission</h3>
-                    </div>
-                  </div>
-                  <div class="face face2">
-                    <div class="content">
-                      <p> This feature contains adding a new Admission.</p>
-                      <a href="./patient_day" type="button">Add</a>
-                    </div>
-                  </div>
-                </div>
-              </div> 
-
-              <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
-            </div> 
-              
+          <div className="cd">
+            <div className="face face1" onClick={addCard}>
+              <div className="content">
+                <FontAwesomeIcon icon={faSquarePlus} />
+                <h3>New Admission</h3>
+              </div>
+            </div>
+            <div className="face face2">
+              <div className="content">
+                <p>This feature contains adding a new Admission.</p>
+                <a href="./patient_day" type="button">Add</a>
+              </div>
+            </div>
           </div>
-    );
+        </div>
+
+        <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
+      </div>
+    </div>
+  );
 }
 
 export default Admission;
-
-

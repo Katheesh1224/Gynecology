@@ -12,10 +12,14 @@ const About = () =>{
     const navigate = useNavigate();
     let patient_id=localStorage.getItem('patient_id');
 
-
+    const handleEdit= () =>{
+      navigate(`/patients_information/patient_profile/patient_about/patient_edit`);
+    }
       const handlePrevious = () => {
         navigate(`/patients_information/patient_profile`);
       };
+
+    
 
         const [data, setData] = useState([]);
       
@@ -58,7 +62,7 @@ const About = () =>{
               <div className='space2'></div>
               <div className='button-bar'>
                 <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
-                <button onClick={handlePrevious}> edit </button>
+                <button onClick={handleEdit}> edit </button>
               </div>
             </div>
               
