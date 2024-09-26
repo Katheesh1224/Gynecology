@@ -1,0 +1,175 @@
+import './App.css';
+import './home.css';
+import React, {useState,useEffect} from 'react';
+import axios from 'axios';
+import {useNavigate } from 'react-router-dom'; 
+import Nav from './component/Nav.jsx';
+import NavBar from './component/NavBar.jsx';
+import { toast } from 'react-toastify'; // Import toast from react-toastify
+
+
+const PEdit = () => {
+    const navigate = useNavigate();
+    let patient_id=localStorage.getItem('patient_id');    
+
+    const [values,setValues] = useState({
+        fname:'',
+        address:'',
+        bloodgr:'',
+        dob:'',
+        status:'',
+        nic:'',
+        phn:'',
+        tp:''
+    })
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8081/read/${patient_id}`);
+            const patient = response.data[0];
+            setValues({
+                fname: patient.full_name,
+                address: patient.address,
+                bloodgr: patient.blood_gr,
+                dob: formatDateForInput(patient.dob),
+                status: patient.marrital_status,
+                nic: patient.nic,
+                phn: patient.phn,
+                tp:patient.phone_no  
+            });
+
+        } catch (error) {
+            console.log(error);
+            toast.error('Failed to fetch patient data.');
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const formatDateForInput = (isoDate) => {
+        const date = new Date(isoDate);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.put(`http://localhost:8081/patientUpdate/${patient_id}`, values); // Changed to PUT
+            navigate('/patients_information/patient_profile/patient_about');
+            toast.success('Form updated successfully!');
+        } catch (err) {
+            console.error(err);
+            let errorMessage = 'An unexpected error occurred.';
+            if (err.response && err.response.data) {
+                errorMessage = err.response.data.error || err.response.data.details || errorMessage;
+            }
+            toast.error(`There was an error updating the form: ${errorMessage}`);
+        }
+    };
+
+      const handleDateofbirthChange = (e) => {
+        const selectedDate = e.target.value;
+        const currentDate = new Date().toISOString().split('T')[0];
+    
+        if (selectedDate > currentDate) {
+            toast.error('Please select a date that is not in the future.');
+            //alert('Please select a date and time that is not in the future.');
+        } else {
+          setValues({ ...values, dob: selectedDate });
+        }
+      };
+
+      const handleBloodGroupChange = (e) => {
+        setValues({
+          ...values,
+          bloodgr: e.target.value,
+        });
+      };    
+    
+
+    return (
+        <div className='wrapper'>
+            <NavBar/>
+            <div className='main-content'>
+                <div className='side-bar'>
+                    <Nav/>
+                </div>
+                
+
+        <div className="container">
+
+            <h2>Patient Registration</h2>
+            <form onSubmit={handleUpdate}>
+                <div className="form">
+                    <div className="A">
+                        <span className="title">Section A - Personal details identification</span>
+
+                        <div className="fields">
+                            <div className="input-field">
+                                <label htmlFor="full_name">Fullname : </label>
+                                <input type="text" pattern="[A-Za-z]+" value={values.fname} title="Only alphabets are allowed" placeholder="Enter text here" onChange={e =>setValues({...values,fname:e.target.value})} required/>
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor="address">Address : </label>
+                                <input type="text" placeholder="Enter text here" value={values.address} onChange={e =>setValues({...values,address:e.target.value})} required/>
+                            </div>                             
+                        </div>
+
+                        <div className="fields">
+                            <div className="input-fieldN">
+                                <label htmlFor="blood_gr">Blood Group : </label>
+                                <select name="blood_gr" id="blood_gr" onChange={handleBloodGroupChange}
+                                    value={values.bloodgr} required>
+                                    <option value="">Select here</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                            <div className="input-fieldN" >
+                                <label htmlFor="dob">Date of Birth : </label>
+                                <input type="date" placeholder="Enter number here" onChange={handleDateofbirthChange} value={values.dob} required/>
+                            </div>   
+                            <div className="input-fieldN">
+                                <label htmlFor="marrital_status">Marrital Status : </label>
+                                <select name="marrital_status" id="marrital_status" onChange={e =>setValues({...values,status:e.target.value})} value={values.status} required>
+                                    <option value="married">Married</option>
+                                    <option value="unmarried">Unmarried</option>
+                                </select>
+                            </div> 
+                            <div className="input-fieldN">
+                                <label htmlFor="nic">NIC No. : </label>
+                                <input type="text" placeholder="Enter number here" value={values.nic} pattern="(^[0-9]{12}$)|(^[0-9]{9}[v]$)" maxLength="12" onChange={e =>setValues({...values,nic:e.target.value})}/>
+                            </div>
+                            <div className="input-fieldN">
+                                <label htmlFor="phn">PHN No. : </label>
+                                <input type="text" placeholder="Enter number here" value={values.phn} pattern="[0-9]{11}" maxLength={11} onChange={e =>setValues({...values,phn:e.target.value})} required/>
+                            </div>   
+                            <div className="input-fieldN">
+                                <label htmlFor="phone_no">Telephone No. : </label>
+                                <input type="tel" pattern="[0-9]{10}" value={values.tp} placeholder="Enter number here" maxLength="10" onChange={e =>setValues({...values,tp:e.target.value})} required/>
+                            </div>                             
+                        </div>
+                        
+                    </div>
+                    </div>
+
+                    <div className="btn1"><button type="submit">Update</button></div>
+                
+            </form>
+        </div>
+        </div>
+        </div>
+    )
+}
+export default PEdit;
