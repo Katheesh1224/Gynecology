@@ -11,35 +11,52 @@ const VisitForm = () => {
     const navigate = useNavigate();
     const [value, setValue] = useState('');
     const [values,setValues] = useState({
-        date:'',
-        time:'',
-        fname:'',
-        address:'',
-        bloodgr:'',
-        dob:'',
-        status:'',
-        nic:'',
         phn:'',
-        tp:'',
-        bht:'',
-        ward:'21',
-        consultant:'',
-        height:'',
-        weight:'',
-        past_med:[],
-        complaint:'',
-        past_surg:'',
-        past_hist:'',
-        past_obs:'',
-        other:'',
-        diagnosis:'',
-        allergy:''
+        visit_id:'',
+        date:'',
+        visit_no:'',
+        seenBy:'',
+        time:'',
+        complaints:[],
+        abnormalUlerine:[],
+        otherComplaint:'',
+        bpa:'',
+        bpb:'',
+        pr:'',
+        abdominalExam:'',
+        gynaecologyExam:'',
+        wbc:'',
+        hb:'',
+        plate:'',
+        whiteCell:'',
+        redCell:'',
+        protein:'',
+        seK:'',
+        seNa:'',
+        crp:'',
+        fbs:'',
+        ppbsAB:'',
+        ppbsAL:'',
+        ppbsAD:'',
+        lftALT:'',
+        lftAST:'',
+        lftOther:'',
+        mri:'',
+        ct:'',
+        tas:'',
+        tus:'',
+        minorEua:'',
+        minorEb:'',
+        major:[],
+        medicalManage:'',
+        surgicalManage:'',
+        followUp:''
     })
 
     const handleSubmit =(e) =>{
         console.log(e);
         e.preventDefault();
-        axios.post('http://localhost:8081/reg',values)
+        axios.post('http://localhost:8081/treat',values)
         .then(res =>{
             console.log(res);
          
@@ -203,34 +220,6 @@ const VisitForm = () => {
                         </div>
                        
                     </div>
-                    {/* <div className="fields1">
-                    <div className="input-field">
-                                <label htmlFor="Select_head">Head : </label>
-                                <select name="Head" id="head"  onChange={handleBloodGroupChange} value={values.bloodgr} required>
-                                    <option value="">Select Head</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                </select>
-                            </div>
-                        <div className="input-field">
-                        
-                        </div> 
-                        <div className="input-field">
-                        
-                        </div> 
-                        <div className="input-field">
-                            <label htmlFor="Head">Head: </label>
-                            <input type="number"  title="Only alphabets are allowed" placeholder="value/5" onChange={e =>setValues({...values,fname:e.target.value})} required/>
-                        </div> 
-
-
-                    </div> */}
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Examination">Abdominal Examination : </label>
@@ -411,6 +400,7 @@ const VisitForm = () => {
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="Others">Surgical management : </label>
+                                <textarea id="Decision" placeholder="Enter text here" name="medical" rows="3" cols="50" onChange={e =>setValues({...values,allergy:e.target.value})}></textarea>
                             </div> 
                         </div>
                     </div>

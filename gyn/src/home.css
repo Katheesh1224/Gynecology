@@ -209,7 +209,7 @@ ul li a {
   
   .button_next{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     background-color: #512da8;
     color: rgb(255, 255, 255);
     font-size: 12px;

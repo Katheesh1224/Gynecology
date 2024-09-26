@@ -17,6 +17,11 @@ const Profile = () => {
     navigate('/patients_information');
   };
 
+  function assign(roe){
+    localStorage.setItem('patient_phn',roe);
+    navigate(`/patients_information/patient_profile/patient_history`);
+}
+
   const [data, setData] = useState({});
 
   useEffect(() => {
@@ -42,11 +47,6 @@ const Profile = () => {
       console.error('Error fetching data:', error);
     }
   };
-
-  const handleClick = ( ) => {
-    navigate('/patients_information/patient_profile/patient_about');
-  };
-
 
   return (
     <div className="">
@@ -87,7 +87,7 @@ const Profile = () => {
           </div>
 
           <div className="cd">
-            <div className="face face1" onClick={handleClick} role="button">
+            <div className="face face1" onClick={()=>assign(data.phn)}  role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faBookMedical} />
                 <h3>History</h3>
@@ -96,7 +96,7 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains past admission and medical history of this patient.</p>
-                <a href="/patient_profile" type="button">Show</a>
+                <a href={`/patients_information/patient_profile/patient_history`} type="button">Show</a>
               </div>
             </div>
           </div>

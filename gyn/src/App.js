@@ -17,6 +17,10 @@ import UpdateStaff from './Staff/update_staff.jsx';
 import Visit from './patient_visit.jsx';
 import { AuthProvider} from './AuthContext';
 import ProtectedRoute from './ProtectedRoute';
+import PEdit from './patient_edit.jsx';
+import MedDetails from './patient_medical_hx.jsx';
+import MedHisEdit from './patient_medicalhx_edit.jsx';
+import AdEdit from './patient_admission_details_edit.jsx';
 
 function App() {
   return (
@@ -34,11 +38,16 @@ function App() {
             <Route path ='/staff_information/update_staff' element={<ProtectedRoute element={<UpdateStaff/>}/>}></Route>
             <Route path ='/patients_information/patient_profile' element={<ProtectedRoute element={<Profile/>}/>}></Route>
             <Route path ='/patients_information/patient_profile/patient_about' element={<ProtectedRoute element={<About/>}/>}></Route>
+            <Route path ='/patients_information/patient_profile/patient_about/patient_edit' element={<ProtectedRoute element={<PEdit/>}/>}></Route>
             <Route path ='/patients_information/patient_profile/patient_admission' element={<ProtectedRoute element={<Admission/>}/>}></Route>
+            <Route path ='/patients_information/patient_profile/patient_history' element={<ProtectedRoute element={<MedDetails/>}/>}></Route>
+            <Route path ='/patients_information/patient_profile/patient_history/patient_medicalhx_edit' element={<ProtectedRoute element={<MedHisEdit/>}/>}></Route>
             <Route path ='/patients_information/patient_profile/patient_admission/new_admission' element={<ProtectedRoute element={<PAdd/>}/>}></Route>  
             <Route path ='/patients_information/patient_profile/patient_admission/patient_visit' element={<ProtectedRoute element={<Visit/>}/>}></Route>
             <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_form' element={<ProtectedRoute element={<VisitForm/>}/>}></Route>        
             <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details' element={<ProtectedRoute element={<AdDetails/>}/>}></Route>
+            <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details/patient_admission_details_edit' element={<ProtectedRoute element={<AdEdit/>}/>}></Route>
+            
         </Routes>
 
       </BrowserRouter>
