@@ -7,30 +7,6 @@ import NavBar from './component/NavBar.jsx';
 const Home = () =>{
     console.log("home rendered");
 
-    // const [patientCounts, setPatientCounts] = useState({ admittedCount: 0, dischargedCount: 0 });
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState(null);
-
-    // useEffect(() => {
-    //   const fetchPatientCounts = async () => {
-    //     try {
-    //       const response = await fetch('/api/patient-counts');
-    //       if (!response.ok) {
-    //         throw new Error('Failed to fetch patient counts');
-    //       }
-    //       const data = await response.json();
-    //       console.log('Fetched Data:', data); // Log the data to check if it's correct
-    //       setPatientCounts(data);
-    //     } catch (err) {
-    //       setError(err.message);
-    //     } finally {
-    //       setLoading(false);
-    //     }
-    //   };
-    
-    //   fetchPatientCounts();
-    // }, []);
-    
   
   return(
     <div className='wrapper'>
@@ -77,4 +53,3 @@ const Home = () =>{
 
 }
 export default Home;
-
