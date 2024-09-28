@@ -9,7 +9,7 @@ import NavBar from './component/NavBar.jsx';
 
 const VisitForm = () => {
     const navigate = useNavigate();
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState("");
     const [values,setValues] = useState({
         phn:'',
         visit_id:'',
