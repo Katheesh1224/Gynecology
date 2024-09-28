@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
+import { toast } from 'react-toastify';
 
 export const Login = () => {
   const initialValues = { email: "", password: "" };
@@ -29,7 +30,7 @@ export const Login = () => {
         navigate('/home');
       } catch (err) {
         console.error('Login failed:', err);
-        alert('Invalid credentials');
+        toast.error('Invalid credentials');
       }
     }
   };
