@@ -4,7 +4,7 @@ import '../home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser} from '@fortawesome/free-solid-svg-icons'
 import UserPath from './UserPath.jsx';
-import { AuthContext } from '../AuthContext';
+import { AuthContext } from '../AuthContext.jsx';
 
 const NavBar = () =>{
     const { logout } = useContext(AuthContext);
