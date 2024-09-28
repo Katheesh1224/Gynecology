@@ -1,12 +1,11 @@
 // import React, { useState, useEffect } from 'react';
 import './home.css';
 import Nav from './Component/Nav.jsx';
-import NavBar from './Component/NavBar.jsx';
+import NavBar from './Component/NavBar.jsx'
 
 
 const Home = () =>{
     console.log("home rendered");
-    
   
   return(
     <div className='wrapper'>
@@ -52,5 +51,6 @@ const Home = () =>{
   );
 
 }
+
 export default Home;
 
