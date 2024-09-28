@@ -19,9 +19,10 @@ const UserPath = () => {
     'visit_form': 'Visit Form',
     'patient_admission': 'Patient Admission',
     'patient_admission_details': 'Patient Admission Details',
-
     'update_staff':'UpdateStaff',
     'new_admission':'New Admission',
+    'patient_history':'Patient Medical History',
+    'patient_medicalhx_edit':'Edit Medical History',
 
   };
 
