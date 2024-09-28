@@ -12,7 +12,6 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: rgb(124, 124, 236); */
 }
 
 /* .container-big{
@@ -34,7 +33,7 @@ body{
   border-radius: 6px;
   padding: 30px;
   margin: 100px 15px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 5px 10px rgba(0,0,0,0.3) ;
   
 }
@@ -77,7 +76,7 @@ body{
   border-radius: 6px;
 }
 
-.btn{
+  .btn{
   text-align: end;
   margin-top: -50px;
 }
@@ -85,11 +84,7 @@ body{
 .btn1{
   text-align: end;
 }
-#btn2{
-  background-color: rgb(135, 133, 133);
-  border-color: black;
-  margin-right: 475px;
-}
+
 button{
   background-color: #512da8;
   color: #fff;
@@ -129,7 +124,7 @@ form .fields .input-field{
   flex-direction: column;
 }
 
-.input-field label, .input-fieldH label, .input-fieldB label, .input-fieldC label, .input-fieldN label,.input-fieldA label{
+.input-field label,.input-field-phn label, .input-field-add label, .input-fieldH label, .input-fieldB label, .input-fieldC label, .input-fieldN label,.input-fieldA label{
   font-size: 12px;
   font-weight: bold;
   color: black;
@@ -317,6 +312,31 @@ form .fields .input-fieldN{
   margin: 8px 0;
 }
 
+.input-field-phn input{
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border: 1px solid #aaa;
+  padding: 0 0 0 15px ;
+  height: 42px;
+  margin: 8px 0;
+  width: 120px;
+}
+
+.input-field-add input{
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border: 1px solid #aaa;
+  padding: 0 0 0 15px ;
+  height: 42px;
+  margin: 8px 0;
+  width: 80px;
+}
+
+
 .input-field textarea{
   outline: none;
   font-size: 14px;
@@ -327,7 +347,7 @@ form .fields .input-fieldN{
   margin: 8px 0;
 }
 
-.input-field input, .input-fieldA input, textarea, .input-fieldN input, .input-fieldN select, .input-fieldC select,.input-fieldB input, .input-fieldH input:is(:focus, :valid){
+.input-field input, .input-field-phn input, .input-field-add input, .input-fieldH input, .input-fieldA input, textarea, .input-fieldN input, .input-fieldN select, .input-fieldC select,.input-fieldB input, .input-fieldH input:is(:focus, :valid){
   box-shadow: 0 3px 6px rgba(0,0,0,0.13);
 }
 
@@ -491,11 +511,23 @@ form .dropdownflex {
   box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
   padding: 16px;
   margin:  0;
-  /* display: flex; */
-  /* flex-direction: row; */
   justify-content: center;
-  /* align-items: center; */
 }
+
+/* .card {
+  position: relative;
+  width: 900px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  margin: auto; 
+  top: 50px; 
+  transform: translateY(-50%); 
+  display: flex;
+  justify-content: center;
+  transition: top 0.3s ease; 
+} */
 
 .card1 {
   position: relative;
@@ -625,19 +657,19 @@ form .dropdownflex {
   cursor: pointer;
 }
 
-/* .cntner .cd:hover .face.face1{
+.cntner .cd:hover .face.face1{
   transform: translateY(0);
   box-shadow:
-    inset 0 0 60px whitesmoke,
-    inset 10px 0 40px #f0f,
-    inset -10px 0 40px #0ff,
-    inset 10px 0 150px #f0f,
-    inset -10px 0 150px #0ff,
+    /* inset 0 0 60px whitesmoke, */
+    /* inset 10px 0 40px #f0f, */
+    /* inset -10px 0 40px #0ff, */
+    /* inset 10px 0 150px #f0f, */
+    /* inset -10px 0 150px #0ff, */
     0 0 50px #fff,
-    -5px 0 40px #f0f,
-    5px 0 40px #0ff;
+    -5px 0px rgb(0, 0, 0),
+    5px 0 0px black;
    
-} */
+}
 
 
 .cntner .cd .face.face1 .content{
@@ -714,12 +746,12 @@ border: 7px solid red;
   
 }
 .popup{
-  display: flex;
-  position:absolute ;
+  position: absolute;
   top: 50%;
   left: 50%;
+  
   background-color: #979797;
-  transform: translate(-50%, 25%);
+  transform: translate(-50%, -50%);
 }
 .box{
   text-align: center;
@@ -765,7 +797,11 @@ border: 7px solid red;
   height: 100%;
 }
 
-
+.heading{
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+}
 .main-content {
   display: flex;
   flex: 1;
@@ -773,3 +809,13 @@ border: 7px solid red;
   width: 100%;
 }
 
+.input-field-phn, .input-field-add{
+  width: 120px;
+}
+
+.input-field-add{
+  width: 120px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}

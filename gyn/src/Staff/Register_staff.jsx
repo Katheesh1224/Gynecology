@@ -1,8 +1,10 @@
 import '../App.css';
 import axios from 'axios';
 import React, { useState } from 'react';
-import Nav from '../component/Nav.jsx';
-import NavBar from '../component/NavBar.jsx';
+import Nav from '../Component/Nav.jsx';
+import NavBar from '../Component/NavBar.jsx';
+import { toast } from 'react-toastify'; // Import toast from react-toastify
+
 
 const RegisterStaff = () => {
   const initialState = {
@@ -60,13 +62,19 @@ const RegisterStaff = () => {
       axios.post('http://localhost:8081/staff_reg', values)
         .then(res => {
           console.log(res);
-          alert("Staff Registered Successfully");
+          toast.success('Form submitted successfully!');
           setValues(initialState); // Reset form fields
           setFormErrors({}); // Clear errors
         })
         .catch(err => {
           console.log(err);
-          alert("Error registering staff.");
+
+          let errorMessage = 'An unexpected error occurred.';
+          
+          if (err.response && err.response.data) {
+              errorMessage = err.response.data.error || err.response.data.details || errorMessage;
+          }
+          toast.error(`There was an error submitting the form: ${errorMessage}`);
         });
     } else {
       setFormErrors(errors);
