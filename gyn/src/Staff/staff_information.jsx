@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
-import Nav from '../component/Nav.jsx';
-import NavBar from '../component/NavBar.jsx';
+import Nav from '../Component/Nav.jsx';
+import NavBar from '../Component/NavBar.jsx';
 
 const Staff = () => {
   const [data, setData] = useState([]);

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './App.css';
+import '../App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
-import Nav from './component/Nav.jsx';
-import NavBar from './component/NavBar.jsx';
-import ProfileCard from './component/profileCard.jsx';
+import Nav from '../Component/Nav.jsx';
+import NavBar from '../Component/NavBar.jsx';
+import ProfileCard from '../Component/profileCard.jsx';
 
 const Card = ({ title, index, onClick }) => (
   <div className="cd" onClick={() => onClick(index)}>

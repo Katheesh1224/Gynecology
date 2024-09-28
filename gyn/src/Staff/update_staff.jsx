@@ -2,8 +2,8 @@ import '../App.css';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Nav from '../component/Nav.jsx';
-import NavBar from '../component/NavBar.jsx';
+import Nav from '../Component/Nav.jsx';
+import NavBar from '../Component/NavBar.jsx';
 
 const UpdateStaff = () => {
   const navigate = useNavigate();
