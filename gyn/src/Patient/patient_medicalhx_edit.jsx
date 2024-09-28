@@ -1,10 +1,10 @@
-import './App.css';
-import './home.css';
+import '../App.css';
+import '../home.css';
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom'; 
-import Nav from './component/Nav.jsx';
-import NavBar from './component/NavBar.jsx';
+import Nav from '../Component/Nav.jsx';
+import NavBar from '../Component/NavBar.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 
@@ -77,7 +77,7 @@ const MedHisEdit = () => {
         axios.put(`http://localhost:8081/medicalUpdate/${patient_phn}`, values)
             .then(res => {
                 navigate(`/patients_information/patient_profile/patient_history`);
-                toast.success('Form submitted successfully!');
+                toast.success('Form updated successfully!');
                 console.log(res);
             })
             .catch(err => {
