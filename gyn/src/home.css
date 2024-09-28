@@ -534,6 +534,9 @@ ul li a {
     justify-content: space-between;
   }
   .small-card{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: 200px;
     height: 100px;
     /* border: 1px solid black; */
@@ -546,11 +549,13 @@ ul li a {
   .title{
     color: gray;
     font-size: 14px;
+    
     /* text-transform: uppercase; */
   }
 
   .amount{
     font-size: 40px;
+    margin: 0 20px 0 20px;
   }
 
   .graph{

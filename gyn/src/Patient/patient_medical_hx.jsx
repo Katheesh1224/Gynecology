@@ -22,7 +22,7 @@ const MedDetails = () =>{
     <div className="">
       <NavBar/>
       <Nav/>
-      <div className='card'>
+      <div className='container'>
         <div className='space0'></div>
         <h2> Patient Medical History</h2>
         <div className='space'></div>

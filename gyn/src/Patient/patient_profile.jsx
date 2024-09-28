@@ -52,7 +52,7 @@ const Profile = () => {
     <div className="">
       <NavBar/>
       <Nav/>
-      <div className='card'>
+      <div className='container'>
         <h2> Patient Profile</h2>
         <ProfileCard/>
         <div className="cntner">

@@ -27,7 +27,7 @@ const Visit = () =>{
     <div className="">
       <NavBar/>
       <Nav/>
-      <div className='card'>
+      <div className='container'>
         <h2> Patient Visit</h2>
         <AdmissionCard/>
         <div class="cntner">

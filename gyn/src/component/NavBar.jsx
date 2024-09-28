@@ -19,7 +19,7 @@ const NavBar = () =>{
         <nav className="navM">
             <div className="containerN">
                 <h1 className="logo">
-                <a href="/home" className='a' style={{justifyContent:'left'}}>GYNECOLOGY</a>
+                <a href="/home" className='a' style={{justifyContent:'left'}}>GYNECOLOGY</a>    
                 </h1>
                 <UserPath/>
                 <ul>
