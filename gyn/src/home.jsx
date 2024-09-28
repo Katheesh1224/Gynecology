@@ -8,6 +8,7 @@ import NavBar from './Component/NavBar.jsx';
 // import { faPersonDress } from '@fortawesome/free-solid-svg-icons';
 
 
+
 const Home = () =>{
     console.log("home rendered");
 
@@ -24,6 +25,7 @@ const Home = () =>{
   //     });
   // }, []);
     
+
   
   return(
     <div className='wrapper'>
@@ -72,5 +74,6 @@ const Home = () =>{
   );
 
 }
+
 export default Home;
 
