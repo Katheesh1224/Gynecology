@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import { toast } from 'react-toastify';
 
 const Staff = () => {
   const [data, setData] = useState([]);
@@ -37,6 +38,7 @@ const Staff = () => {
         console.log(response.data);
         setData(data.filter(row => row.id !== id)); // Update state to remove the deleted row
         setOpenPopup(false); // Close the popup after deletion
+        toast.success('Row deleted successfully');
       })
       .catch(error => console.error('Error deleting row:', error));
   };
