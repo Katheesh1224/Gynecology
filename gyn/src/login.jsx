@@ -34,6 +34,7 @@ export const Login = () => {
       }
     }
   };
+const notify = () => toast("Please contact your administrator to reset your password");
 
   const validate = (values) => {
     const errors = {};
@@ -66,7 +67,7 @@ export const Login = () => {
           {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
           <input type="password" name="password" placeholder="Password" value={formValues.password} onChange={handleChange} />
           {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
-          <a href="/">Forget Your Password?</a>
+          <p style={{cursor:"pointer"}}onClick={notify}>Forget Your Password?</p>
           <button type='submit'>Sign In</button>
         </form>
       </div>
