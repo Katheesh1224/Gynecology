@@ -21,6 +21,7 @@ import PEdit from './Patient/patient_edit.jsx';
 import MedDetails from './Patient/patient_medical_hx.jsx';
 import MedHisEdit from './Patient/patient_medicalhx_edit.jsx';
 import AdEdit from './Patient/patient_admission_details_edit.jsx';
+import Analysis_s from './Analysis/Analysiss.jsx';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit' element={<ProtectedRoute element={<Visit/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_form' element={<ProtectedRoute element={<VisitForm/>}/>}></Route>        
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details_edit' element={<ProtectedRoute element={<AdEdit/>}/>}></Route>
+          <Route path='/analysis' element={<ProtectedRoute element={<Analysis_s/>}/>}></Route>
         </Routes>
       </BrowserRouter>
       </AuthProvider>
