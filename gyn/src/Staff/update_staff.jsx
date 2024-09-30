@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'; 
 
 const UpdateStaff = () => {
   const navigate = useNavigate();
@@ -73,6 +73,7 @@ const UpdateStaff = () => {
       try {
         if (isEditMode) {
           await axios.put(`http://localhost:8081/staff_update/${values.id}`, values);
+
           toast.success('Staff Updated Successfully');
           navigate('/staff_information'); 
         } 
@@ -90,119 +91,123 @@ const UpdateStaff = () => {
   };
 
   return (
-    <div className="container">
+    <div className="wrapper">
       <NavBar />
-      <Nav />
-      <form onSubmit={handleSubmit}>
-        <h2>Update Staff</h2>
-        <br />
-        <div className="fields">
-          <div className="input-field">
-            <label htmlFor="fullname">Name : </label>
-            <input 
-              type='text' 
-              name='full_name' 
-              pattern="[A-Za-z]+" 
-              title="Only alphabets are allowed" 
-              placeholder='Enter your fullname' 
-              value={values.full_name}
-              onChange={handleChange} 
-            />
-          </div>
-          <div className="input-field">
-            <label htmlFor="phoneno">Phone No : </label>
-            <input 
-              type="tel" 
-              pattern="[0-9]{10}" 
-              maxLength="10" 
-              name='phone_no' 
-              placeholder='Enter your phone No' 
-              value={values.phone_no}
-              onChange={handleChange} 
-            />
-          </div>
-        </div>
-        <br />
-        <div className="fields">
-          <div className="input-field">
-            <label htmlFor="email">Email : </label>
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="Enter your email" 
-              value={values.email}
-              onChange={handleChange} 
-            />
-          </div>
-        </div>
-        <br />
-        
-       
-
-        {showPasswordFields && (
-          <div className="fields">
-            <div className="input-field">
-              <label htmlFor="new_password">New Password: </label>
-              <input 
-                type="password" 
-                name="password" 
-                placeholder="Enter a new password" 
-                value={values.password}
-                onChange={handleChange} 
-              />
-              {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
+      <div className="main-content">
+        <Nav />
+        <div className="container">
+          <form onSubmit={handleSubmit}>
+            <h2>Update Staff</h2>
+            <br />
+            <div className="fields">
+              <div className="input-field">
+                <label htmlFor="fullname">Name : </label>
+                <input 
+                  type='text' 
+                  name='full_name' 
+                  pattern="[A-Za-z]+" 
+                  title="Only alphabets are allowed" 
+                  placeholder='Enter your fullname' 
+                  value={values.full_name}
+                  onChange={handleChange} 
+                />
+              </div>
+              <div className="input-field">
+                <label htmlFor="phoneno">Phone No : </label>
+                <input 
+                  type="tel" 
+                  pattern="[0-9]{10}" 
+                  maxLength="10" 
+                  name='phone_no' 
+                  placeholder='Enter your phone No' 
+                  value={values.phone_no}
+                  onChange={handleChange} 
+                />
+              </div>
             </div>
-            <div className="input-field">
-              <label htmlFor="confirm_password">Confirm Password : </label>
-              <input 
-                type="password" 
-                name="confirm_password" 
-                placeholder="Confirm new password" 
-                value={values.confirm_password}
-                onChange={handleChange} 
-              />
-              {formErrors.confirm_password && <p style={{ color: "red" }}>{formErrors.confirm_password}</p>}
+            <br />
+            <div className="fields">
+              <div className="input-field">
+                <label htmlFor="email">Email : </label>
+                <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="Enter your email" 
+                  value={values.email}
+                  onChange={handleChange} 
+                />
+              </div>
             </div>
-          </div>
-        )}
-      
-        <div className="dropdownflex">
-          <div className="input-fieldL">
-            <label htmlFor="role">Role: </label>
-            <select 
-              name="role" 
-              id="role" 
-              value={values.role} 
-              onChange={handleChange}
-            >
-              <option value="consultant">Consultant</option>
-              <option value="registrar">Registrar</option>
-              <option value="medical_officer">Medical Officer</option>
-              <option value="data_entry">Data Entry</option>
-            </select>
-          </div>
+            <br />
+            
           
-          <div className="input-field">
-            <label htmlFor="status">Status: </label>
-            <select 
-              name="status" 
-              id="status" 
-              value={values.status} 
-              onChange={handleChange}
-            >
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
+
+            {showPasswordFields && (
+              <div className="fields">
+                <div className="input-field">
+                  <label htmlFor="new_password">New Password: </label>
+                  <input 
+                    type="password" 
+                    name="password" 
+                    placeholder="Enter a new password" 
+                    value={values.password}
+                    onChange={handleChange} 
+                  />
+                  {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
+                </div>
+                <div className="input-field">
+                  <label htmlFor="confirm_password">Confirm Password : </label>
+                  <input 
+                    type="password" 
+                    name="confirm_password" 
+                    placeholder="Confirm new password" 
+                    value={values.confirm_password}
+                    onChange={handleChange} 
+                  />
+                  {formErrors.confirm_password && <p style={{ color: "red" }}>{formErrors.confirm_password}</p>}
+                </div>
+              </div>
+            )}
+          
+            <div className="dropdownflex">
+              <div className="input-fieldL">
+                <label htmlFor="role">Role: </label>
+                <select 
+                  name="role" 
+                  id="role" 
+                  value={values.role} 
+                  onChange={handleChange}
+                >
+                  <option value="consultant">Consultant</option>
+                  <option value="registrar">Registrar</option>
+                  <option value="medical_officer">Medical Officer</option>
+                  <option value="data_entry">Data Entry</option>
+                </select>
+              </div>
+              
+              <div className="input-field">
+                <label htmlFor="status">Status: </label>
+                <select 
+                  name="status" 
+                  id="status" 
+                  value={values.status} 
+                  onChange={handleChange}
+                >
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+            <br />
+            <div className="btn1">
+            <button type="button" id='btn2' onClick={togglePasswordFields}>
+              {showPasswordFields ? "Hide Password Fields" : "Edit Password"}
+            </button>
+              <button type="submit">Update</button>
+            </div>
+          </form>
         </div>
-        <br />
-        <div className="btn1">
-         <button type="button" id='btn2' onClick={togglePasswordFields}>
-          {showPasswordFields ? "Hide Password Fields" : "Edit Password"}
-        </button>
-          <button type="submit">Update</button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

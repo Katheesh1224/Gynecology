@@ -148,7 +148,7 @@ const MedHisEdit = () => {
 
         <div className="container">
 
-            <h2>Patient Registration</h2>
+            <h2>Patient Medical History Updadte</h2>
             <form onSubmit={handleUpdate}>
                 <div className="form">
                     <div className="A">
