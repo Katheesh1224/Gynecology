@@ -11,4 +11,10 @@
   .breadcrumb a:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 750px) {
+   .breadcrumb{
+    margin-top: -300px;
+   } 
+  }
   

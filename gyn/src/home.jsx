@@ -30,43 +30,9 @@ const Home = () =>{
       <NavBar/>
       <div className='main-content'>
         <Nav/> 
-        <div className='container-big'>
-          <div className='container-home'>
-            <h2>Welcome to GYNECOLOGY Department</h2>
-            <div className='without-h2'>
-              <div className='container-home-middle'>
-                <div className='container-small-card'>
-                  <div className='small-card'>
-                    {/* <p className='amount'>{count}</p> */}
-                    {/* <FontAwesomeIcon icon={faPersonDress} style={{ color: 'black', fontSize:'35px', margin:'10px 20px' }} /> */}
-                    <p className='title'>Admitted Patient Count</p>
-                  </div>
-                  <div className='small-card'>
-                    {/* <p className='amount'>{}</p> */}
-                    {/* <FontAwesomeIcon icon={faPersonDress} style={{ color: 'green', fontSize:'35px', margin:'10px 20px' }} /> */}
-                    <p className='title'>Current Patient Count</p>
-                  </div>
-                  <div className='small-card'>
-                    {/* <p className='amount'>{}</p> */}
-                    {/* <FontAwesomeIcon icon={faPersonDress} style={{ color: 'red', fontSize:'35px', margin:'10px 20px' }} /> */}
-                    <p className='title'>Discharged Patient Count</p>
-                  </div>
-                </div>
-
-                <div className='graph'>
-                <img src="./graph.png" alt="" className="" />
-
-                </div>
-              </div>
-              <div className='container-home-right'>
-                <div className='divided'></div>
-                <div className='divided'></div>
-              </div>
-            </div>
-            
-            
+          <div className='container'>
+            <h2>Welcome to GYNECOLOGY Department</h2>           
           </div>
-        </div>
       </div>
     </div>
   );
