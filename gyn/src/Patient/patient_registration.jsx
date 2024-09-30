@@ -76,7 +76,6 @@ const PReg = () => {
     
         if (selectedDate > currentDate) {
             toast.error('Please select a date that is not in the future.');
-            //alert('Please select a date and time that is not in the future.');
         } else {
           setValues({ ...values, date: selectedDate });
         }
@@ -88,7 +87,6 @@ const PReg = () => {
     
         if (selectedDate > currentDate) {
             toast.error('Please select a date that is not in the future.');
-            //alert('Please select a date and time that is not in the future.');
         } else {
           setValues({ ...values, dob: selectedDate });
         }

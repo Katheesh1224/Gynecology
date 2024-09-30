@@ -72,8 +72,7 @@ const VisitForm = () => {
         const currentDate = new Date().toISOString().split('T')[0];
     
         if (selectedDate > currentDate) {
-        //   alert('Please select a date and time that is not in the future.');
-          toast.success('Please select a date and time that is not in the future.');
+          toast.error('Please select a date and time that is not in the future.');
 
         } else {
           setValues({ ...values, date: selectedDate });
@@ -81,10 +80,7 @@ const VisitForm = () => {
     };
     
     const handleChangeNo = (event) => {
-        // Get the entered value
         const enteredValue = event.target.value;
-          
-        // Update the state with the entered value
         setValue(enteredValue);
     };
 
