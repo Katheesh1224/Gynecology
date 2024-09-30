@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
-import { toast } from 'react-toastify'; // Import toast from react-toastify
-
+import { toast } from 'react-toastify'; 
 
 const UpdateStaff = () => {
   const navigate = useNavigate();
@@ -73,14 +72,14 @@ const UpdateStaff = () => {
     if (Object.keys(errors).length === 0) {
       try {
         if (isEditMode) {
-          // Update existing staff member
           await axios.put(`http://localhost:8081/staff_update/${values.id}`, values);
-          toast.success('Form updated successfully!');
-          navigate('/staff_information'); // Redirect to the staff information page after update
+
+          toast.success('Staff Updated Successfully');
+          navigate('/staff_information'); 
         } 
       } catch (err) {
         console.log(err);
-        toast.success('Error updating staff!');
+        toast.error("Error updating staff.");
       }
     } else {
       setFormErrors(errors);
