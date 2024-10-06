@@ -6,9 +6,8 @@ import { BarChart } from 'lucide-react';
 
 const Nav = () => {
   return (
-    <div>
-      <header id="header" className="d-flex flex-column justify-content-center">
-        <nav id="navbar" className="navbar nav-menu">
+    <div id="Head" className="d-flex flex-column justify-content-center">
+        <nav id="navbar" className="navbar nav-round">
           <ul>
             <li>
               <NavLink exact to="/home" className="nav-link" activeClassName="active">
@@ -47,8 +46,10 @@ const Nav = () => {
               </NavLink>
             </li>
           </ul>
+
+          
         </nav>
-      </header>
+        
     </div>
   );
 };

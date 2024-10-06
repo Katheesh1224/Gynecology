@@ -9,6 +9,7 @@ import LineCharts from "./Analysis/LineChartAnalysis.jsx";
 import CategoryDistributionChart from "./Analysis/PieChartAnalysis.jsx";
 // import ComplaintsChart from "./Analysis/BarChartAnalysis.jsx"
 
+
 const Home = () =>{
     console.log("home rendered");
   
@@ -43,11 +44,8 @@ const Home = () =>{
 					{/* <ComplaintsChart /> */}
 				</div>
         </main>
-		
 
-            
           </div>
-        </div>
       </div>
     </div>
   );

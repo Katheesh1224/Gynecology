@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
+import { toast } from 'react-toastify';
 
 export const Login = () => {
   const initialValues = { email: "", password: "" };
@@ -29,10 +30,11 @@ export const Login = () => {
         navigate('/home');
       } catch (err) {
         console.error('Login failed:', err);
-        alert('Invalid credentials');
+        toast.error('Invalid credentials');
       }
     }
   };
+const notify = () => toast("Please contact your administrator to reset your password");
 
   const validate = (values) => {
     const errors = {};
@@ -65,7 +67,7 @@ export const Login = () => {
           {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
           <input type="password" name="password" placeholder="Password" value={formValues.password} onChange={handleChange} />
           {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
-          <a href="/">Forget Your Password?</a>
+          <p style={{cursor:"pointer"}}onClick={notify}>Forget Your Password?</p>
           <button type='submit'>Sign In</button>
         </form>
       </div>

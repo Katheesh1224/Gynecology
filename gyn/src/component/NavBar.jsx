@@ -1,39 +1,96 @@
-import React, {useContext} from 'react';
-import {useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
 import '../home.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faBars, faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
 import UserPath from './UserPath.jsx';
 import { AuthContext } from '../AuthContext.jsx';
 
-const NavBar = () =>{
-    const { logout } = useContext(AuthContext);
-    const navigate = useNavigate();
+const NavBar = () => {
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  
+  // State for managing the menu visibility
+  const [showMenu, setShowMenu] = useState(false);
 
-    const handleLogout = async () => {
-        logout();
-        navigate('/login');
-    };
+  // Function to toggle the menu
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
-    return(
-        <nav className="navM">
-            <div className="containerN">
-                <h1 className="logo">
-                <a href="/home" className='a' style={{justifyContent:'left'}}>GYNECOLOGY</a>
-                </h1>
-                <UserPath/>
-                <ul>
-                    <li><a href="./" className=""><FontAwesomeIcon icon={faUser} /></a></li>
-                    <li>
-                        <div>
-                            <button onClick={handleLogout} class="buttonHome">Logout</button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    )
+  // Function to close the menu
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
 
-}
+  // Handle logout and navigate to login page
+  const handleLogout = async () => {
+    logout();
+    navigate('/login');
+  };
+
+  return (
+    <header className="header" id="header">
+      <nav className="nav">
+        <div className={`nav__menu ${showMenu ? 'show-menu' : ''}`} id="nav-menu">
+          <ul className="nav__list">
+            <li className="nav__item">
+              <NavLink exact to="/home" className="nav__link" activeClassName="active" onClick={closeMenu}>
+                <span>Home</span>
+              </NavLink>
+            </li>
+
+            <li className="nav__item">
+              <NavLink exact to="/patient_registration" className="nav__link" activeClassName="active" onClick={closeMenu}>
+                <span>Patient Registration</span>
+              </NavLink>
+            </li>
+
+            <li className="nav__item">
+              <NavLink exact to="/patients_information" className="nav__link" activeClassName="active" onClick={closeMenu}>
+                <span>Patient Information</span>
+              </NavLink>
+            </li>
+
+            <li className="nav__item">
+              <NavLink exact to="/register_staff" className="nav__link" activeClassName="active" onClick={closeMenu}>
+                <span>Staff Registration</span>
+              </NavLink>
+            </li>
+
+            <li className="nav__item">
+              <NavLink exact to="/staff_information" className="nav__link" activeClassName="active" onClick={closeMenu}>
+                <span>Staff Information</span>
+              </NavLink>
+            </li>
+          </ul>
+
+          <div className="nav__close" id="nav-close" onClick={closeMenu}>
+            <FontAwesomeIcon icon={faRectangleXmark} />
+          </div>
+        </div>
+      </nav>
+
+      <nav className="navM">
+        <div className="containerN">
+          <div className="bar_gyn">
+            <FontAwesomeIcon icon={faBars} className="nav__toggle" id="nav-toggle" onClick={toggleMenu} />
+            <h1 className="logo">
+              <a href="/home" className="a">GYNECOLOGY</a>
+            </h1>
+          </div>
+
+          <UserPath />
+          <ul>
+            <li><FontAwesomeIcon icon={faUser} onClick={handleLogout} className="user" /></li>
+            <li>
+              <button onClick={handleLogout} className="buttonHome">Logout</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+  );
+};
 
 export default NavBar;
