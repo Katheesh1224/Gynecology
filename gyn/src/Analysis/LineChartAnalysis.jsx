@@ -38,7 +38,7 @@ const patientData = {
   }
 };
 
-const LineChart = () => {
+const LineCharts = () => {
   const [selectedView, setSelectedView] = useState("year"); // 'year', 'month', 'day'
   const [selectedYear, setSelectedYear] = useState(2023); // Default selected year
   const [selectedMonth, setSelectedMonth] = useState("08"); // Default selected month (August)
@@ -63,7 +63,7 @@ const LineChart = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
     >
-      <h2 className='text-lg font-medium mb-4 text-gray-100'>Patient Count Overview</h2>
+      <h2 className='text-2xl font-medium mb-4 text-gray-800'>Patient Count Overview</h2>
 
       {/* Selection controls */}
       <div className="flex justify-between items-center mb-4">
@@ -129,4 +129,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default LineCharts;

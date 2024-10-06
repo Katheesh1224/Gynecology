@@ -1,7 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faRectangleList, faHospitalUser, faUserNurse } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+import { BarChart } from 'lucide-react';
 
 const Nav = () => {
   return (
@@ -36,6 +37,12 @@ const Nav = () => {
               <NavLink to="/staff_information" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faUserNurse} />
                 <span>Staff Information</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/analysis" className="nav-link" activeClassName="active">
+                <FontAwesomeIcon icon={faLineChart} />
+                <span>Analysis</span>
               </NavLink>
             </li>
           </ul>
