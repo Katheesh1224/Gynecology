@@ -84,7 +84,7 @@ const AdEdit = () => {
         const currentDate = new Date().toISOString().split('T')[0];
     
         if (selectedDate > currentDate) {
-          alert('Please select a date and time that is not in the future.');
+            toast.error('Please select a date and time that is not in the future.');
         } else {
           setValues({ ...values, date: selectedDate });
         }

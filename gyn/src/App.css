@@ -4,7 +4,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "poppins", sans-serif; */
 }
 
 body{
@@ -13,18 +12,6 @@ body{
   align-items: center;
   justify-content: center;
 }
-
-/* .container-big{
-  position: relative ;
-  max-width: 1100px;
-  width: 1100px;
-  border-radius: 6px;
-  padding: 30px;
-  margin: 100px 15px;
-  background-color: transparent;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3) ;
-  
-} */
 
 .container{
   position: relative;
@@ -35,15 +22,7 @@ body{
   margin: 100px 15px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 5px 10px rgba(0,0,0,0.3) ;
-  
 }
-
-/* .container {
-  flex: 1;
-  padding: 1em;
-  background-color: #fff;
-  overflow-y: auto;
-} */
 
 .container header{
   position: relative;
@@ -52,13 +31,6 @@ body{
   font-weight: 600;
   color: #333;
 }
-
-/* .container form{
-  position: relative;
-  margin-top: 16px;
-  min-height: 490px;
-  background-color: white;
-} */
 
 .container form .details{
   margin-top: 10px;
@@ -299,8 +271,6 @@ form .fields .input-fieldN{
   flex-direction: column;
 }
 
-
-
 .input-fieldH input,.input-fieldA input, .input-fieldB input, .input-fieldN input, .input-fieldC select, .input-field input,select{
   outline: none;
   font-size: 14px;
@@ -413,8 +383,6 @@ input[type="radio"] + label::after {
   padding: 14px 22px;
   text-decoration: none;
   transition: all .2s;
-  /* user-select: none; */
-  /* -webkit-user-select: none; */
   touch-action: manipulation;
   width: 48%;
 }
@@ -431,8 +399,6 @@ input[type="radio"] + label::after {
 #status{
   color: black;
   font-size: 14px;
-  /* margin-top: 10px; */
-  /* margin-left: 10px; */
   width: 250px;
 }
 .status{
@@ -489,9 +455,9 @@ form .dropdownflex {
 
 .navM .a {
   font-size: 22px;
+  color: black;
 }
 
-/* ------- JavaScript -------*/
 .navM.active {
   background: white;
 }
@@ -499,9 +465,6 @@ form .dropdownflex {
 .navM.active a {
   color: #000;
 }
-/* -------------- */
-
-/* ----- Profile ----- */
 
 .card {
   position: relative;
@@ -514,33 +477,11 @@ form .dropdownflex {
   justify-content: center;
 }
 
-/* .card {
-  position: relative;
-  width: 900px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15);
-  padding: 16px;
-  margin: auto; 
-  top: 50px; 
-  transform: translateY(-50%); 
-  display: flex;
-  justify-content: center;
-  transition: top 0.3s ease; 
-} */
-
 .card1 {
   position: relative;
-  /* width: 1000px; */
-  /* background-color: #fff; */
-  /* border-radius: 8px; */
-  /* box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15); */
-  /* padding: 16px; */
-  /* margin:  0; */
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* align-items: center; */
 }
 
 .card header{
@@ -581,17 +522,13 @@ form .dropdownflex {
 .card .button_show{
   background-color: transparent;
   color: blue;
-  /* border: 1px solid blue; */
   font-size: 12px;
   padding: 0;
   font-weight: bolder;
   letter-spacing: 2px;
   margin: 0px 0px 0px 0px;
   cursor: pointer;
-  /* text-decoration: underline; */
 }
-
-/* -------------------- */
 
 .card .title{
   display: block;
@@ -602,7 +539,6 @@ form .dropdownflex {
   margin: 10px 0;
   color: #ffffff;
   background-color: #512da8;
-  /* background: linear-gradient(to right, #ceb8ff, #512da8); */
   border-radius: 6px;
 }
 
@@ -610,9 +546,6 @@ form .dropdownflex {
   position: relative;
   width: 500px;
   background-color: #fff;
-  /* border: 1px solid #000; */
-  /* border-radius: 8px; */
-  /* box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.15); */
   padding: 16px;
   margin: 0;
 }
@@ -620,9 +553,6 @@ form .dropdownflex {
 .profile-about p{
   font-size: 13px;
 }
-
-/* ----------------*/
-
 
 .cntner{
   width: 700px;
@@ -660,11 +590,6 @@ form .dropdownflex {
 .cntner .cd:hover .face.face1{
   transform: translateY(0);
   box-shadow:
-    /* inset 0 0 60px whitesmoke, */
-    /* inset 10px 0 40px #f0f, */
-    /* inset -10px 0 40px #0ff, */
-    /* inset 10px 0 150px #f0f, */
-    /* inset -10px 0 150px #0ff, */
     0 0 50px #fff,
     -5px 0px rgb(0, 0, 0),
     5px 0 0px black;
@@ -774,7 +699,6 @@ border: 7px solid red;
 #staff_heading{
   margin-top: -270px;
   padding-bottom: 30px;
-  /* padding-top: -350px; */
 }
 
 .staff_table{
