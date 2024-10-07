@@ -21,6 +21,7 @@ import PEdit from './Patient/patient_edit.jsx';
 import MedDetails from './Patient/patient_medical_hx.jsx';
 import MedHisEdit from './Patient/patient_medicalhx_edit.jsx';
 import AdEdit from './Patient/patient_admission_details_edit.jsx';
+import Backup from './backup.jsx';
 import Analysis_s from './Analysis/Analysiss.jsx';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path ='/' element={<Login/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
           <Route path ='/home' element={<ProtectedRoute element={<Home/>}/>}></Route>          
+          <Route path ='/backup' element={<ProtectedRoute element={<Backup/>}/>}></Route>          
           <Route path ='/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
           <Route path ='/patients_information' element={<ProtectedRoute element={<Patient/>}/>}></Route>
           <Route path ='/Register_staff' element={<ProtectedRoute element={<RegisterStaff/>}/>}></Route>
