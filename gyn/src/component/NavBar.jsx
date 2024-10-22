@@ -29,17 +29,19 @@ const NavBar = () => {
     navigate('/login');
   };
 
+  const role = localStorage.getItem('role');
+
   return (
     <header className="header" id="header">
       <nav className="nav">
         <div className={`nav__menu ${showMenu ? 'show-menu' : ''}`} id="nav-menu">
           <ul className="nav__list">
             <li className="nav__item">
-              <NavLink exact to="/home" className="nav__link" activeClassName="active" onClick={closeMenu}>
+              <NavLink exact to = {role === "data_entry" ? '/backup' : '/home'} className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Home</span>
               </NavLink>
             </li>
-
+          
             <li className="nav__item">
               <NavLink exact to="/patient_registration" className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Patient Registration</span>
@@ -63,6 +65,13 @@ const NavBar = () => {
                 <span>Staff Information</span>
               </NavLink>
             </li>
+            {role !== 'data_entry' && (
+            <li className="nav__item">
+              <NavLink exact to="/analysis" className="nav__link" activeClassName="active" onClick={closeMenu}>
+                <span>Analysis</span>
+              </NavLink>
+            </li>
+            )}
           </ul>
 
           <div className="nav__close" id="nav-close" onClick={closeMenu}>
