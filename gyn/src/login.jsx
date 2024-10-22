@@ -25,11 +25,18 @@ export const Login = () => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post('http://localhost:8081/login', formValues);
-        const { token } = response.data;
-        login(token);
-        navigate('/home');
+        const { token, role} = response.data;
+        console.log('Login successful:', token);
+        login(token, role);
+       
+
+        if (role === 'data_entry') {
+          navigate('/backup'); // Redirect to backup.jsx
+        } else {
+          navigate('/home'); // Redirect to home for other roles
+        }
       } catch (err) {
-        console.error('Login failed:', err);
+        // console.error('Login failed:', err);
         toast.error('Invalid credentials');
       }
     }
@@ -53,7 +60,6 @@ const notify = () => toast("Please contact your administrator to reset your pass
     } else if (values.password.length > 10) {
       errors.password = "Password cannot exceed more than 10 characters!";
     }
-
     return errors;
   };
 

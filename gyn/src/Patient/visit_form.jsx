@@ -1,6 +1,6 @@
 import '../App.css';
 import '../home.css';
-import { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
@@ -11,7 +11,11 @@ import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 const VisitForm = () => {
     const navigate = useNavigate();
+
+    let patient_phn = localStorage.getItem('patient_phn');
+
     const [value, setValue] = useState('');
+
     const [values,setValues] = useState({
         phn:'',
         visit_id:'',
@@ -20,7 +24,7 @@ const VisitForm = () => {
         seenBy:'',
         time:'',
         complaints:[],
-        abnormalUlerine:[],
+        abnormalUlerine:[] ,
         otherComplaint:'',
         bpa:'',
         bpb:'',
@@ -55,16 +59,42 @@ const VisitForm = () => {
         followUp:''
     })
 
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8081/require_count/${patient_phn}`);
+            const fetchedData = response.data[0];
+            setData(fetchedData);
+            setValues(prevValues => ({
+              ...prevValues,
+              phn: fetchedData.phn,
+              add_count: Number(fetchedData.visit_no) + 1
+            }));
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchData();
+      }, [patient_phn]);
+
     const handleSubmit =(e) =>{
         console.log(e);
         e.preventDefault();
+        console.log(values);
+        if (!values.phn) {
+            toast.error('Patient PHN is required.');
+            return;
+        }
         axios.post('http://localhost:8081/treat',values)
         .then(res =>{
             console.log(res);
+            navigate('/patients_information/patient_profile/patient_admission/patient_visit')
          
         })
         .catch(err =>console.log(err))
-        navigate('/home')
+        
     }
     
     const handleDateChange = (e) => {
@@ -130,7 +160,8 @@ const VisitForm = () => {
             ...values,
             [name]: value,
         });console.log(value);
-      }
+    }
+
 
     return (
         <div>
@@ -149,16 +180,15 @@ const VisitForm = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="visit_no"> Visit No : </label>
-                                    <input type="number"  name='numberInput' id={inputClass}  onChange={handleChangeNo}  required/>
+                                    <input type="number"  value={data.visit_no+1} readOnly name='numberInput' id={inputClass}  onChange={handleChangeNo}  required/>
                                 </div>
                                 
                                 <div className="input-field">
-                <label htmlFor="full_name">Seen by : </label>
-                <select name="role" id="status" onChange={e =>setValues({...values,seenBy:e.target.value})} >
-                                        <option value="consultant">Consultant</option>
-                                        <option value="registrar">Registrar</option>
-                                        <option value="medical_officer">Medical Officer</option>
-                                        <option value="data_entry">Data Entry</option>
+                                    <label htmlFor="full_name">Seen by : </label>
+                                    <select name="role" id="status" onChange={e =>setValues({...values,seenBy:e.target.value})} >
+                                        <option value="x">Dr.X</option>
+                                        <option value="y">Dr.Y</option>
+                                        <option value="z">Dr.Z</option>
                                     </select>
                                     </div>                                                   
                             </div>
@@ -274,11 +304,11 @@ const VisitForm = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="Hb"> Hb : </label>
-                                    <input type="number" placeholder='g/dL' onChange={e =>setValues({...values,hb:e.target.value})} required/>
+                                    <input type="number" placeholder='g/dL' onChange={e =>setValues({...values,hb:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="P/t"> P/t : </label>
-                                    <input type="number" placeholder='count/mm' onChange={e =>setValues({...values,plate:e.target.value})} required/>
+                                    <input type="number" placeholder='count/mm' onChange={e =>setValues({...values,plate:e.target.value})}  />
                                 </div>
                                                             
                             </div>
@@ -289,15 +319,15 @@ const VisitForm = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="White cells"> White cells : </label>
-                                    <input type="number" placeholder='/hpf' min={0} max={5} onChange={e =>setValues({...values,whiteCell:e.target.value})} required/>
+                                    <input type="number" placeholder='/hpf' min={0} max={5} onChange={e =>setValues({...values,whiteCell:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="Red cells "> Red cells : </label>
-                                    <input type="number" placeholder='/hpf' min={0} max={3}onChange={e =>setValues({...values,redCell:e.target.value})} required/>
+                                    <input type="number" placeholder='/hpf' min={0} max={3}onChange={e =>setValues({...values,redCell:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="Select_protein">Protein : </label>
-                                    <select name="protein" id="protein"  onChange={e =>setValues({...values,protein:e.target.value})} required>
+                                    <select name="protein" id="protein"  onChange={e =>setValues({...values,protein:e.target.value})}  >
                                         <option value="">Select protein</option>
                                         <option value="Nil">Nil</option>
                                         <option value="1+">1+</option>
@@ -315,11 +345,11 @@ const VisitForm = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor=" K+"> K+ : </label>
-                                    <input type="number" placeholder='mmol/l' min={0} max={10} onChange={e =>setValues({...values,seK:e.target.value})} required/>
+                                    <input type="number" placeholder='mmol/l' min={0} max={10} onChange={e =>setValues({...values,seK:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="Na+"> Na+ : </label>
-                                    <input type="number" placeholder='mmol/l' min={120} max={150} onChange={e =>setValues({...values,seNa:e.target.value})} required/>
+                                    <input type="number" placeholder='mmol/l' min={120} max={150} onChange={e =>setValues({...values,seNa:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                 </div>
@@ -330,7 +360,7 @@ const VisitForm = () => {
                                     <label htmlFor="CRP"> CRP:  </label>
                                 </div>
                                 <div className="input-field">
-                                    <input type="number" placeholder='mg/DL' min={5} max={220} onChange={e =>setValues({...values,crp:e.target.value})} required/>
+                                    <input type="number" placeholder='mg/DL' min={5} max={220} onChange={e =>setValues({...values,crp:e.target.value})}  />
                                 </div>
                             
                             </div>
@@ -340,7 +370,7 @@ const VisitForm = () => {
                                     <label htmlFor="FBS"> FBS   :  </label>
                                 </div>
                                 <div className="input-field">
-                                    <input type="number" placeholder='mmol/l' min={3} max={9} onChange={e =>setValues({...values,fbs:e.target.value})} required/>
+                                    <input type="number" placeholder='mmol/l' min={3} max={9} onChange={e =>setValues({...values,fbs:e.target.value})}  />
                                 </div>
                                 
                             </div>
@@ -351,15 +381,15 @@ const VisitForm = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="AB"> AB : </label>
-                                    <input type="number"  onChange={e =>setValues({...values,ppbsAB:e.target.value})} required/>
+                                    <input type="number"  onChange={e =>setValues({...values,ppbsAB:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="AL"> AL : </label>
-                                    <input type="number"  onChange={e =>setValues({...values,ppbsAL:e.target.value})} required/>
+                                    <input type="number"  onChange={e =>setValues({...values,ppbsAL:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="AD"> AD : </label>
-                                    <input type="number"  onChange={e =>setValues({...values,ppbsAD:e.target.value})} required/>
+                                    <input type="number"  onChange={e =>setValues({...values,ppbsAD:e.target.value})}  />
                                 </div>
                             </div>
                             <div className="fields1">
@@ -369,11 +399,11 @@ const VisitForm = () => {
                                 {/* &emsp; */}
                             <div className="input-field">
                                     <label htmlFor="AB"> ALT : </label>
-                                    <input type="text" placeholder='u/l' min={0} max={50} onChange={e =>setValues({...values,lftALT:e.target.value})} required/>
+                                    <input type="text" placeholder='u/l' min={0} max={50} onChange={e =>setValues({...values,lftALT:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="AL"> AST : </label>
-                                    <input type="text" placeholder='u/l' min={0} max={50} onChange={e =>setValues({...values,lftAST:e.target.value})} required/>
+                                    <input type="text" placeholder='u/l' min={0} max={50} onChange={e =>setValues({...values,lftAST:e.target.value})}  />
                                 </div> 
                             </div>
                             <br />
@@ -390,12 +420,12 @@ const VisitForm = () => {
                                 </div>
                             <div className="input-field">
                                     <label htmlFor="AB"> MRI :  </label>
-                                    <input type="text"  onChange={e =>setValues({...values,mri:e.target.value})} required/>
+                                    <input type="text"  onChange={e =>setValues({...values,mri:e.target.value})}  />
                                 </div>
                                 
                                 <div className="input-field">
                                     <label htmlFor="AL"> CT : </label>
-                                    <input type="text"  onChange={e =>setValues({...values,ct:e.target.value})} required/>
+                                    <input type="text"  onChange={e =>setValues({...values,ct:e.target.value})}  />
                                 </div> 
                             </div>
                             <br />
@@ -405,11 +435,11 @@ const VisitForm = () => {
                                 </div>&emsp;&emsp;
                             <div className="input-field">
                                     <label htmlFor="AB"> TAS : </label>
-                                    <input type="text"  onChange={e =>setValues({...values,tas:e.target.value})} required/>
+                                    <input type="text"  onChange={e =>setValues({...values,tas:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="AL"> TUS : </label>
-                                    <input type="text"  onChange={e =>setValues({...values,tus:e.target.value})} required/>
+                                    <input type="text"  onChange={e =>setValues({...values,tus:e.target.value})}  />
                                 </div> 
                             </div>
                         </div>
@@ -435,11 +465,11 @@ const VisitForm = () => {
                             </div>&emsp;
                             <div className="input-field">
                                 <label htmlFor="AB"> EUA : </label>
-                                <input type="text"  onChange={e =>setValues({...values,minorEua:e.target.value})} required/>
+                                <input type="text"  onChange={e =>setValues({...values,minorEua:e.target.value})}  />
                             </div>
                             <div className="input-field">
                                 <label htmlFor="AL"> EB : </label>
-                                <input type="text"  onChange={e =>setValues({...values,minorEb:e.target.value})} required/>
+                                <input type="text"  onChange={e =>setValues({...values,minorEb:e.target.value})} />
                             </div> 
                         </div>
 
