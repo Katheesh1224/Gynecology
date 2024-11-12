@@ -1,6 +1,6 @@
 import './login.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import { toast } from 'react-toastify';
@@ -57,7 +57,7 @@ const notify = () => toast("Please contact your administrator to reset your pass
       errors.password = "Password is required!";
     } else if (values.password.length < 4) {
       errors.password = "Password must be more than 4 characters!";
-    } else if (values.password.length > 10) {
+    } else if (values.password.length > 15) {
       errors.password = "Password cannot exceed more than 10 characters!";
     }
     return errors;
@@ -73,7 +73,7 @@ const notify = () => toast("Please contact your administrator to reset your pass
           {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
           <input type="password" name="password" placeholder="Password" value={formValues.password} onChange={handleChange} />
           {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
-          <p style={{cursor:"pointer"}}onClick={notify}>Forget Your Password?</p>
+          <Link to="/forgotpassword">Forget Your Password?</Link>
           <button type='submit'>Sign In</button>
         </form>
       </div>

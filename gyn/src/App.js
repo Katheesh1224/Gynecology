@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
-
 import './App.css';
 import Login from './login.jsx';
 import React from 'react';
@@ -23,6 +22,7 @@ import MedHisEdit from './Patient/patient_medicalhx_edit.jsx';
 import AdEdit from './Patient/patient_admission_details_edit.jsx';
 import Backup from './backup.jsx';
 import Analysis_s from './Analysis/Analysiss.jsx';
+import ForgotPassword from './Staff/forgotpassword.jsx';
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
         <Routes>
           <Route path ='/' element={<Login/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
+          <Route path ='/forgotpassword' element={<ForgotPassword/>}></Route>
           <Route path ='/home' element={<ProtectedRoute element={<Home/>}/>}></Route>          
           <Route path ='/backup' element={<ProtectedRoute element={<Backup/>}/>}></Route>          
           <Route path ='/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
