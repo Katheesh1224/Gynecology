@@ -12,7 +12,7 @@ import StatCards from "../Component/StatCard.jsx";
 // import CategoryDistributionChart from "../components/overview/CategoryDistributionChart";
 // import SalesChannelChart from "../components/overview/SalesChannelChart";
 
-const Analysis_s = () => {
+const Analysis = () => {
 	return (
 		<div className='wrapper'>
 		<NavBar/>
@@ -34,10 +34,10 @@ const Analysis_s = () => {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
 				>
-					<StatCards name='Total patients' icon={Users} value='1,801' color='#6366F1' />
+					{/* <StatCards name='Total patients' icon={Users} value='1,801' color='#6366F1' />
 					<StatCards name='Active' icon={UserCheck} value='1,234' color='#8B5CF6' />
 					<StatCards name='Discharged' icon={UserMinus} value='567' color='#EC4899' />
-					<StatCards name='Admission rate' icon={BarChart2} value='12.5%' color='#10B981' />
+					<StatCards name='Admission rate' icon={BarChart2} value='12.5%' color='#10B981' /> */}
 				</motion.div>
 
 				{/* CHARTS */}
@@ -55,4 +55,4 @@ const Analysis_s = () => {
 		</div>
 	);
 };
-export default Analysis_s;
+export default Analysis;
