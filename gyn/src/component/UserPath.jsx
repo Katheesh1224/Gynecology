@@ -9,6 +9,8 @@ const UserPath = () => {
   const breadcrumbNameMap = {
     // '': 'Sign In',
     'home': '.',
+    'backup':'.',
+    'analysis':'Analysis',
     'patient_registration': 'Patient Registration',
     'register_staff': 'Staff Registration',
     'patients_information': 'Patient Information',
@@ -23,12 +25,13 @@ const UserPath = () => {
     'new_admission':'New Admission',
     'patient_history':'Patient Medical History',
     'patient_medicalhx_edit':'Edit Medical History',
-
   };
+
+  const role = localStorage.getItem('role');
 
   return (
     <nav className="breadcrumb">
-      <Link to="/home">Home</Link>
+      <Link to={role === "data_entry" ? '/backup' : '/home'}>Home</Link>
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 

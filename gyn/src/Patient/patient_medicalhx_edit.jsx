@@ -148,11 +148,11 @@ const MedHisEdit = () => {
 
         <div className="container">
 
-            <h2>Patient Registration</h2>
+            <h2>Patient Medical History Updadte</h2>
             <form onSubmit={handleUpdate}>
                 <div className="form">
                     <div className="A">
-                        <span className="title">Section A - Personal details identification</span>
+                        <span className="title">Personal details identification</span>
                         
                             <div className="input-fieldN">
                                 <label htmlFor="phn">PHN No. : </label>
@@ -163,7 +163,7 @@ const MedHisEdit = () => {
                     </div>
 
                     <div className="B">
-                        <span className="title">Section B - History details</span>
+                        <span className="title">History details</span>
                         <div className="fields">
                             <div className="input-fieldH">
                                 <label htmlFor="height">Height : </label>
