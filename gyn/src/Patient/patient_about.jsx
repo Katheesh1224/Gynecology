@@ -41,7 +41,7 @@ const About = () =>{
         <div className="">
           <NavBar/>
           <Nav/>
-            <div className='card'>
+            <div className='container'>
             <div className='space0'></div>
               <h2> Patient Personal Details</h2>
               <div className='space'></div>
