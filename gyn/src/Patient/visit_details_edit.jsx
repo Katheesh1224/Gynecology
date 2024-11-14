@@ -132,7 +132,7 @@ const VisitEdit = () => {
         axios.put(`http://localhost:8081/visitUpdate/${visit_unique}`,values)
         .then(res =>{
             console.log(res);
-            navigate('/patients_information/patient_profile/visit_details')
+            // navigate('/patients_information/patient_profile/visit_details')
             toast.success('Form updated successfully!');
         })
         .catch(err => {
