@@ -1,8 +1,9 @@
 import './login.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
+import { toast } from 'react-toastify';
 
 export const Login = () => {
   const initialValues = { email: "", password: "" };
@@ -24,15 +25,23 @@ export const Login = () => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post('http://localhost:8081/login', formValues);
-        const { token } = response.data;
-        login(token);
-        navigate('/home');
+        const { token, role} = response.data;
+        console.log('Login successful:', token);
+        login(token, role);
+       
+
+        if (role === 'data_entry') {
+          navigate('/backup'); // Redirect to backup.jsx
+        } else {
+          navigate('/home'); // Redirect to home for other roles
+        }
       } catch (err) {
-        console.error('Login failed:', err);
-        alert('Invalid credentials');
+        // console.error('Login failed:', err);
+        toast.error('Invalid credentials');
       }
     }
   };
+const notify = () => toast("Please contact your administrator to reset your password");
 
   const validate = (values) => {
     const errors = {};
@@ -48,10 +57,9 @@ export const Login = () => {
       errors.password = "Password is required!";
     } else if (values.password.length < 4) {
       errors.password = "Password must be more than 4 characters!";
-    } else if (values.password.length > 10) {
+    } else if (values.password.length > 15) {
       errors.password = "Password cannot exceed more than 10 characters!";
     }
-
     return errors;
   };
 
@@ -65,7 +73,7 @@ export const Login = () => {
           {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
           <input type="password" name="password" placeholder="Password" value={formValues.password} onChange={handleChange} />
           {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
-          <a href="/">Forget Your Password?</a>
+          <Link to="/forgotpassword">Forget Your Password?</Link>
           <button type='submit'>Sign In</button>
         </form>
       </div>

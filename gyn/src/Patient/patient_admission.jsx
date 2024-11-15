@@ -78,7 +78,7 @@ const Admission = () => {
     <div>
       <NavBar />
       <Nav />
-      <div className='card'>
+      <div className='container'>
         <h2>Patient Admission</h2>
         <ProfileCard />
         <div className="cntner">

@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 
 const PAdd = () => {   
@@ -45,13 +46,12 @@ const PAdd = () => {
         console.log(e);
         e.preventDefault();
         if (!values.phn) {
-            alert('Patient PHN is required.');
+            toast.error('Patient PHN is required.');
             return;
         }
         axios.post('http://localhost:8081/newReg',values)
         .then(res =>{
             console.log(res);
-         
         })
         .catch(err =>console.log(err))
         navigate('/patients_information/patient_profile/patient_admission')
@@ -62,7 +62,7 @@ const PAdd = () => {
         const currentDate = new Date().toISOString().split('T')[0];
     
         if (selectedDate > currentDate) {
-          alert('Please select a date and time that is not in the future.');
+            toast.error('Please select a date and time that is not in the future.');
         } else {
           setValues({ ...values, date: selectedDate });
         }
