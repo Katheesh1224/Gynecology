@@ -6,6 +6,9 @@ import LineCharts from "./LineChartAnalysis.jsx";
 import CategoryDistributionChart from "./PieChartAnalysis.jsx";
 import ComplaintsChart from "./BarChartAnalysis.jsx"
 import StatCards from "../Component/StatCard.jsx";
+import CategoryDistributionChartCells from "./PieChartAnalysisCells.jsx";
+
+
 
 // import Header from "../components/common/Header";
 // import SalesOverviewChart from "../components/overview/SalesOverviewChart";
@@ -46,6 +49,7 @@ const Analysis_s = () => {
 					<LineCharts />
 					<CategoryDistributionChart />
 					<ComplaintsChart />
+					<CategoryDistributionChartCells />
 				</div>
 			</main>
 		</div>
