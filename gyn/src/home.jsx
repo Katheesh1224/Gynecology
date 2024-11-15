@@ -7,11 +7,38 @@ import { BarChart2, UserMinus, Users, UserCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import LineCharts from "./Analysis/LineChartAnalysis.jsx";
 import CategoryDistributionChart from "./Analysis/PieChartAnalysis.jsx";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 // import ComplaintsChart from "./Analysis/BarChartAnalysis.jsx"
-
 
 const Home = () =>{
     console.log("home rendered");
+	const [stats, setStats] = useState({
+		totalPatients: 0,
+		activePatients: 0,
+		dischargedPatients: 0,
+		admissionRate: '0%',
+	  });
+
+
+	useEffect(() => {
+		const fetchStats = async () => {
+		  try {
+			const response = await axios.get('http://localhost:8081/stats');
+			const data = response.data;
+			setStats({
+			  totalPatients: data.total_patients,
+			  activePatients: data.active_patients,
+			  dischargedPatients: data.discharged_patients,
+			  admissionRate: data.admission_rate,
+			});
+		  } catch (error) {
+			console.error('Error fetching stats:', error);
+		  }
+		};
+	
+		fetchStats();
+	  }, []);
   
   return(
     <div className='wrapper'>
@@ -30,10 +57,10 @@ const Home = () =>{
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
 				>
-					<StatCards name='Total patients' icon={Users} value='1,801' color='#6366F1' />
-					<StatCards name='Active' icon={UserCheck} value='1,234' color='#8B5CF6' />
-					<StatCards name='Discharged' icon={UserMinus} value='567' color='#EC4899' />
-					<StatCards name='Admission rate' icon={BarChart2} value='12.5%' color='#10B981' />
+					<StatCards name='Total patients' icon={Users} value={stats.totalPatients} color='#6366F1' />
+					<StatCards name='Active' icon={UserCheck} value={stats.activePatients} color='#8B5CF6' />
+					<StatCards name='Discharged' icon={UserMinus} value={stats.dischargedPatients} color='#EC4899' />
+					<StatCards name='Admission rate' icon={BarChart2} value={stats.admissionRate} color='#10B981' />
 				</motion.div>
 
         {/* CHARTS */}
@@ -48,6 +75,7 @@ const Home = () =>{
           </div>
       </div>
     </div>
+	</div>
   );
 
 }

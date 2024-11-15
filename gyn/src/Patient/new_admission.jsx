@@ -47,13 +47,11 @@ const PAdd = () => {
         e.preventDefault();
         if (!values.phn) {
             toast.error('Patient PHN is required.');
-
             return;
         }
         axios.post('http://localhost:8081/newReg',values)
         .then(res =>{
             console.log(res);
-         
         })
         .catch(err =>console.log(err))
         navigate('/patients_information/patient_profile/patient_admission')
