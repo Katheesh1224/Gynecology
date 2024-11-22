@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
-// import Chatbot from '../Component/Chatbot.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 
 import { toast } from 'react-toastify';
 
@@ -213,6 +213,7 @@ const RegisterStaff = () => {
           </form>
         </div>
       </div>
+      <Chatbot/>
     </div>
   );
 };
