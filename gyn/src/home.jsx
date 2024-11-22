@@ -9,7 +9,6 @@ import LineCharts from "./Analysis/LineChartAnalysis.jsx";
 import CategoryDistributionChart from "./Analysis/PieChartAnalysis.jsx";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-// import ComplaintsChart from "./Analysis/BarChartAnalysis.jsx"
 
 const Home = () =>{
     console.log("home rendered");
@@ -48,7 +47,6 @@ const Home = () =>{
         <div className='container-big'>
           <div className='container-home'>
             <h2>Welcome to GYNECOLOGY Department</h2>
-           
 			<main className='max-w-7xl mx-auto py-6 px-4 lg:px-8'>
 				 {/* STATS  */}
 				<motion.div
