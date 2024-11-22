@@ -117,7 +117,7 @@ import { motion } from "framer-motion";
 import { BarChart, Bar, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell } from "recharts";
 import axios from "axios";
 
-const COLORS = ["#b91c1c", "#fbbf24", "#a3e635", "#57534e", "#4d7c0f", "#075985", "#f43f5e", "#86198f"];
+const COLORS = ["#6366F1", "#8B5CF6", "#EC4899", "#10B981", "#F59E0B", "#22D3EE", "#F43F5E", "#3B82F6"];
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -131,13 +131,13 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-const ComplaintsChart = () => {
+const HxChart = () => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     const fetchComplaintsData = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/complaints-stats');
+        const response = await axios.get('http://localhost:8081/history-stats');
         setChartData(response.data);
       } catch (error) {
         console.error("Error fetching complaints data:", error);
@@ -154,7 +154,7 @@ const ComplaintsChart = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
     >
-      <h2 className='text-2xl font-medium mb-4 text-gray-800 font-bold'>Patient Complaints in Gynecology</h2>
+      <h2 className='text-2xl font-medium mb-4 text-gray-800 font-bold'>Patient Medical History in Gynecology</h2>
 
       <div className='h-80'>
         <ResponsiveContainer>
@@ -181,4 +181,4 @@ const ComplaintsChart = () => {
   );
 };
 
-export default ComplaintsChart;
+export default HxChart;
