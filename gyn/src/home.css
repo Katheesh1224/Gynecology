@@ -233,7 +233,7 @@
 .nav__link,
 .nav__toggle,
 .nav__close{
-  color: white;
+  color: #000000;
 }
 
 .nav__toggle{
@@ -247,8 +247,8 @@
   .nav__menu{
     position: fixed;
     width: 100%;
-    background: #512da8;
-    top: -150%;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);    top: -150%;
     left: 0;
     padding: 3.5rem 0;
     transition: .4s;
@@ -468,6 +468,7 @@
     padding: 30px;
     margin: 100px 15px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.3) ;
+    background-color: #fafafa;
   }
 
   .container-small-card{
@@ -530,3 +531,66 @@
     flex-direction: row;
   }
 
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 5px 15px;
+}
+
+.col1{
+  width: 200px;
+  /* flex: 1; */
+  margin: 0 15px;
+}
+
+.col2{
+  flex: 0.2;
+  margin: 0 15px;
+}
+
+.col3{
+  flex: 3;
+  margin: 0 15px;
+}
+
+.invest{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.rowL{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 5px 15px;
+}
+
+.colL1{
+  width: 150px;
+  /* flex: 1; */
+  margin: 0 15px;
+}
+
+.colL2{
+  flex: 0.2;
+  margin: 0 15px;
+}
+
+.colL3{
+  width: 124px;
+  flex: 3;
+  margin: 0 15px;
+}
+
+.profile .title{
+  display: block;
+  text-align: center;
+  /* margin-bottom: 180px; */
+  font-size: 16px;
+  font-weight: 500;
+  margin: 20px 0;
+  color: #ffffff;
+  background-color: #512da8;
+  border-radius: 6px;
+}

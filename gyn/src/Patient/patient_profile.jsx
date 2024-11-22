@@ -53,7 +53,7 @@ const Profile = () => {
       <NavBar/>
       <Nav/>
       <div className='container'>
-        <h2> Patient Profile</h2>
+        <h2 style={{fontWeight:"bold"}} > Patient Profile</h2>
         <ProfileCard/>
         <div className="cntner">
           <div className="cd">
@@ -104,7 +104,7 @@ const Profile = () => {
 
         <div className='button-bar'>
           <button onClick={handlePrevious}>{"<<"} &nbsp; previous </button>
-          <button style={{ backgroundColor: 'red' }} onClick={() => { handleDischarge(data.phone_no) }}>Discharge</button>
+          <button style={{ backgroundColor: 'red' }} onClick={() => { handleDischarge(data.phn) }}>Discharge</button>
           </div>
       </div>
     </div>

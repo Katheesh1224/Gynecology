@@ -79,7 +79,7 @@ const Admission = () => {
       <NavBar />
       <Nav />
       <div className='container'>
-        <h2>Patient Admission</h2>
+        <h2 style={{fontWeight:"bold"}} >Patient Admissions</h2>
         <ProfileCard />
         <div className="cntner">
           {cards.map((card, index) => (
