@@ -743,3 +743,10 @@ border: 7px solid red;
   justify-content: flex-end;
   flex-wrap: wrap;
 }
+button:disabled {
+  background-color: grey;
+  cursor: not-allowed; 
+  color: white;       
+  border: none;        
+}
+
