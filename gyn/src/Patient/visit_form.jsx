@@ -53,6 +53,7 @@ const VisitForm = () => {
         lftALT:'',
         lftAST:'',
         lftOther:'',
+        scan_types:[],
         mri:'',
         ct:'',
         tas:'',
@@ -131,11 +132,6 @@ const VisitForm = () => {
           setValues({ ...values, date: selectedDate });
         }
     };
-    
-    const handleChangeNo = (event) => {
-        const enteredValue = event.target.value;
-        setValue(enteredValue);
-    };
 
     const inputClass = isNaN(value) || value < 0 || value > 200 ? "invalid" : '';
 
@@ -152,11 +148,6 @@ const VisitForm = () => {
             }
             
         }
-          
-        setValues({
-            ...values,
-            [name]: value,
-        });console.log(value);
 
         if (name === 'abnormalUlerine') {
             if (target.checked) {
@@ -165,11 +156,6 @@ const VisitForm = () => {
                 value = values.abnormalUlerine.filter((subject) => subject !== target.value);
             }
         }
-        
-        setValues({
-            ...values,
-            [name]: value,
-        });console.log(value);
 
         if (name === 'major') {
             if (target.checked) {
@@ -185,6 +171,94 @@ const VisitForm = () => {
         });console.log(value);
     }
 
+    const [checkbox1Checked, setCheckbox1Checked] = useState(false);
+    const [checkbox2Checked, setCheckbox2Checked] = useState(false);
+    const [checkbox3Checked, setCheckbox3Checked] = useState(false);
+    const [checkbox4Checked, setCheckbox4Checked] = useState(false);
+
+    const handleCheckbox1Change = (e) => {
+        setCheckbox1Checked(!checkbox1Checked);
+
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name === 'scan_types') {
+            if (target.checked) {
+                value = [...values.scan_types, target.value];
+            } else {
+                value = values.scan_types.filter((subject) => subject !== target.value);
+            }
+        }
+          
+        setValues({
+            ...values,
+            [name]: value,
+        });console.log(value);
+    };
+
+    const handleCheckbox2Change = (e) => {
+        setCheckbox2Checked(!checkbox2Checked);
+
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name === 'scan_types') {
+            if (target.checked) {
+                value = [...values.scan_types, target.value];
+            } else {
+                value = values.scan_types.filter((subject) => subject !== target.value);
+            }
+        }
+          
+        setValues({
+            ...values,
+            [name]: value,
+        });console.log(value);
+    };
+
+    const handleCheckbox3Change = (e) => {
+        setCheckbox3Checked(!checkbox3Checked);
+        
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name === 'scan_types') {
+            if (target.checked) {
+                value = [...values.scan_types, target.value];
+            } else {
+                value = values.scan_types.filter((subject) => subject !== target.value);
+            }
+        }
+          
+        setValues({
+            ...values,
+            [name]: value,
+        });console.log(value);
+    };
+
+    const handleCheckbox4Change = (e) => {
+        setCheckbox4Checked(!checkbox4Checked);
+        
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name === 'scan_types') {
+            if (target.checked) {
+                value = [...values.scan_types, target.value];
+            } else {
+                value = values.scan_types.filter((subject) => subject !== target.value);
+            }
+        }
+          
+        setValues({
+            ...values,
+            [name]: value,
+        });console.log(value);
+    };
 
     return (
         <div>
@@ -257,7 +331,7 @@ const VisitForm = () => {
                                 <br/>
                                 <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Scan">  Abnormal Ulerine bleeding :  </label>
+                                    <label htmlFor="abnormalUlerine">  Abnormal Ulerine bleeding :  </label>
                                 </div>
                             </div>
                             <div className="fields">
@@ -440,34 +514,60 @@ const VisitForm = () => {
                                 </div> 
                                 </div>
                                 <br />
-                            <div className="fields1">
-                            <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Scan">Scanning:</label>
-                                </div>
-                            <div className="input-field">
-                                    <label htmlFor="AB"> MRI :  </label>
-                                    <input type="text"  onChange={e =>setValues({...values,mri:e.target.value})}  />
+                            <div className="fields">
+                                <div>
+                                    <div className="input-field" onload="setMaxDate()">
+                                        <label htmlFor="scan">Scanning:</label>
+                                    </div>
+                                    
+                                    <div className="input-Check">
+                                        <input type="checkbox" id="mri" name='scan_types' value="MRI" checked={checkbox1Checked} onChange={handleCheckbox1Change}/>
+                                        <label htmlFor="checkbox1">MRI</label>
+                                        {checkbox1Checked && (
+                                            <div className="input-fieldCheck">
+                                                <input type="text" placeholder="Enter description for MRI" onChange={e =>setValues({...values,mri:e.target.value})}/>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="input-Check">
+                                        <input type="checkbox" id="ct" name='scan_types' value="CT" checked={checkbox2Checked} onChange={handleCheckbox2Change}/>
+                                        <label htmlFor="checkbox2">CT</label>
+                                        {checkbox2Checked && (
+                                            <div className="input-fieldCheck">
+                                                <input type="text" placeholder="Enter description for CT" onChange={e =>setValues({...values,ct:e.target.value})}/>
+                                            </div>
+                                        )}
+                                        </div>
                                 </div>
                                 
-                                <div className="input-field">
-                                    <label htmlFor="AL"> CT : </label>
-                                    <input type="text"  onChange={e =>setValues({...values,ct:e.target.value})}  />
-                                </div> 
+                                <div>
+                                    <div className="input-field" onload="setMaxDate()">
+                                        <label htmlFor="Scan">  USS:  </label>
+                                    </div>
+                                    
+                                    <div className="input-Check">
+                                        <input type="checkbox" id="tas" name='scan_types' value="TAS"  checked={checkbox3Checked} onChange={handleCheckbox3Change}/>
+                                        <label htmlFor="checkbox1">TAS</label>
+                                        {checkbox3Checked && (
+                                            <div className="input-fieldCheck">
+                                                <input type="text" placeholder="Enter description for TAS" onChange={e =>setValues({...values,tas:e.target.value})}/>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="input-Check">
+                                        <input type="checkbox" id="tus" name='scan_types' value="TUS" checked={checkbox4Checked} onChange={handleCheckbox4Change}/>
+                                        <label htmlFor="checkbox2">TUS</label>
+                                        {checkbox4Checked && (
+                                            <div className="input-fieldCheck">
+                                                <input type="text" placeholder="Enter description for TUS" onChange={e =>setValues({...values,tus:e.target.value})}/>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>    
                             </div>
-                            <br />
-                            <div className="fields1">
-                            <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Scan">  USS:  </label>
-                                </div>&emsp;&emsp;
-                            <div className="input-field">
-                                    <label htmlFor="AB"> TAS : </label>
-                                    <input type="text"  onChange={e =>setValues({...values,tas:e.target.value})}  />
-                                </div>
-                                <div className="input-field">
-                                    <label htmlFor="AL"> TUS : </label>
-                                    <input type="text"  onChange={e =>setValues({...values,tus:e.target.value})}  />
-                                </div> 
-                            </div>
+                            
                         </div>
                         <span className="title">Management</span>                                                  
                         <div className="A">
@@ -500,10 +600,10 @@ const VisitForm = () => {
                         </div>
 
                             <div className="fields1">
-                            <div className="input-field" onload="setMaxDate()">
+                                <div className="input-field" onload="setMaxDate()">
                                     <label htmlFor="Scan">  Major :  </label>
-                                </div>&emsp;&emsp;
-                        </div>
+                                </div>
+                            </div>
                             <div className="fields">
                                 <div className="input-fieldM">
                                     <input type="checkbox" id="BL/LRT" name="major" value="BL/LRT" onChange={handleInputChange}/>
@@ -524,10 +624,9 @@ const VisitForm = () => {
                                 </div>  
                             </div>
                     </div>
-                    <div className="btn1" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'#512da8'}} >Submit</button></div>
-                    <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}} onClick={()=>{navigate('/home');}}>Cancel</button></div>
+                    <div className="btn1"><button type="submit" name="submit">Submit</button></div>
                 </form>
-            </div>
+            </div>           
         </div>
     )
 }

@@ -77,7 +77,7 @@ const Visit = () => {
       <NavBar />
       <Nav />
       <div className='container'>
-        <h2>Patient Visit</h2>
+        <h2 style={{fontWeight:"bold"}} >Admission {add_count}</h2>
         <AdmissionCard />
         <div className="cntner">
           {cards.map((card, index) => (

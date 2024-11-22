@@ -53,7 +53,7 @@ const Profile = () => {
       <NavBar/>
       <Nav/>
       <div className='container'>
-        <h2> Patient Profile</h2>
+        <h2 style={{fontWeight:"bold"}} > Patient Profile</h2>
         <ProfileCard/>
         <div className="cntner">
           <div className="cd">
