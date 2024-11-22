@@ -23,6 +23,10 @@ import AdEdit from './Patient/patient_admission_details_edit.jsx';
 import Backup from './backup.jsx';
 import Analysis_s from './Analysis/Analysiss.jsx';
 import ForgotPassword from './Staff/forgotpassword.jsx';
+import Analysis from './Analysis/Analysiss.jsx';
+import VisitDetails from './Patient/visit_details.jsx';
+import VisitEdit from './Patient/visit_details_edit.jsx';
+
 
 function App() {
   return (

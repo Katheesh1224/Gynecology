@@ -39,7 +39,7 @@ const Visit = () => {
 
   const addCard = () => {
     setCards((prevCards) => {
-      const newCardTitle = `Visit ${prevCards.length + 2}`;
+      const newCardTitle = `Visit ${prevCards.length + 1}`;
       navigate('/patients_information/patient_profile/patient_admission/patient_visit/visit_form');
       return [...prevCards, newCardTitle];
     });
@@ -78,6 +78,7 @@ const Visit = () => {
             </div>
           </div>
         </div>
+        </div>
 
         <div className="button-bar">
           <button onClick={handlePrevious}>
@@ -94,6 +95,7 @@ const Visit = () => {
       </div>
     </div>
   );
+};
 };
 
 export default Visit;
