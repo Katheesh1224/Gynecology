@@ -6,6 +6,10 @@ import LineCharts from "./LineChartAnalysis.jsx";
 import CategoryDistributionChart from "./PieChartAnalysis.jsx";
 import ComplaintsChart from "./BarChartAnalysis.jsx"
 import StatCards from "../Component/StatCard.jsx";
+import ReportAnalysis from "./PieChartAnalysisCells.jsx";
+import HxChart from "./BarChartHx.jsx";
+
+
 
 // import Header from "../components/common/Header";
 // import SalesOverviewChart from "../components/overview/SalesOverviewChart";
@@ -19,8 +23,8 @@ const Analysis = () => {
 		<div className='main-content'>
 		  <Nav/> 
 		  <div className='container-big'>
-			<div className='container-home'>
-			  <h2>Analysis</h2>
+			<div className='container-home font-bold'>
+			  <h2 >Analysis</h2>
 			  
 		<div className='flex-1 overflow-auto relative z-10'>
 
@@ -46,6 +50,8 @@ const Analysis = () => {
 					<LineCharts />
 					<CategoryDistributionChart />
 					<ComplaintsChart />
+					<ReportAnalysis />
+					<HxChart />
 				</div>
 			</main>
 		</div>
