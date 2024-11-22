@@ -26,7 +26,7 @@ import ForgotPassword from './Staff/forgotpassword.jsx';
 import Analysis from './Analysis/Analysiss.jsx';
 import VisitDetails from './Patient/visit_details.jsx';
 import VisitEdit from './Patient/visit_details_edit.jsx';
-import ExportPatientData from './Backups/DocumentExport.jsx';
+// import ExportPatientData from './Backups/DocumentExport.jsx';
 
 
 function App() {
@@ -58,7 +58,7 @@ function App() {
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_details' element={<ProtectedRoute element={<VisitDetails/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_details_edit' element={<ProtectedRoute element={<VisitEdit/>}/>}></Route>
           <Route path='/analysis' element={<ProtectedRoute element={<Analysis/>}/>}></Route>
-          <Route path='/data_export' element={<ProtectedRoute element={<ExportPatientData/>}/>}></Route>
+          {/* <Route path='/data_export' element={<ProtectedRoute element={<ExportPatientData/>}/>}></Route> */}
         </Routes>
       </BrowserRouter>
       </AuthProvider>
