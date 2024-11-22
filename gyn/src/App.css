@@ -743,10 +743,39 @@ border: 7px solid red;
   justify-content: flex-end;
   flex-wrap: wrap;
 }
-button:disabled {
-  background-color: grey;
-  cursor: not-allowed; 
-  color: white;       
-  border: none;        
+
+.user-role-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the icon and the text */
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user {
+  font-size: 1.5rem;
+  color: #333; /* Adjust icon color */
+}
+
+.role-text {
+  background-color: #3e6ea2; /* Color for the half-circle */
+  color: white;
+  padding: 5px 15px;
+  border-radius: 15px; /* Rounded edges */
+  margin-left: 10px; /* Space between the icon and role text */
+}
+
+.role-text::before {
+  content: '';
+  position: absolute;
+  left: -5px; /* Position the circle to the left of the text */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #4c7cb0; /* Same as the text background */
+}

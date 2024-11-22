@@ -37,7 +37,7 @@ const NavBar = () => {
         <div className={`nav__menu ${showMenu ? 'show-menu' : ''}`} id="nav-menu">
           <ul className="nav__list">
             <li className="nav__item">
-              <NavLink exact to = {role === "data_entry" ? '/backup' : '/home'} className="nav__link" activeClassName="active" onClick={closeMenu}>
+              <NavLink exact to = {role === "superadmin" ? '/home' : '/backup'} className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Home</span>
               </NavLink>
             </li>
@@ -91,11 +91,17 @@ const NavBar = () => {
 
           <UserPath />
           <ul>
-            <li><FontAwesomeIcon icon={faUser} onClick={handleLogout} className="user" /></li>
+            <li className="user-role-container">
+              <div className="user-info">
+                <span className="role-text">{role}</span>
+                <FontAwesomeIcon icon={faUser} onClick={handleLogout} className="user" />
+              </div>
+            </li>
             <li>
               <button onClick={handleLogout} className="buttonHome">Logout</button>
             </li>
           </ul>
+
         </div>
       </nav>
     </header>
