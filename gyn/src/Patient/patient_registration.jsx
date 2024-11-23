@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom'; 
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 
@@ -42,11 +43,6 @@ const PReg = () => {
         add_count:'1',
         complaint:'',
         other:''
-        // req.body.past_hist,
-        // req.body.complaint,
-        // req.body.past_obs,
-        // past_hist:'',
-        // past_obs:'',
     })
 
     const handleSubmit = (e) => {
@@ -111,10 +107,6 @@ const PReg = () => {
             }
             
           }
-          setValues({
-            ...values,
-            [name]: value,
-          });console.log(value);
 
           if (name === 'past_surg') {
             if (target.checked) {
@@ -123,10 +115,6 @@ const PReg = () => {
               value = values.past_surg.filter((subject) => subject !== target.value);
             }
           }
-          setValues({
-            ...values,
-            [name]: value,
-          });console.log(value);
 
           if (name === 'hx_cancer') {
             if (target.checked) {
@@ -141,15 +129,121 @@ const PReg = () => {
           });console.log(value);
       }
     
+    const [formErrors, setFormErrors] = useState({});
+    const [isFullNameValid, setIsFullNameValid] = useState(true);
+    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
+    const [isNICErrorValid, setIsNICErrorValid] = useState(true);
+    const [isNICInstValid, setIsNICInstValid] = useState(true);
+    const [isPHNErrorValid, setIsPHNErrorValid] = useState(true);
+    const [isPHNInstValid, setIsPHNInstValid] = useState(true);
+    const [isBHTErrorValid, setIsBHTErrorValid] = useState(true);
+    const [isBHTInstValid, setIsBHTInstValid] = useState(true);
+
+
+    const handleChange = (e) => {
+        const target = e.target;
+        const name = target.name;
+        let value = target.value;
+        setValues({ ...values, [name]: value });
+    
+        let errors = { ...formErrors };
+    
+        switch (name) {
+          case "fname":
+            if (!/^[a-zA-Z\s]*$/.test(value)) {
+              setIsFullNameValid(false);
+              errors.fname = "Only alphabets are allowed.";
+            } else {
+              setIsFullNameValid(true);
+              delete errors.fname;
+            }
+            break;
+    
+          case "phone_no":
+            if (!/^[0-9]*$/.test(value)) {
+              setIsPhoneNumberValid(false);
+              errors.phone_no = "Only numbers are allowed.";
+            } else {
+              setIsPhoneNumberValid(true);
+              delete errors.phone_no;
+            }
+            break;
+
+            case "nic":
+                if (value === "") { 
+                    setIsNICErrorValid(true); 
+                    setIsNICInstValid(true); 
+                    delete errors.nic; 
+                } else if (!/^[0-9]*[vV]?$/.test(value)) { 
+                    setIsNICErrorValid(false);
+                    errors.nic = "Only numbers and v are allowed.";
+                } else if (!/^(?:[0-9]{12}|[0-9]{9}[vV])$/.test(value)) { 
+                    setIsNICInstValid(false);
+                    errors.nic = "Enter correct form of NIC.";
+                } else {
+                    setIsNICErrorValid(true);
+                    setIsNICInstValid(true);
+                    delete errors.nic;
+                }
+                break;
+
+            case "phn":
+                if (value === "") { 
+                    setIsPHNErrorValid(true); 
+                    setIsPHNInstValid(true);
+                    delete errors.phn; 
+                } else if (!/^[0-9]*$/.test(value)) { 
+                    setIsPHNErrorValid(false);
+                    errors.phn = "Only numbers are allowed.";
+                } else if (value.length !== 11) { 
+                    setIsPHNInstValid(false);
+                    errors.phn = "Enter exactly 11 digits.";
+                } else {
+                    setIsPHNErrorValid(true);
+                    setIsPHNInstValid(true);
+                    delete errors.phn;
+                }
+                break;
+
+            case "bht":
+                if (value === "") { 
+                    setIsBHTErrorValid(true); 
+                    setIsBHTInstValid(true); 
+                    delete errors.bht; 
+                } else if (!/^[0-9]*$/.test(value)) { 
+                    setIsBHTErrorValid(false);
+                    errors.bht = "Invalid input: Only numbers are allowed.";
+                } else if (!/^[0-9]{6}\/[0-9]{4}$/.test(value)) { 
+                    setIsPHNInstValid(false);
+                    errors.bht = "Enter exactly 123456/1234 format.";
+                } else {
+                    setIsBHTErrorValid(true);
+                    setIsBHTInstValid(true);
+                    delete errors.bht;
+                }
+                break;
+
+                default:
+                    break;
+            }
+    
+            setFormErrors(errors);
+        };
+
+        const handlePrevious = () => {
+            navigate(`/home`);
+          };
+    
     
 
     return (
         <div className='wrapper'>
             <NavBar/>
+            <Chatbot/>
             <div className='main-content'>
                 <Nav/>
                 <div className="container">
-                    <h2>Patient Registration</h2>
+                    <h2 style={{fontWeight:"bold"}} >Patient Registration</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form">
                             <div className="A">
@@ -163,12 +257,13 @@ const PReg = () => {
 
                                 <div className="fields">
                                     <div className="input-field">
-                                        <label htmlFor="full_name">Fullname : </label>
-                                        <input type="text" pattern="[A-Za-z]+" title="Only alphabets are allowed" placeholder="Enter text here" onChange={e =>setValues({...values,fname:e.target.value})} required/>
+                                        <label htmlFor="full_name">Full Name : </label>
+                                        <input type="text" name="fname" placeholder="Enter full name here" onChange={handleChange} required style={{ borderColor: isFullNameValid ? '#aaa' : 'red' }}/>
+                                        {formErrors.fname && <p style={{ color: "red" }}>{formErrors.fname}</p>}
                                     </div>
                                     <div className="input-field">
                                         <label htmlFor="address">Address : </label>
-                                        <input type="text" placeholder="Enter text here" onChange={e =>setValues({...values,address:e.target.value})} required/>
+                                        <input type="text" name="address" placeholder="Enter address here" onChange={e =>setValues({...values,address:e.target.value})} required/>
                                     </div>                             
                                 </div>
 
@@ -202,15 +297,18 @@ const PReg = () => {
                                     </div> 
                                     <div className="input-fieldN">
                                         <label htmlFor="nic">NIC No. : </label>
-                                        <input type="text" placeholder="Enter number here" pattern="(^[0-9]{12}$)|(^[0-9]{9}[v]$)" maxLength="12" onChange={e =>setValues({...values,nic:e.target.value})}/>
+                                        <input type="text" name="nic" placeholder="Enter NIC here" maxLength="12" onChange={handleChange} style={{ borderColor: isNICErrorValid ? '#aaa' : 'red' }}/>
+                                        {formErrors.nic && <p style={{ color: isNICErrorValid ? 'blue' : 'red' }}>{formErrors.nic}</p>}
                                     </div>
                                     <div className="input-fieldN">
                                         <label htmlFor="phn">PHN No. : </label>
-                                        <input type="text" placeholder="Enter number here" pattern="[0-9]{11}" maxLength={11} onChange={e =>setValues({...values,phn:e.target.value})} required/>
+                                        <input type="text" name="phn" placeholder="Enter PHN here" maxLength={11} onChange={handleChange} style={{ borderColor: isPHNErrorValid ? '#aaa' : 'red' }} required/>
+                                        {formErrors.phn && <p style={{ color: isPHNErrorValid ? 'blue' : 'red' }}>{formErrors.phn}</p>}
                                     </div>   
                                     <div className="input-fieldN">
                                         <label htmlFor="phone_no">Telephone No. : </label>
-                                        <input type="tel" pattern="[0-9]{10}" placeholder="Enter number here" maxLength="10" onChange={e =>setValues({...values,tp:e.target.value})} required/>
+                                        <input type="tel" name="phone_no" placeholder="Enter phone number here" maxLength="10" onChange={handleChange} style={{ borderColor: isPhoneNumberValid ? '#aaa' : 'red' }} required/>
+                                        {formErrors.phone_no && <p style={{ color: "red" }}>{formErrors.phone_no}</p>}
                                     </div>                             
                                 </div>
                                 
@@ -221,7 +319,8 @@ const PReg = () => {
                                 <div className="fields">
                                     <div className="input-fieldB">
                                         <label htmlFor="bht">BHT : </label>
-                                        <input type="text" placeholder="123456/1234" pattern="[0-9]{6}/[0-9]{4}" maxlength="11" onChange={e =>setValues({...values,bht:e.target.value})} required/>
+                                        <input type="text" name="bht" placeholder="123456/1234" maxlength="11" onChange={handleChange} style={{ borderColor: isBHTErrorValid ? '#aaa' : 'red' }} required/>
+                                        {formErrors.bht && <p style={{ color: isBHTErrorValid ? 'blue' : 'red' }}>{formErrors.bht}</p>}
                                     </div>   
                                     <div className="input-fieldH">
                                         <label htmlFor="ward_no">Ward No. : </label>
@@ -347,7 +446,10 @@ const PReg = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="btn1"><button type="submit">Register</button></div>
+                        <div className="button-bar">
+                            <button onClick={handlePrevious}> {"<<"} &nbsp;&nbsp; Back </button>
+                            <button  type="submit"> Register </button>
+                        </div>
                         
                     </form>
                 </div>

@@ -21,13 +21,14 @@ import MedDetails from './Patient/patient_medical_hx.jsx';
 import MedHisEdit from './Patient/patient_medicalhx_edit.jsx';
 import AdEdit from './Patient/patient_admission_details_edit.jsx';
 import Backup from './backup.jsx';
-// import Analysis_s from './Analysis/Analysiss.jsx';
 import ForgotPassword from './Staff/forgotpassword.jsx';
 import Analysis from './Analysis/Analysiss.jsx';
 import VisitDetails from './Patient/visit_details.jsx';
 import VisitEdit from './Patient/visit_details_edit.jsx';
 import DataExport from './DocumentBackup/DataExport.jsx';
 import BackupReminder from './Component/Reminder.jsx';
+import Chatbot from './Component/Chatbot.jsx';
+
 
 
 function App() {
@@ -35,12 +36,13 @@ function App() {
     <div className="App">
       <AuthProvider>
       <BrowserRouter>
-      <BackupReminder />
+      
         <Routes>
           <Route path ='/' element={<Login/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
           <Route path ='/forgotpassword' element={<ForgotPassword/>}></Route>
-          <Route path ='/home' element={<ProtectedRoute element={<Home/>}/>}></Route>          
+
+          <Route path ='/home' element={<ProtectedRoute element={<Home />} restrictedForSuperadmin={['/superadmin']}  />}></Route>          
           <Route path ='/backup' element={<ProtectedRoute element={<Backup/>}/>}></Route>          
           <Route path ='/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
           <Route path ='/patients_information' element={<ProtectedRoute element={<Patient/>}/>}></Route>
@@ -59,8 +61,9 @@ function App() {
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details_edit' element={<ProtectedRoute element={<AdEdit/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_details' element={<ProtectedRoute element={<VisitDetails/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_details_edit' element={<ProtectedRoute element={<VisitEdit/>}/>}></Route>
-          <Route path='/analysis' element={<ProtectedRoute element={<Analysis/>}/>}></Route>
           <Route path='/data_export' element={<ProtectedRoute element={<DataExport/>}/>}></Route>
+          <Route path='/analysis' element={<ProtectedRoute element={<Analysis/>} restrictedForSuperadmin={['/superadmin']} />}></Route>
+          <Route path='/chatbot' element={<ProtectedRoute element={<Chatbot/>}/>}></Route>
         </Routes>
       </BrowserRouter>
       </AuthProvider>

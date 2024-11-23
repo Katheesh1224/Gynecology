@@ -25,6 +25,9 @@ const UserPath = () => {
     'new_admission':'New Admission',
     'patient_history':'Patient Medical History',
     'patient_medicalhx_edit':'Edit Medical History',
+    'visit_details':'Visit Details',
+    'data_export':'Data Export',
+
   };
 
   const role = localStorage.getItem('role');

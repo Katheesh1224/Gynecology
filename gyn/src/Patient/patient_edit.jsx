@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; 
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 
@@ -91,10 +92,94 @@ const PEdit = () => {
         });
       };    
     
+    
+    const [formErrors, setFormErrors] = useState({});
+    const [isFullNameValid, setIsFullNameValid] = useState(true);
+    const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
+    const [isNICErrorValid, setIsNICErrorValid] = useState(true);
+    const [isNICInstValid, setIsNICInstValid] = useState(true);
+    const [isPHNErrorValid, setIsPHNErrorValid] = useState(true);
+    const [isPHNInstValid, setIsPHNInstValid] = useState(true);
 
+      const handleChange = (e) => {
+        const target = e.target;
+        const name = target.name;
+        let value = target.value;
+        setValues({ ...values, [name]: value });
+    
+        let errors = { ...formErrors };
+    
+        switch (name) {
+          case "fname":
+            if (!/^[a-zA-Z\s]*$/.test(value)) {
+              setIsFullNameValid(false);
+              errors.fname = "Invalid input: Only alphabets are allowed.";
+            } else {
+              setIsFullNameValid(true);
+              delete errors.fname;
+            }
+            break;
+    
+          case "phone_no":
+            if (!/^[0-9]*$/.test(value)) {
+              setIsPhoneNumberValid(false);
+              errors.phone_no = "Invalid input: Only numbers (0-9) are allowed.";
+            } else {
+              setIsPhoneNumberValid(true);
+              delete errors.phone_no;
+            }
+            break;
+    
+            case "nic":
+                if (value === "") { 
+                    setIsNICErrorValid(true); 
+                    setIsNICInstValid(true); 
+                    delete errors.nic; 
+                } else if (!/^[0-9]*[vV]?$/.test(value)) { 
+                    setIsNICErrorValid(false);
+                    errors.nic = "Only numbers and v are allowed.";
+                } else if (!/^(?:[0-9]{12}|[0-9]{9}[vV])$/.test(value)) { 
+                    setIsNICInstValid(false);
+                    errors.nic = "Enter correct form of NIC.";
+                } else {
+                    setIsNICErrorValid(true);
+                    setIsNICInstValid(true);
+                    delete errors.nic;
+                }
+                break;            
+
+            case "phn":
+                if (value === "") { 
+                    setIsPHNErrorValid(true); 
+                    setIsPHNInstValid(true);
+                    delete errors.phn; 
+                } else if (!/^[0-9]*$/.test(value)) { 
+                    setIsPHNErrorValid(false);
+                    errors.phn = "Only numbers are allowed.";
+                } else if (value.length !== 11) { 
+                    setIsPHNInstValid(false);
+                    errors.phn = "Enter exactly 11 digits.";
+                } else {
+                    setIsPHNErrorValid(true);
+                    setIsPHNInstValid(true);
+                    delete errors.phn;
+                }
+                break;
+    
+          default:
+            break;
+        }
+    
+        setFormErrors(errors);
+      };
+
+
+
+    
     return (
         <div className='wrapper'>
             <NavBar/>
+            <Chatbot/>
             <div className='main-content'>
                 <div className='side-bar'>
                     <Nav/>
@@ -112,7 +197,8 @@ const PEdit = () => {
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor="full_name">Fullname : </label>
-                                <input type="text" pattern="[A-Za-z]+" value={values.fname} title="Only alphabets are allowed" placeholder="Enter text here" onChange={e =>setValues({...values,fname:e.target.value})} required/>
+                                <input type="text" name="fname" value={values.fname} placeholder="Enter text here" onChange={handleChange} style={{ borderColor: isFullNameValid ? '#aaa' : 'red' }} required/>
+                                {formErrors.fname && <p style={{ color: "red" }}>{formErrors.fname}</p>}
                             </div>
                             <div className="input-field">
                                 <label htmlFor="address">Address : </label>
@@ -149,15 +235,18 @@ const PEdit = () => {
                             </div> 
                             <div className="input-fieldN">
                                 <label htmlFor="nic">NIC No. : </label>
-                                <input type="text" placeholder="Enter number here" value={values.nic} pattern="(^[0-9]{12}$)|(^[0-9]{9}[v]$)" maxLength="12" onChange={e =>setValues({...values,nic:e.target.value})}/>
+                                <input type="text" name="nic" placeholder="Enter NIC here" maxLength="12" onChange={handleChange} style={{ borderColor: isNICErrorValid ? '#aaa' : 'red' }}/>
+                                        {formErrors.nic && <p style={{ color: isNICErrorValid ? 'blue' : 'red' }}>{formErrors.nic}</p>}
                             </div>
                             <div className="input-fieldN">
                                 <label htmlFor="phn">PHN No. : </label>
-                                <input type="text" placeholder="Enter number here" value={values.phn} pattern="[0-9]{11}" maxLength={11} onChange={e =>setValues({...values,phn:e.target.value})} required/>
+                                <input type="text" name="phn" placeholder="Enter PHN here" maxLength={11} onChange={handleChange} style={{ borderColor: isPHNErrorValid ? '#aaa' : 'red' }} required/>
+                                        {formErrors.phn && <p style={{ color: isPHNErrorValid ? 'blue' : 'red' }}>{formErrors.phn}</p>}
                             </div>   
                             <div className="input-fieldN">
                                 <label htmlFor="phone_no">Telephone No. : </label>
-                                <input type="tel" pattern="[0-9]{10}" value={values.tp} placeholder="Enter number here" maxLength="10" onChange={e =>setValues({...values,tp:e.target.value})} required/>
+                                <input type="tel" name="phone_no" placeholder="Enter phone number here" value={values.tp} maxLength="10" onChange={handleChange} style={{ borderColor: isPhoneNumberValid ? '#aaa' : 'red' }} required/>
+                                {formErrors.phone_no && <p style={{ color: "red" }}>{formErrors.phone_no}</p>}
                             </div>                             
                         </div>
                         

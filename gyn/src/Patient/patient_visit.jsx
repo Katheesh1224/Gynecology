@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import AdmissionCard from '../Component/AdmissionCard.jsx'; // Ensure this component works for displaying visit info
 
 const Card = ({ title, index, onClick }) => (
@@ -28,27 +29,40 @@ const Card = ({ title, index, onClick }) => (
 const Visit = () => {
   const navigate = useNavigate();
   const [cards, setCards] = useState([]);
+  const [addCount, setAddCount] = useState(0); 
+  const [isEditEnable, setIsEditEnable] = useState(false); 
   const patient_phn = localStorage.getItem('patient_phn');
-  const add_count = parseInt(localStorage.getItem('addCount'), 10); // Ensure parsing here
+  const add_count = localStorage.getItem('addCount');
   const visit_un = patient_phn + "_" + add_count;
+  const role = localStorage.getItem('role');
+  const addMaxCount = localStorage.getItem('maxCount');
+ 
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch visits based on admission visit_no
-        const visitsResponse = await axios.get(`http://localhost:8081/visits/${visit_un}`);
-        const visits = visitsResponse.data; // Assuming this is an array of visits
+    const fetchAddCount = async () => {
+    try {
+      // Fetch visits based on admission visit_no
+      const visitsResponse = await axios.get(`http://localhost:8081/visits/${visit_un}`);
+      const visits = visitsResponse.data; // Assuming this is an array of visits
 
-        // Generate card titles based on the number of visits
-        const visitTitles = visits.map((_, index) => `Visit ${index + 1}`);
-        setCards(visitTitles);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+      // Generate card titles based on the number of visits
+      const visitTitles = visits.map((_, index) => `Visit ${index + 1}`);
+      setCards(visitTitles);
+      // fetchAddCount();
+    }catch (error) {
+      console.error('Error fetching data:', error);
+    }
     };
-
-    fetchData();
+    fetchAddCount();
   }, [visit_un]);
+
+  useEffect(() => {
+    if (role !== 'superadmin') {
+      setIsEditEnable(addMaxCount == add_count);
+    } else {
+      setIsEditEnable(true);
+    }
+  }, [role, addMaxCount, add_count]);
 
   const addCard = () => {
     setCards((prevCards) => {
@@ -63,7 +77,9 @@ const Visit = () => {
   };
 
   const handleEdit = () => {
-    navigate(`/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details_edit`);
+    if (isEditEnable) {
+      navigate(`/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details_edit`);
+    }
   };
 
   const showVisit = (index) => {
@@ -76,8 +92,9 @@ const Visit = () => {
     <div className="">
       <NavBar />
       <Nav />
+      <Chatbot />
       <div className='container'>
-        <h2>Patient Visit</h2>
+        <h2 style={{fontWeight:"bold"}} >Admission {add_count}</h2>
         <AdmissionCard />
         <div className="cntner">
           {cards.map((card, index) => (
@@ -100,12 +117,15 @@ const Visit = () => {
           </div>
         </div>
 
-        <div className='button-bar'>
-          <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
-          <button onClick={handleEdit}>Edit</button>
+        <div className="button-bar">
+          <button onClick={handlePrevious}> {"<<"} &nbsp;&nbsp; Previous </button>
+          <button disabled={!isEditEnable} onClick={handleEdit} style={!isEditEnable ? { backgroundColor: 'grey', cursor: 'not-allowed' } : {}}>
+            Edit
+          </button>
+        </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

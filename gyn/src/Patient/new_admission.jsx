@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 
@@ -68,10 +69,15 @@ const PAdd = () => {
         }
     };
 
+    const handlePrevious = () => {
+        navigate(`/patients_information/patient_profile/patient_admission`);
+      };
+
     return (
         <div>
             <NavBar/>
             <Nav/>
+            <Chatbot/>
             <div className="container">
                 <h2>Patient Admission Registration</h2>
                 <div className='heading'>
@@ -129,7 +135,10 @@ const PAdd = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="btn1"><button type="submit">Register</button></div>    
+                    <div className="button-bar">
+                        <button onClick={handlePrevious}> {"<<"} &nbsp;&nbsp; Previous </button>
+                        <button type="submit"> Register </button>
+                    </div>    
                 </form>
             </div>
         </div>
