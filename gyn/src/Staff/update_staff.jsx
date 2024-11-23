@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; 
 
 const UpdateStaff = () => {
@@ -158,11 +159,12 @@ const UpdateStaff = () => {
   return (
     <div className="wrapper">
       <NavBar />
+      <Chatbot />
       <div className="main-content">
         <Nav />
         <div className="container">
           <form onSubmit={handleSubmit}>
-            <h2>Update Staff</h2>
+            <h2 style={{fontWeight:"bold"}} >Update Staff</h2>
             <br />
             <div className="fields">
             <div className="input-field">

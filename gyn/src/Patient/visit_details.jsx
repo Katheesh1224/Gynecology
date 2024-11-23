@@ -4,6 +4,7 @@ import '../App.css';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import VisitCard from '../Component/VisitCard.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 
 
 const VisitDetails = () => {
@@ -23,6 +24,7 @@ const VisitDetails = () => {
     <div className="">
       <NavBar />
       <Nav />
+      <Chatbot />
       <div className='container'>
         <h2 style={{fontWeight:"bold"}} > Admission {add_count} {'=>'} Visit {visit_count}</h2>
         <VisitCard />

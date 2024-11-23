@@ -5,7 +5,7 @@ import '../App.css';
 import { useState,useEffect } from 'react';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
-
+import Chatbot from '../Component/Chatbot.jsx';
 
 const About = () =>{
 
@@ -41,6 +41,7 @@ const About = () =>{
         <div className="">
           <NavBar/>
           <Nav/>
+          <Chatbot/>
             <div className='container'>
             <div className='space0'></div>
               <h2> Patient Personal Details</h2>

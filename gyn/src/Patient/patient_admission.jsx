@@ -7,7 +7,7 @@ import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import ProfileCard from '../Component/profileCard.jsx';
-
+import Chatbot from '../Component/Chatbot.jsx';
 const Card = ({ title, index, onClick }) => (
   <div className="cd" onClick={() => onClick(index)}>
     <div className="face face1">
@@ -78,6 +78,7 @@ const Admission = () => {
     <div>
       <NavBar />
       <Nav />
+      <Chatbot />
       <div className='container'>
         <h2 style={{fontWeight:"bold"}} >Patient Admissions</h2>
         <ProfileCard />

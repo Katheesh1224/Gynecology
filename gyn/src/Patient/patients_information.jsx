@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import '../App.css';
 
 const Patient = () => {
@@ -68,10 +69,11 @@ const Patient = () => {
     return (
         <div className="wrapper">
             <NavBar />
+            <Chatbot />
             <div className="main-content">
                 <Nav />
                 <div className="container">
-                    <h2>Patient Information</h2>
+                    <h2 style={{fontWeight:"bold"}} >Patient Information</h2>
                     <div className="search">
                         <div className="input">
                             <input
@@ -135,21 +137,11 @@ const Patient = () => {
                     </div>
 
                     <div className="button-bar">
-                        {page > 1 && (
-                            <button
-                                className="button_prev"
-                                onClick={handlePrevious}
-                            >
-                                {'<<'} &nbsp;&nbsp; Previous
-                            </button>
-                        )}
                         {hasMoreData && (
-                            <button
-                                className="button_next"
-                                onClick={handleNext}
-                            >
-                                Next &nbsp;&nbsp; {'>>'}
-                            </button>
+                            <button className="button_next" onClick={handleNext}> Next &nbsp;&nbsp; {'>>'} </button>
+                        )}
+                        {page > 1 && (
+                            <button className="button_prev" onClick={handlePrevious}> {'<<'} &nbsp;&nbsp; Previous </button>
                         )}
                     </div>
                 </div>
