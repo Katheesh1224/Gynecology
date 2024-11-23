@@ -3,11 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
-import AdmissionCard from '../Component/AdmissionCard.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
+import AdmissionCard from '../Component/AdmissionCard.jsx'; // Ensure this component works for displaying visit info
+
+const Card = ({ title, index, onClick }) => (
+  <div className="cd" onClick={() => onClick(index)}>
+    <div className="face face1">
+      <div className="content">
+        <FontAwesomeIcon icon={faFilePen} />
+        <h3>{title}</h3>
+      </div>
+    </div>
+    <div className="face face2">
+      <div className="content">
+        <p>This feature contains details of {title}.</p>
+        <a href="./patient_day" type="button">Show</a>
+      </div>
+    </div>
+  </div>
+);
 
 const Visit = () => {
   const navigate = useNavigate();
@@ -60,8 +77,9 @@ const Visit = () => {
     <div className="">
       <NavBar />
       <Nav />
-      <div className="container">
-        <h2> Patient Visit</h2>
+      <Chatbot />
+      <div className='container'>
+        <h2 style={{fontWeight:"bold"}} >Admission {add_count}</h2>
         <AdmissionCard />
         <div className="cntner">
           <div className="cd">

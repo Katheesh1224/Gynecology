@@ -48,6 +48,15 @@ const Nav = () => {
               </NavLink>
             </li>
             )}
+
+            <li>
+              <NavLink to="/data_export" className="nav-link" activeClassName="active">
+                <FontAwesomeIcon icon={faLineChart} />
+                <span>Data Export</span>
+              </NavLink>
+            </li>
+
+
           </ul>
 
           
@@ -55,6 +64,8 @@ const Nav = () => {
         
     </div>
   );
+  
 };
+
 
 export default Nav;
