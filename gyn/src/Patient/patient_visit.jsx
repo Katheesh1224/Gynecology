@@ -39,27 +39,30 @@ const Visit = () => {
  
 
   useEffect(() => {
-    if (role !== 'superadmin') {
-      const fetchAddCount = async () => {
-        try {
-          // Fetch visits based on admission visit_no
-          const visitsResponse = await axios.get(`http://localhost:8081/visits/${visit_un}`);
-          const visits = visitsResponse.data; // Assuming this is an array of visits
-  
-          // Generate card titles based on the number of visits
-          const visitTitles = visits.map((_, index) => `Visit ${index + 1}`);
-          setCards(visitTitles);
-          setIsEditEnable(addMaxCount == add_count);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
+    const fetchAddCount = async () => {
+    try {
+      // Fetch visits based on admission visit_no
+      const visitsResponse = await axios.get(`http://localhost:8081/visits/${visit_un}`);
+      const visits = visitsResponse.data; // Assuming this is an array of visits
 
-      fetchAddCount();
+      // Generate card titles based on the number of visits
+      const visitTitles = visits.map((_, index) => `Visit ${index + 1}`);
+      setCards(visitTitles);
+      // fetchAddCount();
+    }catch (error) {
+      console.error('Error fetching data:', error);
+    }
+    };
+    fetchAddCount();
+  }, [visit_un]);
+
+  useEffect(() => {
+    if (role !== 'superadmin') {
+      setIsEditEnable(addMaxCount == add_count);
     } else {
       setIsEditEnable(true);
     }
-  }, [visit_un, role]);
+  }, [role, addMaxCount, add_count]);
 
   const addCard = () => {
     setCards((prevCards) => {

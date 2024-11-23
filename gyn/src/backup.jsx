@@ -36,12 +36,11 @@ const Home = () =>{
       <div className='main-content'>
         <Nav/> 
         <div className='container-big'>
-          <div className='container-home'>
+          <div className='container'>
+            <h1 style={{textAlign:'center'}}>"மெய்ப்பொருள் காண்பது அறிவு"
+            </h1><br></br>
             <h2>Welcome to GYNECOLOGY Department</h2>
-            <p>Our department is dedicated to providing comprehensive </p>
-
-            
-            
+            <p className='desP'>The gynecology department is dedicated to providing comprehensive healthcare services for women, focusing on the diagnosis, treatment, and management of reproductive health issues. This includes routine check-ups, prenatal and postnatal care, fertility counseling, and advanced treatments for gynecological disorders such as endometriosis, PCOS, and fibroids. The department is equipped with modern medical technologies and staffed by highly skilled gynecologists, nurses, and support personnel, ensuring compassionate and personalized care for women across all stages of life. Additionally, it emphasizes patient education, empowering women to make informed decisions about their health.</p>
           </div>
         </div>
       </div>

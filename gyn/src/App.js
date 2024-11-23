@@ -36,7 +36,7 @@ function App() {
     <div className="App">
       <AuthProvider>
       <BrowserRouter>
-      <BackupReminder />
+      
         <Routes>
           <Route path ='/' element={<Login/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
