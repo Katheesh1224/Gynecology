@@ -44,7 +44,7 @@ const Admission = () => {
         // Fetch admissions based on PHN
         const admissionsResponse = await axios.get(`http://localhost:8081/admissions/${patientData.phn}`);
         const admissions = admissionsResponse.data; // Assuming this is an array of admissions
-
+        localStorage.setItem('maxCount', admissions.length);
         // Generate card titles based on the number of admissions
         const admissionTitles = admissions.map((_, index) => `Admission ${index + 1}`);
         setCards(admissionTitles);

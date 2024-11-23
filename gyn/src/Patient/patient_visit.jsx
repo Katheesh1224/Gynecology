@@ -33,20 +33,25 @@ const Visit = () => {
   const [isEditEnable, setIsEditEnable] = useState(false); 
   const patient_phn = localStorage.getItem('patient_phn');
   const add_count = localStorage.getItem('addCount');
-  const role = localStorage.getItem('role'); 
+  const visit_un = patient_phn + "_" + add_count;
+  const role = localStorage.getItem('role');
+  const addMaxCount = localStorage.getItem('maxCount');
+ 
 
   useEffect(() => {
     if (role !== 'superadmin') {
       const fetchAddCount = async () => {
         try {
-          const response = await axios.get(`http://localhost:8081/require_count/${patient_phn}`);
-          const data = response.data[0]; 
-          setAddCount(data.add_count);
-
-          const maxAddCount = parseInt(localStorage.getItem('addCount'), 10);
-          setIsEditEnable(data.add_count === maxAddCount);
+          // Fetch visits based on admission visit_no
+          const visitsResponse = await axios.get(`http://localhost:8081/visits/${visit_un}`);
+          const visits = visitsResponse.data; // Assuming this is an array of visits
+  
+          // Generate card titles based on the number of visits
+          const visitTitles = visits.map((_, index) => `Visit ${index + 1}`);
+          setCards(visitTitles);
+          setIsEditEnable(addMaxCount == add_count);
         } catch (error) {
-          console.error('Error fetching add_count:', error);
+          console.error('Error fetching data:', error);
         }
       };
 
@@ -54,7 +59,7 @@ const Visit = () => {
     } else {
       setIsEditEnable(true);
     }
-  }, [patient_phn, role]);
+  }, [visit_un, role]);
 
   const addCard = () => {
     setCards((prevCards) => {
@@ -74,6 +79,12 @@ const Visit = () => {
     }
   };
 
+  const showVisit = (index) => {
+    // Set localStorage with the index of the visit clicked
+    localStorage.setItem('visitIndex', index + 1);
+    navigate(`/patients_information/patient_profile/patient_admission/patient_visit/visit_details`);
+  };
+
   return (
     <div className="">
       <NavBar />
@@ -83,6 +94,10 @@ const Visit = () => {
         <h2 style={{fontWeight:"bold"}} >Admission {add_count}</h2>
         <AdmissionCard />
         <div className="cntner">
+          {cards.map((card, index) => (
+            <Card key={index} title={card} index={index} onClick={showVisit} />
+          ))}
+
           <div className="cd">
             <div className="face face1" onClick={addCard}>
               <div className="content">
@@ -92,7 +107,7 @@ const Visit = () => {
             </div>
             <div className="face face2">
               <div className="content">
-                <p> This feature contains adding a new Visit.</p>
+                <p>This feature contains adding a new Visit.</p>
                 <a href="/patients_information/patient_profile/patient_admission/patient_visit/visit_form" type="button">Add</a>
               </div>
             </div>
@@ -100,9 +115,7 @@ const Visit = () => {
         </div>
 
         <div className="button-bar">
-          <button onClick={handlePrevious}>
-            {"<<"} &nbsp;&nbsp; Previous
-          </button>
+          <button onClick={handlePrevious}> {"<<"} &nbsp;&nbsp; Previous </button>
           <button disabled={!isEditEnable} onClick={handleEdit} style={!isEditEnable ? { backgroundColor: 'grey', cursor: 'not-allowed' } : {}}>
             Edit
           </button>

@@ -261,6 +261,10 @@ const VisitForm = () => {
         });console.log(value);
     };
 
+    const handlePrevious = () => {
+        navigate(`/patients_information/patient_profile/patient_admission/patient_visit`);
+      };
+
     return (
         <div>
             <NavBar/>
@@ -626,7 +630,10 @@ const VisitForm = () => {
                                 </div>  
                             </div>
                     </div>
-                    <div className="btn1"><button type="submit" name="submit">Submit</button></div>
+                    <div className="button-bar">
+                        <button onClick={handlePrevious}> {"<<"} &nbsp;&nbsp; Previous </button>
+                        <button type="submit"> Submit </button>
+                    </div>
                 </form>
             </div>           
         </div>

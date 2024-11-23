@@ -2,6 +2,8 @@
 import './home.css';
 import Nav from './Component/Nav.jsx';
 import NavBar from './Component/NavBar.jsx';
+import Chatbot from './Component/Chatbot.jsx';
+
 // import { useState,useEffect } from 'react';
 // import axios from 'axios';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -30,6 +32,7 @@ const Home = () =>{
   return(
     <div className='wrapper2'>
       <NavBar/>
+      <Chatbot />
       <div className='main-content'>
         <Nav/> 
         <div className='container-big'>
