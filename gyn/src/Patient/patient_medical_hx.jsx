@@ -4,6 +4,7 @@ import '../App.css';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import HistoryCard from '../Component/HistoryCard.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 
 
 const MedDetails = () =>{
@@ -22,6 +23,7 @@ const MedDetails = () =>{
     <div className="">
       <NavBar/>
       <Nav/>
+      <Chatbot/>
       <div className='container'>
         <div className='space0'></div>
         <h2> Patient Medical History</h2>

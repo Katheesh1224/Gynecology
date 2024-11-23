@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import '../App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import VisitCard from '../Component/VisitCard.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 
 
 const VisitDetails = () => {
+  const add_count = localStorage.getItem('addCount');
+  const visit_count = localStorage.getItem('visitIndex');
   const navigate = useNavigate();
 
   const handlePrevious = () => {
@@ -24,8 +24,9 @@ const VisitDetails = () => {
     <div className="">
       <NavBar />
       <Nav />
+      <Chatbot />
       <div className='container'>
-        <h2>Patient Visit</h2>
+        <h2 style={{fontWeight:"bold"}} > Admission {add_count} {'=>'} Visit {visit_count}</h2>
         <VisitCard />
         <div className='button-bar'>
           <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>

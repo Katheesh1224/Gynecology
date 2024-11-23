@@ -7,6 +7,7 @@ import { faAddressCard, faBookMedical, faTicket } from '@fortawesome/free-solid-
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import ProfileCard from '../Component/profileCard.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 
 
 const Profile = () => {
@@ -52,8 +53,9 @@ const Profile = () => {
     <div className="">
       <NavBar/>
       <Nav/>
+      <Chatbot/>
       <div className='container'>
-        <h2> Patient Profile</h2>
+        <h2 style={{fontWeight:"bold"}} > Patient Profile</h2>
         <ProfileCard/>
         <div className="cntner">
           <div className="cd">

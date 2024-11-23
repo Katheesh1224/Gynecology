@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import AdmissionCard from '../Component/AdmissionCard.jsx'; // Ensure this component works for displaying visit info
 
 const Card = ({ title, index, onClick }) => (
@@ -28,27 +29,31 @@ const Card = ({ title, index, onClick }) => (
 const Visit = () => {
   const navigate = useNavigate();
   const [cards, setCards] = useState([]);
+  const [addCount, setAddCount] = useState(0); 
+  const [isEditEnable, setIsEditEnable] = useState(false); 
   const patient_phn = localStorage.getItem('patient_phn');
-  const add_count = parseInt(localStorage.getItem('addCount'), 10); // Ensure parsing here
-  const visit_un = patient_phn + "_" + add_count;
+  const role = localStorage.getItem('role'); 
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch visits based on admission visit_no
-        const visitsResponse = await axios.get(`http://localhost:8081/visits/${visit_un}`);
-        const visits = visitsResponse.data; // Assuming this is an array of visits
+    if (role !== 'superadmin') {
+      const fetchAddCount = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8081/require_count/${patient_phn}`);
+          const data = response.data[0]; 
+          setAddCount(data.add_count);
 
-        // Generate card titles based on the number of visits
-        const visitTitles = visits.map((_, index) => `Visit ${index + 1}`);
-        setCards(visitTitles);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+          const maxAddCount = parseInt(localStorage.getItem('addCount'), 10);
+          setIsEditEnable(data.add_count === maxAddCount);
+        } catch (error) {
+          console.error('Error fetching add_count:', error);
+        }
+      };
 
-    fetchData();
-  }, [visit_un]);
+      fetchAddCount();
+    } else {
+      setIsEditEnable(true);
+    }
+  }, [patient_phn, role]);
 
   const addCard = () => {
     setCards((prevCards) => {
@@ -63,27 +68,20 @@ const Visit = () => {
   };
 
   const handleEdit = () => {
-    navigate(`/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details_edit`);
-  };
-
-  const showVisit = (index) => {
-    // Set localStorage with the index of the visit clicked
-    localStorage.setItem('visitIndex', index + 1);
-    navigate(`/patients_information/patient_profile/patient_admission/patient_visit/visit_details`);
+    if (isEditEnable) {
+      navigate(`/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details_edit`);
+    }
   };
 
   return (
     <div className="">
       <NavBar />
       <Nav />
+      <Chatbot />
       <div className='container'>
-        <h2>Patient Visit</h2>
+        <h2 style={{fontWeight:"bold"}} >Admission {add_count}</h2>
         <AdmissionCard />
         <div className="cntner">
-          {cards.map((card, index) => (
-            <Card key={index} title={card} index={index} onClick={showVisit} />
-          ))}
-
           <div className="cd">
             <div className="face face1" onClick={addCard}>
               <div className="content">
@@ -93,19 +91,24 @@ const Visit = () => {
             </div>
             <div className="face face2">
               <div className="content">
-                <p>This feature contains adding a new Visit.</p>
+                <p> This feature contains adding a new Visit.</p>
                 <a href="/patients_information/patient_profile/patient_admission/patient_visit/visit_form" type="button">Add</a>
               </div>
             </div>
           </div>
         </div>
 
-        <div className='button-bar'>
-          <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
-          <button onClick={handleEdit}>Edit</button>
+        <div className="button-bar">
+          <button onClick={handlePrevious}>
+            {"<<"} &nbsp;&nbsp; Previous
+          </button>
+          <button disabled={!isEditEnable} onClick={handleEdit} style={!isEditEnable ? { backgroundColor: 'grey', cursor: 'not-allowed' } : {}}>
+            Edit
+          </button>
+        </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

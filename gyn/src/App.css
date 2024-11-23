@@ -96,7 +96,7 @@ form .fields .input-field{
   flex-direction: column;
 }
 
-.input-field label,.input-field-phn label, .input-field-add label, .input-fieldH label, .input-fieldB label, .input-fieldC label, .input-fieldN label,.input-fieldA label{
+.input-field label, .input-fieldL label,.input-field-phn label, .input-field-add label, .input-fieldH label, .input-fieldB label, .input-fieldC label, .input-fieldN label,.input-fieldA label{
   font-size: 12px;
   font-weight: bold;
   color: black;
@@ -191,6 +191,62 @@ form .fields .input-fieldM{
   height: 16px;
   width: 50px;
   margin: 8px 0;
+}
+
+.container form .fieldsCheck{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+form .fieldsCheck .input-Check{
+  display: flex;
+  width: 275px;
+  margin-right: 0px;
+  flex-direction: column;
+}
+
+.input-Check p{
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-right: 20px;
+  color: black;
+}
+
+.input-Check label{
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  color: black;
+}
+
+.input-Check input{
+  outline: none;
+  height: 16px;
+  width: 50px;
+  margin: 8px 0;
+}
+
+form .fieldsCheck .input-Check .input-fieldCheck{
+  display: flex;
+  width: 410px;
+  margin-right: 30px;
+  flex-direction: column;
+}
+
+.input-fieldCheck input{
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border: 1px solid #aaa;
+  padding: 0 15px;
+  height: 42px;
+  margin: 8px 50px;
+  width: 250px;
 }
 -----------------------
 form .fields .input-fieldA{
@@ -317,7 +373,7 @@ form .fields .input-fieldN{
   margin: 8px 0;
 }
 
-.input-field input, .input-field-phn input, .input-field-add input, .input-fieldH input, .input-fieldA input, textarea, .input-fieldN input, .input-fieldN select, .input-fieldC select,.input-fieldB input, .input-fieldH input:is(:focus, :valid){
+.input-field input, .input-fieldCheck input, .input-field-phn input, .input-field-add input, .input-fieldH input, .input-fieldA input, textarea, .input-fieldN input, .input-fieldN select, .input-fieldC select,.input-fieldB input, .input-fieldH input:is(:focus, :valid){
   box-shadow: 0 3px 6px rgba(0,0,0,0.13);
 }
 
@@ -742,4 +798,40 @@ border: 7px solid red;
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
+}
+
+.user-role-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the icon and the text */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user {
+  font-size: 1.5rem;
+  color: #333; /* Adjust icon color */
+}
+
+.role-text {
+  background-color: #3e6ea2; /* Color for the half-circle */
+  color: white;
+  padding: 5px 15px;
+  border-radius: 15px; /* Rounded edges */
+  margin-left: 10px; /* Space between the icon and role text */
+}
+
+.role-text::before {
+  content: '';
+  position: absolute;
+  left: -5px; /* Position the circle to the left of the text */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #4c7cb0; /* Same as the text background */
 }
