@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 // import { BarChart } from 'lucide-react';
 
@@ -11,7 +11,7 @@ const Nav = () => {
         <nav id="navbar" className="navbar nav-round">
           <ul>
             <li>
-              <NavLink exact to={role==="data_entry" ? '/backup' : '/home'} className="nav-link" activeClassName="active">
+              <NavLink exact to={role==="superadmin" ? '/home' : '/backup'} className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faHouse} />
                 <span>Home</span>
               </NavLink>
@@ -40,22 +40,22 @@ const Nav = () => {
                 <span>Staff Information</span>
               </NavLink>
             </li>
-            {role !== 'data_entry' && (
+            {role === 'superadmin' && (
             <li>
               <NavLink to="/analysis" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faLineChart} />
                 <span>Analysis</span>
               </NavLink>
             </li>
+            
+            
             )}
-
             <li>
               <NavLink to="/data_export" className="nav-link" activeClassName="active">
-                <FontAwesomeIcon icon={faLineChart} />
+                <FontAwesomeIcon icon={faFileExport} />
                 <span>Data Export</span>
               </NavLink>
             </li>
-
 
           </ul>
 

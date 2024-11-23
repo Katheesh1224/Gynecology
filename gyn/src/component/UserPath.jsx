@@ -26,6 +26,7 @@ const UserPath = () => {
     'patient_history':'Patient Medical History',
     'patient_medicalhx_edit':'Edit Medical History',
     'visit_details':'Visit Details',
+    'data_export':'Data Export',
 
   };
 

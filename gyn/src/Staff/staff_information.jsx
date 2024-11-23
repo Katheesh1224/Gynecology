@@ -126,7 +126,7 @@ const Staff = () => {
             </table>
           </div>
 
-          <div className="button-bar">
+          <div className="button-bar2">
           {hasMoreData && (
             <button className="button_next" onClick={handleNext}> Next {'>>'} </button>
           )}

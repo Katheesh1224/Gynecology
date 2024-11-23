@@ -79,6 +79,13 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    flex-direction: row;
+  }
+
+  .button-bar2{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
     flex-direction: row-reverse;
   }
   
@@ -532,6 +539,41 @@
     flex-direction: row;
   }
 
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: 
+      linear-gradient(rgba(211, 211, 211, 0.743), rgba(211, 211, 211, 0.442)), /* Light gray overlay */
+      url('../jaffna_hospital.jpg') repeat ; /* Background image */
+    background-size:cover; /* Cover entire viewport */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+  }
+  
+ 
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #222;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+  }
+  
 .row{
   display: flex;
   flex-wrap: wrap;
@@ -595,3 +637,5 @@
   background-color: #512da8;
   border-radius: 6px;
 }
+
+

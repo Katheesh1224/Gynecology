@@ -106,7 +106,6 @@ const RegisterStaff = () => {
   };
 
 
-
   return (
     <div className='wrapper'>
       <NavBar />
@@ -192,6 +191,7 @@ const RegisterStaff = () => {
                   <option value="consultant">Consultant</option>
                   <option value="registrar">Registrar</option>
                   <option value="medical_officer">Medical Officer</option>
+                  <option value="superadmin">Super Admin</option>
                   <option value="data_entry">Data Entry</option>
                 </select>
               </div>

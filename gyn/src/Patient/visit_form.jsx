@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+
 import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 
@@ -114,8 +115,11 @@ const VisitForm = () => {
             return;
         }
         axios.post('http://localhost:8081/treat',values)
-        .then(res =>{
+        .then(res => {
+            navigate('/home');
+            toast.success('Form submitted successfully!');
             console.log(res);
+
             navigate('/patients_information/patient_profile/patient_admission/patient_visit')
          
         })
@@ -261,6 +265,10 @@ const VisitForm = () => {
         });console.log(value);
     };
 
+    const handlePrevious = () => {
+        navigate(`/patients_information/patient_profile/patient_admission/patient_visit`);
+      };
+
     return (
         <div>
             <NavBar/>
@@ -274,16 +282,16 @@ const VisitForm = () => {
                             <span className="title">Visit Details</span>
                             <div className="fields1">
                                 <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="date"> Date : </label>
+                                    <label htmlFor="date"> Date: </label>
                                     <input type="datetime-local" onChange={handleDateChange} value={values.date} required/>
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="visit_no"> Visit No : </label>
+                                    <label htmlFor="visit_no"> Visit No.: </label>
                                     <input type="number"  value={values.visit_no} readOnly name='numberInput' id={inputClass}  onChange={e =>setValues({...values,visit_count:e.target.value})}  required/>
                                 </div>
                                 
                                 <div className="input-field">
-                                    <label htmlFor="full_name">Seen by : </label>
+                                    <label htmlFor="full_name">Seen by: </label>
                                     <select name="role" id="status" onChange={e =>setValues({...values,seenBy:e.target.value})} >
                                         <option value="x">Dr.X</option>
                                         <option value="y">Dr.Y</option>
@@ -291,8 +299,6 @@ const VisitForm = () => {
                                     </select>
                                     </div>                                                   
                             </div>
-                        </div>
-
                         <div className="B">
                             <span className="title">Complaints </span>
                             <div className="fields">
@@ -333,7 +339,7 @@ const VisitForm = () => {
                                 <br/>
                                 <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="abnormalUlerine">  Abnormal Ulerine bleeding :  </label>
+                                    <label htmlFor="abnormalUlerine">  Abnormal Ulerine bleeding:  </label>
                                 </div>
                             </div>
                             <div className="fields">
@@ -353,7 +359,7 @@ const VisitForm = () => {
                                 <br/>
                             <div className="fields">
                                 <div className="input-field">
-                                    <label htmlFor="Complaints">Others : </label>
+                                    <label htmlFor="Complaints">Others: </label>
                                     <textarea id="Complaints" placeholder="Enter text here" name="Complaints" rows="3" cols="50" onChange={e =>setValues({...values,otherComplaint:e.target.value})}></textarea>
                                 </div> 
                             </div>
@@ -362,13 +368,13 @@ const VisitForm = () => {
                             <span className="title">Examination</span>
                             <div className="fields1">
                                 <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Blood Presure"> Blood Presure : </label>
+                                    <label htmlFor="Blood Presure"> Blood Presure: </label>
                                     <input type="number" name='mmHg'  placeholder="mmHg" onChange={e =>setValues({...values,bpa:e.target.value})} />
                                 </div>
                                 <div>/</div>
                                 
                                 <div className="input-field">
-                                    <label>.</label>
+                                    <label style={{color:'white'}}>.</label>
                                     <input type="number" name='mmHg' placeholder="mmHg" onChange={e =>setValues({...values,bpb:e.target.value})} />
                                 </div>
 
@@ -382,13 +388,13 @@ const VisitForm = () => {
                         </div>
                             <div className="fields">
                                 <div className="input-field">
-                                    <label htmlFor="Examination">Abdominal Examination : </label>
+                                    <label htmlFor="Examination">Abdominal Examination: </label>
                                     <textarea id="Examination" placeholder="Enter text here" name="abdominal" rows="3" cols="50" onChange={e =>setValues({...values,abdominalExam:e.target.value})}></textarea>
                                 </div> 
                             </div>
                             <div className="fields">
                                 <div className="input-field">
-                                    <label htmlFor="Examination">Gynaecology Examination : </label>
+                                    <label htmlFor="Examination">Gynaecology Examination: </label>
                                     <textarea id="Examination" placeholder="Enter text here" name="gynecology" rows="3" cols="50" onChange={e =>setValues({...values,gynaecologyExam:e.target.value})}></textarea>
                                 </div> 
                             </div>
@@ -398,18 +404,18 @@ const VisitForm = () => {
                             <span className="title">Investigation</span>
                             <div className="fields1">
                                 <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="FBC"> FBC : </label>
+                                    <label htmlFor="FBC"> FBC: </label>
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="WBC"> WBC : </label>
+                                    <label htmlFor="WBC"> WBC: </label>
                                     <input type="number" placeholder='count/mm' onChange={e =>setValues({...values,wbc:e.target.value})} required/>
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="Hb"> Hb : </label>
+                                    <label htmlFor="Hb"> Hb: </label>
                                     <input type="number" placeholder='g/dL' onChange={e =>setValues({...values,hb:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="P/t"> P/t : </label>
+                                    <label htmlFor="P/t"> P/t: </label>
                                     <input type="number" placeholder='count/mm' onChange={e =>setValues({...values,plate:e.target.value})}  />
                                 </div>
                                                             
@@ -417,18 +423,18 @@ const VisitForm = () => {
                             
                             <div className="fields1">
                                 <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="UFR"> UFR : </label>
+                                    <label htmlFor="UFR"> UFR: </label>
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="White cells"> White cells : </label>
+                                    <label htmlFor="White cells"> White cells: </label>
                                     <input type="number" placeholder='/hpf' min={0} max={5} onChange={e =>setValues({...values,whiteCell:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="Red cells "> Red cells : </label>
+                                    <label htmlFor="Red cells "> Red cells: </label>
                                     <input type="number" placeholder='/hpf' min={0} max={3}onChange={e =>setValues({...values,redCell:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="Select_protein">Protein : </label>
+                                    <label htmlFor="Select_protein">Protein: </label>
                                     <select name="protein" id="protein"  onChange={e =>setValues({...values,protein:e.target.value})}  >
                                         <option value="">Select protein</option>
                                         <option value="Nil">Nil</option>
@@ -443,14 +449,14 @@ const VisitForm = () => {
                             {/* <br /> */}
                             <div className="fields1">
                                 <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="SE">  SE&emsp;:  </label>
+                                    <label htmlFor="SE">  SE:&emsp;  </label>
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor=" K+"> K+ : </label>
+                                    <label htmlFor=" K+"> K+: </label>
                                     <input type="number" placeholder='mmol/l' min={0} max={10} onChange={e =>setValues({...values,seK:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="Na+"> Na+ : </label>
+                                    <label htmlFor="Na+"> Na+: </label>
                                     <input type="number" placeholder='mmol/l' min={120} max={150} onChange={e =>setValues({...values,seNa:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
@@ -469,7 +475,7 @@ const VisitForm = () => {
 
                             <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="FBS"> FBS   :  </label>
+                                    <label htmlFor="FBS"> FBS:  </label>
                                 </div>
                                 <div className="input-field">
                                     <input type="number" placeholder='mmol/l' min={3} max={9} onChange={e =>setValues({...values,fbs:e.target.value})}  />
@@ -482,36 +488,36 @@ const VisitForm = () => {
                                     <label htmlFor="PRBS">  PPBS:  </label>
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="AB"> AB : </label>
+                                    <label htmlFor="AB"> AB: </label>
                                     <input type="number"  onChange={e =>setValues({...values,ppbsAB:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="AL"> AL : </label>
+                                    <label htmlFor="AL"> AL: </label>
                                     <input type="number"  onChange={e =>setValues({...values,ppbsAL:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="AD"> AD : </label>
+                                    <label htmlFor="AD"> AD: </label>
                                     <input type="number"  onChange={e =>setValues({...values,ppbsAD:e.target.value})}  />
                                 </div>
                             </div>
                             <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Scan">  LFT :  </label>
+                                    <label htmlFor="Scan">  LFT:  </label>
                                 </div>
                                 {/* &emsp; */}
                             <div className="input-field">
-                                    <label htmlFor="AB"> ALT : </label>
+                                    <label htmlFor="AB"> ALT: </label>
                                     <input type="text" placeholder='u/l' min={0} max={50} onChange={e =>setValues({...values,lftALT:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
-                                    <label htmlFor="AL"> AST : </label>
+                                    <label htmlFor="AL"> AST: </label>
                                     <input type="text" placeholder='u/l' min={0} max={50} onChange={e =>setValues({...values,lftAST:e.target.value})}  />
                                 </div> 
                             </div>
                             <br />
                             <div className="fields1">
                             <div className="input-field">
-                                    <label htmlFor="management">Other : </label>
+                                    <label htmlFor="management">Other: </label>
                                     <textarea id="management" placeholder="Enter text here" name="management" rows="3" cols="50" onChange={e =>setValues({...values,lftOther:e.target.value})}></textarea>
                                 </div> 
                                 </div>
@@ -575,13 +581,13 @@ const VisitForm = () => {
                         <div className="A">
                             <div className="fields">
                                 <div className="input-field">
-                                    <label htmlFor="Others">Medical management : </label>
+                                    <label htmlFor="Others">Medical management: </label>
                                     <textarea id="Decision" placeholder="Enter text here" name="medical" rows="3" cols="50" onChange={e =>setValues({...values,medicalManage:e.target.value})}></textarea>
                                 </div> 
                             </div>
                             <div className="fields">
                                 <div className="input-field">
-                                    <label htmlFor="Others">Surgical management : </label>
+                                    <label htmlFor="Others">Surgical management: </label>
                                     <textarea id="Decision" placeholder="Enter text here" name="medical" rows="3" cols="50" onChange={e =>setValues({...values,surgicalManage:e.target.value})}></textarea>
                                 </div> 
                             </div>
@@ -589,21 +595,21 @@ const VisitForm = () => {
                         </div>
                         <div className="fields1">
                             <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Scan">  Minor :  </label>
+                                    <label htmlFor="Scan">  Minor:  </label>
                             </div>&emsp;
                             <div className="input-field">
-                                <label htmlFor="AB"> EUA : </label>
+                                <label htmlFor="AB"> EUA: </label>
                                 <input type="text"  onChange={e =>setValues({...values,minorEua:e.target.value})}  />
                             </div>
                             <div className="input-field">
-                                <label htmlFor="AL"> EB : </label>
+                                <label htmlFor="AL"> EB: </label>
                                 <input type="text"  onChange={e =>setValues({...values,minorEb:e.target.value})} />
                             </div> 
                         </div>
 
                             <div className="fields1">
                                 <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Scan">  Major :  </label>
+                                    <label htmlFor="Scan">  Major:  </label>
                                 </div>
                             </div>
                             <div className="fields">
@@ -626,7 +632,11 @@ const VisitForm = () => {
                                 </div>  
                             </div>
                     </div>
-                    <div className="btn1"><button type="submit" name="submit">Submit</button></div>
+                    <div className="button-bar">
+                        <button onClick={handlePrevious}> {"<<"} &nbsp;&nbsp; Previous </button>
+                        <button type="submit"> Submit </button>
+                    </div>
+                    </div>
                 </form>
             </div>           
         </div>

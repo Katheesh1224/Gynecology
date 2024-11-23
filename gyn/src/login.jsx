@@ -30,10 +30,10 @@ export const Login = () => {
         login(token, role);
        
 
-        if (role === 'data_entry') {
-          navigate('/backup'); // Redirect to backup.jsx
+        if (role === 'superadmin') {
+          navigate('/home'); // Redirect to backup.jsx
         } else {
-          navigate('/home'); // Redirect to home for other roles
+          navigate('/backup'); // Redirect to home for other roles
         }
       } catch (err) {
         // console.error('Login failed:', err);
@@ -73,7 +73,7 @@ const notify = () => toast("Please contact your administrator to reset your pass
           {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
           <input type="password" name="password" placeholder="Password" value={formValues.password} onChange={handleChange} />
           {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
-          <Link to="/forgotpassword">Forget Your Password?</Link>
+          <Link to="/forgotpassword">Forgot Password?</Link>
           <button type='submit'>Sign In</button>
         </form>
       </div>
@@ -81,7 +81,7 @@ const notify = () => toast("Please contact your administrator to reset your pass
         <div className="toggle">
           <div className="toggle-panel toggle-right">
             <h1>GYN WARD</h1>
-            <p>A compassionate team is committed to women's health, offering specialized care with empathy and expertise</p>
+            <p style={{ color: "white" }}>A compassionate team is committed to women's health, offering specialized care with empathy and expertise</p>
           </div>
         </div>
       </div>
