@@ -32,6 +32,7 @@ const Visit = () => {
   const [addCount, setAddCount] = useState(0); 
   const [isEditEnable, setIsEditEnable] = useState(false); 
   const patient_phn = localStorage.getItem('patient_phn');
+  const add_count = localStorage.getItem('addCount');
   const role = localStorage.getItem('role'); 
 
   useEffect(() => {
