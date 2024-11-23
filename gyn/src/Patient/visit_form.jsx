@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+
 import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 
@@ -114,8 +115,11 @@ const VisitForm = () => {
             return;
         }
         axios.post('http://localhost:8081/treat',values)
-        .then(res =>{
+        .then(res => {
+            navigate('/home');
+            toast.success('Form submitted successfully!');
             console.log(res);
+
             navigate('/patients_information/patient_profile/patient_admission/patient_visit')
          
         })
@@ -295,8 +299,6 @@ const VisitForm = () => {
                                     </select>
                                     </div>                                                   
                             </div>
-                        </div>
-
                         <div className="B">
                             <span className="title">Complaints </span>
                             <div className="fields">

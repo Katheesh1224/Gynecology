@@ -47,15 +47,15 @@ const Nav = () => {
                 <span>Analysis</span>
               </NavLink>
             </li>
+            
+            
             )}
-
             <li>
               <NavLink to="/data_export" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faFileExport} />
                 <span>Data Export</span>
               </NavLink>
             </li>
-
 
           </ul>
 
