@@ -79,6 +79,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    flex-direction: row-reverse;
   }
   
   .button_next{

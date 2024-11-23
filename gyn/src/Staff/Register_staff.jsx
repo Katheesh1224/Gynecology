@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify';
 
 const RegisterStaff = () => {
@@ -109,11 +110,12 @@ const RegisterStaff = () => {
   return (
     <div className='wrapper'>
       <NavBar />
+      <Chatbot/>
       <div className='main-content'>
         <Nav />
         <div className="container">
           <form onSubmit={handleSubmit}>
-            <h2>Staff Registration</h2>
+            <h2 style={{fontWeight:"bold"}} >Staff Registration</h2>
             <div className="fields">
               <div className="input-field">
                 <label htmlFor="fullname">Full Name:</label>
@@ -211,6 +213,7 @@ const RegisterStaff = () => {
           </form>
         </div>
       </div>
+      
     </div>
   );
 };

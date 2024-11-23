@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 
@@ -72,6 +73,7 @@ const PAdd = () => {
         <div>
             <NavBar/>
             <Nav/>
+            <Chatbot/>
             <div className="container">
                 <h2>Patient Admission Registration</h2>
                 <div className='heading'>

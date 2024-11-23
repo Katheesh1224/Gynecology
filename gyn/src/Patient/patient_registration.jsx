@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom'; 
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 
 
@@ -234,10 +235,11 @@ const PReg = () => {
     return (
         <div className='wrapper'>
             <NavBar/>
+            <Chatbot/>
             <div className='main-content'>
                 <Nav/>
                 <div className="container">
-                    <h2>Patient Registration</h2>
+                    <h2 style={{fontWeight:"bold"}} >Patient Registration</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="form">
                             <div className="A">

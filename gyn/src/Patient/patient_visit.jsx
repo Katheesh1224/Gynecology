@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import AdmissionCard from '../Component/AdmissionCard.jsx'; // Ensure this component works for displaying visit info
 
 const Card = ({ title, index, onClick }) => (
@@ -76,6 +77,7 @@ const Visit = () => {
     <div className="">
       <NavBar />
       <Nav />
+      <Chatbot />
       <div className='container'>
         <h2 style={{fontWeight:"bold"}} >Admission {add_count}</h2>
         <AdmissionCard />
