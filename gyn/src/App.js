@@ -40,7 +40,7 @@ function App() {
           <Route path ='/' element={<Login/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
           <Route path ='/forgotpassword' element={<ForgotPassword/>}></Route>
-          <Route path ='/home' element={<ProtectedRoute element={<><BackupReminder /><Home/></>}/>}></Route>          
+          <Route path ='/home' element={<ProtectedRoute element={<Home/>}/>}></Route>          
           <Route path ='/backup' element={<ProtectedRoute element={<Backup/>}/>}></Route>          
           <Route path ='/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
           <Route path ='/patients_information' element={<ProtectedRoute element={<Patient/>}/>}></Route>
