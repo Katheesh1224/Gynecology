@@ -39,7 +39,7 @@ function App() {
           <Route path ='/' element={<Login/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
           <Route path ='/forgotpassword' element={<ForgotPassword/>}></Route>
-          <Route path ='/home' element={<ProtectedRoute element={<Home/>}/>}></Route>          
+          <Route path ='/home' element={<ProtectedRoute element={<Home />} restrictedForSuperadmin={['/superadmin']}  />}></Route>          
           <Route path ='/backup' element={<ProtectedRoute element={<Backup/>}/>}></Route>          
           <Route path ='/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
           <Route path ='/patients_information' element={<ProtectedRoute element={<Patient/>}/>}></Route>
@@ -58,7 +58,7 @@ function App() {
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/patient_admission_details_edit' element={<ProtectedRoute element={<AdEdit/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_details' element={<ProtectedRoute element={<VisitDetails/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_admission/patient_visit/visit_details_edit' element={<ProtectedRoute element={<VisitEdit/>}/>}></Route>
-          <Route path='/analysis' element={<ProtectedRoute element={<Analysis/>}/>}></Route>
+          <Route path='/analysis' element={<ProtectedRoute element={<Analysis/>} restrictedForSuperadmin={['/superadmin']} />}></Route>
           <Route path='/chatbot' element={<ProtectedRoute element={<Chatbot/>}/>}></Route>
           {/* <Route path='/data_export' element={<ProtectedRoute element={<ExportPatientData/>}/>}></Route> */}
         </Routes>

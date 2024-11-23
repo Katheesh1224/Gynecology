@@ -10,7 +10,7 @@ import NavBar from './Component/NavBar.jsx';
 
 
 const Home = () =>{
-    console.log("home rendered");
+    // console.log("home rendered");
 
   //   const [count, setCount] = useState(0);
 
@@ -28,14 +28,13 @@ const Home = () =>{
 
   
   return(
-    <div className='wrapper'>
+    <div className='wrapper2'>
       <NavBar/>
       <div className='main-content'>
         <Nav/> 
         <div className='container-big'>
           <div className='container-home'>
             <h2>Welcome to GYNECOLOGY Department</h2>
-            <h2>Data Entry Officer</h2>
             <p>Our department is dedicated to providing comprehensive </p>
 
             
