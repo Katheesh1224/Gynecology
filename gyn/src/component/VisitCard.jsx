@@ -79,7 +79,7 @@ const VisitCard = () =>{
                     <div className='row'>
                         <div className='col1'>Blood Presure Low</div>
                         <div className='col2'>:</div>
-                        <div className='col3'>{data.exam_bpa} mmHgg</div>
+                        <div className='col3'>{data.exam_bpa} mmHg</div>
                     </div>
                     <div className='row'>
                         <div className='col1'>Blood Presure High</div>

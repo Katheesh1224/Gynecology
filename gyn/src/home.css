@@ -79,6 +79,13 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    flex-direction: row;
+  }
+
+  .button-bar2{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
     flex-direction: row-reverse;
   }
   
@@ -552,18 +559,11 @@
     color: #333;
   }
   
-  .container-home {
-    background: rgba(255, 255, 255, 0.8); /* Slightly transparent white for readability */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 600px;
-  }
+ 
   
   h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
     color: #222;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   }
@@ -637,3 +637,5 @@
   background-color: #512da8;
   border-radius: 6px;
 }
+
+

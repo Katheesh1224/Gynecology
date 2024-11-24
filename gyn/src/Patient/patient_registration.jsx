@@ -229,6 +229,10 @@ const PReg = () => {
     
             setFormErrors(errors);
         };
+
+        const handlePrevious = () => {
+            navigate(`/home`);
+          };
     
     
 
@@ -442,7 +446,10 @@ const PReg = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="btn1"><button type="submit">Register</button></div>
+                        <div className="button-bar">
+                            <button onClick={handlePrevious}> {"<<"} &nbsp;&nbsp; Back </button>
+                            <button  type="submit"> Register </button>
+                        </div>
                         
                     </form>
                 </div>

@@ -6,8 +6,33 @@ import { faXmark, faComment, faPaperPlane, faRobot } from '@fortawesome/free-sol
 
 const Chatbot = () => {
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([]);
   const [isChatOpen, setIsChatOpen] = useState(false); // State to toggle chat visibility
+
+  const [messages, setMessages] = useState([{ sender: 'bot', text: 'Welcome to the Gynecology Department. You can ask any questions; we are here to assist you.' }])
+
+
+  // Function to format bot messages
+  const formatBotMessage = (botMessage) => {
+    if (typeof botMessage !== 'string') return botMessage; // Ensure the message is a string
+
+    // Replace bold (**)
+    let boldToggle = true; // Toggle between <b> and </b>
+    botMessage = botMessage.replace(/\*\*/g, () => {
+      const replacement = boldToggle ? '<B>' : '</B>';
+      boldToggle = !boldToggle;
+      return replacement;
+    });
+
+    // Replace italic (*)
+    let italicToggle = true; // Toggle between <i> and </i>
+    botMessage = botMessage.replace(/\*/g, () => {
+      const replacement = italicToggle ? '' : '';
+      italicToggle = !italicToggle;
+      return replacement;
+    });
+
+    return botMessage;
+  };
 
   const handleSend = async () => {
     if (input.trim() === '') return;
@@ -17,7 +42,7 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post('http://localhost:8081/chat', { userMessage: input });
-      const botMessage = { sender: 'bot', text: response.data.reply };
+      const botMessage = { sender: 'bot', text: formatBotMessage(response.data.reply) }; // Format bot message
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error('Error:', error);
@@ -57,8 +82,11 @@ const Chatbot = () => {
           {messages.map((msg, index) => (
             <div key={index} className={msg.sender === 'user' ? 'user' : 'bot'}>
               {msg.sender !== 'user' && <FontAwesomeIcon className="robot" icon={faRobot} />}
-              <div className={msg.sender === 'user' ? 'user-message' : 'bot-message'}>
-                {msg.text}
+              <div
+                className={msg.sender === 'user' ? 'user-message' : 'bot-message'}
+                dangerouslySetInnerHTML={msg.sender === 'bot' ? { __html: msg.text } : undefined}
+              >
+                {msg.sender === 'user' ? msg.text : null}
               </div>
             </div>
           ))}

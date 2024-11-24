@@ -8,6 +8,7 @@ import '../App.css';
 
 const Patient = () => {
     const [data, setData] = useState([]);
+    const [values, setValues] = useState({val:''});
     const [filter, setFilter] = useState('all'); // Default to 'all'
     const [page, setPage] = useState(1);
     const [hasMoreData, setHasMoreData] = useState(true);
@@ -15,18 +16,31 @@ const Patient = () => {
     const navigate = useNavigate();
 
     const fetchData = async (page, filterType = filter) => {
+        console.log(`Fetching data with page: ${page}`);
+        console.log(`Fetching data with page: ${filterType}`);
+        console.log(`Fetching data with page: ${values.val}`);
+        
         try {
-            const endpoint =
-                filterType === 'admitted'
-                    ? 'http://localhost:8081/admitdata'
-                    : filterType === 'discharged'
+            let endpoint =
+                filterType === 'discharged'
                     ? 'http://localhost:8081/dischargedata'
+                    : filterType === 'admitted'
+                    ? 'http://localhost:8081/admitdata'
                     : 'http://localhost:8081/data';
 
             console.log(`Fetching data from: ${endpoint} with page: ${page}`);
-            const response = await axios.get(endpoint, {
-                params: { limit, page },
-            });
+            let response;
+            if (values.val === '' && filterType !== 'search') {
+                response = await axios.get(endpoint, {
+                params: { limit, page, },
+                });
+            } else {
+                
+                endpoint = 'http://localhost:8081/searchdata';
+                response = await axios.get(endpoint, {
+                params: { limit, page, val: values.val },
+                });
+            }
             setData(response.data);
             setHasMoreData(response.data.length === limit);
         } catch (error) {
@@ -42,7 +56,9 @@ const Patient = () => {
     }, []);
 
     const handleFilterChange = (filterType) => {
+        
         setFilter(filterType);
+        console.log(`Filter changed to: ${filterType}`);
         setPage(1); // Reset to the first page
         fetchData(1, filterType); // Fetch data based on the selected filter
     };
@@ -79,7 +95,7 @@ const Patient = () => {
                             <input
                                 type="text"
                                 placeholder="Search with Name/NIC/PHN here"
-                                onChange={(e) => setFilter(e.target.value)}
+                                onChange={(e) => setValues({...values,val: e.target.value})}
                             />
                             <button
                                 className="button_search"
@@ -136,7 +152,7 @@ const Patient = () => {
                         </table>
                     </div>
 
-                    <div className="button-bar">
+                    <div className="button-bar2">
                         {hasMoreData && (
                             <button className="button_next" onClick={handleNext}> Next &nbsp;&nbsp; {'>>'} </button>
                         )}
