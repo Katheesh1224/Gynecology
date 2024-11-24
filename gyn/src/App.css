@@ -824,14 +824,4 @@ border: 7px solid red;
   margin-left: 10px; /* Space between the icon and role text */
 }
 
-.role-text::before {
-  content: '';
-  position: absolute;
-  left: -5px; /* Position the circle to the left of the text */
-  top: 50%;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #4c7cb0; /* Same as the text background */
-}
+

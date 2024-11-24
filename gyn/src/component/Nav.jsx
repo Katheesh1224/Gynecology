@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 // import { BarChart } from 'lucide-react';
 
@@ -47,15 +47,15 @@ const Nav = () => {
                 <span>Analysis</span>
               </NavLink>
             </li>
+            
+            
             )}
-
             <li>
               <NavLink to="/data_export" className="nav-link" activeClassName="active">
-                <FontAwesomeIcon icon={faLineChart} />
+                <FontAwesomeIcon icon={faFileExport} />
                 <span>Data Export</span>
               </NavLink>
             </li>
-
 
           </ul>
 

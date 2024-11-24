@@ -106,7 +106,6 @@ const RegisterStaff = () => {
   };
 
 
-
   return (
     <div className='wrapper'>
       <NavBar />

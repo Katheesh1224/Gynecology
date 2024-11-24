@@ -73,7 +73,7 @@ const notify = () => toast("Please contact your administrator to reset your pass
           {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
           <input type="password" name="password" placeholder="Password" value={formValues.password} onChange={handleChange} />
           {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
-          <Link to="/forgotpassword">Forget Your Password?</Link>
+          <Link to="/forgotpassword">Forgot Password?</Link>
           <button type='submit'>Sign In</button>
         </form>
       </div>

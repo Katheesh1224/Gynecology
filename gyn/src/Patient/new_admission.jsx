@@ -69,6 +69,10 @@ const PAdd = () => {
         }
     };
 
+    const handlePrevious = () => {
+        navigate(`/patients_information/patient_profile/patient_admission`);
+      };
+
     return (
         <div>
             <NavBar/>
@@ -131,7 +135,10 @@ const PAdd = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="btn1"><button type="submit">Register</button></div>    
+                    <div className="button-bar">
+                        <button onClick={handlePrevious}> {"<<"} &nbsp;&nbsp; Previous </button>
+                        <button type="submit"> Register </button>
+                    </div>    
                 </form>
             </div>
         </div>
