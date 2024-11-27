@@ -25,9 +25,9 @@ export const Login = () => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post('http://localhost:8081/login', formValues);
-        const { token, role} = response.data;
+        const { token, role, userId} = response.data;
         console.log('Login successful:', token);
-        login(token, role);
+        login(token, role, userId);
        
 
         if (role === 'superadmin') {
