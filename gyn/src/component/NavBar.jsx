@@ -83,11 +83,13 @@ const NavBar = () => {
               </NavLink>
             </li>
             )}
+            {role ==='superadmin' &&(
             <li className="nav__item">
               <NavLink exact to="/data_export" className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Data Export</span>
               </NavLink>
             </li>
+            )}
           </ul>
 
           <div className="nav__close" id="nav-close" onClick={closeMenu}>

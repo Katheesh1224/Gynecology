@@ -16,15 +16,14 @@ const UpdateStaff = () => {
     id: null,
     full_name: "",
     phone_no: "",
-    role: "consultant",  // Default value
+    role: "consultant",  
     email: "",
-    password: "", // New password field
-    confirm_password: "", // Confirm new password field
-    status: "active",    // Default value
-    ...location.state,   // Override defaults with any existing state, except password
+    password: "", 
+    confirm_password: "", 
+    status: "active",   
+    ...location.state,   
   };
 
-  // Remove hashed password from initialState
   if (initialState.password) {
     delete initialState.password;
   }
@@ -83,7 +82,7 @@ const UpdateStaff = () => {
       if (value.length < 8 && value.length > 0) {
         setFormErrors({ ...formErrors, password: "Password must be at least 8 characters long." });
       } else {
-        const { password, ...rest } = formErrors; // Remove password error if validation passes
+        const { password, ...rest } = formErrors; 
         setFormErrors(rest);
       }
     }
@@ -92,7 +91,7 @@ const UpdateStaff = () => {
       if (values.password && value !== values.password) {
         setFormErrors({ ...formErrors, confirm_password: "Passwords do not match." });
       } else {
-        const { confirm_password, ...rest } = formErrors; // Remove confirm_password error if validation passes
+        const { confirm_password, ...rest } = formErrors; 
         setFormErrors(rest);
       }
     }
