@@ -1,53 +1,61 @@
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './home.css';
 import Nav from './Component/Nav.jsx';
 import NavBar from './Component/NavBar.jsx';
 import Chatbot from './Component/Chatbot.jsx';
+import axios from 'axios';
 
-// import { useState,useEffect } from 'react';
-// import axios from 'axios';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faPersonDress } from '@fortawesome/free-solid-svg-icons';
+const Home = () => {
+  const [username, setUsername] = useState('');
+  const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
 
+  useEffect(() => {
+    // Fetch the username from the backend using the userId
+    if (userId) {
+      axios
+        .get(`http://localhost:8081/staff/${userId}`)
+        .then((response) => {
+          setUsername(response.data.full_name); // Update the username state
+        })
+        .catch((error) => {
+          console.error('Error fetching user data:', error);
+        });
+    }
+  }, [userId]);
 
-
-const Home = () =>{
-    // console.log("home rendered");
-
-  //   const [count, setCount] = useState(0);
-
-  // useEffect(() => {
-  //   // Fetch the count from the backend API
-  //   axios.get('http://localhost:8081/api/count')
-  //     .then(response => {
-  //       setCount(response.data.patientCount);
-  //     })
-  //     .catch(error => {
-  //       console.error("There was an error fetching the count!", error);
-  //     });
-  // }, []);
-    
-
-  
-  return(
+  return (
     <div className='wrapper2'>
-      <NavBar/>
+      <NavBar />
       <Chatbot />
       <div className='main-content'>
-        <Nav/> 
+        <Nav />
         <div className='container-big'>
-          <div className='container'>
-            <h1 style={{textAlign:'center'}}>"மெய்ப்பொருள் காண்பது அறிவு"
-            </h1><br></br>
-            <h2>Welcome to GYNECOLOGY Department</h2>
-            <p className='desP'>The gynecology department is dedicated to providing comprehensive healthcare services for women, focusing on the diagnosis, treatment, and management of reproductive health issues. This includes routine check-ups, prenatal and postnatal care, fertility counseling, and advanced treatments for gynecological disorders such as endometriosis, PCOS, and fibroids. The department is equipped with modern medical technologies and staffed by highly skilled gynecologists, nurses, and support personnel, ensuring compassionate and personalized care for women across all stages of life. Additionally, it emphasizes patient education, empowering women to make informed decisions about their health.</p>
+          {username && (
+              <p style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '20px' }}>
+                Hello, {username}! . 
+              </p>
+            )}
+            <div className='container'>
+            <h1 style={{ textAlign: 'center' }}>"மெய்ப்பொருள் காண்பது அறிவு"</h1>
+            <br />
+            <h2>Welcome to the GYNECOLOGY Department</h2>
+            
+            <p className='desP' style={{textAlign: 'justify', fontSize:"16px"}}>
+              The gynecology department is dedicated to providing comprehensive healthcare
+              services for women, focusing on the diagnosis, treatment, and management of
+              reproductive health issues. This includes routine check-ups, prenatal and
+              postnatal care, fertility counseling, and advanced treatments for gynecological
+              disorders such as endometriosis, PCOS, and fibroids. The department is equipped
+              with modern medical technologies and staffed by highly skilled gynecologists,
+              nurses, and support personnel, ensuring compassionate and personalized care for
+              women across all stages of life. Additionally, it emphasizes patient education,
+              empowering women to make informed decisions about their health.
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
-
-}
+};
 
 export default Home;
-
