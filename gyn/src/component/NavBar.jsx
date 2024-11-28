@@ -76,7 +76,7 @@ const NavBar = () => {
                 <span>Staff Information</span>
               </NavLink>
             </li>
-            {role !== 'data_entry' && (
+            {role === 'superadmin' && (
             <li className="nav__item">
               <NavLink exact to="/analysis" className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Analysis</span>
