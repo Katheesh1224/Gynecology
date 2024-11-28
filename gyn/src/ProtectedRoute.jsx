@@ -21,7 +21,7 @@ const ProtectedRoute = ({ element, restrictedForSuperadmin = [] }) => {
 
   if (userRole !== 'superadmin') {
     // Redirect non-superadmin users to /backup only when accessing /home
-    if (location.pathname === '/home' || location.pathname === '/analysis' ) {
+    if (location.pathname === '/home' || location.pathname === '/staff_information'|| location.pathname === '/Register_staff' ) {
       return <Navigate to="/backup" />;
     }
   }

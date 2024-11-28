@@ -14,6 +14,7 @@ const Patient = () => {
     const [hasMoreData, setHasMoreData] = useState(true);
     const limit = 8;
     const navigate = useNavigate();
+    const role = localStorage.getItem('role');
 
     const fetchData = async (page, filterType = filter) => {
         console.log(`Fetching data with page: ${page}`);
@@ -111,12 +112,14 @@ const Patient = () => {
                             >
                                 Admitted Patient
                             </button>
+                            {role !== 'data_entry' && (
                             <button
                                 className="button_dis"
                                 onClick={() => handleFilterChange('discharged')}
                             >
                                 Discharged Patient
                             </button>
+                            )}
                         </div>
                     </div>
 
