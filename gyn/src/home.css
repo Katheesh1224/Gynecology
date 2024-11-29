@@ -637,5 +637,136 @@
   background-color: #512da8;
   border-radius: 6px;
 }
+.user-info{
+  display: flex;
+  background-color: #a5a2a250;
+  width: 41px;
+  border-radius: 25px;
+  padding: 5px;
+  border-color: #8e8d8d91;
+  border-width: 1px;
+  margin-right: -55px;
+}
 
+.user-info:hover{
+  background-color: #605e5efe;
+  border-color: #000;
+}
+.btn2logout{
+  background-color: #a5a2a23c; 
+  color: #ff0000; 
+  border: none;
+  border-radius: 25px 25px 25px 25px; 
+  padding: 10px 10px 10px 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.user-role-container {
+  display: inline-block;
+}
 
+.dropdown-menu {
+  display: block;
+  position: absolute;
+  top: 55px;
+  right: -90px; 
+  background-color: rgba(255, 255, 255, 0.527);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  width: 150px;
+  border-color: #575656a6;
+  border-width: 1px;
+}
+.dropdown-role {
+  font-weight: bold;
+  margin-bottom: 2px;
+  display: inline-block;
+  position: relative;
+  display: block;
+  color: rgba(4, 4, 193, 0.678);
+  margin-left: 20px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  color: #666;
+  margin: 15px 0;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-buttons button:first-child {
+  background-color: #d9534f; 
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #c9302c;
+}
+
+.modal-buttons button:last-child {
+  background-color: #6c757d; 
+  color: white;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #5a6268;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
