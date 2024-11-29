@@ -5,6 +5,7 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import HistoryCard from '../Component/HistoryCard.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
 
 
 const MedDetails = () =>{
@@ -36,6 +37,7 @@ const MedDetails = () =>{
           <button onClick={handleEdit}> edit </button>
         </div>           
       </div>
+      <Footer/>
     </div>
   );
 }

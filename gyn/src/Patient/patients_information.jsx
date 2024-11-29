@@ -5,6 +5,8 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
 import '../App.css';
+import Footer from '../Component/Footer.jsx';
+
 
 const Patient = () => {
     const [data, setData] = useState([]);
@@ -91,7 +93,7 @@ const Patient = () => {
                 <Nav />
                 <div className="container">
                     <h2 style={{fontWeight:"bold"}} >Patient Information</h2>
-                    <div className="search">
+                    <div className="search-bar">
                         <div className="input">
                             <input
                                 type="text"
@@ -127,9 +129,9 @@ const Patient = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>No.</th>
                                     <th>Full Name</th>
-                                    <th>PHN No</th>
+                                    <th>PHN No.</th>
                                     <th>NIC</th>
                                     <th>Management</th>
                                 </tr>
@@ -165,6 +167,7 @@ const Patient = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

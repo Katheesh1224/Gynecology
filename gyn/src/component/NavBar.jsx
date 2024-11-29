@@ -55,7 +55,7 @@ const NavBar = () => {
             </li>
           
             <li className="nav__item">
-              <NavLink exact to="/patient_registration" className="nav__link" activeClassName="active" onClick={closeMenu}>
+              <NavLink exact to="/search" className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Patient Registration</span>
               </NavLink>
             </li>
@@ -77,7 +77,7 @@ const NavBar = () => {
                 <span>Staff Information</span>
               </NavLink>
             </li>
-            {role !== 'data_entry' && (
+            {role === 'superadmin' && (
             <li className="nav__item">
               <NavLink exact to="/analysis" className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Analysis</span>

@@ -17,7 +17,7 @@ const Nav = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/patient_registration" className="nav-link" activeClassName="active">
+              <NavLink to="/search_engine" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faRectangleList} />
                 <span>Patient Registration</span>
               </NavLink>
@@ -63,14 +63,14 @@ const Nav = () => {
               </NavLink>
             </li>
              )}
-             {role !== 'superadmin' && (
+             {/* {role !== 'superadmin' && ( */}
             <li>
-              <NavLink to="/edit_staff" className="nav-link" activeClassName="active">
+              <NavLink to="/staff_profile" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faPenToSquare} />
-                <span>Profile Edit</span>
+                <span>Profile</span>
               </NavLink>
             </li>
-             )}
+             {/* )} */}
           </ul>
 
           

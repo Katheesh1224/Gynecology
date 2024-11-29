@@ -4,6 +4,7 @@ import Nav from './Component/Nav.jsx';
 import NavBar from './Component/NavBar.jsx';
 import StatCards from './Component/StatCard.jsx';
 import Chatbot from './Component/Chatbot.jsx';
+import Footer from './Component/Footer.jsx';
 import { BarChart2, UserMinus, Users, UserCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import LineCharts from "./Analysis/LineChartAnalysis.jsx";
@@ -77,6 +78,7 @@ const Home = () =>{
           </div>
       </div>
     </div>
+	<Footer />
 	</div>
   );
 

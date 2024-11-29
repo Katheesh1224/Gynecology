@@ -7,6 +7,7 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
+import Footer from '../Component/Footer.jsx';
 
 
 const PReg = () => {
@@ -49,7 +50,7 @@ const PReg = () => {
         e.preventDefault();
         axios.post('http://localhost:8081/reg', values)
             .then(res => {
-                navigate('/home');
+                navigate('/patients_information');
                 toast.success('Form submitted successfully!');
                 console.log(res);
             })
@@ -454,6 +455,7 @@ const PReg = () => {
                     </form>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }
