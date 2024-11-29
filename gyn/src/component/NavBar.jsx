@@ -9,8 +9,10 @@ import { AuthContext } from '../AuthContext.jsx';
 const NavBar = () => {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const role = localStorage.getItem('role');
   
   const [showMenu, setShowMenu] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false); 
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -25,7 +27,6 @@ const NavBar = () => {
     navigate('/login');
   };
 
-  const role = localStorage.getItem('role');
 
   const getDisplayRole = (role) => {
     switch (role) {
@@ -109,17 +110,26 @@ const NavBar = () => {
 
           <UserPath />
           <ul>
-            <li className="user-role-container">
+            <li  className="user-role-container"
+              onMouseEnter={() => setDropdownVisible(true)}               
+              onMouseLeave={() => setDropdownVisible(false)} 
+              style={{ position: 'relative' }}>
+
               <div className="user-info">
-                <span className="role-text">{getDisplayRole(role)}</span>
                 <FontAwesomeIcon icon={faUser} onClick={handleLogout} className="user" />
               </div>
+              {dropdownVisible && (
+                <div className="dropdown-menu">
+                  <span className="dropdown-role">{getDisplayRole(role)}</span>
+                </div>
+              )}
             </li>
             <li>
-              <button onClick={handleLogout} className="buttonHome">Logout</button>
+              <button onClick={handleLogout} className="buttonHome btn2logout">Logout</button>
             </li>
           </ul>
 
+      {/* <span className="role-text">{getDisplayRole(role)}</span> */}
         </div>
       </nav>
     </header>
