@@ -1,26 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom v6
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const BackupReminder = () => {
   const [showReminder, setShowReminder] = useState(false);
   const navigate = useNavigate(); // useNavigate hook replaces useHistory in v6
-//   const originalDate = Date;
-// global.Date = class extends Date {
-//   constructor(date) {
-//     if (date) {
-//       super(date);
-//     } else {
-//       super('2024-11-23'); // Manually set to any Friday you want (format: YYYY-MM-DD)
-//     }
-//   }
-// };
 
-
+  // Check if today is Friday (5 = Friday)
   useEffect(() => {
     const today = new Date();
-    if (today.getDay() === 6) { 
+    if (today.getDay() === 6) { // 5 is Friday
       setShowReminder(true);
     }
   }, []);
@@ -54,16 +45,15 @@ const BackupReminder = () => {
         const response = await axios.post("http://localhost:8081/export-excel", { data }, {
           responseType: "blob", // Ensures file is downloaded
         });
-        const formattedDate = today.toISOString().split('T')[0]; // 'YYYY-MM-DD'
-      const filename = `PatientData_${formattedDate}.xlsx`;
 
         const blob = new Blob([response.data]);
         const link = document.createElement("a");
         link.href = window.URL.createObjectURL(blob);
-        link.download = filename;
+        link.download = "PatientData.xlsx";
         link.click();
 
-        setShowReminder(false); 
+        // Hide the reminder after successful export
+        setShowReminder(false); // Turn off the reminder
       }
     } catch (error) {
       console.error("Error during backup export:", error);
