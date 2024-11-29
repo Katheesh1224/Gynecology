@@ -26,10 +26,12 @@ import Analysis from './Analysis/Analysiss.jsx';
 import VisitDetails from './Patient/visit_details.jsx';
 import VisitEdit from './Patient/visit_details_edit.jsx';
 import DataExport from './DocumentBackup/DataExport.jsx';
-import BackupReminder from './Component/Reminder.jsx';
+// import BackupReminder from './Component/Reminder.jsx';
 import Chatbot from './Component/Chatbot.jsx';
 import EditStaff from './Staff/Edit_staff.jsx';
-import SearchBar from './Patient/SearchBar.jsx';
+import SearchEngine from './Patient/SearchEngine.jsx';
+import ProfileCard from './Staff/staff_profile.jsx';
+import StaffProfile from './Staff/staff_profile.jsx';
 
 
 
@@ -44,8 +46,8 @@ function App() {
           <Route path ='/forgotpassword' element={<ForgotPassword/>}></Route>
           <Route path ='/home' element={<ProtectedRoute element={<Home />} restrictedForSuperadmin={['/superadmin']}  />}></Route>          
           <Route path ='/backup' element={<ProtectedRoute element={<Backup/>}/>}></Route>          
-          <Route path ='/search' element={<ProtectedRoute element={<SearchBar/>}/>}></Route>          
-          <Route path ='/search/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
+          <Route path ='/search_engine' element={<ProtectedRoute element={<SearchEngine/>}/>}></Route>          
+          <Route path ='/search_engine/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
           <Route path ='/patients_information' element={<ProtectedRoute element={<Patient/>}/>}></Route>
           <Route path ='/Register_staff' element={<ProtectedRoute element={<RegisterStaff/>} restrictedForSuperadmin={['/superadmin']} />}></Route>
           <Route path ='/staff_information' element={<ProtectedRoute element={<Staff/>} restrictedForSuperadmin={['/superadmin']} />}></Route>
@@ -66,6 +68,7 @@ function App() {
           <Route path='/data_export' element={<ProtectedRoute element={<DataExport/>}/>}></Route>
           <Route path='/analysis' element={<ProtectedRoute element={<Analysis/>} />}></Route>
           <Route path='/chatbot' element={<ProtectedRoute element={<Chatbot/>}/>}></Route>
+          <Route path='/staff_profile' element={<ProtectedRoute element={<StaffProfile/>}/>}></Route>
         </Routes>
       </BrowserRouter>
       </AuthProvider>

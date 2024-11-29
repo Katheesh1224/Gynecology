@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import Nav from '.././Component/Nav.jsx';
 import NavBar from '.././Component/NavBar.jsx';
+import Footer from '../Component/Footer.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
+
 
 const DataExport = () => {
   const [filterType, setFilterType] = useState("all"); // 'all' or 'single'
@@ -121,6 +124,8 @@ const DataExport = () => {
           Export as PDF
         </button>
       </div>
+      <Footer />
+      <Chatbot />
     </div>
   );
 };

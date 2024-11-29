@@ -7,6 +7,7 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify'; // Import toast from react-toastify
+import Footer from '../Component/Footer.jsx';
 
 
 const PEdit = () => {
@@ -258,6 +259,7 @@ const PEdit = () => {
             </form>
         </div>
         </div>
+        <Footer/>
         </div>
     )
 }

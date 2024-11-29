@@ -7,7 +7,9 @@ import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
-import AdmissionCard from '../Component/AdmissionCard.jsx'; // Ensure this component works for displaying visit info
+import AdmissionCard from '../Component/AdmissionCard.jsx'; 
+import Footer from '../Component/Footer.jsx';
+
 
 const Card = ({ title, index, onClick }) => (
   <div className="cd" onClick={() => onClick(index)}>
@@ -124,6 +126,7 @@ const Visit = () => {
           </button>
         </div>
         </div>
+        <Footer />
       </div>
     
   );

@@ -1,51 +1,47 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./SearchBar.css";
-import Nav from "../Component/Nav.jsx";
-import NavBar from "../Component/NavBar.jsx";
-import Chatbot from "../Component/Chatbot.jsx";
+import Nav from "./Nav.jsx";
+import NavBar from "./NavBar.jsx";
+import Chatbot from "./Chatbot.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faClose } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const [isOpen, setIsOpen] = useState(false); // Toggle search bar visibility
-  const [search, setSearch] = useState(""); // User's search input
-  const [searchData, setSearchData] = useState([]); // API results
-  const [selectedItem, setSelectedItem] = useState(-1); // Highlighted item index
-  const [page, setPage] = useState(1); // Pagination control
-  const navigate = useNavigate(); // For navigation
+  const [isOpen, setIsOpen] = useState(false); 
+  const [search, setSearch] = useState(""); 
+  const [searchData, setSearchData] = useState([]); 
+  const [selectedItem, setSelectedItem] = useState(-1); 
+  const [page, setPage] = useState(1); 
+  const navigate = useNavigate(); 
 
-  // Update search input state
   const handleChange = (e) => {
     setSearch(e.target.value);
-    setPage(1); // Reset to first page on new search
+    setPage(1); 
   };
 
-  // Clear search input and reset state
   const handleClose = () => {
     setSearch("");
     setSearchData([]);
     setSelectedItem(-1);
   };
 
-  // Navigate through search suggestions using keyboard
   const handleKeyDown = (e) => {
     if (searchData.length > 0) {
       if (e.key === "ArrowUp" && selectedItem > 0) {
-        e.preventDefault(); // Prevent cursor movement in the input
+        e.preventDefault(); 
         setSelectedItem((prev) => prev - 1);
       } else if (e.key === "ArrowDown" && selectedItem < searchData.length - 1) {
         e.preventDefault();
         setSelectedItem((prev) => prev + 1);
       } else if (e.key === "Enter" && selectedItem >= 0) {
         e.preventDefault();
-        assign(searchData[selectedItem].id); // Go to patient profile on Enter key press
+        assign(searchData[selectedItem].id); 
       }
     }
   };
 
-  // Fetch search results from API
   useEffect(() => {
     if (search.trim() !== "") {
       axios
@@ -70,12 +66,10 @@ const SearchBar = () => {
     navigate('/patients_information/patient_profile');
   };
 
-  // Navigate to the patient registration page
   const handleNewRegistration = () => {
     navigate('/search/patient_registration');
   };
 
-  // Toggle search bar visibility
   const toggleSearch = () => {
     setIsOpen(!isOpen);
   };
@@ -128,7 +122,7 @@ const SearchBar = () => {
                   className={`search_suggestion_line ${
                     selectedItem === index ? "active" : ""
                   }`}
-                  onMouseEnter={() => setSelectedItem(index)} // Highlight on hover
+                  onMouseEnter={() => setSelectedItem(index)} 
                   onClick={() => assign(row.id)}
                 >
                   {row.full_name} - {row.nic} - {row.phn}

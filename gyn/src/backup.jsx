@@ -3,6 +3,7 @@ import './home.css';
 import Nav from './Component/Nav.jsx';
 import NavBar from './Component/NavBar.jsx';
 import Chatbot from './Component/Chatbot.jsx';
+import Footer from './Component/Footer.jsx';
 import axios from 'axios';
 
 const Home = () => {
@@ -54,6 +55,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

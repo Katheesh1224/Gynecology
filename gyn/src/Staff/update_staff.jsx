@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
 import { toast } from 'react-toastify'; 
 
 const UpdateStaff = () => {
@@ -275,6 +276,7 @@ const UpdateStaff = () => {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

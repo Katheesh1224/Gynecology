@@ -1,42 +1,53 @@
-/*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
 .container-search {
-  height: 100vh;
-  margin-inline: 1.5rem;
-  display: grid;
-  margin-top: -270px;
-  place-items: center;
+    height: 60vh;
+    margin-inline: 1.5rem;
+    display: grid;
+    place-items: center;
+    top: 100px;
+    align-content: space-evenly;
 }
 
-.search {
+.search-box {
   position: relative;
-  width: 76px;
+  width: 600px;
   height: 76px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 24px hsla(222, 68%, 12%, 0.1);
   border-radius: 4rem;
   padding: 10px;
   overflow: hidden;
   transition: width 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+  opacity: 1;
+  pointer-events: initial;
 }
 
-.search__input {
-  border: none;
+.search-title{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  border: 10px solid #ffffff;
   outline: none;
   width: calc(100% - 64px);
   height: 100%;
   border-radius: 4rem;
   padding-left: 14px;
   font-family: "Poppins", sans-serif;
-  font-size: 0.813rem;
+  font-size: 0.9rem;
   font-weight: 500;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1.5s;
+  opacity: 1;
+  pointer-events: initial;
 }
 
-.search__button {
+.search-button {
   width: 56px;
   height: 56px;
   background-color: #512da8;
@@ -52,57 +63,31 @@
   transition: transform 0.6s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
 
-.search__icon,
-.search__close {
+.search-icon{
   color: white;
   font-size: 1.5rem;
   position: absolute;
   transition: opacity 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
 
-.search__close {
-  opacity: 0;
+@media screen and (max-width: 655px) {
+    .search-box {
+        width: 450px;
+    }
 }
 
-.hidden {
-  opacity: 0;
+@media screen and (max-width: 490px) {
+    .search-box {
+        width: 350px;
+    }
 }
 
-.show-search {
-  width: 100%;
-}
-
-.show-search .search__input {
-  opacity: 1;
-  pointer-events: initial;
-}
-
-.show-search .search__button {
-  transform: rotate(90deg);
-}
-
-.show-search .search__icon {
-  opacity: 0;
-}
-
-.show-search .search__close {
-  opacity: 1;
-}
-
-@media screen and (min-width: 576px) {
-  .show-search {
-    width: 450px;
-  }
-}
-
-
-.search_result {
-  background: white;
-  width: 400px;
-  margin-top: 210px;
-  border-radius: 10px;
-  position: absolute;
-  top: 70px;
+.search-result {
+    background: white;
+    width: 400px;
+    top: 330px;
+    border-radius: 10px;
+    position: absolute;
 }
 
 .search_result::-webkit-scrollbar {
@@ -130,8 +115,9 @@
 
 
 .no-results {
-  padding: 10px;
-  color: #777;
+    padding: 10px;
+    color: #777;
+    margin-top: 160px;
 }
 
 .new-registration-link {

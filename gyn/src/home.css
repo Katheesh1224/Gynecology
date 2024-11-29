@@ -180,6 +180,31 @@
     align-content: center;
     justify-content: space-between;
   } 
+
+  .footer {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+  } 
+
+  .footer p {
+    color: #fffdfd;
+    font-size:  13px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .footer span {
+    color: #5652cc;
+    font-weight: 600;
+  }
   
   .navM ul {
     display: flex;
@@ -315,15 +340,18 @@
 }
 
 #Head {
-  position:fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   z-index: 1;
   transition: all 0.5s;
-  padding: 150px 15px 15px 15px;
+  padding: 0 15px 0 15px;
   overflow-y: auto;
   margin-left: 0px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
   .nav-round {

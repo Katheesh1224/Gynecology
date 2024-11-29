@@ -7,6 +7,8 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify';
+import Footer from '../Component/Footer.jsx';
+
 
 
 const VisitEdit = () => {   
@@ -689,6 +691,7 @@ const VisitEdit = () => {
                     <div className="btn1"><button type="submit" name="submit">Upadate</button></div>
                 </form>
             </div>
+            <Footer/>
         </div>
     )
 }
