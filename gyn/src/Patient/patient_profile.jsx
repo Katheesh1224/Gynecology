@@ -10,58 +10,66 @@ import ProfileCard from '../Component/profileCard.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
 import Footer from '../Component/Footer.jsx';
 
-
 const Profile = () => {
   const navigate = useNavigate();
-  let patient_id=localStorage.getItem('patient_id');
+  const patient_id = localStorage.getItem('patient_id');
   const role = localStorage.getItem('role');
 
-  const handlePrevious = async () => {
-    navigate('/patients_information');
-  };
-
-  function assign(roe){
-    localStorage.setItem('patient_phn',roe);
-    navigate(`/patients_information/patient_profile/patient_history`);
-}
-
   const [data, setData] = useState({});
+  const [isDischarged, setIsDischarged] = useState(false); 
+ const [openPopup, setOpenPopup] = useState(false); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:8081/view/${patient_id}`);
-        setData(response.data[0]);
-        //console.log(response.data);
+        const fetchedData = response.data[0];
+        setData(fetchedData);
+        setIsDischarged(fetchedData.admit_status === 'discharged'); 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [patient_id]);
 
-  const handleDischarge = async (phn) => {
+  const handlePrevious = () => {
+    navigate('/patients_information');
+  };
+
+  const assign = (phn) => {
+    localStorage.setItem('patient_phn', phn);
+    navigate(`/patients_information/patient_profile/patient_history`);
+  };
+
+  const confirmDischarge = async () => {
     try {
-      const response = await axios.put(`http://localhost:8081/discharge/${phn}`);
+      const response = await axios.put(`http://localhost:8081/discharge/${data.phn}`);
+      setData(response.data);
+      setIsDischarged(true); 
+      setOpenPopup(false); 
       navigate('/patients_information');
-       setData(response.data); // If needed
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error discharging patient:', error);
     }
   };
 
   return (
-    <div className="">
-      <NavBar/>
-      <Nav/>
-      <Chatbot/>
-      <div className='container'>
-        <h2 style={{fontWeight:"bold"}} > Patient Profile</h2>
-        <ProfileCard/>
+    <div>
+      <NavBar />
+      <Nav />
+      <Chatbot />
+      <div className="container">
+        <h2 style={{ fontWeight: 'bold' }}>Patient Profile</h2>
+        <ProfileCard />
         <div className="cntner">
           <div className="cd">
-            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_about`} role="button">
+            <div
+              className="face face1"
+              onClick={() => (window.location.href = `/patients_information/patient_profile/patient_about`)}
+              role="button"
+            >
               <div className="content">
                 <FontAwesomeIcon icon={faAddressCard} />
                 <h3>About</h3>
@@ -70,13 +78,19 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains full admission details of this patient.</p>
-                <a href={`/patients_information/patient_profile/patient_about`} type="button">Show</a>
+                <a href={`/patients_information/patient_profile/patient_about`} type="button">
+                  Show
+                </a>
               </div>
             </div>
           </div>
 
           <div className="cd">
-            <div className="face face1" onClick={() => window.location.href = `/patients_information/patient_profile/patient_admission`}  role="button">
+            <div
+              className="face face1"
+              onClick={() => (window.location.href = `/patients_information/patient_profile/patient_admission`)}
+              role="button"
+            >
               <div className="content">
                 <FontAwesomeIcon icon={faTicket} />
                 <h3>Admission</h3>
@@ -85,13 +99,15 @@ const Profile = () => {
             <div className="face face2">
               <div className="content">
                 <p>This feature contains admission progress of this patient.</p>
-                <a href={`/patients_information/patient_profile/patient_admission`} type="button">Show</a>
+                <a href={`/patients_information/patient_profile/patient_admission`} type="button">
+                  Show
+                </a>
               </div>
             </div>
           </div>
 
           <div className="cd">
-            <div className="face face1" onClick={()=>assign(data.phn)}  role="button">
+            <div className="face face1" onClick={() => assign(data.phn)} role="button">
               <div className="content">
                 <FontAwesomeIcon icon={faBookMedical} />
                 <h3>History</h3>
@@ -99,23 +115,56 @@ const Profile = () => {
             </div>
             <div className="face face2">
               <div className="content">
+
                 <p>This feature contains medical history of this patient.</p>
                 <a href={`/patients_information/patient_profile/patient_history`} type="button">Show</a>
+
               </div>
             </div>
           </div>
         </div>
 
-        <div className='button-bar'>
-          <button onClick={handlePrevious}>{"<<"} &nbsp; previous </button>
-          {role !== 'data_entry' &&(
-          <button style={{ backgroundColor: 'red' }} onClick={() => { handleDischarge(data.phn) }}>Discharge</button>
+        <div className="button-bar">
+          <button onClick={handlePrevious}>{'<<'} &nbsp; previous </button>
+          {role !== 'data_entry' && (
+            <button
+              style={{
+                backgroundColor: isDischarged ? 'grey' : 'red',
+                cursor: isDischarged ? 'not-allowed' : 'pointer',
+              }}
+              disabled={isDischarged}
+              onClick={() => !isDischarged && setOpenPopup(true) } // Show modal on click
+            >
+              {isDischarged ? 'Discharged' : 'Discharge'}
+            </button>
           )}
-          </div>
+        </div>
       </div>
+
+
+      {openPopup && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Confirm Discharge</h3>
+            <p>
+              Are you sure you want to discharge <strong>{data.full_name}</strong> ?
+            </p>
+            <div className="modal-buttons">
+              <button onClick={confirmDischarge} style={{ backgroundColor: 'red', color: 'white' }}>
+                Confirm
+              </button>
+              <button onClick={() => setOpenPopup(false)} style={{ backgroundColor: 'grey', color: 'white' }}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer/>
+
     </div>
   );
-}
+};
 
 export default Profile;

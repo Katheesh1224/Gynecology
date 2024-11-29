@@ -156,15 +156,20 @@ const Staff = () => {
       </div>
 
       {openPopup && (
-        <div className='popup'>
-          <div className='box'>
-            <h2>Are you sure you want to delete {rowToDelete?.full_name}?</h2>
-            <button className='popup_button1' onClick={handleConfirmDelete}>
-              Yes
-            </button>
-            <button className='popup_button2' onClick={handleCancelDelete}>
-              No
-            </button>
+        <div className='modal'>
+          <div className='modal-content'>
+          <h3>Confirm Delete</h3>
+            <p>
+              Are you sure you want to delete <strong>{rowToDelete?.full_name}</strong> ?
+            </p>
+            <div className="modal-buttons">
+              <button onClick={handleConfirmDelete} style={{ backgroundColor: 'red', color: 'white' }}>
+                Confirm
+              </button>
+              <button onClick={handleCancelDelete} style={{ backgroundColor: 'grey', color: 'white' }}>
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
