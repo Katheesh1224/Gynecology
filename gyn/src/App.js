@@ -42,6 +42,7 @@ function App() {
           <Route path ='/' element={<Login/>}></Route>
           <Route path ='/login' element={<Login/>}></Route>
           <Route path ='/forgotpassword' element={<ForgotPassword/>}></Route>
+
           <Route path ='/home' element={<ProtectedRoute element={<Home />} restrictedForSuperadmin={['/superadmin']}  />}></Route>          
           <Route path ='/backup' element={<ProtectedRoute element={<Backup/>}/>}></Route>          
           <Route path ='/search' element={<ProtectedRoute element={<SearchBar/>}/>}></Route>          
