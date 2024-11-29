@@ -1,19 +1,19 @@
 import React, { createContext } from 'react';
 
-// Create Context
 export const AuthContext = createContext();
 
-// Create Provider Component
 export const AuthProvider = ({ children }) => {
 
-  const login = (token, role) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('role', role);  // Store role in localStorage
+  const login = (token, role, userId) => {
+    localStorage.setItem('token', token);       
+    localStorage.setItem('role', role);        
+    localStorage.setItem('userId', userId);     
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');  // Remove role from localStorage on logout
+    localStorage.removeItem('token');            
+    localStorage.removeItem('role');            
+    localStorage.removeItem('userId');        
   };
 
   return (

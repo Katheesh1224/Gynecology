@@ -10,20 +10,16 @@ const NavBar = () => {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
   
-  // State for managing the menu visibility
   const [showMenu, setShowMenu] = useState(false);
 
-  // Function to toggle the menu
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
 
-  // Function to close the menu
   const closeMenu = () => {
     setShowMenu(false);
   };
 
-  // Handle logout and navigate to login page
   const handleLogout = async () => {
     logout();
     navigate('/login');
@@ -31,19 +27,34 @@ const NavBar = () => {
 
   const role = localStorage.getItem('role');
 
+  const getDisplayRole = (role) => {
+    switch (role) {
+      case 'consultant':
+        return 'Consultant';
+      case 'superadmin':
+        return 'Super Admin';
+      case 'data_entry':
+        return 'Data Entry';
+      case 'registrar':
+        return 'Registrar';
+      default:
+        return 'User';
+    }
+  };
+
   return (
     <header className="header" id="header">
       <nav className="nav">
         <div className={`nav__menu ${showMenu ? 'show-menu' : ''}`} id="nav-menu">
           <ul className="nav__list">
             <li className="nav__item">
-              <NavLink exact to = {role === "superadmin" ? '/home' : '/backup'} className="nav__link" activeClassName="active" onClick={closeMenu}>
+              <NavLink exact to={role === "superadmin" ? '/home' : '/backup'} className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Home</span>
               </NavLink>
             </li>
           
             <li className="nav__item">
-              <NavLink exact to="/patient_registration" className="nav__link" activeClassName="active" onClick={closeMenu}>
+              <NavLink exact to="/search" className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Patient Registration</span>
               </NavLink>
             </li>
@@ -65,18 +76,20 @@ const NavBar = () => {
                 <span>Staff Information</span>
               </NavLink>
             </li>
-            {role !== 'data_entry' && (
+            {role === 'superadmin' && (
             <li className="nav__item">
               <NavLink exact to="/analysis" className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Analysis</span>
               </NavLink>
             </li>
             )}
+            {role ==='superadmin' &&(
             <li className="nav__item">
               <NavLink exact to="/data_export" className="nav__link" activeClassName="active" onClick={closeMenu}>
                 <span>Data Export</span>
               </NavLink>
             </li>
+            )}
           </ul>
 
           <div className="nav__close" id="nav-close" onClick={closeMenu}>
@@ -98,7 +111,7 @@ const NavBar = () => {
           <ul>
             <li className="user-role-container">
               <div className="user-info">
-                <span className="role-text">{role}</span>
+                <span className="role-text">{getDisplayRole(role)}</span>
                 <FontAwesomeIcon icon={faUser} onClick={handleLogout} className="user" />
               </div>
             </li>

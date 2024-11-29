@@ -51,7 +51,7 @@
     border-radius: 4px;
   }
 
-  .search{
+  .search-bar{
     display: flex;
     justify-content: space-between;
     width: 890px;
@@ -452,7 +452,7 @@
    color: #fafafa;
    font-family: 'Open Sans',Sans-serif;
    font-weight: 200;
-   text-transform: uppercase; 
+   /* text-transform: uppercase;  */
    }
 
   tr{
@@ -638,4 +638,38 @@
   border-radius: 6px;
 }
 
+/* .profile-img {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  height: 200px;
+  width: 200px; 
+  border-radius: 50%;
+  border: 5px solid #000;
+  position: fixed;
+  left: 1020px;
+  top: 120px;
+  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+} */
 
+.card1 {
+  position: relative;
+  /* width: 400px; Adjust width as needed */
+  padding: 20px;
+  /* border: 1px solid #000; */
+  border-radius: 10px;
+  margin: auto;
+  background-color: #fff;
+  overflow: visible; /* Ensures the profile image can extend outside */
+}
+
+.profile-img {
+  position: absolute;
+  top: 15px; /* Moves image upward */
+  right: 100px; /* Moves image rightward */
+  width: 150px; 
+  height: 150px;
+  border-radius: 50%; /* Makes the image round */
+  border: 5px solid #000;
+  /* clip-path: circle(75% at 25% 25%); Ensures border is only on the visible outer side */
+}

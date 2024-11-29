@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart, faFileExport } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart, faFileExport, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 // import { BarChart } from 'lucide-react';
 
@@ -17,7 +17,7 @@ const Nav = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/patient_registration" className="nav-link" activeClassName="active">
+              <NavLink to="/search" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faRectangleList} />
                 <span>Patient Registration</span>
               </NavLink>
@@ -28,19 +28,24 @@ const Nav = () => {
                 <span>Patient Information</span>
               </NavLink>
             </li>
+            {role ==='superadmin' && (
             <li>
               <NavLink to="/register_staff" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faRectangleList} />
                 <span>Staff Registration</span>
               </NavLink>
             </li>
-            <li>
+            )}
+            {role ==='superadmin' && (
+              
+              <li>
               <NavLink to="/staff_information" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faUserNurse} />
                 <span>Staff Information</span>
               </NavLink>
             </li>
-            {role === 'superadmin' && (
+            )}
+            {role !== 'data_entry' && (
             <li>
               <NavLink to="/analysis" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faLineChart} />
@@ -50,13 +55,22 @@ const Nav = () => {
             
             
             )}
+             {role === 'superadmin' && (
             <li>
               <NavLink to="/data_export" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faFileExport} />
                 <span>Data Export</span>
               </NavLink>
             </li>
-
+             )}
+             {role !== 'superadmin' && (
+            <li>
+              <NavLink to="/edit_staff" className="nav-link" activeClassName="active">
+                <FontAwesomeIcon icon={faPenToSquare} />
+                <span>Profile Edit</span>
+              </NavLink>
+            </li>
+             )}
           </ul>
 
           

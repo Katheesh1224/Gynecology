@@ -13,6 +13,7 @@ import Chatbot from '../Component/Chatbot.jsx';
 const Profile = () => {
   const navigate = useNavigate();
   let patient_id=localStorage.getItem('patient_id');
+  const role = localStorage.getItem('role');
 
   const handlePrevious = async () => {
     navigate('/patients_information');
@@ -97,7 +98,7 @@ const Profile = () => {
             </div>
             <div className="face face2">
               <div className="content">
-                <p>This feature contains past admission and medical history of this patient.</p>
+                <p>This feature contains medical history of this patient.</p>
                 <a href={`/patients_information/patient_profile/patient_history`} type="button">Show</a>
               </div>
             </div>
@@ -106,7 +107,9 @@ const Profile = () => {
 
         <div className='button-bar'>
           <button onClick={handlePrevious}>{"<<"} &nbsp; previous </button>
+          {role !== 'data_entry' &&(
           <button style={{ backgroundColor: 'red' }} onClick={() => { handleDischarge(data.phn) }}>Discharge</button>
+          )}
           </div>
       </div>
     </div>

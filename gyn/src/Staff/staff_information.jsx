@@ -8,22 +8,21 @@ import { toast } from 'react-toastify';
 import '../App.css';
 
 const Staff = () => {
-  const [data, setData] = useState([]); // Store staff data
-  const [openPopup, setOpenPopup] = useState(false); // For delete confirmation
-  const [page, setPage] = useState(1); // Track the current page
-  const [hasMoreData, setHasMoreData] = useState(true); // Flag for data availability
-  const limit = 8; // Number of records per page
-  const [rowToDelete, setRowToDelete] = useState(null); // For the row being deleted
+  const [data, setData] = useState([]); 
+  const [openPopup, setOpenPopup] = useState(false); 
+  const [page, setPage] = useState(1); 
+  const [hasMoreData, setHasMoreData] = useState(true); 
+  const limit = 8;
+  const [rowToDelete, setRowToDelete] = useState(null); 
+  const UserRole = localStorage.getItem('role');
   const navigate = useNavigate();
 
-  // Fetch data for the current page
   const fetchData = async (page) => {
     try {
       const response = await axios.get('http://localhost:8081/data1', {
         params: { page, limit },
       });
       setData(response.data);
-      // Check if there's more data than the limit
       setHasMoreData(response.data.length === limit);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -31,22 +30,23 @@ const Staff = () => {
     }
   };
 
-  // Effect to fetch data whenever the page changes
+  
   useEffect(() => {
-    fetchData(page); // Fetch data whenever the page changes
+    fetchData(page); 
   }, [page]);
 
-  // Get the row style based on its status
+
   const getRowStyle = (status) => {
     return status.trim() === 'active' ? { color: 'green' } : { color: 'red' };
+    
   };
 
-  // Delete a staff row from the database
+
   const deleteRow = async (id) => {
     try {
       await axios.delete(`http://localhost:8081/staff_information/${id}`);
-      setData(data.filter((row) => row.id !== id)); // Remove the deleted row from the table
-      setOpenPopup(false); // Close the delete confirmation popup
+      setData(data.filter((row) => row.id !== id)); 
+      setOpenPopup(false); 
       toast.success('Row deleted successfully');
     } catch (error) {
       console.error('Error deleting row:', error);
@@ -54,33 +54,47 @@ const Staff = () => {
     }
   };
 
-  // Handle "Next" button click
   const handleNext = () => {
-    setPage((prevPage) => prevPage + 1); // Move to the next page
+    setPage((prevPage) => prevPage + 1);
   };
 
-  // Handle "Previous" button click
+ 
   const handlePrevious = () => {
     if (page > 1) {
-      setPage((prevPage) => prevPage - 1); // Move to the previous page, but don't go below page 1
+      setPage((prevPage) => prevPage - 1);
     }
   };
 
-  // Handle delete confirmation
   const handleDeleteClick = (row) => {
     setRowToDelete(row);
-    setOpenPopup(true); // Show the delete confirmation popup
+    setOpenPopup(true); 
   };
 
   const handleConfirmDelete = () => {
     if (rowToDelete) {
-      deleteRow(rowToDelete.id); // Confirm the deletion
+      deleteRow(rowToDelete.id);
     }
   };
 
   const handleCancelDelete = () => {
     setRowToDelete(null);
-    setOpenPopup(false); // Close the popup without deleting
+    setOpenPopup(false); 
+  };
+   const getDisplayRole = (role) => {
+    switch (role) {
+      case 'consultant':
+        return 'Consultant';
+      case 'superadmin':
+        return 'Super Admin';
+      case 'data_entry':
+        return 'Data Entry';
+      case 'registrar':
+        return 'Registrar';
+      case 'medical_officer':
+        return 'Medical Officer';
+      default:
+        return 'User';
+    }
   };
 
   return (
@@ -96,7 +110,7 @@ const Staff = () => {
               <thead>
                 <tr>
                   <th>Full Name</th>
-                  <th>Phone No</th>
+                  <th>Phone No.</th>
                   <th>Role</th>
                   <th>Status</th>
                   <th>Action</th>
@@ -107,12 +121,14 @@ const Staff = () => {
                   <tr key={row.id}>
                     <td>{row.full_name}</td>
                     <td>{row.phone_no}</td>
-                    <td>{row.role}</td>
+                    <td>{getDisplayRole(row.role)}</td>
                     <td style={getRowStyle(row.status)}>{row.status}</td>
                     <td>
+                      { UserRole === 'superadmin' &&(
                       <button className='button_delete' onClick={() => handleDeleteClick(row)}>
                         Delete
                       </button>
+                      )}
                       <button
                         className='button_edit'
                         onClick={() => navigate('/staff_information/update_staff', { state: row })}
