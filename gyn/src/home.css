@@ -340,7 +340,7 @@
 }
 
 #Head {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -571,9 +571,9 @@
     min-height: 100vh;
     margin: 0;
     background: 
-      linear-gradient(rgba(211, 211, 211, 0.743), rgba(211, 211, 211, 0.442)), /* Light gray overlay */
-      url('../jaffna_hospital.jpg') repeat ; /* Background image */
-    background-size:cover; /* Cover entire viewport */
+      linear-gradient(rgba(211, 211, 211, 0.743), rgba(211, 211, 211, 0.442)),
+      url('../jaffna_hospital.jpg') no-repeat fixed; 
+    background-size: cover; 
     display: flex;
     flex-direction: column;
   }
