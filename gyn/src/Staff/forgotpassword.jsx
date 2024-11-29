@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../Component/Footer.jsx';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -163,6 +164,7 @@ const ForgotPassword = () => {
           <center><button type="submit" disabled={Object.keys(formErrors).length > 0}>Reset Password</button></center>
         </form>
       )}
+      <Footer />
     </div>
   );
 };

@@ -6,6 +6,8 @@ import { useState,useEffect } from 'react';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
+
 
 const About = () =>{
 
@@ -96,7 +98,7 @@ const About = () =>{
                 <button onClick={handleEdit}> edit </button>
               </div>
             </div>
-              
+            <Footer/>
           </div>
     );
 }

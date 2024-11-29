@@ -5,6 +5,8 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
 import '../App.css';
+import Footer from '../Component/Footer.jsx';
+
 
 const Patient = () => {
     const [data, setData] = useState([]);
@@ -165,6 +167,7 @@ const Patient = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

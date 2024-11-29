@@ -200,7 +200,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Nav from '.././Component/Nav.jsx';
 import NavBar from '.././Component/NavBar.jsx';
+import Footer from '../Component/Footer.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify';
+
 
 const DataExport = () => {
   const [filterType, setFilterType] = useState("all"); // 'all' or 'single'
@@ -379,6 +382,10 @@ const DataExport = () => {
         </button>
       </div>
 
+      <Footer />
+      <Chatbot />
+
+
       {/* Backup Button */}
       
       <div className="p-6 bg-gray-800 rounded-xl shadow-lg">
@@ -390,6 +397,7 @@ const DataExport = () => {
           Backup Database
         </button>
       </div>
+
     </div>
   );
 };

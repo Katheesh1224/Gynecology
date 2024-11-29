@@ -4,6 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import { toast } from 'react-toastify';
+import Footer from './Component/Footer.jsx';
+
 
 export const Login = () => {
   const initialValues = { email: "", password: "" };
@@ -85,6 +87,7 @@ const notify = () => toast("Please contact your administrator to reset your pass
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

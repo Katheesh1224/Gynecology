@@ -5,6 +5,7 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import VisitCard from '../Component/VisitCard.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
 
 const VisitDetails = () => {
   const [isEditEnable, setIsEditEnable] = useState(false); // State to enable/disable the Edit button
@@ -56,6 +57,7 @@ const VisitDetails = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

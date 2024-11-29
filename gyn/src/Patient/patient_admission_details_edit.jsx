@@ -6,6 +6,7 @@ import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';import { toast } from 'react-toastify';
+import Footer from '../Component/Footer.jsx';
 
 
 const AdEdit = () => {   
@@ -152,6 +153,7 @@ const AdEdit = () => {
                     <div className="btn1"><button type="submit">Update</button></div>
                 </form>
             </div>
+            <Footer/>
         </div>
     )
 }
