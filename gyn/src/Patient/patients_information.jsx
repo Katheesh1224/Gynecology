@@ -91,7 +91,7 @@ const Patient = () => {
                 <Nav />
                 <div className="container">
                     <h2 style={{fontWeight:"bold"}} >Patient Information</h2>
-                    <div className="search">
+                    <div className="search-bar">
                         <div className="input">
                             <input
                                 type="text"
@@ -127,9 +127,9 @@ const Patient = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>No</th>
+                                    <th>No.</th>
                                     <th>Full Name</th>
-                                    <th>PHN No</th>
+                                    <th>PHN No.</th>
                                     <th>NIC</th>
                                     <th>Management</th>
                                 </tr>

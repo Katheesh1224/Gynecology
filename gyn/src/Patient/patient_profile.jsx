@@ -98,7 +98,7 @@ const Profile = () => {
             </div>
             <div className="face face2">
               <div className="content">
-                <p>This feature contains past admission and medical history of this patient.</p>
+                <p>This feature contains medical history of this patient.</p>
                 <a href={`/patients_information/patient_profile/patient_history`} type="button">Show</a>
               </div>
             </div>

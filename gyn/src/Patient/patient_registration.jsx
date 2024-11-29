@@ -49,7 +49,7 @@ const PReg = () => {
         e.preventDefault();
         axios.post('http://localhost:8081/reg', values)
             .then(res => {
-                navigate('/home');
+                navigate('/patients_information');
                 toast.success('Form submitted successfully!');
                 console.log(res);
             })
