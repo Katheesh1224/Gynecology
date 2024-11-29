@@ -31,16 +31,16 @@ const Home = () => {
         <Nav />
         <div className='container-big'>
           {username && (
-              <p style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '20px' }}>
+              <p style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '50px' }}>
                 Hello, {username}! . 
               </p>
             )}
             <div className='container'>
-            <h1 style={{ textAlign: 'center' }}>"மெய்ப்பொருள் காண்பது அறிவு"</h1>
+            <h1 style={{ textAlign: 'center' ,fontWeight:"bold"}}>"மெய்ப்பொருள் காண்பது அறிவு"</h1>
             <br />
-            <h2>Welcome to the GYNECOLOGY Department</h2>
+            <h2 style={{fontWeight:"bold"}}>Welcome to the GYNECOLOGY Department</h2>
             
-            <p className='desP' style={{textAlign: 'justify', fontSize:"16px"}}>
+            <p className='desP' style={{textAlign: 'justify-content', fontSize:"16px"}}>
               The gynecology department is dedicated to providing comprehensive healthcare
               services for women, focusing on the diagnosis, treatment, and management of
               reproductive health issues. This includes routine check-ups, prenatal and

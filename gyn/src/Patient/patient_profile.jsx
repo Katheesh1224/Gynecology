@@ -8,6 +8,7 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import ProfileCard from '../Component/profileCard.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
+import ProfilePage from '../Component/ProfilePage.jsx';
 
 
 const Profile = () => {
@@ -98,7 +99,7 @@ const Profile = () => {
             </div>
             <div className="face face2">
               <div className="content">
-                <p>This feature contains past admission and medical history of this patient.</p>
+                <p>This feature contains medical history of this patient.</p>
                 <a href={`/patients_information/patient_profile/patient_history`} type="button">Show</a>
               </div>
             </div>

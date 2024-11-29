@@ -110,7 +110,7 @@ const Staff = () => {
               <thead>
                 <tr>
                   <th>Full Name</th>
-                  <th>Phone No</th>
+                  <th>Phone No.</th>
                   <th>Role</th>
                   <th>Status</th>
                   <th>Action</th>

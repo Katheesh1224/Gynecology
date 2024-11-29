@@ -26,6 +26,7 @@ const ProfileCard = () =>{
 
     return(
         <div className='card1'>
+          {/* <img src='../avatar.png' alt='profile' className='profile-img'/> */}
                 <div className='profile'>
                   <div className='row'>
                       <div className='col1'>Full Name</div>
@@ -52,7 +53,10 @@ const ProfileCard = () =>{
                       <div className='col2'>:</div>
                       <div className='col3'>{data.phone_no}</div>
                   </div>
+                  {/* <img src='../avatar3.jpg' alt='profile' className='profile-img'/> */}
+
                 </div>
+
               </div>
     )
 

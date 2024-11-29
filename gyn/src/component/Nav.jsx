@@ -17,7 +17,7 @@ const Nav = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/patient_registration" className="nav-link" activeClassName="active">
+              <NavLink to="/search" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faRectangleList} />
                 <span>Patient Registration</span>
               </NavLink>
