@@ -1,6 +1,6 @@
 import '../App.css';
 import '../home.css';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom'; 
 import Nav from '../Component/Nav.jsx';
@@ -12,6 +12,7 @@ import Footer from '../Component/Footer.jsx';
 
 const PReg = () => {
     const navigate = useNavigate();
+    const [consultants, setConsultants] = useState([]); // Store fetched consultants
 
     const [values,setValues] = useState({
         date:'',
@@ -65,6 +66,20 @@ const PReg = () => {
                 toast.error(`There was an error submitting the form: ${errorMessage}`);
             });
     };
+
+    useEffect(() => {
+    // Fetch the consultants data from the backend when the component mounts
+    const fetchConsultants = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/consultants'); // Your backend URL
+        setConsultants(response.data); // Set fetched consultants into state
+        console.log(response.data)
+      } catch (error) {
+        console.error("Error fetching consultants:", error);
+      }
+    };
+    fetchConsultants();
+  }, []);
     
     
       const handleDateChange = (e) => {
@@ -327,13 +342,29 @@ const PReg = () => {
                                         <label htmlFor="ward_no">Ward No. : </label>
                                         <input type="number"  value="21"  readOnly onChange={e =>setValues({...values,ward:e.target.value})}/>
                                     </div>  
-                                    <div className="input-fieldC">
+                                    {/* <div className="input-fieldC">
                                         <label htmlFor="consultant">Consultant Name : </label>
                                         <select name="consultant" id="consultant" onChange={e =>setValues({...values,consultant:e.target.value})}>
                                             <option value="">Select here</option>
                                             <option value="x">Dr.X</option>
                                             <option value="y">Dr.Y</option>
                                             <option value="z">Dr.Z</option>
+                                        </select>
+                                    </div> */}
+                                    <div className="input-fieldC">
+                                        <label htmlFor="consultant">Consultant Name:</label>
+                                        <select
+                                            name="consultant"
+                                            id="consultant"
+                                            onChange={e =>setValues({...values,consultant:e.target.value})} // Update selected consultant
+                                        >
+                                            <option value="">Select here</option>
+                                            {/* Map through the consultants and create an option for each */}
+                                            {consultants.map((consultant) => (
+                                            <option key={consultant.id} value={consultant.full_name}> {/* Assuming each consultant has an 'id' and 'name' */}
+                                                {consultant.full_name}
+                                            </option>
+                                            ))}
                                         </select>
                                     </div>
                                     <div className="input-fieldH">

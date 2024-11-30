@@ -18,6 +18,7 @@ const VisitEdit = () => {
     const add_count = parseInt(localStorage.getItem('addCount'), 10); // Ensure parsing here
     const visit_count = parseInt(localStorage.getItem('visitIndex'), 10); // Ensure parsing here
     const visit_unique = patient_phn + "_" + add_count + "_" + visit_count;
+    const [consultants, setConsultants] = useState([]); 
 
     const [values,setValues] = useState({
         phn:'',
@@ -65,6 +66,8 @@ const VisitEdit = () => {
     })
 
     useEffect(() => {
+
+        
         const fetchData = async () => {
         
         // console.log("Add Count from Local Storage:", add_count);
@@ -83,7 +86,7 @@ const VisitEdit = () => {
             setValues({
                 date: formattedDate,
                 visit_no: visit.visit_count,
-                seenBy: visit.seenBy,
+                seenBy: visit.seen_by,
                 complaints: visit.complaints.split(', '),
                 abnormalUlerine: visit.abnormal_bleeding.split(', '),
                 otherComplaint: visit.complaint_other,
@@ -119,7 +122,7 @@ const VisitEdit = () => {
                 medicalManage: visit.manage_medical,
                 surgicalManage: visit.manage_surgical
             });
-            console.log(visit.ward);
+            console.log(visit);
         } catch (error) {
             console.error('Error fetching data:', error);
             toast.error('Failed to fetch patient data.');
@@ -129,6 +132,17 @@ const VisitEdit = () => {
         if (patient_phn) {
             fetchData();
         }
+
+        const fetchConsultants = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/staffs'); // Your backend URL
+        setConsultants(response.data); // Set fetched consultants into state
+        console.log(response.data)
+      } catch (error) {
+        console.error("Error fetching consultants:", error);
+      }
+    };
+    fetchConsultants();
     }, [patient_phn]);
 
     const handleUpdate =(e) =>{
@@ -344,9 +358,13 @@ const VisitEdit = () => {
                                 <div className="input-field">
                                     <label htmlFor="full_name">Seen by : </label>
                                     <select name="role" id="status" value={values.seenBy} onChange={e =>setValues({...values,seenBy:e.target.value})} >
-                                        <option value="x">Dr.X</option>
-                                        <option value="y">Dr.Y</option>
-                                        <option value="z">Dr.Z</option>
+                                         <option value="">Select here</option>
+                                            {/* Map through the consultants and create an option for each */}
+                                            {consultants.map((consultant) => (
+                                            <option key={consultant.id} value={consultant.full_name}> {/* Assuming each consultant has an 'id' and 'name' */}
+                                                {consultant.full_name}
+                                            </option>
+                                            ))}
                                     </select>
                                     </div>                                                   
                             </div>

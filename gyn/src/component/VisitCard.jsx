@@ -58,7 +58,7 @@ const VisitCard = () =>{
                     <div className='row'>
                         <div className='col1'>Seen By</div>
                         <div className='col2'>:</div>
-                        <div className='col3'>{data.seenby}</div>
+                        <div className='col3'>{data.seen_by}</div>
                     </div>
 
                     <span className="title">Complaints</span>
