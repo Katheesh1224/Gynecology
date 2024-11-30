@@ -1,16 +1,57 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext,useEffect, useState, useRef } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import '../home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBars, faRectangleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faBars, faRectangleXmark, faRightFromBracket, faPhone } from '@fortawesome/free-solid-svg-icons';
 import UserPath from './UserPath.jsx';
 import { AuthContext } from '../AuthContext.jsx';
+import axios from 'axios';
+
 
 const NavBar = () => {
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const role = localStorage.getItem('role');
   
   const [showMenu, setShowMenu] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false); 
+
+  const [isActive, setIsActive] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setIsActive(!isActive);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsActive(false);
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
+  }, []);
+
+
+  const [username, setUsername] = useState('');
+  const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
+
+  useEffect(() => {
+    // Fetch the username from the backend using the userId
+    if (userId) {
+      axios
+        .get(`http://localhost:8081/staff/${userId}`)
+        .then((response) => {
+          setUsername(response.data.full_name); // Update the username state
+        })
+        .catch((error) => {
+          console.error('Error fetching user data:', error);
+        });
+    }
+  }, [userId]);
+
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -25,7 +66,6 @@ const NavBar = () => {
     navigate('/login');
   };
 
-  const role = localStorage.getItem('role');
 
   const getDisplayRole = (role) => {
     switch (role) {
@@ -109,17 +149,58 @@ const NavBar = () => {
 
           <UserPath />
           <ul>
-            <li className="user-role-container">
+            {/* <li  className="user-role-container"
+              onMouseEnter={() => setDropdownVisible(true)}               
+              onMouseLeave={() => setDropdownVisible(false)} 
+              style={{ position: 'relative' }}>
+
               <div className="user-info">
-                <span className="role-text">{getDisplayRole(role)}</span>
                 <FontAwesomeIcon icon={faUser} onClick={handleLogout} className="user" />
               </div>
+              {dropdownVisible && (
+                <div className="dropdown-menu">
+                  <span className="dropdown-role">{getDisplayRole(role)}</span>
+                </div>
+              )}
             </li>
             <li>
-              <button onClick={handleLogout} className="buttonHome">Logout</button>
-            </li>
-          </ul>
+              <button onClick={handleLogout} className="buttonHome btn2logout">Logout</button>
+            </li> */}
+            <div className="profile-dropdown" ref={dropdownRef}>
+              <div onClick={toggleDropdown} className="profile-dropdown-btn">
+                <div className="profile-img">
+                </div>
+                {username && ( <span> {username} </span> )}
+                </div>
 
+              <ul className={`profile-dropdown-list ${isActive ? "active" : ""}`}>
+                <li className="profile-dropdown-list-item">
+                  <a href="/staff_profile">
+                    <div className='icon'>
+                      <FontAwesomeIcon icon={faUser}  />
+                    </div>
+                    Profile
+                  </a>
+                </li>
+                <li className="profile-dropdown-list-item">
+                  <a href="/contact_us">
+                    <div className='icon'>
+                      <FontAwesomeIcon icon={faPhone}  />
+                    </div>
+                    Contact Us
+                  </a>
+                </li>
+                <li className="profile-dropdown-list-item" onClick={handleLogout}>
+                  <a href="/login">
+                  <div className='icon'>
+                    <FontAwesomeIcon icon={faRightFromBracket}  />
+                  </div>
+                   Log out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </ul>
         </div>
       </nav>
     </header>
