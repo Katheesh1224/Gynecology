@@ -17,6 +17,7 @@ const VisitForm = () => {
     let patient_phn = localStorage.getItem('patient_phn');
     const add_count = parseInt(localStorage.getItem('addCount'), 10); // Ensure parsing here
     let visit_un = patient_phn + "_" + add_count;
+    const [consultants, setConsultants] = useState([]); 
 
     
     // console.log(visit_un);
@@ -97,6 +98,16 @@ const VisitForm = () => {
         };
       
         fetchData();
+        const fetchConsultants = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/staffs'); // Your backend URL
+        setConsultants(response.data); // Set fetched consultants into state
+        console.log(response.data)
+      } catch (error) {
+        console.error("Error fetching consultants:", error);
+      }
+    };
+    fetchConsultants();
       }, [visit_un]);
       values.admission_id=visit_un;
       visit_un+="_"+values.visit_no;
@@ -293,9 +304,13 @@ const VisitForm = () => {
                                 <div className="input-field">
                                     <label htmlFor="full_name">Seen by: </label>
                                     <select name="role" id="status" onChange={e =>setValues({...values,seenBy:e.target.value})} >
-                                        <option value="x">Dr.X</option>
-                                        <option value="y">Dr.Y</option>
-                                        <option value="z">Dr.Z</option>
+                                         <option value="">Select here</option>
+                                            {/* Map through the consultants and create an option for each */}
+                                            {consultants.map((consultant) => (
+                                            <option key={consultant.id} value={consultant.full_name}> {/* Assuming each consultant has an 'id' and 'name' */}
+                                                {consultant.full_name}
+                                            </option>
+                                            ))}
                                     </select>
                                     </div>                                                   
                             </div>

@@ -51,12 +51,19 @@
     border-radius: 4px;
   }
 
+  .button_view:hover {
+    background-color: black;
+    color: white;
+  }
+
   .search-bar{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 890px;
     margin-left: 0px;
     margin-bottom: 20px;
+    align-items: center;
+    flex-direction: row-reverse;
   }
 
   .button_search{
@@ -103,6 +110,11 @@
     border-radius: 4px;
   }
 
+  .button_prev:hover, .button_next:hover {
+    background-color: indigo;
+    color: white;
+  }
+
   .button_prev{
     background-color: #512da8;
     color: rgb(255, 255, 255);
@@ -147,6 +159,11 @@
     border-radius: 4px;
   }
 
+  .button_add:hover {
+    background-color: blue;
+    color: white;
+  }
+
   .button_dis{
     background-color: transparent;
     color: red;
@@ -159,6 +176,11 @@
     margin-left: 10px;
     cursor: pointer;
     border-radius: 4px;
+  }
+
+  .button_dis:hover {
+    background-color: red;
+    color: white;
   }
 
    .navM {
@@ -340,7 +362,7 @@
 }
 
 #Head {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
@@ -571,12 +593,13 @@
     min-height: 100vh;
     margin: 0;
     background: 
-      linear-gradient(rgba(211, 211, 211, 0.743), rgba(211, 211, 211, 0.442)), /* Light gray overlay */
-      url('../jaffna_hospital.jpg') repeat ; /* Background image */
-    background-size:cover; /* Cover entire viewport */
+      linear-gradient(rgba(211, 211, 211, 0.743), rgba(211, 211, 211, 0.442)), 
+      url('../jaffna_hospital.jpg') no-repeat fixed; 
+    background-size: cover; 
     display: flex;
     flex-direction: column;
   }
+  
   
   .main-content {
     flex: 1;
@@ -800,3 +823,148 @@
   }
 }
 
+.profile-dropdown {
+  position: relative;
+  width: fit-content;
+  margin-right: 10px;
+}
+
+.profile-dropdown-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-width: 300px;
+  border-radius: 50px;
+  color: #393e46;
+  cursor: pointer;
+  border: 1px solid #512da8;
+  transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in, border 0.3s;
+}
+
+.profile-dropdown-btn:hover {
+  background-color: rgb(127, 183, 126, 0.1);
+  box-shadow: 0px 2px 8px 0px rgb(34, 124, 112, 0.2);
+}
+
+.profile-img {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: url(../public/avatar.png);
+  background-size: cover;
+}
+
+.profile-dropdown-btn span {
+  margin: 0 0.5rem;
+  margin-right: 0;
+}
+
+.profile-dropdown-list {
+  position: absolute;
+  top: 68px;
+  width: 195px;
+  right: 0;
+  background-color: #fff;
+  border-radius: 10px;
+  max-height: 0;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px 0px rgb(34, 124, 112, 0.2);
+  transition: max-height 0.5s;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-dropdown-list.active {
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-dropdown-list-item {
+  padding: 0.2rem 0rem 0.2rem 0.5rem;
+  transition: background-color 0.2s ease-in, padding-left 0.2s;
+  width: 100%;
+}
+
+.profile-dropdown-list-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #393e46;
+}
+
+.profile-dropdown-list-item .icon {
+  font-size: 1rem; /* Set the font size to your desired size */
+  width: 2rem;
+  height: 2rem;
+  background-color: #512da8;
+  color: #ffffff;
+  line-height: 2rem; /* Match the height for centering */
+  text-align: center;
+  margin-right: 1rem;
+  border-radius: 50%;
+  transition: margin-right 0.3s;
+}
+
+.profile-dropdown-list-item:hover {
+  padding-left: 1.5rem;
+  background-color: #e2d5fd;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  color: #666;
+  margin: 15px 0;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-buttons button:first-child {
+  background-color: #d9534f; 
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #c9302c;
+}
+
+.modal-buttons button:last-child {
+  background-color: #6c757d; 
+  color: white;
+}
+
+
+.modal-buttons button:last-child:hover {
+  background-color: #5a6268;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

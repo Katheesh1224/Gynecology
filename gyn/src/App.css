@@ -72,6 +72,11 @@ button{
   cursor: pointer;
 }
 
+button:hover {
+  background-color: indigo;
+  color: white;
+}
+
 .container form .fields1{
   display: flex;
   align-items: center;

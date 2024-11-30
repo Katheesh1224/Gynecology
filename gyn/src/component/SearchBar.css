@@ -1,29 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
-.container-search {
-  height: 100vh;
+.container_search {
   margin-inline: 1.5rem;
   display: grid;
-  margin-top: -270px;
   place-items: center;
 }
 
 .search {
   position: relative;
-  width: 76px;
-  height: 76px;
+  width: 40px;
   background-color: white;
-  box-shadow: 0 4px 24px hsla(222, 68%, 12%, 0.1);
+  box-shadow: 0 1px 10px hsla(222, 68%, 12%, 0.3);
   border-radius: 4rem;
   padding: 10px;
   overflow: hidden;
   transition: width 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
 
-.search__input {
+.container_search .search_input {
   border: none;
   outline: none;
-  width: calc(100% - 64px);
+  width: calc(100% - 25px);
   height: 100%;
   border-radius: 4rem;
   padding-left: 14px;
@@ -33,17 +30,18 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 1.5s;
+  box-shadow: none;
 }
 
 .search__button {
-  width: 56px;
-  height: 56px;
+  width: 30px;
+  height: 30px;
   background-color: #512da8;
   border-radius: 50%;
   position: absolute;
-  top: 0;
+  top: 0.2px;
   bottom: 0;
-  right: 10px;
+  right: 5px;
   margin: auto;
   display: grid;
   place-items: center;
@@ -52,9 +50,9 @@
 }
 
 .search__icon,
-.search__close {
+.container_search .search__close {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1rem;
   position: absolute;
   transition: opacity 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
@@ -71,7 +69,7 @@
   width: 100%;
 }
 
-.show-search .search__input {
+.show-search .search_input {
   opacity: 1;
   pointer-events: initial;
 }
@@ -92,53 +90,4 @@
   .show-search {
     width: 450px;
   }
-}
-
-
-.search_result {
-  background: white;
-  width: 400px;
-  margin-top: 210px;
-  border-radius: 10px;
-  position: absolute;
-  top: 70px;
-}
-
-.search_result::-webkit-scrollbar {
-  display: none;
-}
-
-.search_suggestion_line,
-.search_loading {
-  padding: 8px 20px;
-  cursor: pointer;
-  font-size: 14px;
-  display: block;
-}
-
-.search_suggestion_line:hover {
-  background: rgb(227, 227, 227);
-  border-radius: 10px;
-}
-
-.search_suggestion_line.active {
-  background-color: #f0f0f0;
-  color: #000;
-  cursor: pointer;
-}
-
-
-.no-results {
-  padding: 10px;
-  color: #777;
-}
-
-.new-registration-link {
-  color: blue;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.new-registration-link:hover {
-  color: darkblue;
 }
