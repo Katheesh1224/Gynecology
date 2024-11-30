@@ -8,6 +8,9 @@ import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import ProfileCard from '../Component/profileCard.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
+
+
 const Card = ({ title, index, onClick }) => (
   <div className="cd" onClick={() => onClick(index)}>
     <div className="face face1">
@@ -105,6 +108,7 @@ const Admission = () => {
 
         <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
       </div>
+      <Footer />
     </div>
   );
 }
