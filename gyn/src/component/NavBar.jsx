@@ -166,7 +166,7 @@ const NavBar = () => {
                   </a>
                 </li>
                 <li className="profile-dropdown-list-item">
-                  <a href="/contact_us">
+                  <a href="/contactus">
                     <div className='icon'>
                       <FontAwesomeIcon icon={faPhone}  />
                     </div>
