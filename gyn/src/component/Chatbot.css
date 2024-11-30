@@ -171,6 +171,10 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
+.chatbot-toggler:hover {
+    background-color: indigo;
+  }
+
 .chatbot-toggler span {
     position: absolute;
     top: 50%;
