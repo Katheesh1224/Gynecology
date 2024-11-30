@@ -63,14 +63,6 @@ const Nav = () => {
               </NavLink>
             </li>
              )}
-             {/* {role !== 'superadmin' && ( */}
-            <li>
-              <NavLink to="/staff_profile" className="nav-link" activeClassName="active">
-                <FontAwesomeIcon icon={faPenToSquare} />
-                <span>Profile</span>
-              </NavLink>
-            </li>
-             {/* )} */}
           </ul>
 
           
