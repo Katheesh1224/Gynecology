@@ -83,12 +83,14 @@ const Contactus = () => {
       <Chatbot />
       <div className='main-content'>
         <Nav />
-        <div className="container">
+        <div className="container3">
           <form onSubmit={handleSubmit}>
-            <h2 style={{ fontWeight: "bold" }}>Contact Us</h2>
-            <div className="fields">
-              <div className="input-field">
-                <label htmlFor="email">Email:</label>
+            <div className='title'>Contact Us</div>
+            <br />
+            <div className="content3">
+            <div className="user-details">
+              <div className="input-box">
+                <label htmlFor="details">Email:</label>
                 <input
                   type="email"
                   name="email"
@@ -99,10 +101,9 @@ const Contactus = () => {
                 />
                 {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
               </div>
-            </div>
-            <div className="fields">
-              <div className="input-field">
-                <label htmlFor="username">Username:</label>
+            
+              <div className="input-box">
+                <label htmlFor="details">Username:</label>
                 <input
                   type="text"
                   name="username"
@@ -112,10 +113,10 @@ const Contactus = () => {
                 />
                 {formErrors.username && <p style={{ color: "red" }}>{formErrors.username}</p>}
               </div>
-            </div>
-            <div className="fields">
-              <div className="input-field">
-                <label htmlFor="complaints">Complaints:</label>
+              
+              <div className="input-box">
+                <label htmlFor="details">Complaints:</label>
+                <br/>
                 <textarea
                   name="complaints"
                   placeholder="Enter your complaints"
@@ -124,9 +125,10 @@ const Contactus = () => {
                 />
                 {formErrors.complaints && <p style={{ color: "red" }}>{formErrors.complaints}</p>}
               </div>
-            </div>
-            <div className="btn1">
+            <div className="btn3">
               <button type="submit">Submit</button>
+            </div>
+            </div>
             </div>
           </form>
         </div>
