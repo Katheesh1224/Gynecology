@@ -13,6 +13,30 @@ const DataExport = () => {
   const [toDate, setToDate] = useState("");
   const [patientNameOrPhn, setPatientNameOrPhn] = useState("");
   const [recordCount, setRecordCount] = useState(0); // To store record count
+  const [lastBackupDate, setLastBackupDate] = useState('');
+  const [lastBackupTime, setLastBackupTime] = useState('');
+
+  // Function to fetch the last backup date and time
+  const fetchLastBackupDate = async () => {
+    try {
+      const response = await axios.get('http://localhost:8081/last-backup');
+      const fullBackupDate = response.data.lastBackupDate;
+
+      // Convert UTC string to local time
+      if (fullBackupDate) {
+        const dateObj = new Date(fullBackupDate); // Create a Date object from the UTC string
+
+        // Get the local date and time in a specific format
+        const date = dateObj.toLocaleDateString(); // Returns the local date as 'MM/DD/YYYY'
+        const time = dateObj.toLocaleTimeString(); // Returns the local time as 'HH:MM:SS AM/PM'
+
+        setLastBackupDate(date); // Date part
+        setLastBackupTime(time);
+      }
+    } catch (error) {
+      console.error('Error fetching last backup date:', error);
+    }
+  };
 
   // Fetch record count based on filters
   const fetchRecordCount = async () => {
@@ -46,9 +70,14 @@ const DataExport = () => {
     if (fromDate && toDate) {
       validateDates(); // Validate the dates whenever the filter or dates change
     }
+    
+    fetchLastBackupDate();
   }, [filterType, fromDate, toDate, patientNameOrPhn]);
 
   const handleExport = async (type) => {
+    if(!(fromDate && toDate)){
+      toast.error("Please select a date range");
+    }
     try {
       const fetchResponse = await axios.post("http://localhost:8081/export-data", {
         filterType,
@@ -107,10 +136,16 @@ const DataExport = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-800 rounded-xl shadow-lg">
-      <h2 className="text-2xl font-semibold text-white mb-4">Export Patient Data</h2>
-      <Nav />
-      <NavBar />
+   <div className="p-10 bg-gray-800 rounded-xl shadow-lg">
+  <h2 className="text-2xl font-semibold text-white mb-10 text-center">Export Patient Data & Backup</h2>
+  <Nav />
+  <NavBar />
+
+  <div className="flex flex-wrap gap-6">
+
+    {/* Export Patient Data Section */}
+    <div className="flex-1 bg-gray-700 rounded-xl p-6 shadow-md">
+      <h3 className="text-xl font-semibold text-white mb-4">Export Patient Data</h3>
 
       {/* Filter Type */}
       <div className="mb-4">
@@ -118,7 +153,7 @@ const DataExport = () => {
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          className="p-2 w-full rounded bg-gray-700 text-white"
+          className="p-2 w-full rounded bg-gray-600 text-white"
         >
           <option value="all">Whole Data</option>
           <option value="admission">Admission Data</option>
@@ -127,8 +162,8 @@ const DataExport = () => {
         </select>
       </div>
 
+      {/* Date Range or Patient Info */}
       {filterType === "all" || filterType === "admission" || filterType === "visit" ? (
-        // Date Range for Whole Data, Admission Data, or Visit Data
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block text-gray-300 mb-2">From Date</label>
@@ -136,7 +171,7 @@ const DataExport = () => {
               type="date"
               value={fromDate}
               onChange={(e) => setFromDate(e.target.value)}
-              className="p-2 w-full rounded bg-gray-700 text-white"
+              className="p-2 w-full rounded bg-gray-600 text-white"
             />
           </div>
           <div>
@@ -145,12 +180,11 @@ const DataExport = () => {
               type="date"
               value={toDate}
               onChange={(e) => setToDate(e.target.value)}
-              className="p-2 w-full rounded bg-gray-700 text-white"
+              className="p-2 w-full rounded bg-gray-600 text-white"
             />
           </div>
         </div>
       ) : (
-        // Patient Name or Phone Number for Single Patient
         <div className="mb-4">
           <label className="block text-gray-300 mb-2">Patient Name or Phone</label>
           <input
@@ -158,14 +192,14 @@ const DataExport = () => {
             placeholder="Enter patient name or phone number"
             value={patientNameOrPhn}
             onChange={(e) => setPatientNameOrPhn(e.target.value)}
-            className="p-2 w-full rounded bg-gray-700 text-white"
+            className="p-2 w-full rounded bg-gray-600 text-white"
           />
         </div>
       )}
 
       {/* Record Count */}
       <div className="mb-4 text-white">
-        <p>Record Count: {recordCount}</p>
+        <p className="text-white">Record Count: {recordCount}</p>
       </div>
 
       {/* Export Buttons */}
@@ -183,24 +217,42 @@ const DataExport = () => {
           Export as PDF
         </button>
       </div>
+    </div>
 
-      <Footer />
-      <Chatbot />
+    {/* Vertical Line Separator */}
+    <div className="border-l-2 border-gray-500 mx-4 hidden md:block"></div>
 
+    {/* Backup Database Section */}
+    <div className="flex-1 bg-gray-700 rounded-xl p-6 shadow-md">
+      <h3 className="text-xl font-semibold text-white mb-4">Backup Database Data</h3>
+
+      {/* Backup Details */}
+      <div className="mb-4">
+        <label className="block text-gray-300 mb-2">Last Backup Date</label>
+        <p className="text-white">{lastBackupDate || "No backups found"}</p>
+        
+        <label className="block text-gray-300 mb-2 mt-4">Last Backup Time</label>
+        <p className="text-white">{lastBackupTime || "No backups found"}</p>
+      </div>
 
       {/* Backup Button */}
-      
-      <div className="p-6 bg-gray-800 rounded-xl shadow-lg">
-        <h2 className="text-2xl font-semibold text-white mb-4">Backup Database Data</h2>
+      <div className="flex justify-center mt-6">
         <button
           onClick={handleBackup}
-          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+          className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-md"
         >
           Backup Database
         </button>
       </div>
-
     </div>
+
+  </div>
+
+  <Footer />
+  <Chatbot />
+</div>
+
+
   );
 };
 

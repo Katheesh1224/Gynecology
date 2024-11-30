@@ -32,6 +32,7 @@ import EditStaff from './Staff/Edit_staff.jsx';
 import SearchEngine from './Patient/SearchEngine.jsx';
 import ProfileCard from './Staff/staff_profile.jsx';
 import StaffProfile from './Staff/staff_profile.jsx';
+import BackupReminder from './Component/Reminder.jsx';
 
 
 
@@ -45,7 +46,7 @@ function App() {
           <Route path ='/login' element={<Login/>}></Route>
           <Route path ='/forgotpassword' element={<ForgotPassword/>}></Route>
 
-          <Route path ='/home' element={<ProtectedRoute element={<Home />} restrictedForSuperadmin={['/superadmin']}  />}></Route>          
+          <Route path ='/home' element={<ProtectedRoute element={<><BackupReminder/><Home /></>} restrictedForSuperadmin={['/superadmin']}  />}></Route>          
           <Route path ='/backup' element={<ProtectedRoute element={<Backup/>}/>}></Route>          
           <Route path ='/search_engine' element={<ProtectedRoute element={<SearchEngine/>}/>}></Route>          
           <Route path ='/search_engine/patient_registration' element={<ProtectedRoute element={<PReg/>}/>}></Route>
