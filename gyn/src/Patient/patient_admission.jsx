@@ -7,6 +7,9 @@ import { faSquarePlus, faFilePen } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import ProfileCard from '../Component/profileCard.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
+
 
 const Card = ({ title, index, onClick }) => (
   <div className="cd" onClick={() => onClick(index)}>
@@ -44,7 +47,7 @@ const Admission = () => {
         // Fetch admissions based on PHN
         const admissionsResponse = await axios.get(`http://localhost:8081/admissions/${patientData.phn}`);
         const admissions = admissionsResponse.data; // Assuming this is an array of admissions
-
+        localStorage.setItem('maxCount', admissions.length);
         // Generate card titles based on the number of admissions
         const admissionTitles = admissions.map((_, index) => `Admission ${index + 1}`);
         setCards(admissionTitles);
@@ -78,8 +81,9 @@ const Admission = () => {
     <div>
       <NavBar />
       <Nav />
+      <Chatbot />
       <div className='container'>
-        <h2>Patient Admission</h2>
+        <h2 style={{fontWeight:"bold"}} >Patient Admissions</h2>
         <ProfileCard />
         <div className="cntner">
           {cards.map((card, index) => (
@@ -104,6 +108,7 @@ const Admission = () => {
 
         <button onClick={handlePrevious}>{"<<"} &nbsp;&nbsp; previous </button>
       </div>
+      <Footer />
     </div>
   );
 }

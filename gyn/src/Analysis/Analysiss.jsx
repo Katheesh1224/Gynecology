@@ -8,6 +8,8 @@ import ComplaintsChart from "./BarChartAnalysis.jsx"
 import StatCards from "../Component/StatCard.jsx";
 import ReportAnalysis from "./PieChartAnalysisCells.jsx";
 import HxChart from "./BarChartHx.jsx";
+import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
 
 
 
@@ -20,6 +22,7 @@ const Analysis = () => {
 	return (
 		<div className='wrapper'>
 		<NavBar/>
+		<Chatbot />
 		<div className='main-content'>
 		  <Nav/> 
 		  <div className='container-big'>
@@ -58,6 +61,7 @@ const Analysis = () => {
 		</div>
 		</div>
 		</div>
+		<Footer />
 		</div>
 	);
 };

@@ -5,13 +5,15 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
-import { toast } from 'react-toastify';
+import Chatbot from '../Component/Chatbot.jsx';import { toast } from 'react-toastify';
+import Footer from '../Component/Footer.jsx';
 
 
 const AdEdit = () => {   
     const navigate = useNavigate();
     let patient_phn = localStorage.getItem('patient_phn');
-    const add_count = parseInt(localStorage.getItem('addCount'), 10); // Ensure parsing here
+    const add_count = parseInt(localStorage.getItem('addCount'), 10); // Ensure parsing here\
+    const [consultants, setConsultants] = useState([]); // Store fetched consultants
 
     const [values,setValues] = useState({
         date:'',
@@ -57,6 +59,17 @@ const AdEdit = () => {
         if (patient_phn) {
             fetchData();
         }
+
+        const fetchConsultants = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/consultants'); // Your backend URL
+        setConsultants(response.data); // Set fetched consultants into state
+      } catch (error) {
+        console.error("Error fetching consultants:", error);
+      }
+    };
+
+    fetchConsultants();
     }, [patient_phn]);
 
     const handleUpdate =(e) =>{
@@ -94,6 +107,7 @@ const AdEdit = () => {
         <div>
             <NavBar/>
             <Nav/>
+            <Chatbot/>
             <div className="container">
                 <div className='heading'>
                     <div className="input-field-phn">
@@ -126,13 +140,30 @@ const AdEdit = () => {
                                     <label htmlFor="ward_no">Ward No. : </label>
                                     <input type="number"  value="21"  readOnly onChange={e =>setValues({...values,ward:e.target.value})}/>
                                 </div>  
-                                <div className="input-fieldC">
+                                {/* <div className="input-fieldC">
                                     <label htmlFor="consultant">Consultant Name : </label>
                                     <select name="consultant" id="consultant" onChange={e =>setValues({...values,consultant:e.target.value})} value={values.consultant}>
                                         <option value="">Select here</option>
                                         <option value="x">Dr.X</option>
                                         <option value="y">Dr.Y</option>
                                         <option value="z">Dr.Z</option>
+                                    </select>
+                                </div> */}
+                                <div className="input-fieldC">
+                                    <label htmlFor="consultant">Consultant Name:</label>
+                                    <select
+                                        name="consultant"
+                                        id="consultant"
+                                        onChange={e =>setValues({...values,consultant:e.target.value})} // Update selected consultant
+                                        value={values.consultant} // Control the dropdown value
+                                    >
+                                        <option value="">Select here</option>
+                                        {/* Map through the consultants and create an option for each */}
+                                        {consultants.map((consultant) => (
+                                        <option key={consultant.id} value={consultant.full_name}> {/* Assuming each consultant has an 'id' and 'name' */}
+                                            {consultant.full_name}
+                                        </option>
+                                        ))}
                                     </select>
                                 </div>
                                 {/* <div className="input-fieldH">
@@ -151,6 +182,7 @@ const AdEdit = () => {
                     <div className="btn1"><button type="submit">Update</button></div>
                 </form>
             </div>
+            <Footer/>
         </div>
     )
 }

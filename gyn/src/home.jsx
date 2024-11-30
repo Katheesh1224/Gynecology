@@ -3,13 +3,14 @@ import './home.css';
 import Nav from './Component/Nav.jsx';
 import NavBar from './Component/NavBar.jsx';
 import StatCards from './Component/StatCard.jsx';
+import Chatbot from './Component/Chatbot.jsx';
+import Footer from './Component/Footer.jsx';
 import { BarChart2, UserMinus, Users, UserCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import LineCharts from "./Analysis/LineChartAnalysis.jsx";
 import CategoryDistributionChart from "./Analysis/PieChartAnalysis.jsx";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-// import ComplaintsChart from "./Analysis/BarChartAnalysis.jsx"
 
 const Home = () =>{
     console.log("home rendered");
@@ -43,11 +44,13 @@ const Home = () =>{
   return(
     <div className='wrapper'>
       <NavBar/>
+	  <Chatbot />
       <div className='main-content'>
         <Nav/> 
         <div className='container-big'>
           <div className='container-home'>
-            <h2>Welcome to GYNECOLOGY Department</h2>
+
+            <h2 style={{fontWeight:"bold"}} >Welcome to GYNECOLOGY Department</h2>
            
 			<main className='max-w-7xl mx-auto py-6 px-4 lg:px-8'>
 				 {/* STATS  */}
@@ -75,6 +78,7 @@ const Home = () =>{
           </div>
       </div>
     </div>
+	<Footer />
 	</div>
   );
 
