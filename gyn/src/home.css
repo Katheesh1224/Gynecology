@@ -918,3 +918,54 @@
   padding-left: 1.5rem;
   background-color: #e2d5fd;
 }
+
+.modal-content p {
+  font-size: 1rem;
+  color: #666;
+  margin: 15px 0;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-buttons button:first-child {
+  background-color: #d9534f; 
+  color: white;
+}
+
+.modal-buttons button:first-child:hover {
+  background-color: #c9302c;
+}
+
+.modal-buttons button:last-child {
+  background-color: #6c757d; 
+  color: white;
+}
+
+.modal-buttons button:last-child:hover {
+  background-color: #5a6268;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
