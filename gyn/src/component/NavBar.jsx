@@ -149,23 +149,6 @@ const NavBar = () => {
 
           <UserPath />
           <ul>
-            {/* <li  className="user-role-container"
-              onMouseEnter={() => setDropdownVisible(true)}               
-              onMouseLeave={() => setDropdownVisible(false)} 
-              style={{ position: 'relative' }}>
-
-              <div className="user-info">
-                <FontAwesomeIcon icon={faUser} onClick={handleLogout} className="user" />
-              </div>
-              {dropdownVisible && (
-                <div className="dropdown-menu">
-                  <span className="dropdown-role">{getDisplayRole(role)}</span>
-                </div>
-              )}
-            </li>
-            <li>
-              <button onClick={handleLogout} className="buttonHome btn2logout">Logout</button>
-            </li> */}
             <div className="profile-dropdown" ref={dropdownRef}>
               <div onClick={toggleDropdown} className="profile-dropdown-btn">
                 <div className="profile-img">
