@@ -12,7 +12,7 @@
   position: relative;
   width: 400px;
   height: 480px;
-  background-color: hsl(29, 16%, 10%);
+  background-color: hsla(0, 0%, 100%, 0.894);
   padding: 1.25rem 2rem 3rem;
   border-radius: 1.5rem;
   text-align: center;

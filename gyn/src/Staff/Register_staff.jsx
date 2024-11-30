@@ -188,6 +188,7 @@ const RegisterStaff = () => {
                   name="role"
                   value={values.role}
                   onChange={handleChange}
+                  style={{width:'195px'}}
                 >
                   <option value="consultant">Consultant</option>
                   <option value="registrar">Registrar</option>
@@ -195,12 +196,13 @@ const RegisterStaff = () => {
                   <option value="data_entry">Data Entry</option>
                 </select>
               </div>
-              <div className="input-field">
+              <div className="input-fieldL">
                 <label htmlFor="status">Status:</label>
                 <select
                   name="status"
                   value={values.status}
                   onChange={handleChange}
+                  style={{width:'195px'}}
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>
