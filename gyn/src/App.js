@@ -32,6 +32,7 @@ import EditStaff from './Staff/Edit_staff.jsx';
 import SearchEngine from './Patient/SearchEngine.jsx';
 import ProfileCard from './Staff/staff_profile.jsx';
 import StaffProfile from './Staff/staff_profile.jsx';
+import Contactus from './Staff/contactus.jsx';
 import BackupReminder from './Component/Reminder.jsx';
 
 
@@ -54,6 +55,7 @@ function App() {
           <Route path ='/Register_staff' element={<ProtectedRoute element={<RegisterStaff/>} restrictedForSuperadmin={['/superadmin']} />}></Route>
           <Route path ='/staff_information' element={<ProtectedRoute element={<Staff/>} restrictedForSuperadmin={['/superadmin']} />}></Route>
           <Route path ='/edit_staff' element={<ProtectedRoute element={<EditStaff/>}/>}></Route>
+          <Route path ='/contactus' element={<ProtectedRoute element={<Contactus/>}/>}></Route>
           <Route path ='/staff_information/update_staff' element={<ProtectedRoute element={<UpdateStaff/>}/>}></Route>
           <Route path ='/patients_information/patient_profile' element={<ProtectedRoute element={<Profile/>}/>}></Route>
           <Route path ='/patients_information/patient_profile/patient_about' element={<ProtectedRoute element={<About/>}/>}></Route>

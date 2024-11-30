@@ -32,6 +32,7 @@ const UserPath = () => {
     'visit_details_edit':'Edit Visit Details',
     'patient_admission_details_edit':'Edit Admission Details',
     'patient_edit':'Edit Patient Details',
+    'contactus':'Contact Us',
 
   };
 
