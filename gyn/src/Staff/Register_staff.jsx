@@ -31,7 +31,7 @@ const RegisterStaff = () => {
     e.preventDefault();
       axios.post('http://localhost:8081/staff_reg', values)
         .then(res => {
-          toast.success('Form submitted successfully!');
+          toast.success('Staff registered successfully!');
           navigate('/staff_information');
           setFormErrors({});
         })
