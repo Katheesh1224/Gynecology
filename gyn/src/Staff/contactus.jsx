@@ -86,9 +86,7 @@ const Contactus = () => {
         <div className="contact-container">
           <form onSubmit={handleSubmit}>
             <h2 style={{ fontWeight: "bold" }}>Contact Us</h2>
-            {/* <div className="fields"> */}
               <div >
-                {/* <label htmlFor="username">Username:</label> */}
                 <input
                   type="text"
                   name="username"
@@ -99,10 +97,7 @@ const Contactus = () => {
                 />
                 {formErrors.username && <p style={{ color: "red" }}>{formErrors.username}</p>}
               </div>
-            {/* </div> */}
-            {/* <div className="fields"> */}
               <div >
-                {/* <label htmlFor="email">Email:</label> */}
                 <input
                   type="email"
                   name="email"
@@ -114,11 +109,8 @@ const Contactus = () => {
                 />
                 {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
               </div>
-            {/* </div> */}
-            
-            {/* <div className="fields"> */}
+
               <div >
-                {/* <label htmlFor="complaints">Complaints:</label> */}
                 <textarea
                   name="complaints"
                   placeholder="Message"
@@ -128,10 +120,9 @@ const Contactus = () => {
                 />
                 {formErrors.complaints && <p style={{ color: "red" }}>{formErrors.complaints}</p>}
               </div>
-            {/* </div> */}
-            {/* <div className="btn1"> */}
+
               <button className='contact_button' type="submit">Submit</button>
-            {/* </div> */}
+
           </form>
         </div>
       </div>
