@@ -114,7 +114,7 @@ const AdEdit = () => {
                         <label htmlFor="ward_no">PHN No. : </label>
                         <input type="number" readOnly value={values.phn} onChange={e =>setValues({...values,phn:e.target.value})}  />
                     </div> 
-                    <h2>Patient Admission Registration</h2>
+                    <h2 style={{ fontWeight: 'bold' }}>Patient Admission Registration</h2>
                     <div className="input-field-add">
                         <label htmlFor="ward_no">Admission No. : </label>
                         <input type="number"  value={values.add_count} readOnly onChange={e =>setValues({...values,add_count:e.target.value})} />

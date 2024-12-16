@@ -27,7 +27,7 @@ const MedDetails = () =>{
       <Chatbot/>
       <div className='container'>
         <div className='space0'></div>
-        <h2> Patient Medical History</h2>
+        <h2 style={{ fontWeight: 'bold' }}> Patient Medical History</h2>
         <div className='space'></div>
         <HistoryCard/>
         <div className='space2'></div>

@@ -12,7 +12,7 @@
   position: relative;
   width: 400px;
   height: 480px;
-  background-color: hsl(29, 16%, 10%);
+  background-color: hsl(188.4deg 100% 93.82%);
   padding: 1.25rem 2rem 3rem;
   border-radius: 1.5rem;
   text-align: center;
@@ -99,6 +99,7 @@
   height: 35px;
   box-sizing: border-box;
   border-radius: 5px;
+  border: 1px solid #ccc;
   text-align: center;
   color: indigo;
 }

@@ -92,7 +92,7 @@ const PAdd = () => {
             <Nav/>
             <Chatbot/>
             <div className="container">
-                <h2>Patient Admission Registration</h2>
+                <h2 style={{ fontWeight: 'bold' }}>Patient Admission Registration</h2>
                 <div className='heading'>
                     <div className="input-field-phn">
                         <label htmlFor="ward_no">PHN No. : </label>

@@ -83,51 +83,55 @@ const Contactus = () => {
       <Chatbot />
       <div className='main-content'>
         <Nav />
-        <div className="container">
+        <div className="contact-container">
           <form onSubmit={handleSubmit}>
             <h2 style={{ fontWeight: "bold" }}>Contact Us</h2>
-            <div className="fields">
-              <div className="input-field">
-                <label htmlFor="email">Email:</label>
+            {/* <div className="fields"> */}
+              <div >
+                {/* <label htmlFor="username">Username:</label> */}
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  value={values.username}
+                  onChange={handleChange}
+                  className="contact-input"
+                />
+                {formErrors.username && <p style={{ color: "red" }}>{formErrors.username}</p>}
+              </div>
+            {/* </div> */}
+            {/* <div className="fields"> */}
+              <div >
+                {/* <label htmlFor="email">Email:</label> */}
                 <input
                   type="email"
                   name="email"
-                  placeholder="Enter your email"
+                  placeholder="Email"
                   value={values.email}
                   onChange={handleChange}
+                  className="contact-input"
                   style={{ borderColor: isEmailValid ? '#aaa' : 'red' }}
                 />
                 {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
               </div>
-            </div>
-            <div className="fields">
-              <div className="input-field">
-                <label htmlFor="username">Username:</label>
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Enter your username"
-                  value={values.username}
-                  onChange={handleChange}
-                />
-                {formErrors.username && <p style={{ color: "red" }}>{formErrors.username}</p>}
-              </div>
-            </div>
-            <div className="fields">
-              <div className="input-field">
-                <label htmlFor="complaints">Complaints:</label>
+            {/* </div> */}
+            
+            {/* <div className="fields"> */}
+              <div >
+                {/* <label htmlFor="complaints">Complaints:</label> */}
                 <textarea
                   name="complaints"
-                  placeholder="Enter your complaints"
+                  placeholder="Message"
                   value={values.complaints}
                   onChange={handleChange}
+                  className="contact-textarea"
                 />
                 {formErrors.complaints && <p style={{ color: "red" }}>{formErrors.complaints}</p>}
               </div>
-            </div>
-            <div className="btn1">
-              <button type="submit">Submit</button>
-            </div>
+            {/* </div> */}
+            {/* <div className="btn1"> */}
+              <button className='contact_button' type="submit">Submit</button>
+            {/* </div> */}
           </form>
         </div>
       </div>

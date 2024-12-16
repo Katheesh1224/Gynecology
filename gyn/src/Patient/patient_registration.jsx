@@ -247,7 +247,7 @@ const PReg = () => {
         };
 
         const handlePrevious = () => {
-            navigate(`/home`);
+            navigate(`/search_engine`);
           };
     
     
