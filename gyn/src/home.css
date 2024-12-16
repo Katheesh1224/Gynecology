@@ -21,6 +21,11 @@
     border-radius: 4px;
   }
 
+  .button_edit:hover {
+    background-color: blue;
+    color: white;
+  }
+
   .button_delete{
     background-color: transparent;
     color: red;
@@ -34,6 +39,11 @@
     cursor: pointer;
     text-decoration: none;
     border-radius: 4px;
+  }
+
+  .button_delete:hover {
+    background-color: red;
+    color: white;
   }
 
   .button_view{
@@ -406,17 +416,20 @@
     width: 100%;
     overflow: hidden;
     transition: 0.3s;
+    z-index: 9999;
   }
   
   .nav-round a i,
   .nav-round a:focus i {
     font-size: 20px;
+    z-index: 9999;
   }
   
   .nav-round a span,
   .nav-round a:focus span {
     padding: 0 5px 0 7px;
     color: #45505b;
+    z-index: 9999;
   }
   
   @media (min-width: 292px) {

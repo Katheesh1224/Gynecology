@@ -83,53 +83,46 @@ const Contactus = () => {
       <Chatbot />
       <div className='main-content'>
         <Nav />
-        <div className="container3">
+        <div className="contact-container">
           <form onSubmit={handleSubmit}>
-            <div className='title'>Contact Us</div>
-            <br />
-            <div className="content3">
-            <div className="user-details">
-              <div className="input-box">
-                <label htmlFor="details">Email:</label>
+            <h2 style={{ fontWeight: "bold" }}>Contact Us</h2>
+              <div >
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  value={values.username}
+                  onChange={handleChange}
+                  className="contact-input"
+                />
+                {formErrors.username && <p style={{ color: "red" }}>{formErrors.username}</p>}
+              </div>
+              <div >
                 <input
                   type="email"
                   name="email"
-                  placeholder="Enter your email"
+                  placeholder="Email"
                   value={values.email}
                   onChange={handleChange}
+                  className="contact-input"
                   style={{ borderColor: isEmailValid ? '#aaa' : 'red' }}
                 />
                 {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
               </div>
-            
-              <div className="input-box">
-                <label htmlFor="details">Username:</label>
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Enter your username"
-                  value={values.username}
-                  onChange={handleChange}
-                />
-                {formErrors.username && <p style={{ color: "red" }}>{formErrors.username}</p>}
-              </div>
-              
-              <div className="input-box">
-                <label htmlFor="details">Complaints:</label>
-                <br/>
+
+              <div >
                 <textarea
                   name="complaints"
-                  placeholder="Enter your complaints"
+                  placeholder="Message"
                   value={values.complaints}
                   onChange={handleChange}
+                  className="contact-textarea"
                 />
                 {formErrors.complaints && <p style={{ color: "red" }}>{formErrors.complaints}</p>}
               </div>
-            <div className="btn3">
-              <button type="submit">Submit</button>
-            </div>
-            </div>
-            </div>
+
+              <button className='contact_button' type="submit">Submit</button>
+
           </form>
         </div>
       </div>

@@ -189,7 +189,7 @@ const PEdit = () => {
 
         <div className="container">
 
-            <h2>Patient Registration</h2>
+            <h2 style={{ fontWeight: 'bold' }}>Patient Registration</h2>
             <form onSubmit={handleUpdate}>
                 <div className="form">
                     <div className="A">

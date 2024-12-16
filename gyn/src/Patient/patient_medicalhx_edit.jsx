@@ -152,7 +152,7 @@ const MedHisEdit = () => {
 
         <div className="container">
 
-            <h2>Patient Medical History Updadte</h2>
+            <h2 style={{ fontWeight: 'bold' }}>Patient Medical History Updadte</h2>
             <form onSubmit={handleUpdate}>
                 <div className="form">
                     <div className="A">

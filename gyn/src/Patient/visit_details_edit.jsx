@@ -340,7 +340,7 @@ const VisitEdit = () => {
             <Nav/>
             <Chatbot/>
             <div className="container">
-                <h2>Patient Visit Update</h2>
+                <h2 style={{ fontWeight: 'bold' }}>Patient Visit Update</h2>
                 <form onSubmit={handleUpdate}>
                     <div className="form">
                         <div className="A">
@@ -524,11 +524,11 @@ const VisitEdit = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor=" K+"> K+ : </label>
-                                    <input type="number" placeholder='mmol/l' min={0} max={10} value={values.seK} onChange={e =>setValues({...values,seK:e.target.value})}  />
+                                    <input type="number" placeholder='mmol/L' min={0} max={10} value={values.seK} onChange={e =>setValues({...values,seK:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="Na+"> Na+ : </label>
-                                    <input type="number" placeholder='mmol/l' min={120} max={150} value={values.seNa} onChange={e =>setValues({...values,seNa:e.target.value})}  />
+                                    <input type="number" placeholder='mmol/L' min={100} max={200} value={values.seNa} onChange={e =>setValues({...values,seNa:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                 </div>
@@ -539,7 +539,7 @@ const VisitEdit = () => {
                                     <label htmlFor="CRP"> CRP:  </label>
                                 </div>
                                 <div className="input-field">
-                                    <input type="number" placeholder='mg/DL' min={5} max={220} value={values.crp} onChange={e =>setValues({...values,crp:e.target.value})}  />
+                                    <input type="number" placeholder='mg/L' min={-1} max={300} value={values.crp} onChange={e =>setValues({...values,crp:e.target.value})}  />
                                 </div>
                             
                             </div>
@@ -578,11 +578,11 @@ const VisitEdit = () => {
                                 {/* &emsp; */}
                             <div className="input-field">
                                     <label htmlFor="AB"> ALT : </label>
-                                    <input type="text" placeholder='u/l' min={0} max={50} value={values.lftALT} onChange={e =>setValues({...values,lftALT:e.target.value})}  />
+                                    <input type="text" placeholder='U/L' min={0} max={150} value={values.lftALT} onChange={e =>setValues({...values,lftALT:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="AL"> AST : </label>
-                                    <input type="text" placeholder='u/l' min={0} max={50} value={values.lftAST} onChange={e =>setValues({...values,lftAST:e.target.value})}  />
+                                    <input type="text" placeholder='U/L' min={0} max={100} value={values.lftAST} onChange={e =>setValues({...values,lftAST:e.target.value})}  />
                                 </div> 
                             </div>
                             <br />

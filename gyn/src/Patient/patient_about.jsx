@@ -46,7 +46,7 @@ const About = () =>{
           <Chatbot/>
             <div className='container'>
             <div className='space0'></div>
-              <h2> Patient Personal Details</h2>
+              <h2 style={{ fontWeight: 'bold' }}> Patient Personal Details</h2>
               <div className='space'></div>
               <div className='card1'>
                 <div className='profile'>
