@@ -5,6 +5,8 @@ import '../App.css';
 import { useState,useEffect } from 'react';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
 
 
 const About = () =>{
@@ -41,22 +43,53 @@ const About = () =>{
         <div className="">
           <NavBar/>
           <Nav/>
+          <Chatbot/>
             <div className='container'>
             <div className='space0'></div>
               <h2> Patient Personal Details</h2>
               <div className='space'></div>
               <div className='card1'>
                 <div className='profile'>
-                  {/* <div className='profile-about'> */}
-                    <p>Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.full_name}</p>
-                    <p>PHN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.phn}</p>
-                    <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.address}</p>
-                    <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.blood_gr}</p>
-                    <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.age} </p>
-                    <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.phone_no} </p>
-                    <p>Marital Status &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.marrital_status} </p>
-                    <p>NIC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{data.nic} </p>
-                  {/* </div> */}
+                  <div className='row'>
+                      <div className='col1'>Full Name</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.full_name}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>PHN</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.phn}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Address</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.address}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Blood Group</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.blood_gr}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Age</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.age}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Phone Number</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.phone_no}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Marital Status</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.marrital_status}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>NIC</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.nic}</div>
+                  </div>
                 </div>                 
               </div>
               <div className='space2'></div>
@@ -65,7 +98,7 @@ const About = () =>{
                 <button onClick={handleEdit}> edit </button>
               </div>
             </div>
-              
+            <Footer/>
           </div>
     );
 }

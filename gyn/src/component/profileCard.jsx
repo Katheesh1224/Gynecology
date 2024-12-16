@@ -26,13 +26,37 @@ const ProfileCard = () =>{
 
     return(
         <div className='card1'>
+          {/* <img src='../avatar.png' alt='profile' className='profile-img'/> */}
                 <div className='profile'>
-                  <p>Full Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {data.full_name}</p>
-                  <p>Address  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {data.address}</p>
-                  <p>Blood Group &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {data.blood_gr}</p>
-                  <p>Age &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {data.age} </p>
-                  <p>Phone Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {data.phone_no} </p>
+                  <div className='row'>
+                      <div className='col1'>Full Name</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.full_name}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Address</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.address}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Blood Group</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.blood_gr}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Age</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.age}</div>
+                  </div>
+                  <div className='row'>
+                      <div className='col1'>Phone Number</div>
+                      <div className='col2'>:</div>
+                      <div className='col3'>{data.phone_no}</div>
+                  </div>
+                  {/* <img src='../avatar3.jpg' alt='profile' className='profile-img'/> */}
+
                 </div>
+
               </div>
     )
 

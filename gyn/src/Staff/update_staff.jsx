@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
+import Footer from '../Component/Footer.jsx';
 import { toast } from 'react-toastify'; 
 
 const UpdateStaff = () => {
@@ -15,15 +17,14 @@ const UpdateStaff = () => {
     id: null,
     full_name: "",
     phone_no: "",
-    role: "consultant",  // Default value
+    role: "consultant",  
     email: "",
-    password: "", // New password field
-    confirm_password: "", // Confirm new password field
-    status: "active",    // Default value
-    ...location.state,   // Override defaults with any existing state, except password
+    password: "", 
+    confirm_password: "", 
+    status: "active",   
+    ...location.state,   
   };
 
-  // Remove hashed password from initialState
   if (initialState.password) {
     delete initialState.password;
   }
@@ -32,28 +33,7 @@ const UpdateStaff = () => {
   const [formErrors, setFormErrors] = useState({});
   const [showPasswordFields, setShowPasswordFields] = useState(false); // State to control visibility
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-
-    if (name === "password") {
-      if (value.length < 8 && value.length > 0) {
-        setFormErrors({ ...formErrors, password: "Password must be at least 8 characters long." });
-      } else {
-        const { password, ...rest } = formErrors; // Remove password error if validation passes
-        setFormErrors(rest);
-      }
-    }
-
-    if (name === "confirm_password") {
-      if (values.password && value !== values.password) {
-        setFormErrors({ ...formErrors, confirm_password: "Passwords do not match." });
-      } else {
-        const { confirm_password, ...rest } = formErrors; // Remove confirm_password error if validation passes
-        setFormErrors(rest);
-      }
-    }
-  };
+ 
 
   const validate = () => {
     let errors = {};
@@ -90,55 +70,143 @@ const UpdateStaff = () => {
     setShowPasswordFields(!showPasswordFields);
   };
 
+  const [isFullNameValid, setIsFullNameValid] = useState(true);
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+
+  const handleChange = (e) => {
+    const target = e.target;
+    const name = target.name;
+    let value = target.value;
+    setValues({ ...values, [name]: value });
+    if (name === "password") {
+      if (value.length < 8 && value.length > 0) {
+        setFormErrors({ ...formErrors, password: "Password must be at least 8 characters long." });
+      } else {
+        const { password, ...rest } = formErrors; 
+        setFormErrors(rest);
+      }
+    }
+
+    if (name === "confirm_password") {
+      if (values.password && value !== values.password) {
+        setFormErrors({ ...formErrors, confirm_password: "Passwords do not match." });
+      } else {
+        const { confirm_password, ...rest } = formErrors; 
+        setFormErrors(rest);
+      }
+    }
+    let errors = { ...formErrors };
+
+    switch (name) {
+      case "password":
+        if (value.length < 8) {
+          errors.password = "Password must be at least 8 characters long.";
+        } else {
+          delete errors.password;
+        }
+        break;
+
+      case "confirm_password":
+        if (value !== values.password) {
+          errors.confirm_password = "Passwords do not match.";
+        } else {
+          delete errors.confirm_password;
+        }
+        break;
+
+      case "full_name":
+        if (!/^[a-zA-Z\s]*$/.test(value)) {
+          setIsFullNameValid(false);
+          errors.full_name = "Only alphabets are allowed.";
+        } else {
+          setIsFullNameValid(true);
+          delete errors.full_name;
+        }
+        break;
+
+      case "phone_no":
+        if (!/^[0-9]*$/.test(value)) {
+          setIsPhoneNumberValid(false);
+          errors.phone_no = "Only numbers are allowed.";
+        } else {
+          setIsPhoneNumberValid(true);
+          delete errors.phone_no;
+        }
+        break;
+
+      case "email":
+        if (value === "") { 
+          setIsEmailValid(true); 
+          delete errors.email; 
+        }else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          setIsEmailValid(false);
+          errors.email = "Please enter a valid email address.";
+        } else {
+          setIsEmailValid(true);
+          delete errors.email;
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    setFormErrors(errors);
+  };
+
+
   return (
     <div className="wrapper">
       <NavBar />
+      <Chatbot />
       <div className="main-content">
         <Nav />
         <div className="container">
           <form onSubmit={handleSubmit}>
-            <h2>Update Staff</h2>
+            <h2 style={{fontWeight:"bold"}} >Update Staff</h2>
             <br />
             <div className="fields">
-              <div className="input-field">
-                <label htmlFor="fullname">Name : </label>
-                <input 
-                  type='text' 
-                  name='full_name' 
-                  pattern="[A-Za-z]+" 
-                  title="Only alphabets are allowed" 
-                  placeholder='Enter your fullname' 
+            <div className="input-field">
+                <label htmlFor="fullname">Full Name:</label>
+                <input
+                  type="text"
+                  name="full_name"
+                  placeholder="Enter your full name"
                   value={values.full_name}
-                  onChange={handleChange} 
+                  onChange={handleChange}
+                  style={{ borderColor: isFullNameValid ? '#aaa' : 'red' }}
                 />
+                {formErrors.full_name && <p style={{ color: "red" }}>{formErrors.full_name}</p>}
               </div>
               <div className="input-field">
-                <label htmlFor="phoneno">Phone No : </label>
-                <input 
-                  type="tel" 
-                  pattern="[0-9]{10}" 
-                  maxLength="10" 
-                  name='phone_no' 
-                  placeholder='Enter your phone No' 
+                <label htmlFor="phoneno">Phone Number:</label>
+                <input
+                  type="tel"
+                  maxLength="10"
+                  name='phone_no'
+                  placeholder='Enter your phone number'
                   value={values.phone_no}
-                  onChange={handleChange} 
+                  onChange={handleChange}
+                  style={{ borderColor: isPhoneNumberValid ? '#aaa' : 'red' }}
                 />
+                {formErrors.phone_no && <p style={{ color: "red" }}>{formErrors.phone_no}</p>}
               </div>
             </div>
-            <br />
             <div className="fields">
               <div className="input-field">
-                <label htmlFor="email">Email : </label>
-                <input 
-                  type="email" 
-                  name="email" 
-                  placeholder="Enter your email" 
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
                   value={values.email}
-                  onChange={handleChange} 
+                  onChange={handleChange}
+                  // style={{ borderColor: isEmailValid ? '#aaa' : 'red' }}
                 />
+                {formErrors.email && <p style={{ color: "blue" }}>{formErrors.email}</p>}
               </div>
             </div>
-            <br />
             
           
 
@@ -208,6 +276,7 @@ const UpdateStaff = () => {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

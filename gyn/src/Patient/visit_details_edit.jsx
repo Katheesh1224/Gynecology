@@ -5,7 +5,10 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
+import Chatbot from '../Component/Chatbot.jsx';
 import { toast } from 'react-toastify';
+import Footer from '../Component/Footer.jsx';
+
 
 
 const VisitEdit = () => {   
@@ -15,6 +18,7 @@ const VisitEdit = () => {
     const add_count = parseInt(localStorage.getItem('addCount'), 10); // Ensure parsing here
     const visit_count = parseInt(localStorage.getItem('visitIndex'), 10); // Ensure parsing here
     const visit_unique = patient_phn + "_" + add_count + "_" + visit_count;
+    const [consultants, setConsultants] = useState([]); 
 
     const [values,setValues] = useState({
         phn:'',
@@ -48,6 +52,7 @@ const VisitEdit = () => {
         lftALT:'',
         lftAST:'',
         lftOther:'',
+        scan_types:[],
         mri:'',
         ct:'',
         tas:'',
@@ -61,6 +66,8 @@ const VisitEdit = () => {
     })
 
     useEffect(() => {
+
+        
         const fetchData = async () => {
         
         // console.log("Add Count from Local Storage:", add_count);
@@ -79,7 +86,7 @@ const VisitEdit = () => {
             setValues({
                 date: formattedDate,
                 visit_no: visit.visit_count,
-                seenBy: visit.seenBy,
+                seenBy: visit.seen_by,
                 complaints: visit.complaints.split(', '),
                 abnormalUlerine: visit.abnormal_bleeding.split(', '),
                 otherComplaint: visit.complaint_other,
@@ -104,6 +111,7 @@ const VisitEdit = () => {
                 lftALT: visit.lft_alt,
                 lftAST: visit.lft_ast,
                 lftOther: visit.invest_other,
+                scan_types: visit.scan_types.split(', '),
                 mri: visit.scan_mri,
                 ct: visit.scan_ct,
                 tas: visit.uss_tas,
@@ -114,7 +122,7 @@ const VisitEdit = () => {
                 medicalManage: visit.manage_medical,
                 surgicalManage: visit.manage_surgical
             });
-            console.log(visit.ward);
+            console.log(visit);
         } catch (error) {
             console.error('Error fetching data:', error);
             toast.error('Failed to fetch patient data.');
@@ -124,6 +132,17 @@ const VisitEdit = () => {
         if (patient_phn) {
             fetchData();
         }
+
+        const fetchConsultants = async () => {
+      try {
+        const response = await axios.get('http://localhost:8081/staffs'); // Your backend URL
+        setConsultants(response.data); // Set fetched consultants into state
+        console.log(response.data)
+      } catch (error) {
+        console.error("Error fetching consultants:", error);
+      }
+    };
+    fetchConsultants();
     }, [patient_phn]);
 
     const handleUpdate =(e) =>{
@@ -132,7 +151,7 @@ const VisitEdit = () => {
         axios.put(`http://localhost:8081/visitUpdate/${visit_unique}`,values)
         .then(res =>{
             console.log(res);
-            // navigate('/patients_information/patient_profile/visit_details')
+            navigate(`/patients_information/patient_profile/patient_admission/patient_visit/visit_details`);
             toast.success('Form updated successfully!');
         })
         .catch(err => {
@@ -203,10 +222,123 @@ const VisitEdit = () => {
         });console.log(value);
     }
 
+
+    const [checkbox1Checked, setCheckbox1Checked] = useState(false);
+    const [checkbox2Checked, setCheckbox2Checked] = useState(false);
+    const [checkbox3Checked, setCheckbox3Checked] = useState(false);
+    const [checkbox4Checked, setCheckbox4Checked] = useState(false);
+    
+
+    const handleCheckbox1Change = (e) => {
+        setCheckbox1Checked(!checkbox1Checked);
+        
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name === 'scan_types') {
+            if (!Array.isArray(values.scan_types)) {
+                values.scan_types = [];
+            }
+
+            if (target.checked) {
+                value = [...values.scan_types, target.value];
+            } else {
+                value = values.scan_types.filter((subject) => subject !== target.value);
+            }
+        }
+
+        setValues({
+            ...values,
+            [name]: value,
+        });
+        console.log("Updated values:", values);
+    };
+
+    const handleCheckbox2Change = (e) => {
+        setCheckbox2Checked(!checkbox2Checked);
+        
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name === 'scan_types') {
+            if (!Array.isArray(values.scan_types)) {
+                values.scan_types = [];
+            }
+
+            if (target.checked) {
+                value = [...values.scan_types, target.value];
+            } else {
+                value = values.scan_types.filter((subject) => subject !== target.value);
+            }
+        }
+
+        setValues({
+            ...values,
+            [name]: value,
+        });
+        console.log("Updated values:", values);
+    };
+
+    const handleCheckbox3Change = (e) => {
+        setCheckbox3Checked(!checkbox3Checked);
+        
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name === 'scan_types') {
+            if (!Array.isArray(values.scan_types)) {
+                values.scan_types = [];
+            }
+
+            if (target.checked) {
+                value = [...values.scan_types, target.value];
+            } else {
+                value = values.scan_types.filter((subject) => subject !== target.value);
+            }
+        }
+
+        setValues({
+            ...values,
+            [name]: value,
+        });
+        console.log("Updated values:", values);
+    };
+
+    const handleCheckbox4Change = (e) => {
+        setCheckbox4Checked(!checkbox4Checked);
+
+        const target = e.target;
+        const name = target.name;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+
+        if (name === 'scan_types') {
+            if (!Array.isArray(values.scan_types)) {
+                values.scan_types = [];
+            }
+
+            if (target.checked) {
+                value = [...values.scan_types, target.value];
+            } else {
+                value = values.scan_types.filter((subject) => subject !== target.value);
+            }
+        }
+
+        setValues({
+            ...values,
+            [name]: value,
+        });
+        console.log("Updated values:", values);
+    };
+
+
     return (
         <div>
             <NavBar/>
             <Nav/>
+            <Chatbot/>
             <div className="container">
                 <h2>Patient Visit Update</h2>
                 <form onSubmit={handleUpdate}>
@@ -226,9 +358,13 @@ const VisitEdit = () => {
                                 <div className="input-field">
                                     <label htmlFor="full_name">Seen by : </label>
                                     <select name="role" id="status" value={values.seenBy} onChange={e =>setValues({...values,seenBy:e.target.value})} >
-                                        <option value="x">Dr.X</option>
-                                        <option value="y">Dr.Y</option>
-                                        <option value="z">Dr.Z</option>
+                                         <option value="">Select here</option>
+                                            {/* Map through the consultants and create an option for each */}
+                                            {consultants.map((consultant) => (
+                                            <option key={consultant.id} value={consultant.full_name}> {/* Assuming each consultant has an 'id' and 'name' */}
+                                                {consultant.full_name}
+                                            </option>
+                                            ))}
                                     </select>
                                     </div>                                                   
                             </div>
@@ -457,35 +593,64 @@ const VisitEdit = () => {
                                 </div> 
                                 </div>
                                 <br />
-                            <div className="fields1">
-                            <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Scan">Scanning:</label>
-                                </div>
-                            <div className="input-field">
-                                    <label htmlFor="AB"> MRI :  </label>
-                                    <input type="text" value={values.mri}  onChange={e =>setValues({...values,mri:e.target.value})}  />
+
+
+
+                                <div className="fields">
+                                <div>
+                                    <div className="input-field" onload="setMaxDate()">
+                                        <label htmlFor="scan">Scanning:</label>
+                                    </div>
+                                    
+                                    <div className="input-Check">
+                                        <input type="checkbox" id="mri" name='scan_types' value="MRI" checked={checkbox1Checked || values.scan_types.includes('MRI')} onChange={handleCheckbox1Change}/>
+                                        <label htmlFor="checkbox1">MRI</label>
+                                        {checkbox1Checked && (
+                                            <div className="input-fieldCheck">
+                                                <input type="text" placeholder="Enter description for MRI" value={values.mri} onChange={e =>setValues({...values,mri:e.target.value})}/>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="input-Check">
+                                        <input type="checkbox" id="ct" name='scan_types' value="CT" checked={checkbox2Checked || values.scan_types.includes('CT')} onChange={handleCheckbox2Change}/>
+                                        <label htmlFor="checkbox2">CT</label>
+                                        {checkbox2Checked && (
+                                            <div className="input-fieldCheck">
+                                                <input type="text" placeholder="Enter description for CT" value={values.ct} onChange={e =>setValues({...values,ct:e.target.value})}/>
+                                            </div>
+                                        )}
+                                        </div>
                                 </div>
                                 
-                                <div className="input-field">
-                                    <label htmlFor="AL"> CT : </label>
-                                    <input type="text" value={values.ct}  onChange={e =>setValues({...values,ct:e.target.value})}  />
-                                </div> 
-                            </div>
-                            <br />
-                            <div className="fields1">
-                            <div className="input-field" onload="setMaxDate()">
-                                    <label htmlFor="Scan">  USS:  </label>
-                                </div>&emsp;&emsp;
-                            <div className="input-field">
-                                    <label htmlFor="AB"> TAS : </label>
-                                    <input type="text" value={values.tas}  onChange={e =>setValues({...values,tas:e.target.value})}  />
+                                <div>
+                                    <div className="input-field" onload="setMaxDate()">
+                                        <label htmlFor="Scan">  USS:  </label>
+                                    </div>
+                                    
+                                    <div className="input-Check">
+                                        <input type="checkbox" id="tas" name='scan_types' value="TAS"  checked={checkbox3Checked || values.scan_types.includes('TAS')} onChange={handleCheckbox3Change}/>
+                                        <label htmlFor="checkbox1">TAS</label>
+                                        {checkbox3Checked && (
+                                            <div className="input-fieldCheck">
+                                                <input type="text" placeholder="Enter description for TAS" value={values.tas} onChange={e =>setValues({...values,tas:e.target.value})}/>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="input-Check">
+                                        <input type="checkbox" id="tus" name='scan_types' value="TUS" checked={checkbox4Checked || values.scan_types.includes('TUS')} onChange={handleCheckbox4Change}/>
+                                        <label htmlFor="checkbox2">TUS</label>
+                                        {checkbox4Checked && (
+                                            <div className="input-fieldCheck">
+                                                <input type="text" placeholder="Enter description for TUS" value={values.tus} onChange={e =>setValues({...values,tus:e.target.value})}/>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
-                                <div className="input-field">
-                                    <label htmlFor="AL"> TUS : </label>
-                                    <input type="text" value={values.tus}  onChange={e =>setValues({...values,tus:e.target.value})}  />
-                                </div> 
                             </div>
                         </div>
+                        
                         <span className="title">Management</span>                                                  
                         <div className="A">
                             <div className="fields">
@@ -541,10 +706,10 @@ const VisitEdit = () => {
                                 </div>  
                             </div>
                     </div>
-                    <div className="btn1" style={{display:'flex'}} ><button type="submit" name="submit" style={{backgroundColor:'#512da8'}} >Submit</button></div>
-                    <div className="btn" ><button type="submit" name="cancel" style={{backgroundColor:'red'}} onClick={()=>{navigate('/home');}}>Cancel</button></div>
+                    <div className="btn1"><button type="submit" name="submit">Upadate</button></div>
                 </form>
             </div>
+            <Footer/>
         </div>
     )
 }
