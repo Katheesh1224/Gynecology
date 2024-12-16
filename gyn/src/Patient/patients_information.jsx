@@ -7,6 +7,9 @@ import Chatbot from '../Component/Chatbot.jsx';
 import '../App.css';
 import Footer from '../Component/Footer.jsx';
 import SearchBar from '../Component/SearchBar.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserPlus, faUserMinus} from '@fortawesome/free-solid-svg-icons';
+
 
 const Patient = () => {
   const [data, setData] = useState([]);
@@ -48,7 +51,7 @@ const Patient = () => {
   useEffect(() => {
     setFilter('all');
     setPage(1);
-    fetchData(1, 'all'); // Fetch all patient data on initial load
+    fetchData(1, 'all'); 
   }, []);
 
   const handleFilterChange = (filterType) => {
@@ -101,14 +104,12 @@ const Patient = () => {
               >
                 Admitted Patient
               </button>
-              {role !== 'data_entry' && (
                 <button
                   className="button_dis"
                   onClick={() => handleFilterChange('discharged')}
                 >
                   Discharged Patient
                 </button>
-              )}
             </div>
           </div>
 
@@ -120,6 +121,7 @@ const Patient = () => {
                   <th>Full Name</th>
                   <th>PHN No.</th>
                   <th>NIC</th>
+                  {/* <th>Status</th> */}
                   <th>Management</th>
                 </tr>
               </thead>
@@ -131,12 +133,18 @@ const Patient = () => {
                     <td>{row.phn}</td>
                     <td>{row.nic}</td>
                     <td>
+                    {/* </td>
+                    <td> */}
                       <button
                         className="button_view"
                         onClick={() => assign(row.id)}
-                      >
+                        >
                         View
                       </button>
+                        &emsp; 
+                    <span className={row.admit_status === "discharged" ? "status-discharged" : "status-admitted"}>
+                      {row.admit_status === "admitted" ? <FontAwesomeIcon icon={faUserPlus} style={{color: "#63E6BE",}} /> : <FontAwesomeIcon icon={faUserMinus} style={{color: "#ff4763",}} />}
+                    </span>
                     </td>
                   </tr>
                 ))}
