@@ -165,6 +165,7 @@ const NavBar = () => {
                     Profile
                   </a>
                 </li>
+                {role !="superadmin" && (
                 <li className="profile-dropdown-list-item">
                   <a href="/contactus">
                     <div className='icon'>
@@ -173,6 +174,7 @@ const NavBar = () => {
                     Contact Us
                   </a>
                 </li>
+                )}
                 <li className="profile-dropdown-list-item" onClick={handleLogout}>
                   <a href="/login">
                   <div className='icon'>
