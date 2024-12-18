@@ -29,7 +29,7 @@ const RegisterStaff = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-      axios.post('http://localhost:8081/staff_reg', values)
+      axios.post('http://localhost:5000/staff/staff_reg', values)
         .then(res => {
           toast.success('Staff registered successfully!');
           navigate('/staff_information');

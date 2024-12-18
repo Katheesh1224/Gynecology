@@ -47,7 +47,7 @@ const SearchEngine = () => {
     useEffect(() => {
         if (search.trim() !== "") {
         axios
-            .get("http://localhost:5000/dynamicsearchdata", {
+            .get("http://localhost:5000/patient/dynamicsearchdata", {
             params: { val: search, page: 1, limit: 8 },
             })
             .then((response) => {

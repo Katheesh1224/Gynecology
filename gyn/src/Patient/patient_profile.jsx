@@ -22,8 +22,8 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8081/view/${patient_id}`);
-        const fetchedData = response.data[0];
+        const response = await axios.get(`http://localhost:5000/patient/patient/${patient_id}`);
+        const fetchedData = response.data;
         setData(fetchedData);
         setIsDischarged(fetchedData.admit_status === 'discharged'); 
       } catch (error) {
@@ -45,7 +45,7 @@ const Profile = () => {
 
   const confirmDischarge = async () => {
     try {
-      const response = await axios.put(`http://localhost:8081/discharge/${data.phn}`);
+      const response = await axios.put(`http://localhost:5000/patient/discharge/${data.phn}`);
       setData(response.data);
       setIsDischarged(true); 
       setOpenPopup(false); 

@@ -27,7 +27,7 @@ const EditStaff = () => {
     // Fetch user data based on userId
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8081/staff/${userId}`);
+        const response = await axios.get(`http://localhost:5000/staff/staff_information${userId}`);
         setValues(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);

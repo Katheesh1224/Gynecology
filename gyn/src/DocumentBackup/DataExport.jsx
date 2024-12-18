@@ -19,7 +19,7 @@ const DataExport = () => {
   // Function to fetch the last backup date and time
   const fetchLastBackupDate = async () => {
     try {
-      const response = await axios.get('http://localhost:8081/last-backup');
+      const response = await axios.get('http://localhost:5000/export/last-backup');
       const fullBackupDate = response.data.lastBackupDate;
 
       // Convert UTC string to local time
@@ -41,7 +41,7 @@ const DataExport = () => {
   // Fetch record count based on filters
   const fetchRecordCount = async () => {
     try {
-      const fetchResponse = await axios.post("http://localhost:8081/export-data", {
+      const fetchResponse = await axios.post("http://localhost:5000/export/export-data", {
         filterType,
         fromDate: (filterType === "all" || filterType === "admission" || filterType === "visit") ? fromDate : null,
         toDate: (filterType === "all" || filterType === "admission" || filterType === "visit") ? toDate : null,
@@ -50,6 +50,7 @@ const DataExport = () => {
 
       // Set the record count based on the response
       setRecordCount(fetchResponse.data.count);  // Assuming the backend returns { count: number }
+      console.log(fetchResponse.data.count)
     } catch (error) {
       console.error("Error fetching record count:", error);
     }
@@ -79,7 +80,7 @@ const DataExport = () => {
       toast.error("Please select a date range");
     }
     try {
-      const fetchResponse = await axios.post("http://localhost:8081/export-data", {
+      const fetchResponse = await axios.post("http://localhost:5000/export/export-data", {
         filterType,
         fromDate: (filterType === "all" || filterType === "admission" || filterType === "visit") ? fromDate : null,
         toDate: (filterType === "all" || filterType === "admission" || filterType === "visit") ? toDate : null,
@@ -90,7 +91,7 @@ const DataExport = () => {
       const data = fetchResponse.data.data;
 
       if (type === "excel") {
-        const response = await axios.post("http://localhost:8081/export-excel", { data }, {
+        const response = await axios.post("http://localhost:5000/export/export-excel", { data }, {
           responseType: "blob", // Ensures file is downloaded
         });
         const filename = `PatientData_${formattedDate}.xlsx`;
@@ -100,7 +101,7 @@ const DataExport = () => {
         link.download = filename;
         link.click();
       } else if (type === "pdf") {
-        const response = await axios.post("http://localhost:8081/export-pdf", { data }, {
+        const response = await axios.post("http://localhost:5000/export/export-pdf", { data }, {
           responseType: "blob", // Ensures file is downloaded
         });
         const filename = `PatientData_${formattedDate}.pdf`;
@@ -118,7 +119,7 @@ const DataExport = () => {
   const handleBackup = async () => {
     try {
       // Send a request to the backend to download the database backup
-      const response = await axios.get('http://localhost:8081/backup-database', {
+      const response = await axios.get('http://localhost:5000/export/backup-database', {
         responseType: 'blob',  // Expect a binary file response
       });
 

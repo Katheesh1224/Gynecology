@@ -137,8 +137,9 @@ const ComplaintsChart = () => {
   useEffect(() => {
     const fetchComplaintsData = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/complaints-stats');
+        const response = await axios.get('http://localhost:5000/analysis/complaints-stats');
         setChartData(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching complaints data:", error);
       }

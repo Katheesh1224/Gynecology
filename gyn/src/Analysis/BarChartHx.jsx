@@ -23,7 +23,7 @@ const HxChart = () => {
   useEffect(() => {
     const fetchComplaintsData = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/history-stats');
+        const response = await axios.get('http://localhost:5000/analysis/history-stats');
         setChartData(response.data);
       } catch (error) {
         console.error("Error fetching complaints data:", error);

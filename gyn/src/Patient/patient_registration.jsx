@@ -49,7 +49,7 @@ const PReg = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8081/reg', values)
+        axios.post('http://localhost:5000/patient/reg', values)
             .then(res => {
                 navigate('/patients_information');
                 toast.success('Form submitted successfully!');
@@ -71,7 +71,7 @@ const PReg = () => {
     // Fetch the consultants data from the backend when the component mounts
     const fetchConsultants = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/consultants'); // Your backend URL
+        const response = await axios.get('http://localhost:5000/patient/consultants'); // Your backend URL
         setConsultants(response.data); // Set fetched consultants into state
         console.log(response.data)
       } catch (error) {

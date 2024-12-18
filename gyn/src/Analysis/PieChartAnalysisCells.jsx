@@ -26,7 +26,7 @@ const ReportAnalysis = () => {
     setError(null);
 
     axios
-      .get(`http://localhost:8081/report-analysis?type=${reportType}`)
+      .get(`http://localhost:5000/analysis/report-analysis?type=${reportType}`)
       .then((response) => {
         const data = response.data || {};
 

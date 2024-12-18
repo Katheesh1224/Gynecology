@@ -28,8 +28,8 @@ const About = () =>{
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get(`http://localhost:8081/about/${patient_id}`);
-              setData(response.data[0]);
+              const response = await axios.get(`http://localhost:5000/patient/patient/${patient_id}`);
+              setData(response.data);
             } catch (error) {
               console.error('Error fetching data:', error);
             }

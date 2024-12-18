@@ -26,8 +26,8 @@ const VisitCard = () =>{
         try {
             console.log(visit_unique);
 
-            const response = await axios.get(`http://localhost:8081/visitdetail/${visit_unique}`);
-            setData(response.data[0]); // Assuming response.data is the correct structure
+            const response = await axios.get(`http://localhost:5000/visit/visitdetail/${visit_unique}`);
+            setData(response.data); // Assuming response.data is the correct structure
             console.log(response.data);
 
         } catch (error) {

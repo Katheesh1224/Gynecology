@@ -49,7 +49,7 @@ const ForgotPassword = () => {
 
   const handleRequestOtp = async () => {
     try {
-      await axios.post('http://localhost:8081/forgotpassword', { email });
+      await axios.post('http://localhost:5000/staff/forgotpassword', { email });
       setStep(2);
       toast.success('OTP sent');
     } catch (err) {
@@ -60,7 +60,7 @@ const ForgotPassword = () => {
 
   const handleVerifyOtp = async () => {
     try {
-      await axios.post('http://localhost:8081/verifyotp', { email, otp });
+      await axios.post('http://localhost:5000/staff/verifyotp', { email, otp });
       setStep(3);
     } catch (err) {
       console.error(err);
@@ -75,7 +75,7 @@ const ForgotPassword = () => {
     const errors = validate();
 
     if (Object.keys(errors).length === 0) {
-      axios.post('http://localhost:8081/resetpassword', { email, newPassword: values.password })
+      axios.post('http://localhost:5000/staff/resetpassword', { email, newPassword: values.password })
         .then(res => {
           console.log(res);
           toast.success('Password Reset successfully!');

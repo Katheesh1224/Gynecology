@@ -44,7 +44,7 @@ const Visit = () => {
     const fetchAddCount = async () => {
     try {
       // Fetch visits based on admission visit_no
-      const visitsResponse = await axios.get(`http://localhost:8081/visits/${visit_un}`);
+      const visitsResponse = await axios.get(`http://localhost:5000/visit/visits/${visit_un}`);
       const visits = visitsResponse.data; // Assuming this is an array of visits
 
       // Generate card titles based on the number of visits

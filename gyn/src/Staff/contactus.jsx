@@ -65,7 +65,7 @@ const Contactus = () => {
       return;
     }
     axios
-      .post('http://localhost:8081/contact_us', values)
+      .post('http://localhost:5000/contact_us', values)
 
       .then((res) => {
         toast.success('Your complaint has been submitted successfully!');

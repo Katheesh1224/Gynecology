@@ -25,7 +25,7 @@ const Home = () =>{
 	useEffect(() => {
 		const fetchStats = async () => {
 		  try {
-			const response = await axios.get('http://localhost:8081/stats');
+			const response = await axios.get('http://localhost:5000/analysis/stats');
 			const data = response.data;
 			setStats({
 			  totalPatients: data.total_patients,

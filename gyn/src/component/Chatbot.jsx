@@ -41,7 +41,7 @@ const Chatbot = () => {
     setMessages([...messages, newMessage]);
 
     try {
-      const response = await axios.post('http://localhost:8081/chat', { userMessage: input });
+      const response = await axios.post('http://localhost:5000/chat', { userMessage: input });
       const botMessage = { sender: 'bot', text: formatBotMessage(response.data.reply) }; // Format bot message
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {

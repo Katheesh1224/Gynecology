@@ -37,14 +37,14 @@ const MedHisEdit = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8081/readhx/${patient_phn}`);
+            const response = await axios.get(`http://localhost:5000/patient/medicalhx/${patient_phn}`);
             const {
                 phn, allergy, past_med, past_med_other,
                 past_surg, past_surg_other, hx_diseases,
                 hx_cancer, hx_cancer_other, height,
                 weight, menarche_age, menopausal_age,
                 lmp, menstrual_cycle
-            } = response.data[0];
+            } = response.data;
     
             setValues({
                 phn,
@@ -77,7 +77,7 @@ const MedHisEdit = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8081/medicalUpdate/${patient_phn}`, values)
+        axios.put(`http://localhost:5000/patient/medicalUpdate/${patient_phn}`, values)
             .then(res => {
                 navigate(`/patients_information/patient_profile/patient_history`);
                 toast.success('Form updated successfully!');

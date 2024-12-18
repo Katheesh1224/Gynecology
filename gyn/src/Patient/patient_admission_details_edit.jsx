@@ -35,8 +35,8 @@ const AdEdit = () => {
         }
 
         try {
-            const response = await axios.get(`http://localhost:8081/admissiondetail/${patient_phn}/${add_count}`);
-            const patient = response.data[0];
+            const response = await axios.get(`http://localhost:5000/patient/admission/${patient_phn}/${add_count}`);
+            const patient = response.data;
             const date = new Date(patient.date);
             const formattedDate = date.toISOString().slice(0, 16);
 
@@ -62,7 +62,7 @@ const AdEdit = () => {
 
         const fetchConsultants = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/consultants'); // Your backend URL
+        const response = await axios.get('http://localhost:5000/patient/consultants'); // Your backend URL
         setConsultants(response.data); // Set fetched consultants into state
       } catch (error) {
         console.error("Error fetching consultants:", error);
@@ -75,7 +75,7 @@ const AdEdit = () => {
     const handleUpdate =(e) =>{
         console.log(e);
         e.preventDefault();
-        axios.put(`http://localhost:8081/admissionUpdate/${patient_phn}/${add_count}`,values)
+        axios.put(`http://localhost:5000/patient/admissionUpdate/${patient_phn}/${add_count}`,values)
         .then(res =>{
             console.log(res);
             navigate('/patients_information/patient_profile/patient_admission')

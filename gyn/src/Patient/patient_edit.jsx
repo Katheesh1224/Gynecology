@@ -27,8 +27,9 @@ const PEdit = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8081/read/${patient_id}`);
-            const patient = response.data[0];
+            const response = await axios.get(`http://localhost:5000/patient/patient/${patient_id}`);
+            const patient = response.data;
+            console.log(patient)
             setValues({
                 fname: patient.full_name,
                 address: patient.address,
@@ -61,7 +62,7 @@ const PEdit = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:8081/patientUpdate/${patient_id}`, values); // Changed to PUT
+            await axios.put(`http://localhost:5000/patient/patientUpdate/${patient_id}`, values); // Changed to PUT
             navigate('/patients_information/patient_profile/patient_about');
             toast.success('Form updated successfully!');
         } catch (err) {
@@ -236,18 +237,18 @@ const PEdit = () => {
                             </div> 
                             <div className="input-fieldN">
                                 <label htmlFor="nic">NIC No. : </label>
-                                <input type="text" name="nic" placeholder="Enter NIC here" maxLength="12" onChange={handleChange} style={{ borderColor: isNICErrorValid ? '#aaa' : 'red' }}/>
+                                <input type="text" name="nic" placeholder="Enter NIC here" maxLength="12" value={values.nic} onChange={handleChange} style={{ borderColor: isNICErrorValid ? '#aaa' : 'red' }}/>
                                         {formErrors.nic && <p style={{ color: isNICErrorValid ? 'blue' : 'red' }}>{formErrors.nic}</p>}
                             </div>
                             <div className="input-fieldN">
                                 <label htmlFor="phn">PHN No. : </label>
-                                <input type="text" name="phn" placeholder="Enter PHN here" maxLength={11} onChange={handleChange} style={{ borderColor: isPHNErrorValid ? '#aaa' : 'red' }} required/>
+                                <input type="text" name="phn" placeholder="Enter PHN here" maxLength={11} value={values.phn} onChange={handleChange} style={{ borderColor: isPHNErrorValid ? '#aaa' : 'red' }} required/>
                                         {formErrors.phn && <p style={{ color: isPHNErrorValid ? 'blue' : 'red' }}>{formErrors.phn}</p>}
                             </div>   
                             <div className="input-fieldN">
                                 <label htmlFor="phone_no">Telephone No. : </label>
                                 <input type="tel" name="phone_no" placeholder="Enter phone number here" value={values.tp} maxLength="10" onChange={handleChange} style={{ borderColor: isPhoneNumberValid ? '#aaa' : 'red' }} required/>
-                                {formErrors.phone_no && <p style={{ color: "red" }}>{formErrors.phone_no}</p>}
+                                        {formErrors.phone_no && <p style={{ color: "red" }}>{formErrors.phone_no}</p>}
                             </div>                             
                         </div>
                         
