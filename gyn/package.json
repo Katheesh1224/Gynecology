@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^2.0.3",
+    "@chatscope/chat-ui-kit-styles": "^1.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
@@ -14,13 +16,20 @@
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.4.3",
+    "framer-motion": "^11.11.15",
     "install": "^0.13.0",
+    "jspdf": "^2.5.2",
     "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.446.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
+    "react-csv": "^2.2.2",
+    "react-datepicker": "^7.5.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.3",
+    "react-router-dom": "^6.26.2",
     "react-scripts": "^5.0.1",
+    "react-toastify": "^10.0.5",
+    "recharts": "^2.12.7",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
   },
@@ -47,5 +56,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13"
   }
 }

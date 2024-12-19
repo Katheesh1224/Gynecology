@@ -1,0 +1,105 @@
+/* Import variables from config if needed */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+.card-container {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  margin-inline: 1.5rem;
+}
+
+.s_card {
+  position: relative;
+  width: 400px;
+  height: 480px;
+  background-color: hsl(188.4deg 100% 93.82%);
+  padding: 1.25rem 2rem 3rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 16px hsla(29, 75%, 8%, 0.2);
+  top: -50px;
+}
+
+.s_card_image {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.s_card_border {
+  width: 210px;
+  height: 210px;
+  border: 2px solid hsl(29, 80%, 58%);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 0.75rem;
+}
+
+.s_card_name {
+  color: hsl(29, 80%, 58%);
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 40px;
+}
+
+.s_card_email {
+  color: hsl(29deg 5.26% 40.4%);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.s_card_but {
+  width: 250px;
+  height: 60px;
+  background-color: hsl(29, 80%, 58%);
+  padding: 0.75rem;
+  border-radius: 3rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1.75rem;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px hsla(29, 75%, 56%, 0.3);
+}
+
+
+.s_card_input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.s_card_button {
+  padding: 10px 20px;
+  width: 250px;
+  height: 60px;
+  background-color: #512da8;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 3rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1.75rem;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px hsla(29, 75%, 56%, 0.3);
+  cursor: pointer;
+}
+
+.s_card_button:hover {
+  background-color: indigo;
+}
+
+.edit-input {
+  margin: 5px 0;
+  padding: 10px;
+  width: 90%;
+  height: 35px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+  color: indigo;
+}

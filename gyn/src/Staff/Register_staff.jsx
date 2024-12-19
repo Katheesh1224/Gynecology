@@ -1,101 +1,52 @@
 import '../App.css';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import Nav from '../Component/Nav.jsx';
 import NavBar from '../Component/NavBar.jsx';
 import Chatbot from '../Component/Chatbot.jsx';
+import { toast } from 'react-toastify';
 import Footer from '../Component/Footer.jsx';
-import { toast } from 'react-toastify'; 
 
-const UpdateStaff = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const isEditMode = location.state !== undefined;
+const RegisterStaff = () => {
+  // const initialState = 
 
-  const initialState = {
+  const [values, setValues] = useState({
     id: null,
     full_name: "",
     phone_no: "",
-    role: "consultant",  
+    role: "consultant",
     email: "",
-    password: "", 
-    confirm_password: "", 
-    status: "active",   
-    ...location.state,   
-  };
-
-  if (initialState.password) {
-    delete initialState.password;
-  }
-
-  const [values, setValues] = useState(initialState);
+    password: "",
+    confirm_password: "",
+    status: "active",
+  });
   const [formErrors, setFormErrors] = useState({});
-  const [showPasswordFields, setShowPasswordFields] = useState(false); // State to control visibility
-
- 
-
-  const validate = () => {
-    let errors = {};
-    if (values.password && values.password.length < 8) {
-      errors.password = "Password must be at least 8 characters long.";
-    }
-    if (values.password && values.password !== values.confirm_password) {
-      errors.confirm_password = "Passwords do not match.";
-    }
-    return errors;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const errors = validate();
-    if (Object.keys(errors).length === 0) {
-      try {
-        if (isEditMode) {
-          await axios.put(`http://localhost:8081/staff_update/${values.id}`, values);
-
-          toast.success('Staff Updated Successfully');
-          navigate('/staff_information'); 
-        } 
-      } catch (err) {
-        console.log(err);
-        toast.error("Error updating staff.");
-      }
-    } else {
-      setFormErrors(errors);
-    }
-  };
-
-  const togglePasswordFields = () => {
-    setShowPasswordFields(!showPasswordFields);
-  };
-
   const [isFullNameValid, setIsFullNameValid] = useState(true);
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
   const [isEmailValid, setIsEmailValid] = useState(true);
+  
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+      axios.post('http://localhost:8081/staff_reg', values)
+        .then(res => {
+          toast.success('Staff registered successfully!');
+          navigate('/staff_information');
+          setFormErrors({});
+        })
+        .catch(err => {
+          const errorMessage = err.response?.data?.error || err.response?.data?.details || 'An unexpected error occurred.';
+          toast.error(`There was an error submitting the form: ${errorMessage}`);
+        });
+  };
 
   const handleChange = (e) => {
     const target = e.target;
     const name = target.name;
     let value = target.value;
     setValues({ ...values, [name]: value });
-    if (name === "password") {
-      if (value.length < 8 && value.length > 0) {
-        setFormErrors({ ...formErrors, password: "Password must be at least 8 characters long." });
-      } else {
-        const { password, ...rest } = formErrors; 
-        setFormErrors(rest);
-      }
-    }
 
-    if (name === "confirm_password") {
-      if (values.password && value !== values.password) {
-        setFormErrors({ ...formErrors, confirm_password: "Passwords do not match." });
-      } else {
-        const { confirm_password, ...rest } = formErrors; 
-        setFormErrors(rest);
-      }
-    }
     let errors = { ...formErrors };
 
     switch (name) {
@@ -157,17 +108,16 @@ const UpdateStaff = () => {
 
 
   return (
-    <div className="wrapper">
+    <div className='wrapper'>
       <NavBar />
-      <Chatbot />
-      <div className="main-content">
+      <Chatbot/>
+      <div className='main-content'>
         <Nav />
         <div className="container">
           <form onSubmit={handleSubmit}>
-            <h2 style={{fontWeight:"bold"}} >Update Staff</h2>
-            <br />
+            <h2 style={{fontWeight:"bold"}} >Staff Registration</h2>
             <div className="fields">
-            <div className="input-field">
+              <div className="input-field">
                 <label htmlFor="fullname">Full Name:</label>
                 <input
                   type="text"
@@ -207,44 +157,38 @@ const UpdateStaff = () => {
                 {formErrors.email && <p style={{ color: "blue" }}>{formErrors.email}</p>}
               </div>
             </div>
-            
-          
-
-            {showPasswordFields && (
-              <div className="fields">
-                <div className="input-field">
-                  <label htmlFor="new_password">New Password: </label>
-                  <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="Enter a new password" 
-                    value={values.password}
-                    onChange={handleChange} 
-                  />
-                  {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
-                </div>
-                <div className="input-field">
-                  <label htmlFor="confirm_password">Confirm Password : </label>
-                  <input 
-                    type="password" 
-                    name="confirm_password" 
-                    placeholder="Confirm new password" 
-                    value={values.confirm_password}
-                    onChange={handleChange} 
-                  />
-                  {formErrors.confirm_password && <p style={{ color: "red" }}>{formErrors.confirm_password}</p>}
-                </div>
+            <div className="fields">
+              <div className="input-field">
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter the password"
+                  value={values.password}
+                  onChange={handleChange}
+                />
+                {formErrors.password && <p style={{ color: "blue" }}>{formErrors.password}</p>}
               </div>
-            )}
-          
+              <div className="input-field">
+                <label htmlFor="confirm_password">Confirm Password:</label>
+                <input
+                  type="password"
+                  name="confirm_password"
+                  placeholder="Confirm password"
+                  value={values.confirm_password}
+                  onChange={handleChange}
+                />
+                {formErrors.confirm_password && <p style={{ color: "blue" }}>{formErrors.confirm_password}</p>}
+              </div>
+            </div>
             <div className="dropdownflex">
               <div className="input-fieldL">
-                <label htmlFor="role">Role: </label>
-                <select 
-                  name="role" 
-                  id="role" 
-                  value={values.role} 
+                <label htmlFor="role">Role:</label>
+                <select
+                  name="role"
+                  value={values.role}
                   onChange={handleChange}
+                  style={{width:'195px'}}
                 >
                   <option value="consultant">Consultant</option>
                   <option value="registrar">Registrar</option>
@@ -252,26 +196,21 @@ const UpdateStaff = () => {
                   <option value="data_entry">Data Entry</option>
                 </select>
               </div>
-              
-              <div className="input-field">
-                <label htmlFor="status">Status: </label>
-                <select 
-                  name="status" 
-                  id="status" 
-                  value={values.status} 
+              <div className="input-fieldL">
+                <label htmlFor="status">Status:</label>
+                <select
+                  name="status"
+                  value={values.status}
                   onChange={handleChange}
+                  style={{width:'195px'}}
                 >
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>
                 </select>
               </div>
             </div>
-            <br />
             <div className="btn1">
-            <button type="button" id='btn2' onClick={togglePasswordFields}>
-              {showPasswordFields ? "Hide Password Fields" : "Edit Password"}
-            </button>
-              <button type="submit">Update</button>
+              <button type="submit">Register</button>
             </div>
           </form>
         </div>
@@ -281,4 +220,4 @@ const UpdateStaff = () => {
   );
 };
 
-export default UpdateStaff;
+export default RegisterStaff;

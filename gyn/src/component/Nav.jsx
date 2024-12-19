@@ -1,22 +1,23 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faRectangleList, faHospitalUser, faUserNurse } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
+// import { BarChart } from 'lucide-react';
 
 const Nav = () => {
+  const role = localStorage.getItem('role');
   return (
-    <div>
-      <header id="header" className="d-flex flex-column justify-content-center">
-        <nav id="navbar" className="navbar nav-menu">
+    <div id="Head" className="d-flex flex-column justify-content-center">
+        <nav id="navbar" className="navbar nav-round">
           <ul>
             <li>
-              <NavLink exact to="/home" className="nav-link" activeClassName="active">
+              <NavLink exact to={role==="superadmin" ? '/home' : '/backup'} className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faHouse} />
                 <span>Home</span>
               </NavLink>
             </li>
             <li>
-              <NavLink to="/patient_registration" className="nav-link" activeClassName="active">
+              <NavLink to="/search_engine" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faRectangleList} />
                 <span>Patient Registration</span>
               </NavLink>
@@ -27,23 +28,41 @@ const Nav = () => {
                 <span>Patient Information</span>
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/register_staff" className="nav-link" activeClassName="active">
-                <FontAwesomeIcon icon={faRectangleList} />
-                <span>Staff Registration</span>
-              </NavLink>
-            </li>
-            <li>
+            {role ==='superadmin' && (          
+              <li>
               <NavLink to="/staff_information" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faUserNurse} />
                 <span>Staff Information</span>
               </NavLink>
             </li>
+            )}
+            {role !== 'data_entry' && (
+            <li>
+              <NavLink to="/analysis" className="nav-link" activeClassName="active">
+                <FontAwesomeIcon icon={faLineChart} />
+                <span>Analysis</span>
+              </NavLink>
+            </li>
+            
+            
+            )}
+             {role === 'superadmin' && (
+            <li>
+              <NavLink to="/data_export" className="nav-link" activeClassName="active">
+                <FontAwesomeIcon icon={faFileExport} />
+                <span>Data Export</span>
+              </NavLink>
+            </li>
+             )}
           </ul>
+
+          
         </nav>
-      </header>
+        
     </div>
   );
+  
 };
+
 
 export default Nav;

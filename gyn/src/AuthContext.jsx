@@ -1,29 +1,19 @@
-import React, { createContext} from 'react';
+import React, { createContext } from 'react';
 
-// Create Context
 export const AuthContext = createContext();
 
-// Create Provider Component
 export const AuthProvider = ({ children }) => {
-  // const [auth, setAuth] = useState(false);
 
-  // useEffect(() => {
-
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     // Perform token validation if needed
-  //     setAuth(true);
-  //   }
-  // }, []);
-
-  const login = (token) => {
-    localStorage.setItem('token', token);
-    // setAuth(true);
+  const login = (token, role, userId) => {
+    localStorage.setItem('token', token);       
+    localStorage.setItem('role', role);        
+    localStorage.setItem('userId', userId);     
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    // setAuth(false);
+    localStorage.removeItem('token');            
+    localStorage.removeItem('role');            
+    localStorage.removeItem('userId');        
   };
 
   return (

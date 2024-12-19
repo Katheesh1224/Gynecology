@@ -7,27 +7,39 @@ const UserPath = () => {
   const pathnames = location.pathname.split('/').filter((x) => x);
 
   const breadcrumbNameMap = {
-    // '': 'Sign In',
-    'home': '.',
+    'home': 'Home',
+    'backup':'Home',
+    'analysis':'Analysis',
     'patient_registration': 'Patient Registration',
-    'register_staff': 'Staff Registration',
+    'Register_staff': 'Staff Registration',
     'patients_information': 'Patient Information',
     'staff_information': 'Staff Information',
     'patient_profile': 'Patient Profile',
     'patient_about': 'Patient Personal Details',
-    'patient_visit': 'Patient Visit',
+    'patient_visit': 'Patient Visits',
     'visit_form': 'Visit Form',
-    'patient_admission': 'Patient Admission',
+    'patient_admission': 'Patient Admissions',
     'patient_admission_details': 'Patient Admission Details',
-
     'update_staff':'UpdateStaff',
     'new_admission':'New Admission',
+    'patient_history':'Patient Medical History',
+    'patient_medicalhx_edit':'Edit Medical History',
+    'visit_details':'Visit Details',
+    'data_export':'Data Export',
+    'search_engine' : 'Search Engine',
+    'staff_profile':'Staff Profile',
+    'visit_details_edit':'Edit Visit Details',
+    'patient_admission_details_edit':'Edit Admission Details',
+    'patient_edit':'Edit Patient Details',
+    'contactus':'Contact Us',
 
   };
 
+  const role = localStorage.getItem('role');
+
   return (
     <nav className="breadcrumb">
-      <Link to="/home">Home</Link>
+      <Link to={role === "data_entry" ? '/backup' : '/home'}></Link>
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
