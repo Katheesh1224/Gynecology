@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart, faFileExport, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faRectangleList, faHospitalUser, faUserNurse, faLineChart, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 // import { BarChart } from 'lucide-react';
 
@@ -28,16 +28,7 @@ const Nav = () => {
                 <span>Patient Information</span>
               </NavLink>
             </li>
-            {role ==='superadmin' && (
-            <li>
-              <NavLink to="/register_staff" className="nav-link" activeClassName="active">
-                <FontAwesomeIcon icon={faRectangleList} />
-                <span>Staff Registration</span>
-              </NavLink>
-            </li>
-            )}
-            {role ==='superadmin' && (
-              
+            {role ==='superadmin' && (          
               <li>
               <NavLink to="/staff_information" className="nav-link" activeClassName="active">
                 <FontAwesomeIcon icon={faUserNurse} />

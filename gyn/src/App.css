@@ -857,8 +857,9 @@ border: 7px solid red;
   padding: 10px;
   border-radius: 5px;
   margin: 0 auto;
-  box-shadow: 0 8px 24px hsla(29, 75%, 56%, 0.3);
+  /* box-shadow: 0 8px 24px hsla(29, 75%, 56%, 0.3); */
   cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
 }
 
 .contact_button:hover {
@@ -872,6 +873,7 @@ border: 7px solid red;
   height: 35px;
   box-sizing: border-box;
   border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.13);
   border: 1px solid #ccc;
   color: indigo;
 }
@@ -887,5 +889,36 @@ border: 7px solid red;
   color: indigo;
 }
 
+.pagination-bar{
+  margin: 10px 10px 0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
 
+.page-button{
+  background-color: white;
+  color: #512da8;
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin: 10px;
+  font-size: smaller;
+}
 
+.page-button-current{
+  background-color: white;
+  color: #512da8;
+  border-radius: 100%;
+  border: #512da8 1px solid;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin: 10px;
+  font-size: smaller;
+}
+
+.page-button :hover{
+  background-color: red;
+}

@@ -1,3 +1,4 @@
+// src/Pages/Patient.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -8,23 +9,19 @@ import '../App.css';
 import Footer from '../Component/Footer.jsx';
 import SearchBar from '../Component/SearchBar.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faUserMinus} from '@fortawesome/free-solid-svg-icons';
-
+import { faUserPlus, faUserMinus } from '@fortawesome/free-solid-svg-icons';
+import PaginationHandler from '../Component/PaginationHandler.jsx'; // Import PaginationHandler
 
 const Patient = () => {
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState('all'); // Default to 'all'
+  const [filter, setFilter] = useState('all');
   const [page, setPage] = useState(1);
   const [hasMoreData, setHasMoreData] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(''); // New state for search query
+  const [searchQuery, setSearchQuery] = useState('');
   const limit = 8;
   const navigate = useNavigate();
-  const role = localStorage.getItem('role');
 
   const fetchData = async (page, filterType = filter, search = '') => {
-    console.log(`Fetching data with page: ${page}`);
-    console.log(`Filter: ${filterType}, Search Query: ${search}`);
-
     try {
       let endpoint =
         filterType === 'discharged'
@@ -32,26 +29,29 @@ const Patient = () => {
           : filterType === 'admitted'
           ? 'http://localhost:8081/admitdata'
           : 'http://localhost:8081/data';
-
+  
       if (search.trim() !== '') {
         endpoint = 'http://localhost:8081/searchdata';
       }
-
+  
       const response = await axios.get(endpoint, {
         params: { limit, page, val: search },
       });
-
+  
       setData(response.data);
+  
+      // Update hasMoreData flag only if the number of items equals the limit
       setHasMoreData(response.data.length === limit);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
+  
 
   useEffect(() => {
     setFilter('all');
     setPage(1);
-    fetchData(1, 'all'); 
+    fetchData(1, 'all');
   }, []);
 
   const handleFilterChange = (filterType) => {
@@ -60,24 +60,10 @@ const Patient = () => {
     fetchData(1, filterType);
   };
 
-  const handleNext = () => {
-    const nextPage = page + 1;
-    setPage(nextPage);
-    fetchData(nextPage, filter, searchQuery);
-  };
-
-  const handlePrevious = () => {
-    if (page > 1) {
-      const prevPage = page - 1;
-      setPage(prevPage);
-      fetchData(prevPage, filter, searchQuery);
-    }
-  };
-
   const handleSearch = (query) => {
     setSearchQuery(query);
     setPage(1);
-    fetchData(1, 'search', query); // Fetch data with the search query
+    fetchData(1, 'search', query);
   };
 
   const assign = (roe) => {
@@ -104,12 +90,12 @@ const Patient = () => {
               >
                 Admitted Patient
               </button>
-                <button
-                  className="button_dis"
-                  onClick={() => handleFilterChange('discharged')}
-                >
-                  Discharged Patient
-                </button>
+              <button
+                className="button_dis"
+                onClick={() => handleFilterChange('discharged')}
+              >
+                Discharged Patient
+              </button>
             </div>
           </div>
 
@@ -121,7 +107,6 @@ const Patient = () => {
                   <th>Full Name</th>
                   <th>PHN No.</th>
                   <th>NIC</th>
-                  {/* <th>Status</th> */}
                   <th>Management</th>
                 </tr>
               </thead>
@@ -129,22 +114,36 @@ const Patient = () => {
                 {data.map((row, index) => (
                   <tr key={row.id}>
                     <td>{(page - 1) * limit + index + 1}</td>
-                    <td>{row.full_name}</td>
+                    <td style={{textAlign:'left'}}>{row.full_name}</td>
                     <td>{row.phn}</td>
                     <td>{row.nic}</td>
                     <td>
-                    {/* </td>
-                    <td> */}
                       <button
                         className="button_view"
                         onClick={() => assign(row.id)}
-                        >
+                      >
                         View
                       </button>
-                        &emsp; 
-                    <span className={row.admit_status === "discharged" ? "status-discharged" : "status-admitted"}>
-                      {row.admit_status === "admitted" ? <FontAwesomeIcon icon={faUserPlus} style={{color: "#63E6BE",}} /> : <FontAwesomeIcon icon={faUserMinus} style={{color: "#ff4763",}} />}
-                    </span>
+                      &emsp;
+                      <span
+                        className={
+                          row.admit_status === 'discharged'
+                            ? 'status-discharged'
+                            : 'status-admitted'
+                        }
+                      >
+                        {row.admit_status === 'admitted' ? (
+                          <FontAwesomeIcon
+                            icon={faUserPlus}
+                            style={{ color: '#63E6BE' }}
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={faUserMinus}
+                            style={{ color: '#ff4763' }}
+                          />
+                        )}
+                      </span>
                     </td>
                   </tr>
                 ))}
@@ -152,18 +151,14 @@ const Patient = () => {
             </table>
           </div>
 
-          <div className="button-bar2">
-            {hasMoreData && (
-              <button className="button_next" onClick={handleNext}>
-                Next &nbsp;&nbsp; {'>>'}
-              </button>
-            )}
-            {page > 1 && (
-              <button className="button_prev" onClick={handlePrevious}>
-                {'<<'} &nbsp;&nbsp; Previous
-              </button>
-            )}
-          </div>
+          <PaginationHandler
+            page={page}
+            setPage={setPage}
+            hasMoreData={hasMoreData}
+            fetchData={fetchData}
+            filter={filter}
+            searchQuery={searchQuery}
+          />
         </div>
       </div>
       <Footer />

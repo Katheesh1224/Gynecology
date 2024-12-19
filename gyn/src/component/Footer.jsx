@@ -5,7 +5,7 @@ const Footer = () => {
   
   return (
       <div className="footer">
-        <p>Copyright © 2024 DEPARTMENT OF COMPUTER SCIENCE ALL RIGHTS RESERVED <span>UNIVERSITY OF JAFFNA</span> </p>
+        <p> © 2024 DEPARTMENT OF COMPUTER SCIENCE ALL RIGHTS RESERVED <a href='https://www.jfn.ac.lk/' >UNIVERSITY OF JAFFNA</a> </p>
       </div>
   );
 };

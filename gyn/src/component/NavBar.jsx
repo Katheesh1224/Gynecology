@@ -153,7 +153,7 @@ const NavBar = () => {
               <div onClick={toggleDropdown} className="profile-dropdown-btn">
                 <div className="profile-img">
                 </div>
-                {username && ( <span> {username} </span> )}
+                {username && ( <span data-fullname={username}>{username} </span> )}
                 </div>
 
               <ul className={`profile-dropdown-list ${isActive ? "active" : ""}`}>
