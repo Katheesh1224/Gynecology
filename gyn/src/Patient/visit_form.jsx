@@ -74,7 +74,8 @@ const VisitForm = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(`http://localhost:8081/require_visit_count/${visit_un}`);
+            console.log(visit_un);
+            const response = await axios.get(`http://localhost:5000/visit/require_visit_count/${visit_un}`);
             console.log(response.data); // Log the full response data to check the structure
             
             // Check if visit_count exists and handle cases where it might not
@@ -100,7 +101,7 @@ const VisitForm = () => {
         fetchData();
         const fetchConsultants = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/staffs'); // Your backend URL
+        const response = await axios.get('http://localhost:5000/patient/staffs'); // Your backend URL
         setConsultants(response.data); // Set fetched consultants into state
         console.log(response.data)
       } catch (error) {
@@ -125,7 +126,7 @@ const VisitForm = () => {
             toast.error('Patient PHN is required.');
             return;
         }
-        axios.post('http://localhost:8081/treat',values)
+        axios.post('http://localhost:5000/visit/treat',values)
         .then(res => {
             navigate('/home');
             toast.success('Form submitted successfully!');

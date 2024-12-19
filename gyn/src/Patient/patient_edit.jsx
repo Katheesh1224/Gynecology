@@ -27,8 +27,9 @@ const PEdit = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8081/read/${patient_id}`);
-            const patient = response.data[0];
+            const response = await axios.get(`http://localhost:5000/patient/patient/${patient_id}`);
+            const patient = response.data;
+            console.log(patient)
             setValues({
                 fname: patient.full_name,
                 address: patient.address,
@@ -61,7 +62,7 @@ const PEdit = () => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:8081/patientUpdate/${patient_id}`, values); // Changed to PUT
+            await axios.put(`http://localhost:5000/patient/patientUpdate/${patient_id}`, values); // Changed to PUT
             navigate('/patients_information/patient_profile/patient_about');
             toast.success('Form updated successfully!');
         } catch (err) {

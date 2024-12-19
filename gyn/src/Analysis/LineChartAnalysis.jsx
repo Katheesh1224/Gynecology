@@ -19,8 +19,18 @@ const LineCharts = () => {
           month: selectedView === 'day' ? selectedMonth : undefined,
         };
 
-        const response = await axios.get('http://localhost:8081/admission-stats', { params });
-        setChartData(response.data);
+        const response = await axios.get('http://localhost:5000/analysis/admission-stats', { params });
+
+        // Log to verify the structure of the data
+        console.log('Fetched Chart Data:', response.data);
+
+        // Ensure the data is in the correct format
+        const formattedData = response.data.map(item => ({
+          name: item.name, // This could be the year, month, or day
+          patientCount: item.patientCount, // Make sure this is a number
+        }));
+
+        setChartData(formattedData);
       } catch (error) {
         console.error('Error fetching chart data:', error);
       }
@@ -28,6 +38,19 @@ const LineCharts = () => {
 
     fetchChartData();
   }, [selectedView, selectedYear, selectedMonth]);
+
+  // Calculate the dynamic Y-axis range
+  const getYAxisDomain = () => {
+    const patientCounts = chartData.map(item => item.patientCount);
+    const maxValue = Math.max(...patientCounts);
+    const minValue = Math.min(...patientCounts);
+
+    // Adjust the domain to have a margin around the min and max values
+    const max = Math.ceil(maxValue * 1.2);  // Add 20% margin on top
+    const min = Math.floor(minValue * 0.8); // Add 20% margin on bottom
+
+    return [min, max];
+  };
 
   return (
     <motion.div
@@ -70,7 +93,10 @@ const LineCharts = () => {
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray='3 3' stroke='#4B5563' />
             <XAxis dataKey={"name"} stroke='#334155' />
-            <YAxis stroke='#334155' />
+            <YAxis 
+              stroke='#334155' 
+              domain={getYAxisDomain()}  // Use dynamic Y-axis domain
+            />
             <Tooltip
               contentStyle={{
                 backgroundColor: "rgba(31, 41, 55, 0.8)",

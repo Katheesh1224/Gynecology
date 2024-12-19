@@ -26,7 +26,8 @@ export const Login = () => {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post('http://localhost:8081/login', formValues);
+        const response = await axios.post('http://localhost:5000/staff/login', formValues);
+        console.log('response.data', response.data)
         const { token, role, userId} = response.data;
         console.log('Login successful:', token);
         login(token, role, userId);
@@ -38,7 +39,7 @@ export const Login = () => {
           navigate('/backup'); // Redirect to home for other roles
         }
       } catch (err) {
-        // console.error('Login failed:', err);
+        console.error('Login failed:', err);
         toast.error('Invalid credentials');
       }
     }

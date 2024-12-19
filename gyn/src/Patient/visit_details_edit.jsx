@@ -78,8 +78,9 @@ const VisitEdit = () => {
         }
 
         try {
-            const response = await axios.get(`http://localhost:8081/visitdetail/${visit_unique}`);
-            const visit = response.data[0];
+            const response = await axios.get(`http://localhost:5000/visit/visitdetail/${visit_unique}`);
+            const visit = response.data;
+            console.log(visit.scan_types);
             const date = new Date(visit.date);
             const formattedDate = date.toISOString().slice(0, 16);
 
@@ -111,11 +112,11 @@ const VisitEdit = () => {
                 lftALT: visit.lft_alt,
                 lftAST: visit.lft_ast,
                 lftOther: visit.invest_other,
-                scan_types: visit.scan_types.split(', '),
                 mri: visit.scan_mri,
                 ct: visit.scan_ct,
                 tas: visit.uss_tas,
                 tus: visit.uss_tus,
+                scan_types: visit.scan_types.split(', '),
                 minorEua: visit.manage_minor_eua,
                 minorEb: visit.manage_minor_eb,
                 major: visit.manage_major.split(', '),
@@ -135,7 +136,7 @@ const VisitEdit = () => {
 
         const fetchConsultants = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/staffs'); // Your backend URL
+        const response = await axios.get('http://localhost:5000/patient/staffs'); // Your backend URL
         setConsultants(response.data); // Set fetched consultants into state
         console.log(response.data)
       } catch (error) {
@@ -148,7 +149,7 @@ const VisitEdit = () => {
     const handleUpdate =(e) =>{
         console.log(visit_unique);
         e.preventDefault();
-        axios.put(`http://localhost:8081/visitUpdate/${visit_unique}`,values)
+        axios.put(`http://localhost:5000/visit/visitUpdate/${visit_unique}`,values)
         .then(res =>{
             console.log(res);
             navigate(`/patients_information/patient_profile/patient_admission/patient_visit/visit_details`);

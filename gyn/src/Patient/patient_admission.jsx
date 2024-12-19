@@ -38,14 +38,14 @@ const Admission = () => {
     const fetchData = async () => {
       try {
         // Fetch patient data
-        const patientResponse = await axios.get(`http://localhost:8081/patientda/${patient_id}`);
-        const patientData = patientResponse.data[0]; // Assuming data is an array
+        const patientResponse = await axios.get(`http://localhost:5000/patient/patient/${patient_id}`);
+        const patientData = patientResponse.data; // Assuming data is an array
 
         // Set PHN to local storage if needed
         localStorage.setItem('patient_phn', patientData.phn);
 
         // Fetch admissions based on PHN
-        const admissionsResponse = await axios.get(`http://localhost:8081/admissions/${patientData.phn}`);
+        const admissionsResponse = await axios.get(`http://localhost:5000/patient/admissions/${patientData.phn}`);
         const admissions = admissionsResponse.data; // Assuming this is an array of admissions
         localStorage.setItem('maxCount', admissions.length);
         // Generate card titles based on the number of admissions

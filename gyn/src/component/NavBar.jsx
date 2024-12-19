@@ -42,7 +42,7 @@ const NavBar = () => {
     // Fetch the username from the backend using the userId
     if (userId) {
       axios
-        .get(`http://localhost:8081/staff/${userId}`)
+        .get(`http://localhost:5000/staff/staff/${userId}`)
         .then((response) => {
           setUsername(response.data.full_name); // Update the username state
         })

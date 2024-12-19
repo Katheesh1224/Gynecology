@@ -52,7 +52,7 @@ const UpdateStaff = () => {
     if (Object.keys(errors).length === 0) {
       try {
         if (isEditMode) {
-          await axios.put(`http://localhost:8081/staff_update/${values.id}`, values);
+          await axios.put(`http://localhost:5000/staff/staff_update/${values.id}`, values);
 
           toast.success('Staff Updated Successfully');
           navigate('/staff_information'); 

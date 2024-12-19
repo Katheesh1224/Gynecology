@@ -24,10 +24,11 @@ const Staff = () => {
 
   const fetchData = async (page) => {
     try {
-      const response = await axios.get('http://localhost:8081/data1', {
+      const response = await axios.get('http://localhost:5000/staff/data1', {
         params: { page, limit },
       });
       setData(response.data);
+      console.log(response.data)
       setHasMoreData(response.data.length === limit);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -49,7 +50,7 @@ const Staff = () => {
 
   const deleteRow = async (id) => {
     try {
-      await axios.delete(`http://localhost:8081/staff_information/${id}`);
+      await axios.delete(`http://localhost:5000/staff/staff_information/${id}`);
       setData(data.filter((row) => row.id !== id)); 
       setOpenPopup(false); 
       toast.success('Row deleted successfully');

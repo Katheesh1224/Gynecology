@@ -30,8 +30,8 @@ const PAdd = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(`http://localhost:8081/require_count/${patient_phn}`);
-            const fetchedData = response.data[0];
+            const response = await axios.get(`http://localhost:5000/patient/require_count/${patient_phn}`);
+            const fetchedData = response.data;
             setData(fetchedData);
             setValues(prevValues => ({
               ...prevValues,
@@ -46,7 +46,7 @@ const PAdd = () => {
     // Fetch the consultants data from the backend when the component mounts
     const fetchConsultants = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/consultants'); // Your backend URL
+        const response = await axios.get('http://localhost:5000/patient/consultants'); // Your backend URL
         setConsultants(response.data); // Set fetched consultants into state
         console.log(response.data)
       } catch (error) {
@@ -63,12 +63,12 @@ const PAdd = () => {
             toast.error('Patient PHN is required.');
             return;
         }
-        axios.post('http://localhost:8081/newReg',values)
+        axios.post('http://localhost:5000/patient/newReg',values)
         .then(res =>{
             console.log(res);
+            navigate('/patients_information/patient_profile/patient_admission')
         })
         .catch(err =>console.log(err))
-        navigate('/patients_information/patient_profile/patient_admission')
     }
 
     const handleDateChange = (e) => {

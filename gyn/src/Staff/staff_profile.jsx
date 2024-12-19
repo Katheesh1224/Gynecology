@@ -31,7 +31,7 @@ const StaffProfile = () => {
   // Fetch staff data
   const fetchStaffData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8081/staff/${userId}`);
+      const response = await axios.get(`http://localhost:5000/staff/staff/${userId}`);
       setData(response.data);
       setEditData(response.data); // Initialize editData with current profile data
     } catch (error) {
@@ -55,7 +55,7 @@ const StaffProfile = () => {
 
       const updatedData = { full_name, phone_no, role, email, password, status };
 
-      const response = await axios.put(`http://localhost:8081/staff/${data.id}`, updatedData);
+      const response = await axios.put(`http://localhost:5000/staff/staff_update/${data.id}`, updatedData);
 
       if (response.status === 200) {
         toast.success('Profile updated successfully!');

@@ -13,8 +13,8 @@ const HistoryCard = () =>{
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(`http://localhost:8081/admisiondetail/${patient_phn}`);
-            setData(response.data[0]);
+            const response = await axios.get(`http://localhost:5000/patient/medicalhx/${patient_phn}`);
+            setData(response.data);
           } catch (error) {
             console.error('Error fetching data:', error);
 

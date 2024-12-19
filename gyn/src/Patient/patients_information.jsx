@@ -25,13 +25,13 @@ const Patient = () => {
     try {
       let endpoint =
         filterType === 'discharged'
-          ? 'http://localhost:8081/dischargedata'
+          ? 'http://localhost:5000/patient/dischargedata'
           : filterType === 'admitted'
-          ? 'http://localhost:8081/admitdata'
-          : 'http://localhost:8081/data';
-  
+          ? 'http://localhost:5000/patient/admitdata'
+          : 'http://localhost:5000/patient/data';
+
       if (search.trim() !== '') {
-        endpoint = 'http://localhost:8081/searchdata';
+        endpoint = 'http://localhost:5000/patient/dynamicsearchdata';
       }
   
       const response = await axios.get(endpoint, {
