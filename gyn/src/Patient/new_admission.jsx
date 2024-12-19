@@ -92,12 +92,22 @@ const PAdd = () => {
             <Nav/>
             <Chatbot/>
             <div className="container">
-                <h2>Patient Admission Registration</h2>
-                <div className='heading'>
+                <h2 style={{ fontWeight: 'bold' }}>Patient Admission Registration</h2>
+                
+                <form onSubmit={handleSubmit}>
+                    <div className="form">
+                    <div className='heading'>
                     <div className="input-field-phn">
                         <label htmlFor="ward_no">PHN No. : </label>
                         <input type="number" readOnly value={data.phn} onChange={e =>setValues({...values,phn:e.target.value})}  />
                     </div> 
+
+                    <div className="fields1">
+                                <div className="input-field" >
+                                    <label htmlFor="date">Admission Date : </label>
+                                    <input type="datetime-local" onChange={handleDateChange} value={values.date} required/>
+                                </div>
+                            </div>
                     
                     <div className="input-field-add">
                         <label htmlFor="ward_no">Admission No. : </label>
@@ -105,18 +115,8 @@ const PAdd = () => {
                     </div>
 
                 </div>
-                <br></br>
-                <br></br>
-                <form onSubmit={handleSubmit}>
-                    <div className="form">
                         <div className="B">
-                            <span className="title">Section B - Admission details</span>
-                            <div className="fields1">
-                                <div className="input-field" >
-                                    <label htmlFor="date">Admission Date : </label>
-                                    <input type="datetime-local" onChange={handleDateChange} value={values.date} required/>
-                                </div>
-                            </div>
+                            
                             <div className="fields">
                                 <div className="input-fieldB">
                                     <label htmlFor="bht">BHT : </label>

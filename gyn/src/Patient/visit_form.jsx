@@ -287,7 +287,7 @@ const VisitForm = () => {
             <Nav/>
             <Chatbot/>
             <div className="container">
-                <h2>Visit Form</h2>
+                <h2 style={{ fontWeight: 'bold' }}>Visit Form</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form">
                         <div className="A">
@@ -424,7 +424,7 @@ const VisitForm = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="WBC"> WBC: </label>
-                                    <input type="number" placeholder='count/mm' onChange={e =>setValues({...values,wbc:e.target.value})} required/>
+                                    <input type="number" placeholder='mm³' min={0}  onChange={e =>setValues({...values,wbc:e.target.value})} required/>
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="Hb"> Hb: </label>
@@ -432,7 +432,7 @@ const VisitForm = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="P/t"> P/t: </label>
-                                    <input type="number" placeholder='count/mm' onChange={e =>setValues({...values,plate:e.target.value})}  />
+                                    <input type="number" placeholder='/mm³' onChange={e =>setValues({...values,plate:e.target.value})}  />
                                 </div>
                                                             
                             </div>
@@ -469,11 +469,11 @@ const VisitForm = () => {
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor=" K+"> K+: </label>
-                                    <input type="number" placeholder='mmol/l' min={0} max={10} onChange={e =>setValues({...values,seK:e.target.value})}  />
+                                    <input type="number" placeholder='mmol/L' min={0} max={10} onChange={e =>setValues({...values,seK:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="Na+"> Na+: </label>
-                                    <input type="number" placeholder='mmol/l' min={120} max={150} onChange={e =>setValues({...values,seNa:e.target.value})}  />
+                                    <input type="number" placeholder='mmol/L' min={100} max={200} onChange={e =>setValues({...values,seNa:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                 </div>
@@ -484,7 +484,7 @@ const VisitForm = () => {
                                     <label htmlFor="CRP"> CRP:  </label>
                                 </div>
                                 <div className="input-field">
-                                    <input type="number" placeholder='mg/DL' min={5} max={220} onChange={e =>setValues({...values,crp:e.target.value})}  />
+                                    <input type="number" placeholder='mg/L' min={-1} max={300} onChange={e =>setValues({...values,crp:e.target.value})}  />
                                 </div>
                             
                             </div>
@@ -523,11 +523,11 @@ const VisitForm = () => {
                                 {/* &emsp; */}
                             <div className="input-field">
                                     <label htmlFor="AB"> ALT: </label>
-                                    <input type="text" placeholder='u/l' min={0} max={50} onChange={e =>setValues({...values,lftALT:e.target.value})}  />
+                                    <input type="text" placeholder='U/L' min={0} max={150} onChange={e =>setValues({...values,lftALT:e.target.value})}  />
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="AL"> AST: </label>
-                                    <input type="text" placeholder='u/l' min={0} max={50} onChange={e =>setValues({...values,lftAST:e.target.value})}  />
+                                    <input type="text" placeholder='U/L' min={0} max={100} onChange={e =>setValues({...values,lftAST:e.target.value})}  />
                                 </div> 
                             </div>
                             <br />

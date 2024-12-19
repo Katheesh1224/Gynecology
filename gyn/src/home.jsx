@@ -60,7 +60,7 @@ const Home = () =>{
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
 				>
-					<StatCards name='Total patients' icon={Users} value={stats.totalPatients} color='#6366F1' />
+					<StatCards name='Total patients' icon={Users} value={stats.totalPatients} color='#6366F1'  />
 					<StatCards name='Active' icon={UserCheck} value={stats.activePatients} color='#8B5CF6' />
 					<StatCards name='Discharged' icon={UserMinus} value={stats.dischargedPatients} color='#EC4899' />
 					<StatCards name='Admission rate' icon={BarChart2} value={stats.admissionRate} color='#10B981' />

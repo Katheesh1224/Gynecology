@@ -22,7 +22,7 @@ const PEdit = () => {
         status:'',
         nic:'',
         phn:'',
-        tp:''
+        phone_no:''
     })
 
     const fetchData = async () => {
@@ -38,7 +38,7 @@ const PEdit = () => {
                 status: patient.marrital_status,
                 nic: patient.nic,
                 phn: patient.phn,
-                tp:patient.phone_no  
+                phone_no:patient.phone_no  
             });
 
         } catch (error) {
@@ -190,7 +190,7 @@ const PEdit = () => {
 
         <div className="container">
 
-            <h2>Patient Registration</h2>
+            <h2 style={{ fontWeight: 'bold' }}>Patient Registration</h2>
             <form onSubmit={handleUpdate}>
                 <div className="form">
                     <div className="A">
@@ -247,8 +247,8 @@ const PEdit = () => {
                             </div>   
                             <div className="input-fieldN">
                                 <label htmlFor="phone_no">Telephone No. : </label>
-                                <input type="tel" name="phone_no" placeholder="Enter phone number here" value={values.tp} maxLength="10" onChange={handleChange} style={{ borderColor: isPhoneNumberValid ? '#aaa' : 'red' }} required/>
-                                        {formErrors.phone_no && <p style={{ color: "red" }}>{formErrors.phone_no}</p>}
+                                <input type="phone_no" name="phone_no" placeholder="Enter phone number here" value={values.phone_no} maxLength="10" onChange={handleChange} style={{ borderColor: isPhoneNumberValid ? '#aaa' : 'red' }} required/>
+                                {formErrors.phone_no && <p style={{ color: "red" }}>{formErrors.phone_no}</p>}
                             </div>                             
                         </div>
                         

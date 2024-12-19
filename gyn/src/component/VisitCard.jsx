@@ -137,7 +137,7 @@ const VisitCard = () =>{
                         <div className='rowL'>
                             <div className='colL1'>WBC</div>
                             <div className='colL2'>:</div>
-                            <div className='colL3'>{data.fbc_wbc} count/mm</div>
+                            <div className='colL3'>{data.fbc_wbc} mm³</div>
 
                         </div>
                         <div className='rowL'>
@@ -148,7 +148,7 @@ const VisitCard = () =>{
                         <div className='rowL'>
                             <div className='colL1'>P/t</div>
                             <div className='colL2'>:</div>
-                            <div className='colL3'>{data.fbc_pt}count/mm</div>
+                            <div className='colL3'>{data.fbc_pt}mm³</div>
                         </div>
                         <div className='rowL'>
                             <div className='colL1'>White Cells</div>
@@ -168,22 +168,22 @@ const VisitCard = () =>{
                         <div className='rowL'>
                             <div className='colL1'>K+</div>
                             <div className='colL2'>:</div>
-                            <div className='colL3'>{data.se_k} mmol/l</div>
+                            <div className='colL3'>{data.se_k} mmol/L</div>
                         </div>
                         <div className='rowL'>
                             <div className='colL1'>Na+</div>
                             <div className='colL2'>:</div>
-                            <div className='colL3'>{data.se_na} mmol/l</div>
+                            <div className='colL3'>{data.se_na} mmol/L</div>
                         </div>
                         <div className='rowL'>
                             <div className='colL1'>CRP</div>
                             <div className='colL2'>:</div>
-                            <div className='colL3'>{data.crp} mg/dL</div>
+                            <div className='colL3'>{data.crp} mg/L</div>
                         </div>
                         <div className='rowL'>
                             <div className='colL1'>FBS</div>
                             <div className='colL2'>:</div>
-                            <div className='colL3'>{data.fbs} mmol/l</div>
+                            <div className='colL3'>{data.fbs} mmol/L</div>
                         </div>
                     </div>
                     <div>
@@ -205,12 +205,12 @@ const VisitCard = () =>{
                         <div className='rowL'>
                             <div className='colL1'>LFT ALT</div>
                             <div className='colL2'>:</div>
-                            <div className='colL3'>{data.lft_alt} u/l</div>
+                            <div className='colL3'>{data.lft_alt} U/L</div>
                         </div>
                         <div className='rowL'>
                             <div className='colL1'>LFT AST</div>
                             <div className='colL2'>:</div>
-                            <div className='colL3'>{data.lft_ast} u/l</div>
+                            <div className='colL3'>{data.lft_ast} U/L</div>
                         </div>
                         <div className='rowL'>
                             <div className='colL1'>Other Investigation</div>

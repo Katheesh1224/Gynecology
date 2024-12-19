@@ -114,7 +114,7 @@ const SearchEngine = () => {
                 </div>
                 )}
                 <div className="no-results">
-                    <p>No results found. <span onClick={handleNewRegistration} className="new-registration-link">New Registration</span></p>
+                    <p style={{fontSize:'1.3rem'}}>No results found. <span onClick={handleNewRegistration} className="new-registration-link">New Registration</span></p>
                 </div>
             </div>
             <Footer />

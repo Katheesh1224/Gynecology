@@ -42,7 +42,7 @@ const HxChart = () => {
     >
       <h2 className='text-2xl font-medium mb-4 text-gray-800 font-bold'>Patient Medical History in Gynecology</h2>
 
-      <div className='h-80'>
+      <div className='h-80 '>
         <ResponsiveContainer>
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray='3 3' stroke='#4B5563' />

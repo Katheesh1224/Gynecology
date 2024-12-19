@@ -21,7 +21,9 @@ const AdEdit = () => {
         bht:'',
         ward:'21',
         consultant:'',
-        add_count:''
+        add_count:'',
+        height:'',
+        weight:''
     })
 
     useEffect(() => {
@@ -47,6 +49,8 @@ const AdEdit = () => {
                 consultant: patient.consultant,
                 nic: patient.nic,
                 phn: patient.phn,
+                height: patient.height,
+                weight: patient.weight,
                 add_count:patient.add_count
             });
             console.log(patient.ward);
@@ -114,7 +118,7 @@ const AdEdit = () => {
                         <label htmlFor="ward_no">PHN No. : </label>
                         <input type="number" readOnly value={values.phn} onChange={e =>setValues({...values,phn:e.target.value})}  />
                     </div> 
-                    <h2>Patient Admission Registration</h2>
+                    <h2 style={{ fontWeight: 'bold' }}>Patient Admission Registration</h2>
                     <div className="input-field-add">
                         <label htmlFor="ward_no">Admission No. : </label>
                         <input type="number"  value={values.add_count} readOnly onChange={e =>setValues({...values,add_count:e.target.value})} />
@@ -166,15 +170,15 @@ const AdEdit = () => {
                                         ))}
                                     </select>
                                 </div>
-                                {/* <div className="input-fieldH">
+                                <div className="input-fieldH">
                                     <label htmlFor="height">Height : </label>
-                                    <input type="number" placeholder="cm"max={250} min={90} onChange={e =>setValues({...values,height:e.target.value})} />
+                                    <input type="number" value= {values.height} placeholder="cm"max={250} min={90} onChange={e =>setValues({...values,height:e.target.value})} />
                                 </div>
 
                                 <div className="input-fieldH">
                                     <label htmlFor="weight">Weight : </label>
-                                    <input type="number" placeholder="kg" max={400} min={30}  onChange={e =>setValues({...values,weight:e.target.value})}/>
-                                </div> */}
+                                    <input type="number" value= {values.weight} placeholder="kg" max={400} min={30}  onChange={e =>setValues({...values,weight:e.target.value})}/>
+                                </div>
                         </div>
                     </div>
                 </div>

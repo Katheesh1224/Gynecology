@@ -32,7 +32,7 @@ const HistoryCard = () =>{
                 <div className='col2'>:</div>
                 <div className='col3'>{data.phn}</div>
               </div>
-              <div className='row'>
+              {/* <div className='row'>
                 <div className='col1'>Height</div>
                 <div className='col2'>:</div>
                 <div className='col3'>{data.height}</div>
@@ -41,12 +41,7 @@ const HistoryCard = () =>{
                 <div className='col1'>Weight</div>
                 <div className='col2'>:</div>
                 <div className='col3'>{data.weight}</div>
-              </div>
-              <div className='row'>
-                <div className='col1'>Consultant</div>
-                <div className='col2'>:</div>
-                <div className='col3'>{data.consultant}</div>
-              </div>
+              </div> */}
               <div className='row'>
                 <div className='col1'>Allergy History</div>
                 <div className='col2'>:</div>
@@ -71,11 +66,6 @@ const HistoryCard = () =>{
                 <div className='col1'>Diagnosis</div>
                 <div className='col2'>:</div>
                 <div className='col3'>{data.diagnosis}</div>
-              </div>
-              <div className='row'>
-                <div className='col1'>Status</div>
-                <div className='col2'>:</div>
-                <div className='col3'>{data.status}</div>
               </div>
             </div>
         </div>
