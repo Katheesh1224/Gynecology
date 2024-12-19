@@ -67,6 +67,41 @@ const AdmissionCard = () =>{
                     <div className='col2'>:</div>
                     <div className='col3'>{data.status}</div>
                 </div>
+                <div className='row'>
+                <div className='col1'>Height</div>
+                <div className='col2'>:</div>
+                <div className='col3'>{data.height}</div>
+              </div>
+              <div className='row'>
+                <div className='col1'>Weight</div>
+                <div className='col2'>:</div>
+                <div className='col3'>{data.weight}</div>
+              </div>
+              {/* <div className='row'>
+                <div className='col1'>BMI</div>
+                <div className='col2'>:</div>
+                <div className='col3'>{(data.weight * 10000)/(data.height * data.height) }</div>
+              </div> */}
+
+                <div className='row'>
+                <div className='col1'>BMI</div>
+                <div className='col2'>:</div>
+                <div className='col3'>
+                    {(() => {
+                    const bmi = (data.weight * 10000) / (data.height * data.height);
+                    if (bmi < 18.5) {
+                        return 'Underweight';
+                    } else if (bmi >= 18.5 && bmi <= 24.9) {
+                        return 'Normal weight';
+                    } else if (bmi >= 25 && bmi <= 29.9) {
+                        return 'Overweight';
+                    } else {
+                        return 'Obesity';
+                    }
+                    })()}
+                </div>
+                </div>
+
             </div>
         </div>
     )

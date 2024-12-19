@@ -122,7 +122,7 @@ const StaffProfile = () => {
                   className="edit-input"
                   maxLength={10}
                 />
-                <input
+                {/* <input
                   type="text"
                   name="role"
                   value={editData.role}
@@ -138,7 +138,7 @@ const StaffProfile = () => {
                   className="edit-input"
                   hidden
                   readOnly
-                />
+                /> */}
               </>
             )}
 

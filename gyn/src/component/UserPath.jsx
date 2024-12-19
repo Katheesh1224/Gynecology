@@ -7,12 +7,11 @@ const UserPath = () => {
   const pathnames = location.pathname.split('/').filter((x) => x);
 
   const breadcrumbNameMap = {
-    // '': 'Sign In',
-    'home': '.',
-    'backup':'.',
+    'home': 'Home',
+    'backup':'Home',
     'analysis':'Analysis',
     'patient_registration': 'Patient Registration',
-    'register_staff': 'Staff Registration',
+    'Register_staff': 'Staff Registration',
     'patients_information': 'Patient Information',
     'staff_information': 'Staff Information',
     'patient_profile': 'Patient Profile',
@@ -40,7 +39,7 @@ const UserPath = () => {
 
   return (
     <nav className="breadcrumb">
-      <Link to={role === "data_entry" ? '/backup' : '/home'}>Home</Link>
+      <Link to={role === "data_entry" ? '/backup' : '/home'}></Link>
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 

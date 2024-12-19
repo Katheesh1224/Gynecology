@@ -21,7 +21,9 @@ const AdEdit = () => {
         bht:'',
         ward:'21',
         consultant:'',
-        add_count:''
+        add_count:'',
+        height:'',
+        weight:''
     })
 
     useEffect(() => {
@@ -47,6 +49,8 @@ const AdEdit = () => {
                 consultant: patient.consultant,
                 nic: patient.nic,
                 phn: patient.phn,
+                height: patient.height,
+                weight: patient.weight,
                 add_count:patient.add_count
             });
             console.log(patient.ward);
@@ -166,15 +170,15 @@ const AdEdit = () => {
                                         ))}
                                     </select>
                                 </div>
-                                {/* <div className="input-fieldH">
+                                <div className="input-fieldH">
                                     <label htmlFor="height">Height : </label>
-                                    <input type="number" placeholder="cm"max={250} min={90} onChange={e =>setValues({...values,height:e.target.value})} />
+                                    <input type="number" value= {values.height} placeholder="cm"max={250} min={90} onChange={e =>setValues({...values,height:e.target.value})} />
                                 </div>
 
                                 <div className="input-fieldH">
                                     <label htmlFor="weight">Weight : </label>
-                                    <input type="number" placeholder="kg" max={400} min={30}  onChange={e =>setValues({...values,weight:e.target.value})}/>
-                                </div> */}
+                                    <input type="number" value= {values.weight} placeholder="kg" max={400} min={30}  onChange={e =>setValues({...values,weight:e.target.value})}/>
+                                </div>
                         </div>
                     </div>
                 </div>

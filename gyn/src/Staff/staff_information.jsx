@@ -7,11 +7,15 @@ import Chatbot from '../Component/Chatbot.jsx';
 import Footer from '../Component/Footer.jsx';
 import { toast } from 'react-toastify';
 import '../App.css';
+import PaginationHandler from '../Component/PaginationHandler.jsx'; // Import PaginationHandler
+
 
 const Staff = () => {
   const [data, setData] = useState([]); 
   const [openPopup, setOpenPopup] = useState(false); 
   const [page, setPage] = useState(1); 
+  const [filter, setFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [hasMoreData, setHasMoreData] = useState(true); 
   const limit = 8;
   const [rowToDelete, setRowToDelete] = useState(null); 
@@ -98,6 +102,10 @@ const Staff = () => {
     }
   };
 
+  const handleRegistration = () => {
+    navigate(`/staff_information/Register_staff`);
+  };
+
   return (
     <div className='wrapper'>
       <NavBar />
@@ -106,6 +114,11 @@ const Staff = () => {
         <Nav />
         <div className='container'>
           <h2 style={{fontWeight:"bold"}} >Staff Information</h2>
+          <div className="search-bar">
+            <div>
+              <button className="button_add" onClick={handleRegistration}> New Staff Registration </button>
+            </div>
+          </div>
           <div className='patient_table'>
             <table>
               <thead>
@@ -120,7 +133,7 @@ const Staff = () => {
               <tbody>
                 {data.map((row) => (
                   <tr key={row.id}>
-                    <td>{row.full_name}</td>
+                    <td style={{textAlign:'left'}}>{row.full_name}</td>
                     <td>{row.phone_no}</td>
                     <td>{getDisplayRole(row.role)}</td>
                     <td style={getRowStyle(row.status)}>{row.status}</td>
@@ -143,15 +156,15 @@ const Staff = () => {
             </table>
           </div>
 
-          <div className="button-bar2">
-          {hasMoreData && (
-            <button className="button_next" onClick={handleNext}> Next {'>>'} </button>
-          )}
-          {page > 1 && (
-            <button className="button_prev" onClick={handlePrevious}> {'<<'} &nbsp;&nbsp; Previous </button>
-          )}            
-          
-          </div>
+          <PaginationHandler
+            page={page}
+            setPage={setPage}
+            hasMoreData={hasMoreData}
+            fetchData={fetchData}
+            filter={filter}
+            searchQuery={searchQuery}
+          />
+
         </div>
       </div>
 

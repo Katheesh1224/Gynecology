@@ -23,7 +23,7 @@ const PReg = () => {
         status:'',
         nic:'',
         phn:'',
-        tp:'',
+        phone_no:'',
         bht:'',
         ward:'21',
         consultant:'',
@@ -221,26 +221,29 @@ const PReg = () => {
                 }
                 break;
 
-            case "bht":
-                if (value === "") { 
-                    setIsBHTErrorValid(true); 
-                    setIsBHTInstValid(true); 
-                    delete errors.bht; 
-                } else if (!/^[0-9]*$/.test(value)) { 
-                    setIsBHTErrorValid(false);
-                    errors.bht = "Invalid input: Only numbers are allowed.";
-                } else if (!/^[0-9]{6}\/[0-9]{4}$/.test(value)) { 
-                    setIsPHNInstValid(false);
-                    errors.bht = "Enter exactly 123456/1234 format.";
-                } else {
-                    setIsBHTErrorValid(true);
-                    setIsBHTInstValid(true);
-                    delete errors.bht;
-                }
-                break;
-
+                case "bht":
+                    if (value === "") { 
+                        setIsBHTErrorValid(true); 
+                        setIsBHTInstValid(true); 
+                        delete errors.bht; 
+                    } else if (!/^[0-9]*$/.test(value.replace("/", ""))) { 
+                        // Allow only numbers and a mandatory '/' in the string
+                        setIsBHTErrorValid(false);
+                        errors.bht = "Invalid input: Only numbers and '/' are allowed.";
+                    } else if (!/^[0-9]{6}\/[0-9]{4}$/.test(value)) { 
+                        // Match the exact format "123456/1234"
+                        setIsBHTErrorValid(false);
+                        errors.bht = "Enter exactly 123456/1234 format.";
+                    } else {
+                        setIsBHTErrorValid(true);
+                        setIsBHTInstValid(true);
+                        delete errors.bht;
+                    }
+                    break;
+                
                 default:
                     break;
+                
             }
     
             setFormErrors(errors);

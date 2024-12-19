@@ -41,7 +41,7 @@ const MedHisEdit = () => {
             const {
                 phn, allergy, past_med, past_med_other,
                 past_surg, past_surg_other, hx_diseases,
-                hx_cancer, hx_cancer_other, height,
+                hx_cancer, hx_cancer_other, diagnosis, height,
                 weight, menarche_age, menopausal_age,
                 lmp, menstrual_cycle
             } = response.data[0];
@@ -56,6 +56,7 @@ const MedHisEdit = () => {
                 hx_diseases,
                 hx_cancer: hx_cancer.split(', '),
                 hx_cancer_other,
+                diagnosis,
                 height,
                 weight,
                 menarche_age,
@@ -275,7 +276,7 @@ const MedHisEdit = () => {
                             
                             <div className="input-field">
                                 <label htmlFor="diagnosis">Diagnosis : </label>
-                                <textarea id="diagnosis" placeholder="Enter text here" name="diagnosis" rows="3" cols="50" onChange={e =>setValues({...values,diagnosis:e.target.value})}></textarea>
+                                <textarea id="diagnosis" placeholder="Enter text here" name="diagnosis" rows="3" cols="50" value={values.diagnosis} onChange={e =>setValues({...values,diagnosis:e.target.value})}></textarea>
                             </div>    
                         </div>
                     </div>
